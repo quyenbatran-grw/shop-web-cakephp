@@ -169,3 +169,171 @@ Stack Trace:
 - D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
 
 Request URL: /admin
+2023-05-19 00:38:50 error: [Cake\Database\Exception\MissingConnectionException] Connection to Mysql could not be established: SQLSTATE[HY000] [2002] 対象のコンピューターによって拒否されたため、接続できませんでした。 in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver.php on line 133
+Exception Attributes: array (
+  'driver' => 'Mysql',
+  'reason' => 'SQLSTATE[HY000] [2002] 対象のコンピューターによって拒否されたため、接続できませんでした。',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:164
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\SchemaDialect.php:51
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:216
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:53
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:418
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:520
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Query.php:290
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Query.php:184
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:1714
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\Resolver\OrmResolver.php:59
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\PasswordIdentifier.php:162
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\PasswordIdentifier.php:99
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\IdentifierCollection.php:52
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Authenticator\FormAuthenticator.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\AuthenticationService.php:184
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:105
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:162
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Caused by: [PDOException] SQLSTATE[HY000] [2002] 対象のコンピューターによって拒否されたため、接続できませんでした。 in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver.php on line 125
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver.php:125
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php:70
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:164
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\SchemaDialect.php:51
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php:216
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:53
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:418
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:520
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Query.php:290
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Query.php:184
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:1714
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\Resolver\OrmResolver.php:59
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\PasswordIdentifier.php:162
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\PasswordIdentifier.php:99
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Identifier\IdentifierCollection.php:52
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Authenticator\FormAuthenticator.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\AuthenticationService.php:184
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:105
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:162
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /users/login?redirect=%2F
+Referer URL: http://localhost:8765/users/login?redirect=%2F
+2023-05-19 00:39:13 error: [Cake\Http\Exception\MissingControllerException] Controller class Home could not be found. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Home',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+  'class' => 'Home',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /home
+2023-05-19 00:41:44 error: [Cake\Http\Exception\MissingControllerException] Controller class Home could not be found. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Home',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+  'class' => 'Home',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /home
+2023-05-19 00:42:03 error: [Cake\Http\Exception\MissingControllerException] Controller class Index could not be found. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Index',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+  'class' => 'Index',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /index

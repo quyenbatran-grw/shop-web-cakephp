@@ -53,6 +53,62 @@
             "install-path": "../brick/varexporter"
         },
         {
+            "name": "cakephp/acl",
+            "version": "0.9",
+            "version_normalized": "0.9.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/acl.git",
+                "reference": "c72edaed0a55ed618fc70cbc56684fff670e5a8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/acl/zipball/c72edaed0a55ed618fc70cbc56684fff670e5a8e",
+                "reference": "c72edaed0a55ed618fc70cbc56684fff670e5a8e",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0",
+                "cakephp/plugin-installer": "^1.2",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "~4.2.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "time": "2023-04-23T23:29:36+00:00",
+            "type": "cakephp-plugin",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Acl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/acl/graphs/contributors"
+                }
+            ],
+            "description": "Acl Plugin for CakePHP framework",
+            "homepage": "https://cakephp.org",
+            "keywords": [
+                "acl",
+                "cakephp"
+            ],
+            "support": {
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/acl/issues",
+                "source": "https://github.com/cakephp/acl"
+            },
+            "install-path": "../cakephp/acl"
+        },
+        {
             "name": "cakephp/authentication",
             "version": "2.10.1",
             "version_normalized": "2.10.1.0",
