@@ -18,7 +18,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['login', 'add']);
+        // $this->Authentication->allowUnauthenticated(['login', 'add']);
     }
 
     /**
@@ -129,7 +129,7 @@ class UsersController extends AppController
         var_dump($result);
         // If the user is logged in send them away.
         if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/home';
+            $target = $this->Authentication->getLoginRedirect() ?? '/users';
             return $this->redirect($target);
         }
         if ($this->request->is('post')) {
