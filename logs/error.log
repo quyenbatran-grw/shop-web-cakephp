@@ -169,3 +169,210 @@ Stack Trace:
 - D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
 
 Request URL: /admin
+2023-05-19 02:20:47 error: [Authorization\Exception\AuthorizationRequiredException] The request to `/users/login?redirect=%2Fusers%2F` did not apply any authorization checks. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php on line 132
+Exception Attributes: array (
+  'url' => '/users/login?redirect=%2Fusers%2F',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /users/login?redirect=%2Fusers%2F
+Referer URL: http://localhost:8765/users/login?redirect=%2Fusers%2F
+2023-05-19 02:20:47 error: [Authorization\Exception\AuthorizationRequiredException] The request to `/debug-kit/toolbar/cec80690-e313-4710-a34a-6c1f8724b54f` did not apply any authorization checks. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php on line 132
+Exception Attributes: array (
+  'url' => '/debug-kit/toolbar/cec80690-e313-4710-a34a-6c1f8724b54f',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /debug-kit/toolbar/cec80690-e313-4710-a34a-6c1f8724b54f
+Referer URL: http://localhost:8765/users/login?redirect=%2Fusers%2F
+2023-05-19 02:23:13 error: [Authorization\Exception\AuthorizationRequiredException] The request to `/debug-kit/toolbar/28283db4-787c-45db-aba9-d10be77849d1` did not apply any authorization checks. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php on line 132
+Exception Attributes: array (
+  'url' => '/debug-kit/toolbar/28283db4-787c-45db-aba9-d10be77849d1',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /debug-kit/toolbar/28283db4-787c-45db-aba9-d10be77849d1
+Referer URL: http://localhost:8765/users/login?redirect=%2Fusers%2F
+2023-05-19 02:24:49 error: [Authorization\Exception\AuthorizationRequiredException] The request to `/debug-kit/toolbar/19777034-e1e7-4fb7-afb0-c552610357be` did not apply any authorization checks. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php on line 132
+Exception Attributes: array (
+  'url' => '/debug-kit/toolbar/19777034-e1e7-4fb7-afb0-c552610357be',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /debug-kit/toolbar/19777034-e1e7-4fb7-afb0-c552610357be
+Referer URL: http://localhost:8765/users/login?redirect=%2Fusers%2F
+2023-05-19 02:24:58 error: [Authorization\Policy\Exception\MissingPolicyException] Policy for `Cake\ORM\ResultSet` has not been defined. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Policy\OrmResolver.php on line 85
+Exception Attributes: array (
+  0 => 'Cake\\ORM\\ResultSet',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\AuthorizationService.php:81
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\AuthorizationService.php:65
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\IdentityDecorator.php:85
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Controller\Component\AuthorizationComponent.php:140
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Controller\Component\AuthorizationComponent.php:117
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Controller\Component\AuthorizationComponent.php:71
+- D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\UsersController.php:34
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php:547
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:139
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php:129
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /users/
+Referer URL: http://localhost:8765/users/login?redirect=%2Fusers%2F
+2023-05-19 02:24:58 error: [Authorization\Exception\AuthorizationRequiredException] The request to `/debug-kit/toolbar/f3cdbfcb-9157-416c-b861-2b65f7b16581` did not apply any authorization checks. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php on line 132
+Exception Attributes: array (
+  'url' => '/debug-kit/toolbar/f3cdbfcb-9157-416c-b861-2b65f7b16581',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /debug-kit/toolbar/f3cdbfcb-9157-416c-b861-2b65f7b16581
+Referer URL: http://localhost:8765/users/
+2023-05-19 03:33:07 error: [Authorization\Exception\AuthorizationRequiredException] The request to `/debug-kit/toolbar/640476bc-47eb-42a6-b0ae-c09f246ceb40` did not apply any authorization checks. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php on line 132
+Exception Attributes: array (
+  'url' => '/debug-kit/toolbar/640476bc-47eb-42a6-b0ae-c09f246ceb40',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /debug-kit/toolbar/640476bc-47eb-42a6-b0ae-c09f246ceb40
+Referer URL: http://localhost:8765/users/login?redirect=%2Fusers%2F
+2023-05-19 03:33:18 error: [Authorization\Exception\AuthorizationRequiredException] The request to `/debug-kit/toolbar/c112263c-7d0e-42b2-9b42-7ccb0b799c76` did not apply any authorization checks. in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authorization\src\Middleware\AuthorizationMiddleware.php on line 132
+Exception Attributes: array (
+  'url' => '/debug-kit/toolbar/c112263c-7d0e-42b2-9b42-7ccb0b799c76',
+)
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php:124
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php:40
+
+Request URL: /debug-kit/toolbar/c112263c-7d0e-42b2-9b42-7ccb0b799c76
+Referer URL: http://localhost:8765/users/
