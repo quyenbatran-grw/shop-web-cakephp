@@ -1,0 +1,1123 @@
+2023-05-19 03:57:06 notice: Undefined property: AdminController::$Auth in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 59
+Request URL: /admin
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 59
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 04:46:12 notice: strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+Request URL: /user/login
+Trace:
+strpos [internal], line ??
+include D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\templates\Error\missing_controller.php, line 24
+Cake\View\View::_evaluate() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1220
+Cake\View\View::_render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1177
+Cake\View\View::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 808
+Cake\Controller\Controller::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 773
+Cake\Error\Renderer\WebExceptionRenderer::_outputMessage() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 421
+Cake\Error\Renderer\WebExceptionRenderer::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 292
+Cake\Error\Middleware\ErrorHandlerMiddleware::handleException() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 162
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 135
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 04:46:12 notice: strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+Request URL: /user/login
+Trace:
+strpos [internal], line ??
+include D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\templates\Error\missing_controller.php, line 24
+Cake\View\View::_evaluate() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1220
+Cake\View\View::_render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1177
+Cake\View\View::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 808
+Cake\Controller\Controller::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 773
+Cake\Error\Renderer\WebExceptionRenderer::_outputMessage() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 421
+Cake\Error\Renderer\WebExceptionRenderer::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 292
+Cake\Error\Middleware\ErrorHandlerMiddleware::handleException() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 162
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 135
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:10:53 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 61
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 61
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:11:23 notice: Undefined property: LoginController::$Aithentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 61
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 61
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:11:23 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:11:32 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 61
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 61
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:11:32 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:13:06 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:13:06 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php on line 21
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:13:13 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:13:13 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php on line 21
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:21:52 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:21:52 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php on line 21
+Request URL: /shop/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:24:59 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:24:59 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php on line 21
+Request URL: /login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:25:33 notice: Undefined property: LoginController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php on line 21
+Request URL: /login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\LoginController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\LoginController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:33:17 notice: Undefined property: ShopsController::$Users in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 59
+Request URL: /shops/add
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::add() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 59
+Cake\Controller\Controller::invokeAction() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:17 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shops/add
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:17 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 21
+Request URL: /shops/add
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:35 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:35 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 21
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:36 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:36 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 21
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:38 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:38 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 21
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:49 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:34:49 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 21
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:35:14 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 19
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:35:14 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 21
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 21
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:35:44 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 62
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 62
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 24
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:35:44 notice: Undefined property: ShopsController::$Authentication in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php on line 26
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 26
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:52:25 notice: strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+Request URL: /users/login
+Referer URL: http://localhost:8765/shops/login?redirect=%2Fshops%2Flogout
+Trace:
+strpos [internal], line ??
+include D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\templates\Error\missing_controller.php, line 24
+Cake\View\View::_evaluate() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1220
+Cake\View\View::_render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1177
+Cake\View\View::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 808
+Cake\Controller\Controller::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 773
+Cake\Error\Renderer\WebExceptionRenderer::_outputMessage() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 421
+Cake\Error\Renderer\WebExceptionRenderer::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 292
+Cake\Error\Middleware\ErrorHandlerMiddleware::handleException() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 162
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 135
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 05:52:25 notice: strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated
+Request URL: /users/login
+Referer URL: http://localhost:8765/shops/login?redirect=%2Fshops%2Flogout
+Trace:
+strpos [internal], line ??
+include D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\templates\Error\missing_controller.php, line 24
+Cake\View\View::_evaluate() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1220
+Cake\View\View::_render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 1177
+Cake\View\View::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\View\View.php, line 808
+Cake\Controller\Controller::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 773
+Cake\Error\Renderer\WebExceptionRenderer::_outputMessage() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 421
+Cake\Error\Renderer\WebExceptionRenderer::render() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Renderer\WebExceptionRenderer.php, line 292
+Cake\Error\Middleware\ErrorHandlerMiddleware::handleException() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 162
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 135
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 07:26:44 notice: Undefined property: ProfilesController::$_matchedRoute in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 61
+Request URL: /admin
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 61
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+App\Middleware\AdminMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\src\Middleware\AdminMiddleware.php, line 25
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 192
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 08:37:32 notice: Undefined property: ShopsController::$Auth in D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php on line 66
+Request URL: /shops/login
+Trace:
+Cake\Controller\Controller::__get() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 337
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 66
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 26
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+
+2023-05-19 08:37:32 notice: Indirect modification of overloaded property App\Controller\ShopsController::$Auth has no effect
+Request URL: /shops/login
+Trace:
+App\Controller\AppController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\AppController.php, line 66
+App\Controller\ShopsController::beforeFilter() D:\QUYENTB\test-app\shop-web-cakephp\src\Controller\ShopsController.php, line 26
+Cake\Event\EventManager::_callListener() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 309
+Cake\Event\EventManager::dispatch() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventManager.php, line 286
+Cake\Controller\Controller::dispatchEvent() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Event\EventDispatcherTrait.php, line 92
+Cake\Controller\Controller::startupProcess() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\Controller.php, line 644
+Cake\Controller\ControllerFactory::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 129
+Cake\Controller\ControllerFactory::invoke() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Authentication\Middleware\AuthenticationMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\authentication\src\Middleware\AuthenticationMiddleware.php, line 124
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] D:\QUYENTB\test-app\shop-web-cakephp\webroot\index.php, line 40
+

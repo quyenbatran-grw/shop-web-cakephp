@@ -1,0 +1,58 @@
+2023-05-19 03:44:32 error: [Cake\Database\Exception\DatabaseException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shop-app-dev.admin' doesn't exist in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 160
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:118
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:521
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:111
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:94
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\AllCommand.php:115
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+
+Caused by: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shop-app-dev.admin' doesn't exist in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php on line 39
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php:39
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:329
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php:70
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:332
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:158
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:118
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:521
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:111
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:94
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\AllCommand.php:115
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+
+2023-05-19 05:40:54 error: [Cake\Database\Exception\DatabaseException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shop-app-dev.users/profiles' doesn't exist in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 160
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:118
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:521
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:111
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:94
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\AllCommand.php:115
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+
+Caused by: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shop-app-dev.users/profiles' doesn't exist in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php on line 39
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php:39
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:329
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php:70
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:332
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:158
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:118
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:521
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:111
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:94
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\AllCommand.php:115
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+

@@ -21,10 +21,14 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use App\Controller\User\UsersController;
+use App\Middleware\AdminMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
 return static function (RouteBuilder $routes) {
+
+    $routes->registerMiddleware('Admin', AdminMiddleware::class);
     /*
      * The default class to use for all routes
      *
@@ -88,4 +92,25 @@ return static function (RouteBuilder $routes) {
      * });
      * ```
      */
+
+    $routes->prefix('User', ['path' => 'User'], function(RouteBuilder $builder) {
+        $builder->connect('/login', ['controller' => UsersController::class, 'action' => 'login']);
+    });
+
+    // $routes->connect('login', ['controller' => 'Login', 'action' => 'login']);
+
+
+    $routes->scope('/admin', ['prefix' => 'Admin'], function(RouteBuilder $builder) {
+        $builder->applyMiddleware('Admin');
+        $builder->connect('/', ['controller' => 'Profiles', 'action' => 'index']);
+    });
+
+    $routes->scope('/users', ['prefix' => 'Users'], function(RouteBuilder $builder) {
+        $builder->connect('/', ['controller' => 'Profiles', 'action' => 'index']);
+        $builder->connect('/add', ['controller' => 'Profiles', 'action' => 'add']);
+        // $builder->connect('/', ['controller' => 'Users', 'action' => 'index']);
+        $builder->connect('/{action}/*', []);
+    });
+
+
 };
