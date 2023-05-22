@@ -103,6 +103,12 @@ return static function (RouteBuilder $routes) {
     $routes->scope('/admin', ['prefix' => 'Admin'], function(RouteBuilder $builder) {
         $builder->applyMiddleware('Admin');
         $builder->connect('/', ['controller' => 'Profiles', 'action' => 'index']);
+        $builder->connect('/masters', ['controller' => 'Masters', 'action' => 'index']);
+        $builder->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);
+        $builder->connect('/products', ['controller' => 'Products', 'action' => 'index']);
+        $builder->connect('/{controller}/{action}/*', ['controller' => 'Masters', 'action' => '*']);
+        $builder->connect('/{controller}/{action}/*', ['controller' => 'Categories', 'action' => '*']);
+        $builder->connect('/{controller}/{action}/*', ['controller' => 'Products', 'action' => '*']);
     });
 
     $routes->scope('/users', ['prefix' => 'Users'], function(RouteBuilder $builder) {

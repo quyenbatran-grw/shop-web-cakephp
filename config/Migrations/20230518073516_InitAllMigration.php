@@ -23,7 +23,7 @@ class InitAllMigration extends AbstractMigration
             ])
             ->addColumn('password', 'string', [
                 'null' => false,
-                'limit' => 40,
+                'limit' => 60,
                 'comment' => ''
             ])
             ->addColumn('email', 'string', [
@@ -107,6 +107,88 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'comment' => '更新日'
             ])
+            ->create();
+
+        // Product
+        $this->table('products')
+            ->addColumn('category_id', 'integer', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'id of categories table'
+            ])
+            ->addColumn('name', 'string', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'name of product'
+            ])
+            ->addColumn('quantity', 'biginteger', [
+                'default' => 0,
+                'null' => false,
+                'comment' => 'quantity of product'
+            ])
+            ->addColumn('unit_price', 'decimal', [
+                'default' => null,
+                'null' => false,
+                'precision' => 5,
+                'scale' => 2,
+                'comment' => 'price of each product'
+            ])
+            ->addColumn('description', 'text', [
+                'default' => null,
+                'null' => false,
+                'comment' => '詳細'
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '作成日'
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '更新日'
+            ])
+            ->addIndex(['category_id'])
+            ->create();
+
+        // Product images
+        $this->table('image_products')
+            ->addColumn('product_id', 'biginteger', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'id of product'
+            ])
+            ->addColumn('name', 'string', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'name of image'
+            ])
+            ->addColumn('file_name', 'string', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'saved image name'
+            ])
+            ->addColumn('file_type', 'string', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'image type'
+            ])
+            ->addColumn('file_size', 'biginteger', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'image size'
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '作成日'
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '更新日'
+            ])
+            ->addIndex(['product_id'])
             ->create();
     }
 }

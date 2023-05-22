@@ -65,6 +65,8 @@ bin/cake migrations migrate
 ## 前の実行済みマイグレーションを戻る
 bin/cake migrations rollback
 
+bin/cake migrations seed
+
 bin/cake bake model users
 bin/cake bake controller users
 bin/cake bake template users
