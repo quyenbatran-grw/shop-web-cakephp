@@ -68,3 +68,4 @@ bin/cake migrations rollback
 bin/cake bake model users
 bin/cake bake controller users
 bin/cake bake template users
+bin/cake bake controller Users --prefix User
