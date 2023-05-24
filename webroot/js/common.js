@@ -4,7 +4,15 @@
     document.addEventListener('DOMContentLoaded', function() {
         customizeInputFileItem();
 
-        document.getElementById('add-image-button').addEventListener('click', addInputFile);
+        let btnAction = document.getElementById('add-image-button')
+        if(btnAction) btnAction.addEventListener('click', addInputFile);
+
+        let cards = document.querySelectorAll('.card');
+        if(cards) {
+            cards.forEach((card, k) => {
+                card.addEventListener('click', cardRedirectUrl)
+            });
+        }
     }, false);
 
 
@@ -41,6 +49,11 @@
       });
     }
 
+    /**
+     * 画像選択した瞬間に呼び出すメソッド
+     *
+     * @param HtmlElement e
+     */
     function inputFileChange(e) {
         let showImg = e.target.closest('.img-group').querySelectorAll('.show-image .image');
         let img = document.createElement('img');
@@ -51,6 +64,11 @@
         console.log('filechange', showImg)
     }
 
+    /**
+     * 画像選択の項目を追記する
+     *
+     * @param HtmlElement e
+     */
     function addInputFile(e) {
         let imgGroup = document.querySelectorAll('.input.file .img-group');
         imgGroup = imgGroup[0].cloneNode(true);
@@ -62,6 +80,16 @@
         imgGroup.querySelectorAll('.show-image .delete-image-button')[0].classList.add('d-none');
         document.querySelectorAll('.input.file')[0].append(imgGroup);
         console.log(imgGroup)
+    }
+
+    /**
+     * カードを押下時に画面遷移を行う
+     *
+     * @param HtmlElement e
+     */
+    function cardRedirectUrl(e) {
+        let parentForm = e.target.closest('form').submit();
+        console.log('cardRedirectUrl', parentForm);
     }
 
     /* コードの終了 */

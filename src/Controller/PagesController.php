@@ -16,10 +16,12 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Model\Entity\Category;
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
+use Cake\ORM\Query;
 use Cake\View\Exception\MissingTemplateException;
 
 /**
@@ -31,6 +33,12 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
+    public function initialize(): void
+    {
+        // parent::initialize();
+        $this->ImageProducts = $this->fetchTable('ImageProducts');
+        $this->Categories = $this->fetchTable('Categories');
+    }
     /**
      * Displays a view
      *
@@ -59,7 +67,22 @@ class PagesController extends AppController
         if (!empty($path[1])) {
             $subpage = $path[1];
         }
-        $this->set(compact('page', 'subpage'));
+
+        $categories = $this->Categories
+                        ->find()
+                        ->contain([
+                            'Products' => function(Query $query) {
+                                return $query
+                                        ->contain('ImageProducts');
+                            }
+                        ])
+                        ->all()
+                        ->map(function($category) {
+                            if(count($category->products)) return $category;
+                            return null;
+                        });
+        $image_products = $this->ImageProducts->find()->limit(3)->all();
+        $this->set(compact('page', 'subpage', 'image_products', 'categories'));
 
         try {
             return $this->render(implode('/', $path));

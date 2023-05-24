@@ -60,8 +60,7 @@ class AppController extends Controller
     public function beforeFilter(EventInterface $event)
     {
         $uri = $_SERVER['REQUEST_URI'];
-        // var_dump(DS);
-        if($this->Authentication) {
+        if(isset($this->Authentication)) {
             $userResult = $this->Authentication->getResult();
             if($userResult) {
                 $user = $userResult->getData();

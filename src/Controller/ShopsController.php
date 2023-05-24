@@ -4,6 +4,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Authentication\PasswordHasher\DefaultPasswordHasher;
+use Cake\Core\Configure;
+use Cake\ORM\Query;
+use Exception;
 
 /**
  * Users Controller
@@ -18,14 +21,23 @@ class ShopsController extends AppController
     {
         parent::initialize();
 
+        Configure::write('Session', [
+            'defaults' => 'php',
+            'cookie' => 'product_cart',
+            'timeout' => 4320 // 3日間
+        ]);
+
         $this->Users = $this->fetchTable('Users');
+        $this->Categories = $this->fetchTable('Categories');
+        $this->Products = $this->fetchTable('Products');
+        $this->Session = $this->request->getSession();
     }
     // in src/Controller/UsersController.php
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['login', 'add']);
+        $this->Authentication->allowUnauthenticated(['index', 'product', 'login', 'add']);
     }
 
     /**
@@ -33,12 +45,96 @@ class ShopsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index()
+    public function index($id = null)
     {
-        $users = $this->paginate($this->Users);
+        // $users = $this->paginate($this->Users);
+        if(empty($id) || !is_numeric($id)) {
+            throw new Exception("Error Processing Request", 1);
 
-        $this->set(compact('users'));
+        }
+        $category = $this->Categories
+                        ->find()
+                        ->contain([
+                            'Products' => function(Query $query) {
+                                return $query->contain('ImageProducts');
+                            }
+                        ])
+                        ->where(['Categories.id' => $id])
+                        ->firstOrFail();
+        $this->set(compact('category'));
+        $this->render('/Pages/category');
     }
+
+
+    /**
+     * Product method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function product($id = null, $product_id = null)
+    {
+        $this->viewBuilder()->setLayout('shop');
+        $cart_quantity = '';
+        $product = $this->Categories->Products
+                        ->find()
+                        ->contain([
+                            'ImageProducts',
+                            'Categories'
+                        ])
+                        ->where(['Products.id' => $product_id])
+                        ->firstOrFail();
+        $quantity = $this->request->getData('quantity', null);
+
+        if(!is_null($quantity)) {
+            $shopping_cart = $this->Session->read('product_cart');
+            if(is_null($shopping_cart)) {
+                $shopping_cart = [];
+                $shopping_cart[$id] = [];
+            }
+            $shopping_cart[$id][$product_id] = $quantity;
+            $this->Session->write('product_cart', $shopping_cart);
+        }
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $cart_quantity = $cart_quantity ? $cart_quantity : '';
+        $this->set(compact('product', 'cart_quantity'));
+        $this->render('product');
+    }
+
+    public function checkDuplicationSubmit()
+    {
+        # code...
+    }
+
+    /**
+     * 購入商品カートの数を取得する
+     *
+     * @return int
+     */
+    public function _getShoppingCartTotalQuantity()
+    {
+        $quantity = 0;
+        $shopping_cart = $this->Session->read('product_cart');
+        foreach ($shopping_cart as $key => $category) {
+            if(is_array($category)) $quantity += array_sum($category);
+        }
+        return $quantity;
+    }
+
+    /**
+     * CartList method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function cartList($id = null)
+    {
+        $shopping_cart = $this->Session->read('product_cart');
+
+        $this->set(compact('shopping_cart'));
+        $this->render('cart_list');
+    }
+
 
     /**
      * View method

@@ -55,6 +55,10 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+        $builder->connect('/shops/{id}', ['controller' => 'Shops', 'action' => 'index'], ['pass' => ['id']]);
+        $builder->connect('/shops/login', ['controller' => 'Shops', 'action' => 'login']);
+        $builder->connect('/shops/product', ['controller' => 'Shops', 'action' => 'product']);
+        $builder->connect('/shops/cart-list', ['controller' => 'Shops', 'action' => 'cart-list']);
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
