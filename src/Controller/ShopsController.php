@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Product;
 use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\ORM\Query;
@@ -95,7 +96,7 @@ class ShopsController extends AppController
             $this->Session->write('product_cart', $shopping_cart);
         }
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $cart_quantity = $cart_quantity ? $cart_quantity : '';
+
         $this->set(compact('product', 'cart_quantity'));
         $this->render('product');
     }
@@ -110,14 +111,29 @@ class ShopsController extends AppController
      *
      * @return int
      */
-    public function _getShoppingCartTotalQuantity()
+    private function _getShoppingCartTotalQuantity()
     {
         $quantity = 0;
         $shopping_cart = $this->Session->read('product_cart');
         foreach ($shopping_cart as $key => $category) {
             if(is_array($category)) $quantity += array_sum($category);
         }
-        return $quantity;
+        return $quantity ? $quantity : null;
+    }
+
+    /**
+     * 購入商品カートの数を取得する
+     *
+     * @return array
+     */
+    private function _getProductsFromCart()
+    {
+        $products = [];
+        $shopping_cart = $this->Session->read('product_cart');
+        foreach ($shopping_cart as $key => $category) {
+            if(is_array($category)) $products += $category;
+        }
+        return $products;
     }
 
     /**
@@ -129,9 +145,30 @@ class ShopsController extends AppController
      */
     public function cartList($id = null)
     {
+        $this->viewBuilder()->setLayout('shop');
         $shopping_cart = $this->Session->read('product_cart');
 
-        $this->set(compact('shopping_cart'));
+        $cart_products = $this->_getProductsFromCart();
+        // var_dump($products);
+        $product_ids = array_keys($cart_products);
+        // // $category_ids = array_keys($shopping_cart);
+        $products = $this->Categories->Products
+                        ->find()
+                        ->contain([
+                            'Categories',
+                            'ImageProducts' => function(Query $query) {
+                                return $query->limit(1);
+                            }
+                        ])
+                        ->where(['Products.id IN' => $product_ids])
+                        ->all()
+                        ->map(function(Product $product) use($cart_products) {
+                            if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
+                            return $product;
+                        });
+        // var_dump($products->toArray());
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('products', 'cart_quantity'));
         $this->render('cart_list');
     }
 

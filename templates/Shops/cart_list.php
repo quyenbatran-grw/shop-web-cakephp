@@ -6,67 +6,51 @@
                 <?php
                 ?>
 
-                <div class="row">
+                <div class="">
                     <?php
-                    if(empty($product)) {
+                    if(empty($products)) {
                         echo 'Don\'t have product';
                     } else {
+                        foreach ($products as $product) {
+                            # code...
                         $image_products = $product->image_products;
+                        $image_url = '/img/noImage.svg';
+                        if(count($product->image_products)) {
+                            $image_product = $product->image_products[0];
+                            $image_url = '/img/products/'.$image_product['file_name'];
+                        }
 
                     ?>
-                    <h2 class="fw-bold"><?=$product->name?></h2>
-                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active rounded-circle" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <div class="d-flex flex-row bd-highlight mb-3">
+                        <div class="p-2 bd-highlight">
+                            <img src="<?=$image_url?>" style="width: 100px" alt="">
                         </div>
-                        <div class="carousel-inner">
-                            <?php
-                            $image_url = '/img/noImage.svg';
-                            foreach ($image_products as $key => $image_product) {
-                                $image_url = '/img/products/'.$image_product['file_name'];
-                            ?>
-                            <div class="carousel-item <?=$key ? '' : 'active'?>">
-                            <img src="<?=$image_url?>" class="d-block w-100" alt="...">
+                        <div class="p-2 bd-highlight">
+                            <h2><?=$product->name?></h2>
+                            <div class="row">
+                                <div class="col">Price</div>
+                                <div class="col text-end"><?=$product->unit_price?></div>
                             </div>
-                            <?php
-                            }
-                            ?>
 
+                            <div class="row">
+                                <div class="col">Quantity</div>
+                                <div class="col text-end"><?=$product->quantity?></div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">Total</div>
+                                <div class="col text-end"><?=$product->unit_price * $product->quantity?></div>
+                            </div>
                         </div>
 
                     </div>
 
-                    <div>
-                        <?=nl2br($product->description)?>
-                    </div>
-
-                    <hr>
-
-                    <?=$this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'product', $product->category_id, $product->id]])?>
-                    <div class="add-cart-group d-flex mt-3" role="group" aria-label="Basic example">
-                        <div>Quantity</div>
-
-                        <div class="w-25">
-                            <?=$this->Form->control('quantity', [
-                                'type' => 'select',
-                                'label' => false,
-                                'class' => 'form-control text-center ms-2',
-                                'options' => [1 => 1,2 => 2, 3 => 3, 4 => 4]
-                            ])?>
-                        </div>
 
 
-                        <?= $this->Form->button('<i class="bi bi-cart3"></i>Add To Card', [
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary ms-4',
-                            'escapeTitle' => false,
-                            'onClick' => 'addItemToCart(this)'
-                        ]); ?>
-                    </div>
-                    <?=$this->Form->end();?>
-                    <?php } ?>
+                    <?php
+                        }
+                    }
+                    ?>
                 </div>
 
 
