@@ -190,5 +190,55 @@ class InitAllMigration extends AbstractMigration
             ])
             ->addIndex(['product_id'])
             ->create();
+
+        // DeviceTokens
+        $this->table('device_tokens')
+            ->addColumn('device_token', 'string', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'device token'
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '作成日'
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '更新日'
+            ])
+            ->create();
+
+        // ShoppingCarts
+        $this->table('shopping_carts')
+            ->addColumn('user_id', 'biginteger', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'id of user'
+            ])
+            ->addColumn('device_token_id', 'biginteger', [
+                'default' => null,
+                'null' => true,
+                'limit' => 255,
+                'comment' => 'id of device token'
+            ])
+            ->addColumn('category_id', 'biginteger', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'id of category'
+            ])
+            ->addColumn('product_id', 'biginteger', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'id of product'
+            ])
+            ->addColumn('quantity', 'integer', [
+                'default' => null,
+                'null' => false,
+                'comment' => 'order quantity'
+            ])
+            ->addIndex(['user_id', 'device_token_id', 'product_id'])
+            ->create();
     }
 }
