@@ -6,8 +6,12 @@ namespace App\Controller;
 use App\Model\Entity\Product;
 use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Core\Configure;
+use Cake\Http\Cookie\Cookie;
+use Cake\Http\Cookie\CookieInterface;
 use Cake\ORM\Query;
+use DateTime;
 use Exception;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Users Controller
@@ -17,6 +21,7 @@ use Exception;
  */
 class ShopsController extends AppController
 {
+    const PRODUCT_COOKIE_NM = 'shopping_carts';
 
     public function initialize(): void
     {
@@ -38,7 +43,7 @@ class ShopsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['index', 'product', 'login', 'add']);
+        $this->Authentication->allowUnauthenticated(['index', 'product', 'login', 'add', 'cartList']);
     }
 
     /**
@@ -48,6 +53,7 @@ class ShopsController extends AppController
      */
     public function index($id = null)
     {
+        var_dump($this->request->getCookieParams());
         // $users = $this->paginate($this->Users);
         if(empty($id) || !is_numeric($id)) {
             throw new Exception("Error Processing Request", 1);
@@ -86,37 +92,47 @@ class ShopsController extends AppController
                         ->firstOrFail();
         $quantity = $this->request->getData('quantity', null);
 
-        if(!is_null($quantity)) {
-            $shopping_cart = $this->Session->read('product_cart');
-            if(is_null($shopping_cart)) {
-                $shopping_cart = [];
-                $shopping_cart[$id] = [];
-            }
-            $shopping_cart[$id][$product_id] = $quantity;
-            $this->Session->write('product_cart', $shopping_cart);
+        $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
+        if(is_null($shopping_cart)) {
+            $shopping_cart = [];
+            $shopping_cart[$id] = [];
+        } else {
+            $shopping_cart = json_decode($shopping_cart, true);
         }
-        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        if(!is_null($quantity)) {
+            $shopping_cart[$id][$product_id] = $quantity;
+            $cookie = (new Cookie(self::PRODUCT_COOKIE_NM))
+            ->withValue($shopping_cart)
+            ->withExpiry(new DateTime('+1 year'))
+            ->withPath('/')
+            ->withDomain('localhost')
+            ->withSecure(false)
+            ->withSameSite(CookieInterface::SAMESITE_STRICT)
+            ->withHttpOnly(false);
+
+            $this->response = $this->response->withCookie($cookie);
+        }
+        $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
+
 
         $this->set(compact('product', 'cart_quantity'));
         $this->render('product');
     }
 
-    public function checkDuplicationSubmit()
-    {
-        # code...
-    }
 
     /**
      * 購入商品カートの数を取得する
      *
+     * @param array $shopping_cart クッキーに格納している情報
      * @return int
      */
-    private function _getShoppingCartTotalQuantity()
+    private function _getShoppingCartTotalQuantity($shopping_cart)
     {
         $quantity = 0;
-        $shopping_cart = $this->Session->read('product_cart');
-        foreach ($shopping_cart as $key => $category) {
-            if(is_array($category)) $quantity += array_sum($category);
+        if(!empty($shopping_cart)) {
+            foreach ($shopping_cart as $key => $category) {
+                if(is_array($category)) $quantity += array_sum($category);
+            }
         }
         return $quantity ? $quantity : null;
     }

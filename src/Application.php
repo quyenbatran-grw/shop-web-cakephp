@@ -28,6 +28,7 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
@@ -106,6 +107,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             // Parse various types of encoded request bodies so that they are
             // available as array through $request->getData()
             // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
+            ->add(new EncryptedCookieMiddleware(
+                ['secrets', 'protected'],
+                Configure::read('Security.cookieKey')))
             ->add(new BodyParserMiddleware())
             ->add(new AuthenticationMiddleware($this))
 
