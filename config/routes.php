@@ -59,6 +59,10 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/shops/login', ['controller' => 'Shops', 'action' => 'login']);
         $builder->connect('/shops/product', ['controller' => 'Shops', 'action' => 'product']);
         $builder->connect('/shops/cart-list', ['controller' => 'Shops', 'action' => 'cart-list']);
+        $builder->connect('/shops/cart-confirm', ['controller' => 'Shops', 'action' => 'cart-confirm']);
+        $builder->connect('/shops/order-info', ['controller' => 'Shops', 'action' => 'order-info']);
+        $builder->connect('/shops/purchase', ['controller' => 'Shops', 'action' => 'purchase']);
+
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.

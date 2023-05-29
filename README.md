@@ -67,6 +67,7 @@ bin/cake migrations rollback
 
 bin/cake migrations seed
 
+bin/cake bake all users
 bin/cake bake model users
 bin/cake bake controller users
 bin/cake bake template users
