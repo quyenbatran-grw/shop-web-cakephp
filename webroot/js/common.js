@@ -3,6 +3,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         customizeInputFileItem();
+        updateCartQuantity();
 
         // 画像追加ボタンを押下時
         let btnAction = document.getElementById('add-image-button')
@@ -21,51 +22,48 @@
                 card.addEventListener('click', cardRedirectUrl)
             });
         }
+
     }, false);
 
-    function getImageList(files) {
-        let images_list = [];
-        files.forEach(async (v, k) => {
-            console.log('file', v.files[0])
-            let res = reset(v.files[0]);
-            images_list.push(res);
-        });
-        return images_list;
-    }
+    // function getImageList(files) {
+    //     let images_list = [];
+    //     files.forEach(async (v, k) => {
+    //         console.log('file', v.files[0])
+    //         let res = reset(v.files[0]);
+    //         images_list.push(res);
+    //     });
+    //     return images_list;
+    // }
 
-    function reset(file) {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = async () => {
-            const imgData = reader.result;
-            let image = new Image();
-            image.src = imgData;
+    // function reset(file) {
+    //     let reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onload = async () => {
+    //         const imgData = reader.result;
+    //         let image = new Image();
+    //         image.src = imgData;
 
-            const canvas = document.createElement('canvas');
-            canvas.width = 200;
-            canvas.height = 200;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(image, 0, 0, 200, 200);
-            const resizedImgData = canvas.toDataURL('image/png')
-            console.log('resizedImgData', resizedImgData)
-            images_list.push(resizedImgData);
-        };
-    }
+    //         const canvas = document.createElement('canvas');
+    //         canvas.width = 200;
+    //         canvas.height = 200;
+    //         const ctx = canvas.getContext('2d');
+    //         ctx.drawImage(image, 0, 0, 200, 200);
+    //         const resizedImgData = canvas.toDataURL('image/png')
+    //         console.log('resizedImgData', resizedImgData)
+    //         images_list.push(resizedImgData);
+    //     };
+    // }
 
+    /**
+     * バリデーション必要なフォームを送信する
+     *
+     * @param HtmlElement e
+     */
     async function submitValidateForm(e) {
         e.preventDefault();
-        console.log('submitValidateForm', e);
-        // let formData = new FormData();
         let formData = new FormData(e.target);
-        // postFetch(e.target.action, formData);
-        // return;
-        // let files = e.target.querySelectorAll('input[type="file"]');
         let files = e.target.querySelectorAll('.show-image .image img');
         let save_images = {};
-
-
-
-
         const createFormDataPromise = new Promise((resolve, reject) => {
             if(files) {
                 files.forEach((v, k) => {
@@ -118,161 +116,32 @@
             };
             postFetch(e.target.action, formData, callback);
             console.log('save_images', Object.keys(save_images))
-        })
+        });
+    }
 
-
-
-        // if(files) {
-        //     files.forEach(async (v, k) => {
-        //         await new Promise((resolve, reject) => {
-        //             let reader = new FileReader();
-        //             let file = v.files[0];
-        //             reader.readAsDataURL(v.files[0]);
-        //             reader.onload = async () => {
-        //                 const imgData = reader.result;
-        //                 let image = new Image();
-        //                 image.src = imgData;
-
-        //                 const canvas = document.createElement('canvas');
-        //                 canvas.width = 200;
-        //                 canvas.height = 200;
-        //                 const ctx = canvas.getContext('2d');
-        //                 ctx.drawImage(image, 0, 0, 200, 200);
-        //                 const resizedImgData = canvas.toDataURL('image/png')
-        //                 const blob = base64ImgToBlob(resizedImgData, 'image/png');
-        //                 const newFile = new File([blob], file.name,{ type: 'image/png' })
-        //                 console.log('resizedImgData', resizedImgData)
-        //                 save_images[k] = newFile;
-        //                 // formData.append('save_images[]', newFile);
-        //             };
-        //         });
-        //     })
-        // }
-
-
-        // if(imgList) {
-        //     imgList.forEach(async (v, k) => {
-        //         let file = v.files[0];
-        //         console.log('file', file)
-        //         if(file) {
-        //             let image = new Image();
-        //             image.src = URL.createObjectURL(file);
-        //             const base64 = resizeImgToBase64(image);
-
-
-
-
-        //             new Promise((resolve, reject) => {
-        //                 const reader = new FileReader();
-        //                 reader.readAsDataURL(file);
-        //                 reader.onload = () => resolve(reader.result);
-        //                 reader.onerror = error => reject(error);
-        //               }).then((data) => {
-        //                 const blob = base64ImgToBlob(data, file.type);
-        //                 const newFile = new File([blob], file.name,{ type: file.type })
-        //                 formData.append('save_images[]', newFile);
-        //               });
-
-
-
-        //             // console.log('submitValidateForm base64', reader);
-
-        //         }
-        // //
-
-        //         // let response = await fetch(base64)
-        //         // .then(res => res.blob())
-        //         // .then(blob => {
-        //         //     const newFile = new File([blob], file.name,{ type: "image/png" })
-        //         //     // formData.append('save_images[]', newFile);
-        //         //     // let fileInput = document.createElement('input');
-        //         //     // fileInput.type = 'file';
-        //         //     // fileInput.name = 'save_image[]';
-        //         //     // fileInput.value = JSON.stringify(newFile);
-        //         //     // v.closest('.img-group').append(fileInput);
-        //         //     console.log('submitValidateForm file', file);
-        //         //     return newFile;
-        //         // });
-        //         // console.log('submitValidateForm response', response);
-        //         // formData.append('save_images[]', newFile);
-        // //         // const reader = new FileReader();
-        // //         // reader.onload = function(event) {
-
-
-        // //         // }
-        // //         // reader.readAsDataURL(file);
-        // //         console.log('submitValidateForm file', v.files)
-        //     });
-        // }
-        // for(const fd of formData.entries()) {
-        //     console.log(`key:${fd[0]}-val:${fd[1]}`)
-        // }
-        // formData.delete('image_products[]');
-        // // // sendPostForm(e.target.action, formData);
-        // // // console.log('submitValidateForm save_images', save_images)
-
-        //     let callback = (data) => {
-        //         console.log('data', data)
-        //         let errors = data.errors;
-        //         if(document.querySelector('.message.error')) document.querySelector('.message.error').remove();
-        //         if(document.querySelector('.message.success')) document.querySelector('.message.success').remove();
-        //         if(Object.keys(errors).length) {
-        //             for(const error of Object.entries(errors)) {
-        //                 for(const err_mess of Object.entries(error[1])) {
-        //                     let errorElm = document.createElement('div');
-        //                     errorElm.classList = 'message error';
-        //                     errorElm.onclick = this.classList.add('hidden');
-        //                     errorElm.innerText = err_mess[1];
-        //                     document.querySelector('.container .row').before(errorElm);
-        //                     window.scrollTo(0,0);
-        //                     return;
-        //                 }
-
-        //             }
-        //         } else {
-        //             let errorElm = document.createElement('div');
-        //             errorElm.classList = 'message success';
-        //             errorElm.onclick = this.classList.add('hidden');
-        //             errorElm.innerText = 'The product has been saved.';
-        //             document.querySelector('.container .row').before(errorElm);
-        //             window.scrollTo(0,0);
-        //         }
-
-        //     };
-
-        //     // console.log('save_images', save_images)
-        //     // save_images.forEach((v, k) => {
-        //     //     formData.append(`save_images-${k}`, v)
-        //     // })
-
-        // await new Promise((resolve, reject) => {
-        //     console.log('save_images aaa', save_images)
-        //     console.log('save_images aaa', Object.keys(save_images))
-        //     for(const img of Object.entries(save_images)) {
-        //         console.log('img', img)
-        //     }
-        //     // postFetch(e.target.action, formData, callback, save_images);
-        // })
-
+    function updateCartQuantity() {
+        let quantityElements = document.querySelectorAll('.cart-list select[name="quantity"]');
+        if(quantityElements) {
+            quantityElements.forEach((v, k) => {
+                v.addEventListener('change', (e) => {
+                    e.target.closest('form').submit();
+                    console.log('updateCartQuantity', e)
+                })
+            })
+        }
 
     }
 
 
-
+    /**
+     * POSTで送信する
+     *
+     * @param {string} url 送信先のURL
+     * @param {FormData} data 送信データ
+     * @param {Function} callback コールバックファンクション
+     * @param {Headers|null} headers 送信ヘッダー
+     */
     function postFetch(url, data, callback, headers = null) {
-        // console.log('headers', headers)
-        // console.log('header', typeof headers)
-        // console.log('header', Object.entries(Object.fromEntries(headers)))
-        // headers.map((v, k) => {
-        //     console.log('header', v)
-        //     formData.append(`save_images-${k}`, v)
-        // })
-        // for(const h of headers) {
-        //     console.log(`key:${h[0]}-val:${h[1]}`)
-        // }
-        // for(const fd of data.entries()) {
-        //     console.log(`key:${fd[0]}-val:${fd[1]}`)
-        // }
         let options = {
             method: 'POST',
             body: data,

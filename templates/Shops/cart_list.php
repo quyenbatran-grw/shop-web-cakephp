@@ -2,7 +2,7 @@
                 'Categories',
                 ['controller' => 'Pages', 'action' => 'index']
             );?>
-            <div class="content">
+            <div class="content cart-list">
                 <?php
                 ?>
 
@@ -36,13 +36,17 @@
                             <div class="row">
                                 <div class="col">Quantity</div>
                                 <div class="col">
+                                <?=$this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
+                                <?=$this->Form->hidden('category_id', ['value' => $product->category_id]);?>
+                                <?=$this->Form->hidden('product_id', ['value' => $product->id]);?>
                                 <?=$this->Form->control('quantity', [
                                     'type' => 'select',
                                     'label' => false,
                                     'class' => 'form-control text-center ms-2 w-50 float-end',
                                     'value' => $product->quantity,
-                                    'options' => [1 => 1,2 => 2, 3 => 3, 4 => 4]
+                                    'options' => [1 => 1,2 => 2, 3 => 3, 4 => 4],
                                 ])?>
+                                <?=$this->Form->end();?>
                                 </div>
                             </div>
                             <hr>
@@ -51,11 +55,16 @@
                                 <div class="col text-end"><?=$amount?></div>
                             </div>
                             <div class="row">
-                            <?=$this->Html->link(
-                                'Remove',
-                                ['controller' => 'Shops', 'action' => 'update-cart', $product->category_id, $product->id],
-                                ['class' => 'fs-6']
-                            );?>
+                                <?=$this->Form->create($product, ['type' => 'delete', 'url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
+                                <?=$this->Form->hidden('category_id', ['value' => $product->category_id]);?>
+                                <?=$this->Form->hidden('product_id', ['value' => $product->id]);?>
+                                <?=$this->Form->button('Remove', [
+                                    'type' => 'submit',
+                                    'label' => false,
+                                    'class' => 'btn btn-link text-center float-end',
+                                ])?>
+                                <?=$this->Form->end();?>
+
                             </div>
                         </div>
 

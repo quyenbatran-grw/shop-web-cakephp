@@ -13,6 +13,8 @@ use DateTime;
 use Exception;
 use Psr\Http\Message\ServerRequestInterface;
 
+use function PHPUnit\Framework\isNull;
+
 /**
  * Users Controller
  *
@@ -58,6 +60,7 @@ class ShopsController extends AppController
             throw new Exception("Error Processing Request", 1);
 
         }
+        $this->viewBuilder()->setLayout('shop');
         $category = $this->Categories
                         ->find()
                         ->contain([
@@ -67,8 +70,9 @@ class ShopsController extends AppController
                         ])
                         ->where(['Categories.id' => $id])
                         ->firstOrFail();
-        $this->set(compact('category'));
-        $this->render('/Pages/category');
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('category', 'cart_quantity'));
+        $this->render('category');
     }
 
 
@@ -118,6 +122,38 @@ class ShopsController extends AppController
         $this->render('product');
     }
 
+    /**
+     * 購入商品の数量をクッキーに格納する
+     *
+     * @param int $categoy_id カテゴリーID
+     * @param int $product_id 商品ID
+     * @param int $quantity 数量
+     *
+     * @return Array
+     */
+    private function _updateShoppingCookie($category_id, $product_id, $quantity = null) {
+        $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
+        if(is_null($shopping_cart)) {
+            $shopping_cart = [];
+            $shopping_cart[$category_id] = [];
+        } else {
+            $shopping_cart = json_decode($shopping_cart, true);
+        }
+        if(is_null($quantity)) unset($shopping_cart[$category_id][$product_id]);
+        else $shopping_cart[$category_id][$product_id] = $quantity;
+        $cookie = (new Cookie(self::PRODUCT_COOKIE_NM))
+                    ->withValue($shopping_cart)
+                    ->withExpiry(new DateTime('+1 year'))
+                    ->withPath('/')
+                    ->withDomain('localhost')
+                    ->withSecure(false)
+                    ->withSameSite(CookieInterface::SAMESITE_STRICT)
+                    ->withHttpOnly(false);
+
+        $this->response = $this->response->withCookie($cookie);
+        return $shopping_cart;
+    }
+
 
     /**
      * 購入商品カートの数を取得する
@@ -141,7 +177,7 @@ class ShopsController extends AppController
     }
 
     /**
-     * 購入商品カートの数を取得する
+     * カートに入れている商品を取得する
      *
      * @param array $shopping_cart クッキーに格納している情報
      * @return array
@@ -171,6 +207,15 @@ class ShopsController extends AppController
         $this->viewBuilder()->setLayout('shop');
 
         $cart_products = $this->_getProductsFromCart();
+        $shopping_cart = null;
+        if($this->request->is(['put', 'delete'])) {
+            $quantity = $this->request->getData('quantity', null);
+            $category_id = $this->request->getData('category_id', 0);
+            $product_id = $this->request->getData('product_id', 0);
+            if(is_null($quantity)) unset($cart_products[$product_id]);
+            if(isset($cart_products[$product_id])) $cart_products[$product_id] = $quantity;
+            $shopping_cart = $this->_updateShoppingCookie($category_id, $product_id, $quantity);
+        }
         $product_ids = array_keys($cart_products);
         $products = $this->Categories->Products
                         ->find()
@@ -186,7 +231,7 @@ class ShopsController extends AppController
                             if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
                             return $product;
                         });
-        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
         $this->set(compact('products', 'cart_quantity'));
         $this->render('cart_list');
     }
