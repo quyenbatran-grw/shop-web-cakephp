@@ -38,6 +38,8 @@ class ShopsController extends AppController
         $this->Users = $this->fetchTable('Users');
         $this->Categories = $this->fetchTable('Categories');
         $this->Products = $this->fetchTable('Products');
+        $this->ImageProducts = $this->fetchTable('ImageProducts');
+
         $this->Session = $this->request->getSession();
     }
     // in src/Controller/UsersController.php
@@ -55,6 +57,32 @@ class ShopsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function index($id = null)
+    {
+        $this->viewBuilder()->setLayout('shop');
+        $categories = $this->Categories
+                        ->find()
+                        ->contain([
+                            'Products' => function(Query $query) {
+                                return $query
+                                        ->contain('ImageProducts');
+                            }
+                        ])
+                        ->all()
+                        ->map(function($category) {
+                            if(count($category->products)) return $category;
+                            return null;
+                        });
+        $image_products = $this->ImageProducts->find()->limit(3)->all();
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('image_products', 'categories', 'cart_quantity'));
+        $this->render('home');
+    }
+/**
+     * Category method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function category($id = null)
     {
         if(empty($id) || !is_numeric($id)) {
             throw new Exception("Error Processing Request", 1);
