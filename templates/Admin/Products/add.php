@@ -14,11 +14,11 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="products form content">
-            <?= $this->Form->create($product, ['enctype' => 'multipart/form-data']) ?>
+            <?= $this->Form->create($product, ['enctype' => 'multipart/form-data', 'id' => 'js-validate-form']) ?>
             <fieldset>
                 <legend><?= __('Add Product') ?></legend>
                 <?=$this->Form->control('category_id', ['options' => $categories]);?>
-                <?=$this->Form->control('name');?>
+                <?=$this->Form->control('name', ['value' => 'name']);?>
                 <?=
                 $this->Form->control('image_products[]', [
                         'type' => 'file',
@@ -27,9 +27,9 @@
                     ]);
                 ?>
                 <?=$this->Form->button('Add Image', ['type' => 'button', 'id' => 'add-image-button']);?>
-                <?=$this->Form->control('quantity');?>
-                <?=$this->Form->control('unit_price');?>
-                <?=$this->Form->control('description');?>
+                <?=$this->Form->control('quantity', ['value' => 2]);?>
+                <?=$this->Form->control('unit_price', ['value' => 10]);?>
+                <?=$this->Form->control('description', ['value' => 'asbd']);?>
                 <?php
 
 
@@ -40,7 +40,7 @@
 
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button('Submit', ['type' => 'submit', 'id' => 'save-product-button']); ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

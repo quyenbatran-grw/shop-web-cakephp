@@ -54,8 +54,6 @@ class ShopsController extends AppController
      */
     public function index($id = null)
     {
-        var_dump($this->request->getCookieParams());
-        // $users = $this->paginate($this->Users);
         if(empty($id) || !is_numeric($id)) {
             throw new Exception("Error Processing Request", 1);
 

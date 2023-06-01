@@ -52,37 +52,34 @@ class ProductsController extends AppController
      */
     public function add()
     {
-        $product = $this->Products->newEmptyEntity();
         if ($this->request->is('post')) {
+            $this->viewBuilder()->setClassName('Json');
+            $product = null;
+            $categories = $this->Products->Categories->find('list', ['limit' => 200])->all();
             $requestData = $this->request->getData();
-            // var_dump($requestData);
-            $image_products = $requestData['image_products'];
+            $image_products = $this->request->getData('save_images', []);
             $save_images = [];
-            if($image_products && count($image_products)) {
-                foreach ($image_products as $key => $image_product) {
-                    $filepath = WWW_ROOT.'/img/products/';
-                    do {
-                        $files = scandir($filepath);
-                        $filename = md5(uniqid()) . '.jpg';
-                        if(!in_array($filename, $files)) {
-                            $save_images[$filename] = [
-                                'name' => $image_product->getClientFilename(),
-                                'file_name' => $filename,
-                                'file_size' => $image_product->getSize(),
-                                'file_type' => $image_product->getClientMediaType()
-                            ];
-                            $image_products[$key] = new UploadedFile($image_product->getStream(), $image_product->getSize(), 0, $filename);
-                            break;
-                        }
-                    } while (true);
-
-                }
+            foreach ($image_products as $key => $image_product) {
+                $filepath = WWW_ROOT.'/img/products/';
+                do {
+                    $files = scandir($filepath);
+                    $filename = md5(uniqid()) . '.jpg';
+                    if(!in_array($filename, $files)) {
+                        $save_images[$filename] = [
+                            'name' => $image_product->getClientFilename(),
+                            'file_name' => $filename,
+                            'file_size' => $image_product->getSize(),
+                            'file_type' => $image_product->getClientMediaType()
+                        ];
+                        $image_products[$key] = new UploadedFile($image_product->getStream(), $image_product->getSize(), 0, $filename);
+                        break;
+                    }
+                } while (true);
             }
             $requestData['image_products'] = $save_images;
+            $product = $this->Products->newEmptyEntity();
             $product = $this->Products->patchEntity($product, $requestData, ['associated' => ['ImageProducts']]);
-            // dd($image_products);
-            // dd($this->request->getData());
-            // dd($product);
+            $errors = [];
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
                 if($image_products && count($image_products)) {
@@ -91,13 +88,17 @@ class ProductsController extends AppController
                         $image_product->moveTo(WWW_ROOT.'/img/products/'.$image_product->getClientFilename());
                     }
                 }
-                // dd($image_products);
-                return $this->redirect(['action' => 'index']);
+
+            } else {
+                $errors = $product->getErrors();
             }
-            $this->Flash->error(__('The product could not be saved. Please, try again.'));
+            $this->set(compact('product', 'categories', 'image_products', 'errors'));
+            $this->viewBuilder()->setOption('serialize', ['product', 'categories', 'image_products', 'errors']);
+        } else if ($this->request->is('get')) {
+            $product = $this->Products->newEmptyEntity();
+            $categories = $this->Products->Categories->find('list', ['limit' => 200])->all();
+            $this->set(compact('product', 'categories'));
         }
-        $categories = $this->Products->Categories->find('list', ['limit' => 200])->all();
-        $this->set(compact('product', 'categories'));
     }
 
     /**

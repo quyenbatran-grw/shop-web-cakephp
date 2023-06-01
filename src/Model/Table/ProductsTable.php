@@ -79,7 +79,8 @@ class ProductsTable extends Table
             ->notEmptyString('name');
 
         $validator
-            ->notEmptyString('quantity');
+            ->notEmptyString('quantity')
+            ->naturalNumber('quantity', 'Please input natural number');
 
         $validator
             ->decimal('unit_price')
