@@ -91,7 +91,7 @@ $this->disableAutoLayout();
                         $image_url = '/img/products/'.$image_product['file_name'];
                     ?>
                     <div class="carousel-item <?=$key ? '' : 'active'?>">
-                    <img src="<?=$image_url?>" class="d-block w-100" alt="...">
+                    <img src="<?=$image_url?>" class="d-block w-100 fix-img-size" alt="...">
                     </div>
                     <?php
                     }
@@ -108,7 +108,7 @@ $this->disableAutoLayout();
                 </div>
             </div>
             <div class="content">
-                <div class="row">
+                <div class="row-sm">
                     <?php
                     $image_url = '';
                     foreach ($categories as $key => $category) {
@@ -124,9 +124,9 @@ $this->disableAutoLayout();
                     ?>
                     <?=$this->Form->create($category->products, ['url' => ['controller' => 'Shops', 'action' => 'index', 'id' => $category->id]])?>
                         <div class="card mb-3 category-card">
-                            <div class="row g-0">
+                            <div class="row-sm g-0">
                                 <div class="col-md-2">
-                                <img src="<?=$image_url?>" alt="...">
+                                <img src="<?=$image_url?>" class="fix-img-size" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                 <div class="card-body">

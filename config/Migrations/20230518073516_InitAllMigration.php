@@ -129,8 +129,8 @@ class InitAllMigration extends AbstractMigration
             ->addColumn('unit_price', 'decimal', [
                 'default' => null,
                 'null' => false,
-                'precision' => 5,
-                'scale' => 2,
+                'precision' => 11,
+                'scale' => 0,
                 'comment' => 'price of each product'
             ])
             ->addColumn('description', 'text', [
@@ -189,6 +189,7 @@ class InitAllMigration extends AbstractMigration
                 'comment' => '更新日'
             ])
             ->addIndex(['product_id'])
+            ->addForeignKey('product_id', 'products', 'id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             ->create();
 
         // DeviceTokens

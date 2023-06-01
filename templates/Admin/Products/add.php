@@ -19,13 +19,16 @@
                 <legend><?= __('Add Product') ?></legend>
                 <?=$this->Form->control('category_id', ['options' => $categories]);?>
                 <?=$this->Form->control('name', ['value' => 'name']);?>
-                <?=
+                <div class="input file">
+                    <label for="">Images</label>
+                </div>
+                <!-- <?=
                 $this->Form->control('image_products[]', [
                         'type' => 'file',
                         'label' => 'Images',
-                        'class' => 'file-0'
+                        'class' => 'file-0 d-none'
                     ]);
-                ?>
+                ?> -->
                 <?=$this->Form->button('Add Image', ['type' => 'button', 'id' => 'add-image-button']);?>
                 <?=$this->Form->control('quantity', ['value' => 2]);?>
                 <?=$this->Form->control('unit_price', ['value' => 10]);?>

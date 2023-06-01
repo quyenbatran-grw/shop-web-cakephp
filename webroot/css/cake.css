@@ -199,6 +199,17 @@ th {
     justify-content: center;
 }
 
+.show-image .image img {
+    width: 300px;
+    height: 300px;
+}
+
+.fix-img-size { height: 200px; width: 100%; }
+
+.produc-detail .carousel { height: 50vh; }
+
+.produc-detail .carousel .carousel-inner { height: 100%; }
+
 @media screen and (max-width: 640px) {
     .top-nav {
         margin: 0 auto;

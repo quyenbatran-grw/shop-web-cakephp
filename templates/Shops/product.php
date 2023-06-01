@@ -6,7 +6,8 @@
                 'Product List',
                 ['controller' => 'Shops', 'action' => 'index', 'id' => 1]
             );?>
-            <div class="content">
+
+            <div class="content produc-detail mt-3">
                 <?php
                 ?>
 

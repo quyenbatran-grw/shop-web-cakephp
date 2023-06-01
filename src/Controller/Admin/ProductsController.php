@@ -58,12 +58,17 @@ class ProductsController extends AppController
             $categories = $this->Products->Categories->find('list', ['limit' => 200])->all();
             $requestData = $this->request->getData();
             $image_products = $this->request->getData('save_images', []);
+            // var_dump($image_products);
             $save_images = [];
             foreach ($image_products as $key => $image_product) {
                 $filepath = WWW_ROOT.'/img/products/';
+                // var_dump($image_product);
                 do {
                     $files = scandir($filepath);
-                    $filename = md5(uniqid()) . '.jpg';
+                    $filetype = $image_product->getClientMediaType();
+                    $filetype = str_replace('image/', '', $filetype);
+                    $filetype = 'png';
+                    $filename = md5(uniqid()) . '.' . $filetype;
                     if(!in_array($filename, $files)) {
                         $save_images[$filename] = [
                             'name' => $image_product->getClientFilename(),
