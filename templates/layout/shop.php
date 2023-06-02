@@ -41,18 +41,18 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
     <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Product Detail</a>
+            <a class="navbar-brand text-white" href="#">Product Detail</a>
             <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
             <?= $this->Form->button('<i class="bi bi-cart3"></i><span class="badge bg-danger rounded-circle">'.$cart_quantity.'</span>', [
                 'id' => 'cart-item',
                 'type' => 'submit',
-                'class' => 'border-0 bg-transparent',
+                'class' => 'border-0 bg-transparent text-white ms-5',
                 'escapeTitle' => false,
             ]); ?>
             <?=$this->Form->end();?>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -73,6 +73,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </main>
     <footer>
+        <div class="text-center">
+            Copyright <?=date('Y')?><br>
+            Create by QUYENTB
+        </div>
     </footer>
 </body>
 </html>

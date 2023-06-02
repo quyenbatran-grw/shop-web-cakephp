@@ -44,6 +44,10 @@ class ComposerStaticInit529da3f9b843e5c87b91215111199dcf
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zalo\\' => 5,
+        ),
         'T' => 
         array (
             'Twig\\Extra\\Markdown\\' => 20,
@@ -103,6 +107,10 @@ class ComposerStaticInit529da3f9b843e5c87b91215111199dcf
             'JsonSchema\\' => 11,
             'Jasny\\Twig\\' => 11,
         ),
+        'F' => 
+        array (
+            'Facebook\\' => 9,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -141,6 +149,10 @@ class ComposerStaticInit529da3f9b843e5c87b91215111199dcf
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zalo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zaloplatform/zalo-php-sdk/src',
+        ),
         'Twig\\Extra\\Markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/markdown-extra',
@@ -294,6 +306,10 @@ class ComposerStaticInit529da3f9b843e5c87b91215111199dcf
         'Jasny\\Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/jasny/twig-extensions/src',
+        ),
+        'Facebook\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

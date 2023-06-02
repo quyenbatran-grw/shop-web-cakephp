@@ -47,7 +47,7 @@ class ShopsController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['index', 'product', 'login', 'add', 'cartList', 'cartConfirm', 'orderInfo', 'purchase']);
+        $this->Authentication->allowUnauthenticated(['index', 'category', 'product', 'login', 'add', 'cartList', 'cartConfirm', 'orderInfo', 'purchase']);
         // $this->Authentication->skipAuthorization();
     }
 
@@ -193,7 +193,7 @@ class ShopsController extends AppController
     {
         if(empty($shopping_cart)) {
             $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
-            $shopping_cart = json_decode($shopping_cart, true);
+            if(!empty($shopping_cart)) $shopping_cart = json_decode($shopping_cart, true);
         }
         $quantity = 0;
         if(!empty($shopping_cart)) {

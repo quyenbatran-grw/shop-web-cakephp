@@ -1,7 +1,3 @@
-<?=$this->Html->link(
-    'Categories',
-    ['controller' => 'Pages', 'action' => 'index']
-);?>
 <div class="content mt-3">
 
     <div>Your orders are finished. Please wait for contact from our shop</div>

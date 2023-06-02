@@ -17,7 +17,7 @@ header {
     height: 70px;
     margin-bottom: 20px;
     background: #a9e1ff;
-
+    background-image: url(https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
 }
 footer {
     margin-top: 60px;
@@ -85,3 +85,7 @@ hr {
 .carousel-inner .carousel-item {
     max-height: 150px;
 }
+
+.menu-link-list { margin-bottom: 1rem;}
+
+.main { min-height: 70vh;}

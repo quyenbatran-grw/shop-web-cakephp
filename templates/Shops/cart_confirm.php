@@ -1,7 +1,10 @@
+<div class="menu-link-list">
 <?=$this->Html->link(
-    'Categories',
-    ['controller' => 'Pages', 'action' => 'index']
+    '<i class="bi bi-caret-left"></i>Category',
+    ['controller' => 'Pages', 'action' => 'index'],
+    ['escape' => false, 'escapeTitle' => false]
 );?>
+</div>
 <div class="content mt-3">
     <?php
     if(!$auth && !$continue) {
