@@ -17,7 +17,7 @@
             <?= $this->Html->link(__('List Products'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive">
         <div class="products form content">
             <?= $this->Form->create($product) ?>
             <fieldset>
@@ -30,7 +30,11 @@
                     echo $this->Form->control('description');
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+
+            <div class="row justify-content-between col-md-7 mx-auto mt-5">
+            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-3', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-lg col-3']) ?>
+            </div>
             <?= $this->Form->end() ?>
         </div>
     </div>

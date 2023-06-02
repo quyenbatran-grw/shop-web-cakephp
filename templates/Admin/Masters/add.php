@@ -14,7 +14,7 @@ use App\Model\Table\MastersTable;
             <?= $this->Html->link(__('List Masters'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive">
         <div class="masters form content">
             <?= $this->Form->create($master) ?>
             <fieldset>
@@ -24,7 +24,10 @@ use App\Model\Table\MastersTable;
                     echo $this->Form->control('name');
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <div class="row justify-content-between col-md-7 mx-auto mt-5">
+            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-3', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-lg col-3']) ?>
+            </div>
             <?= $this->Form->end() ?>
         </div>
     </div>

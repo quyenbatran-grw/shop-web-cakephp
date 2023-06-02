@@ -214,11 +214,13 @@ class ShopsController extends AppController
     {
         if(empty($shopping_cart)) {
             $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
-            $shopping_cart = json_decode($shopping_cart, true);
+            if(!empty($shopping_cart)) $shopping_cart = json_decode($shopping_cart, true);
         }
         $products = [];
-        foreach ($shopping_cart as $key => $category) {
-            if(is_array($category)) $products += $category;
+        if(!empty($shopping_cart)) {
+            foreach ($shopping_cart as $key => $category) {
+                if(is_array($category)) $products += $category;
+            }
         }
         return $products;
     }
@@ -244,21 +246,24 @@ class ShopsController extends AppController
             if(isset($cart_products[$product_id])) $cart_products[$product_id] = $quantity;
             $shopping_cart = $this->_updateShoppingCookie($category_id, $product_id, $quantity);
         }
-        $product_ids = array_keys($cart_products);
-        $products = $this->Categories->Products
-                        ->find()
-                        ->contain([
-                            'Categories',
-                            'ImageProducts' => function(Query $query) {
-                                return $query->limit(1);
-                            }
-                        ])
-                        ->where(['Products.id IN' => $product_ids])
-                        ->all()
-                        ->map(function(Product $product) use($cart_products) {
-                            if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
-                            return $product;
-                        });
+        $products = null;
+        if(!empty($cart_products)) {
+            $product_ids = array_keys($cart_products);
+            $products = $this->Categories->Products
+                            ->find()
+                            ->contain([
+                                'Categories',
+                                'ImageProducts' => function(Query $query) {
+                                    return $query->limit(1);
+                                }
+                            ])
+                            ->where(['Products.id IN' => $product_ids])
+                            ->all()
+                            ->map(function(Product $product) use($cart_products) {
+                                if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
+                                return $product;
+                            });
+        }
         $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
         $this->set(compact('products', 'cart_quantity'));
         $this->render('cart_list');

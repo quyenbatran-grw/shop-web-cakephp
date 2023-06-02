@@ -12,7 +12,7 @@
             <?= $this->Html->link(__('List Products'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive">
         <div class="products form content">
             <?= $this->Form->create($product, ['enctype' => 'multipart/form-data', 'id' => 'js-validate-form']) ?>
             <fieldset>
@@ -29,7 +29,12 @@
                         'class' => 'file-0 d-none'
                     ]);
                 ?> -->
-                <?=$this->Form->button('Add Image', ['type' => 'button', 'id' => 'add-image-button']);?>
+                <?=$this->Form->button('<i class="bi bi-plus-lg fs-4"></i>Add Image', [
+                    'type' => 'button',
+                    'id' => 'add-image-button',
+                    'class' => 'btn btn-primary btn-lg',
+                    'escapeTitle' => false
+                ]);?>
                 <?=$this->Form->control('quantity', ['value' => 2]);?>
                 <?=$this->Form->control('unit_price', ['value' => 10]);?>
                 <?=$this->Form->control('description', ['value' => 'asbd']);?>
@@ -43,7 +48,11 @@
 
                 ?>
             </fieldset>
-            <?= $this->Form->button('Submit', ['type' => 'submit', 'id' => 'save-product-button']); ?>
+
+            <div class="row justify-content-between col-md-7 mx-auto mt-5">
+            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-3', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button('Submit', ['type' => 'submit', 'id' => 'save-product-button', 'class' => 'btn btn-primary btn-lg col-3']); ?>
+            </div>
             <?= $this->Form->end() ?>
         </div>
     </div>

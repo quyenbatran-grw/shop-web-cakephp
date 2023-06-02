@@ -5,6 +5,8 @@ body {
     font-size: 1.5rem !important;
 }
 
+.main { min-height: 80vh;}
+
 .top-nav-links,
 .side-nav,
 h1, h2, h3, h4, h5, h6 {

@@ -8,9 +8,15 @@
     <?= $this->Form->create() ?>
     <fieldset>
         <legend><?= __('Please enter your email and password') ?></legend>
-        <?= $this->Form->control('username') ?>
+
         <?= $this->Form->control('password') ?>
     </fieldset>
-    <?= $this->Form->button(__('Login')); ?>
+
+    <div class="">
+    <?= $this->Form->control('username', ['class' => 'form-control']) ?>
+    </div>
+    <div class="d-flex justify-content-center">
+    <?= $this->Form->button(__('Login'), ['class' => 'mt-5']); ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>

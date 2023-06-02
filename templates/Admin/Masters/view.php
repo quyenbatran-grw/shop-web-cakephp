@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Master'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive">
         <div class="masters view content">
             <h3><?= h($master->name) ?></h3>
             <table>
@@ -43,6 +43,12 @@
                     <td><?= h($master->modified) ?></td>
                 </tr>
             </table>
+            <?=$this->Form->create(null, ['url' => ['controller' => 'Masters', 'action' => 'edit', $master->id], 'type' => 'get']);?>
+            <div class="row justify-content-between col-md-7 mx-auto mt-5">
+            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-3', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button(__('Edit'), ['class' => 'btn btn-primary btn-lg col-3']) ?>
+            </div>
+            <?=$this->Form->end();?>
         </div>
     </div>
 </div>

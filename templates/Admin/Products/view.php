@@ -14,7 +14,7 @@
             <?= $this->Html->link(__('New Product'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="column-responsive">
         <div class="products view content">
             <h3><?= h($product->name) ?></h3>
             <table>
@@ -90,6 +90,13 @@
                 </div>
                 <?php endif; ?>
             </div>
+
+            <?=$this->Form->create(null, ['url' => ['controller' => 'Products', 'action' => 'edit', $product->id], 'type' => 'get']);?>
+            <div class="row justify-content-between col-md-7 mx-auto mt-5">
+            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-3', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button(__('Edit'), ['class' => 'btn btn-primary btn-lg col-3']) ?>
+            </div>
+            <?=$this->Form->end();?>
         </div>
     </div>
 </div>
