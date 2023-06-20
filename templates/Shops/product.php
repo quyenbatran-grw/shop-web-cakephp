@@ -47,6 +47,8 @@
 
         </div>
 
+        <div class="fw-bold">Price: <?=$product->product_inventories[0]->price;?></div>
+
         <div>
             <?=nl2br($product->description)?>
         </div>
@@ -55,12 +57,12 @@
 
         <?=$this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'product', $product->category_id, $product->id]])?>
         <div class="add-cart-group d-flex mt-3" role="group" aria-label="Basic example">
-            <div>Quantity</div>
+            <!-- <div>Quantity</div> -->
 
             <div class="w-25">
                 <?=$this->Form->control('quantity', [
                     'type' => 'select',
-                    'label' => false,
+                    'label' => 'Quantity',
                     'class' => 'form-control text-center ms-2',
                     'options' => [1 => 1,2 => 2, 3 => 3, 4 => 4]
                 ])?>
@@ -69,7 +71,7 @@
 
             <?= $this->Form->button('<i class="bi bi-cart3"></i>Add To Card', [
                 'type' => 'submit',
-                'class' => 'btn btn-primary ms-4',
+                'class' => 'btn btn-primary ms-4 mt-4',
                 'escapeTitle' => false,
                 'onClick' => 'addItemToCart(this)'
             ]); ?>

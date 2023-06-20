@@ -4,6 +4,9 @@
  * @var \App\Model\Entity\Product $product
  * @var \Cake\Collection\CollectionInterface|string[] $categories
  */
+
+use App\Model\Table\ProductsTable;
+
 ?>
 <div class="row">
     <aside class="column">
@@ -18,7 +21,7 @@
             <fieldset>
                 <legend><?= __('Add Product') ?></legend>
                 <?=$this->Form->control('category_id', ['options' => $categories]);?>
-                <?=$this->Form->control('name', ['value' => 'name']);?>
+                <?=$this->Form->control('name', ['value' => 'Cosmetic product 01']);?>
                 <div class="input file">
                     <label for="">Images</label>
                 </div>
@@ -35,9 +38,22 @@
                     'class' => 'btn btn-primary btn-lg',
                     'escapeTitle' => false
                 ]);?>
-                <?=$this->Form->control('quantity', ['value' => 2]);?>
-                <?=$this->Form->control('unit_price', ['value' => 10]);?>
-                <?=$this->Form->control('description', ['value' => 'asbd']);?>
+                <?=$this->Form->control('made_in', [
+                    'options' => ProductsTable::$sponsors
+                ]);?>
+                <?=$this->Form->control('sponsor_name', [
+                    'value' => 'VNSP',
+                    'maxLength' => 255
+                ]);?>
+                <?=$this->Form->control('sponsor_address', [
+                    'value' => 'VP',
+                    'maxLength' => 255
+                ]);?>
+                <?=$this->Form->control('sponsor_tel', [
+                    'value' => '03-0636-6365',
+                    'maxLength' => 15
+                ]);?>
+                <?=$this->Form->control('description', ['value' => 'product description']);?>
                 <?php
 
 
@@ -49,9 +65,9 @@
                 ?>
             </fieldset>
 
-            <div class="row justify-content-between col-md-7 mx-auto mt-5">
-            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-3', 'onclick' => 'history.back()']) ?>
-            <?= $this->Form->button('Submit', ['type' => 'submit', 'id' => 'save-product-button', 'class' => 'btn btn-primary btn-lg col-3']); ?>
+            <div class="d-flex justify-content-between mx-9 my-4">
+            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-4', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button('Submit', ['type' => 'submit', 'id' => 'save-product-button', 'class' => 'btn btn-primary btn-lg col-4']); ?>
             </div>
             <?= $this->Form->end() ?>
         </div>

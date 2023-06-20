@@ -623,15 +623,33 @@ progress {
 
 @for $i from 1 through 100 {
     .min-h-#{$i} {
-        min-height: $i * 1rem;
+        min-height: $i * 1rem !important;
     }
 
     .max-h-#{$i} {
-        max-height: $i * 1rem;
+        max-height: $i * 1rem !important;
+    }
+
+    .max-w-#{$i} {
+        max-width: $i * 1rem !important;
+    }
+
+    .max-wp-#{$i} {
+        max-width: $i * 1% !important;
     }
 
     .fix-h-#{$i} {
-        min-height: $i * 1rem;
-        max-height: $i * 1rem;
+        min-height: $i * 1rem !important;
+        max-height: $i * 1rem !important;
+    }
+
+    .fix-w-#{$i} {
+        min-width: $i * 1rem !important;
+        max-width: $i * 1rem !important;
+    }
+
+    .fix-wp-#{$i} {
+        min-width: $i * 1% !important;
+        max-width: $i * 1% !important;
     }
 }

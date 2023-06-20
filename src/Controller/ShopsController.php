@@ -23,7 +23,9 @@ use function PHPUnit\Framework\isNull;
  */
 class ShopsController extends AppController
 {
-    const PRODUCT_COOKIE_NM = 'shopping_carts';
+    const COOKIE_NM = 'shopping_carts';
+    const PRODUCT_COOKIE_NM = 'product';
+    const CUSTOMER_COOKIE_NM = 'customer';
 
     public function initialize(): void
     {
@@ -61,17 +63,30 @@ class ShopsController extends AppController
         $this->viewBuilder()->setLayout('shop');
         $categories = $this->Categories
                         ->find()
+                        // ->innerJoinWith('Products', function(Query $query) {
+                        //     return $query
+                        //             ->innerJoinWith('ProductInventories', function(Query $query) {
+                        //                 return $query;
+                        //             });
+                        // })
+
                         ->contain([
                             'Products' => function(Query $query) {
                                 return $query
-                                        ->contain('ImageProducts');
+                                        ->innerJoinWith('ProductInventories', function(Query $query) {
+                                            return $query;
+                                        })
+                                        ->contain(['ImageProducts']);
                             }
                         ])
                         ->all()
                         ->map(function($category) {
+                            // $result = $product_inventory;
+                            // $result['category']
                             if(count($category->products)) return $category;
                             return null;
                         });
+                        // var_dump($categories->toArray());
         $image_products = $this->ImageProducts->find()->limit(3)->all();
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
         $this->set(compact('image_products', 'categories', 'cart_quantity'));
@@ -89,17 +104,25 @@ class ShopsController extends AppController
 
         }
         $this->viewBuilder()->setLayout('shop');
-        $category = $this->Categories
+
+        $products = $this->Categories->Products
                         ->find()
                         ->contain([
-                            'Products' => function(Query $query) {
-                                return $query->contain('ImageProducts');
+                            'ImageProducts',
+                            'ProductInventories' => function($query) {
+                                return $query
+                                    ->order(['ProductInventories.date' => 'DESC']);
                             }
                         ])
-                        ->where(['Categories.id' => $id])
-                        ->firstOrFail();
+                        ->where(['Products.category_id' => $id])
+                        ->all()
+                        ->map(function($product) {
+                            if(isset($product->product_inventories) && count($product->product_inventories)) return $product;
+                            return null;
+                        });
+
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $this->set(compact('category', 'cart_quantity'));
+        $this->set(compact('products', 'cart_quantity'));
         $this->render('category');
     }
 
@@ -117,22 +140,57 @@ class ShopsController extends AppController
                         ->find()
                         ->contain([
                             'ImageProducts',
+                            'ProductInventories' => function($query) {
+                                return $query
+                                    ->order(['ProductInventories.date' => 'DESC']);
+                            },
                             'Categories'
                         ])
                         ->where(['Products.id' => $product_id])
                         ->firstOrFail();
+
+        $product_inventories = $this->Categories->Products->ProductInventories
+                        ->find();
+        $product_inventories = $product_inventories
+                        ->select(['product_id'])
+                        ->select(['quantity' => $product_inventories->func()->sum('quantity')])
+                        ->group('product_id')
+                        // ->all()
+                        ->formatResults(function($product_inventory) {
+                            return $product_inventory->combine(
+                                'product_id',
+                                function($row) {
+                                    return $row['quantity'];
+                                }
+                            );
+                        });
+                        // foreach ($product_inventories as $key => $value) {
+                        //     var_dump($value);
+                        // }
+                        // ->toArray();
+        $orders = $this->Categories->Products->Orders
+                        ->find();
+                        var_dump($product_inventories);
+        $orders = $orders
+                        ->select(['product_id'])
+                        ->select(['quantity' => $orders->func()->sum('quantity')])
+                        ->group('product_id')
+                        ->all()
+                        ->toArray();
+
+                        var_dump($orders);
         $quantity = $this->request->getData('quantity', null);
 
-        $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
+        $shopping_cart = $this->request->getCookie(self::COOKIE_NM);
         if(is_null($shopping_cart)) {
             $shopping_cart = [];
-            $shopping_cart[$id] = [];
+            $shopping_cart[self::PRODUCT_COOKIE_NM][$id] = [];
         } else {
             $shopping_cart = json_decode($shopping_cart, true);
         }
         if(!is_null($quantity)) {
-            $shopping_cart[$id][$product_id] = $quantity;
-            $cookie = (new Cookie(self::PRODUCT_COOKIE_NM))
+            $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] = $quantity;
+            $cookie = (new Cookie(self::COOKIE_NM))
             ->withValue($shopping_cart)
             ->withExpiry(new DateTime('+1 year'))
             ->withPath('/')
@@ -159,17 +217,31 @@ class ShopsController extends AppController
      *
      * @return Array
      */
-    private function _updateShoppingCookie($category_id, $product_id, $quantity = null) {
-        $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
+    private function _setShoppingProductCookie($category_id, $product_id, $quantity = null) {
+        $shopping_cart = $this->request->getCookie(self::COOKIE_NM);
         if(is_null($shopping_cart)) {
             $shopping_cart = [];
-            $shopping_cart[$category_id] = [];
+            $shopping_cart[self::PRODUCT_COOKIE_NM][$category_id] = [];
         } else {
             $shopping_cart = json_decode($shopping_cart, true);
         }
-        if(is_null($quantity)) unset($shopping_cart[$category_id][$product_id]);
-        else $shopping_cart[$category_id][$product_id] = $quantity;
-        $cookie = (new Cookie(self::PRODUCT_COOKIE_NM))
+        if(is_null($quantity)) unset($shopping_cart[self::PRODUCT_COOKIE_NM][$category_id][$product_id]);
+        else $shopping_cart[self::PRODUCT_COOKIE_NM][$category_id][$product_id] = $quantity;
+        $this->_setShoppingCookie($shopping_cart);
+        return $shopping_cart;
+    }
+
+    /**
+     * 購入商品の数量をクッキーに格納する
+     *
+     * @param int $categoy_id カテゴリーID
+     * @param int $product_id 商品ID
+     * @param int $quantity 数量
+     *
+     * @return Array
+     */
+    private function _setShoppingCookie($shopping_cart) {
+        $cookie = (new Cookie(self::COOKIE_NM))
                     ->withValue($shopping_cart)
                     ->withExpiry(new DateTime('+1 year'))
                     ->withPath('/')
@@ -179,7 +251,21 @@ class ShopsController extends AppController
                     ->withHttpOnly(false);
 
         $this->response = $this->response->withCookie($cookie);
-        return $shopping_cart;
+    }
+
+    /**
+     * 購入商品クッキーを削除する
+     */
+    private function _deleteShoppingCookie() {
+        $cookie = (new Cookie(self::PRODUCT_COOKIE_NM))
+                    ->withExpiry(new DateTime('-1 year'))
+                    ->withPath('/')
+                    ->withDomain('localhost')
+                    ->withSecure(false)
+                    ->withSameSite(CookieInterface::SAMESITE_STRICT)
+                    ->withHttpOnly(false);
+
+        $this->response = $this->response->withCookie($cookie);
     }
 
 
@@ -192,12 +278,12 @@ class ShopsController extends AppController
     private function _getShoppingCartTotalQuantity($shopping_cart = null)
     {
         if(empty($shopping_cart)) {
-            $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
+            $shopping_cart = $this->request->getCookie(self::COOKIE_NM);
             if(!empty($shopping_cart)) $shopping_cart = json_decode($shopping_cart, true);
         }
         $quantity = 0;
-        if(!empty($shopping_cart)) {
-            foreach ($shopping_cart as $key => $category) {
+        if(!empty($shopping_cart[self::PRODUCT_COOKIE_NM])) {
+            foreach ($shopping_cart[self::PRODUCT_COOKIE_NM] as $key => $category) {
                 if(is_array($category)) $quantity += array_sum($category);
             }
         }
@@ -213,16 +299,46 @@ class ShopsController extends AppController
     private function _getProductsFromCart($shopping_cart = null)
     {
         if(empty($shopping_cart)) {
-            $shopping_cart = $this->request->getCookie(self::PRODUCT_COOKIE_NM);
+            $shopping_cart = $this->request->getCookie(self::COOKIE_NM);
             if(!empty($shopping_cart)) $shopping_cart = json_decode($shopping_cart, true);
         }
         $products = [];
-        if(!empty($shopping_cart)) {
-            foreach ($shopping_cart as $key => $category) {
+        if(!empty($shopping_cart[self::PRODUCT_COOKIE_NM])) {
+            foreach ($shopping_cart[self::PRODUCT_COOKIE_NM] as $key => $category) {
                 if(is_array($category)) $products += $category;
             }
         }
         return $products;
+    }
+
+    /**
+     * 注文のお客様情報をクッキーに格納する
+     *
+     * @param array $customer 注文のお客様情報
+     */
+    private function _setShoppingCustomer($customer) {
+        $shopping_cart = $this->request->getCookie(self::COOKIE_NM, null);
+        if(is_null($shopping_cart)) {
+            $shopping_cart = [];
+        } else {
+            $shopping_cart = json_decode($shopping_cart, true);
+        }
+        $shopping_cart[self::CUSTOMER_COOKIE_NM] = $customer;
+        $this->_setShoppingCookie($shopping_cart);
+    }
+
+    /**
+     * 注文のお客様情報をクッキーを取得する
+     *
+     * @return array
+     */
+    private function _getShopingCustomerCookie() {
+        $shopping_cart = $this->request->getCookie(self::COOKIE_NM, null);
+        if(!is_null($shopping_cart)) {
+            $shopping_cart = json_decode($shopping_cart, true);
+            $shopping_cart = $shopping_cart[self::CUSTOMER_COOKIE_NM];
+        }
+        return $shopping_cart;
     }
 
     /**
@@ -244,7 +360,7 @@ class ShopsController extends AppController
             $product_id = $this->request->getData('product_id', 0);
             if(is_null($quantity)) unset($cart_products[$product_id]);
             if(isset($cart_products[$product_id])) $cart_products[$product_id] = $quantity;
-            $shopping_cart = $this->_updateShoppingCookie($category_id, $product_id, $quantity);
+            $shopping_cart = $this->_setShoppingProductCookie($category_id, $product_id, $quantity);
         }
         $products = null;
         if(!empty($cart_products)) {
@@ -286,7 +402,8 @@ class ShopsController extends AppController
             $auth = true;
         }
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $this->set(compact('auth', 'cart_quantity', 'continue'));
+        $customer = $this->_getShopingCustomerCookie();
+        $this->set(compact('auth', 'cart_quantity', 'continue', 'customer'));
         $this->render('cart_confirm');
     }
 
@@ -300,6 +417,11 @@ class ShopsController extends AppController
     public function orderInfo($id = null)
     {
         $this->viewBuilder()->setLayout('shop');
+        $customer = [];
+        if($this->request->is(['post', 'put'])) {
+            $customer = $this->request->getData();
+            $this->_setShoppingCustomer($customer);
+        }
 
         $cart_products = $this->_getProductsFromCart();
         $product_ids = array_keys($cart_products);
@@ -318,7 +440,7 @@ class ShopsController extends AppController
                             return $product;
                         });
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $this->set(compact('products', 'cart_quantity'));
+        $this->set(compact('products', 'cart_quantity', 'customer'));
         $this->render('order_info');
     }
 
@@ -332,17 +454,15 @@ class ShopsController extends AppController
     public function purchase($id = null)
     {
         $this->viewBuilder()->setLayout('shop');
-        $cookie = (new Cookie(self::PRODUCT_COOKIE_NM))
-        ->withExpiry(new DateTime('-1 year'))
-        ->withPath('/')
-        ->withDomain('localhost')
-        ->withSecure(false)
-        ->withSameSite(CookieInterface::SAMESITE_STRICT)
-        ->withHttpOnly(false);
 
-        $this->response = $this->response->withCookie($cookie);
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        if($this->request->is(['post', 'put'])) {
+            $this->_deleteShoppingCookie();
+            $cart_quantity = null;
+        }
 
-        $cart_quantity = null;
+
+
         $this->set(compact('cart_quantity'));
         $this->render('purchase');
     }
@@ -433,10 +553,11 @@ class ShopsController extends AppController
         $result = $this->Authentication->getResult();
         // If the user is logged in send them away.
         if ($result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? '/shops';
+            $target = $this->Authentication->getLoginRedirect() ?? null;
+            // dd($this->Authentication->getLoginRedirect());
             $user = $this->Authentication->user;
             if($user->role) $target = '/admin';
-            else $target = 'users';
+            else if(is_null($target)) $target = 'users';
             return $this->redirect($target);
         }
         if ($this->request->is('post')) {

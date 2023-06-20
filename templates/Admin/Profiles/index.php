@@ -24,4 +24,10 @@
         'class' => 'btn btn-primary'
     ]);
     ?>
+
+    <?php
+    echo $this->Html->link('Manage Inventories', 'admin/inventory', [
+        'class' => 'btn btn-primary'
+    ]);
+    ?>
 </div>

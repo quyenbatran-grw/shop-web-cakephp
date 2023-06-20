@@ -34,12 +34,16 @@ class Product extends Entity
     protected $_accessible = [
         'category_id' => true,
         'name' => true,
-        'quantity' => true,
-        'unit_price' => true,
+        'made_in' => true,
+        'sponsor_name' => true,
+        'sponsor_address' => true,
+        'sponsor_tel' => true,
         'description' => true,
         'created' => true,
         'modified' => true,
         'category' => true,
         'image_products' => true,
     ];
+
+
 }

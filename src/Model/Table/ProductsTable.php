@@ -32,6 +32,11 @@ use Cake\Validation\Validator;
  */
 class ProductsTable extends Table
 {
+    public static $sponsors = [
+        'VN',
+        'JP',
+        'UR'
+    ];
     /**
      * Initialize method
      *
@@ -58,6 +63,12 @@ class ProductsTable extends Table
         $this->hasMany('ShoppingCarts', [
             'foreignKey' => 'product_id'
         ]);
+        $this->hasMany('ProductInventories', [
+            'foreignKey' => 'product_id'
+        ]);
+        $this->hasMany('Orders', [
+            'foreignKey' => 'product_id'
+        ]);
     }
 
     /**
@@ -79,13 +90,16 @@ class ProductsTable extends Table
             ->notEmptyString('name');
 
         $validator
-            ->notEmptyString('quantity')
-            ->naturalNumber('quantity', 'Please input natural number');
+            ->notEmptyString('made_in', 'Please input value')
+            ->add('made_in', 'validValue', ['rule' => ['range', 0, 3], 'message' => '[0~3]まで登録してください']);
 
         $validator
-            ->decimal('unit_price')
-            ->requirePresence('unit_price', 'create')
-            ->notEmptyString('unit_price');
+            ->maxLength('sponsor_name', 255, 'Please input under 255 charactors')
+            ->isEmptyAllowed('sponsor_name', true);
+
+        $validator
+            ->maxLength('sponsor_tel', 255, 'Please input under 255 charactors')
+            ->isEmptyAllowed('sponsor_name', true);
 
         $validator
             ->scalar('description')

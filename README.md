@@ -67,6 +67,7 @@ bin/cake migrations rollback
 
 ## 初期データを作成する
 bin/cake migrations seed
+bin/cake bake seed --data Users
 
 ## Controller, Model, Templateの全て生成する
 bin/cake bake all users

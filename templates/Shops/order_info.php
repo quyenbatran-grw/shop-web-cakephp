@@ -1,6 +1,6 @@
 
 <div class="content">
-    <div class="mb-3">There are your shopping cart information. If don\'t have any mistake, you can press to Order button to finish. Otherwise please press to Back button</div>
+    <div class="mb-3">There are your shopping cart information. If don't have any mistake, you can press to Order button to finish. Otherwise please press to Back button</div>
 
     <div class="">
         <?php
@@ -26,17 +26,17 @@
                 <h2><?=$product->name?></h2>
                 <div class="row">
                     <div class="col fw-bold">Price</div>
-                    <div class="col text-end"><?=$product->unit_price?></div>
+                    <div class="col text-end"><?=$product->price?></div>
                 </div>
 
                 <div class="row">
                     <div class="col fw-bold">Quantity</div>
-                    <div class="col text-end"><?=$product->quantity?></div>
+                    <div class="col text-end"><?=$product->quantity_format?></div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col fw-bold">Amount</div>
-                    <div class="col text-end"><?=$amount?></div>
+                    <div class="col text-end"><?=number_format($amount)?></div>
                 </div>
 
             </div>
@@ -51,7 +51,7 @@
             <div class="p-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
-                    <div class="col text-end"><?=$total_amount?></div>
+                    <div class="col text-end"><?=number_format($total_amount)?></div>
                 </div>
             </div>
         </div>

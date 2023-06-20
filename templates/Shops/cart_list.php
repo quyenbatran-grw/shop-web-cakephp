@@ -43,7 +43,7 @@
                 <h2><?=$product->name?></h2>
                 <div class="row">
                     <div class="col">Price</div>
-                    <div class="col text-end"><?=$product->unit_price?></div>
+                    <div class="col text-end"><?=$product->price?></div>
                 </div>
 
                 <div class="row">
@@ -65,7 +65,7 @@
                 <hr>
                 <div class="row">
                     <div class="col">Amount</div>
-                    <div class="col text-end"><?=$amount?></div>
+                    <div class="col text-end"><?=number_format($amount)?></div>
                 </div>
                 <div class="row">
                     <?=$this->Form->create($product, ['type' => 'delete', 'url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
@@ -90,21 +90,25 @@
                 <div class="p-2 bd-highlight w-100">
                     <div class="row">
                         <div class="col"></div>
-                        <div class="col text-end"><?=$total_amount?></div>
+                        <div class="col text-end"><?=number_format($total_amount)?></div>
                     </div>
                 </div>
         </div>
-        <div class="d-flex flex-row justify-content-center">
-            <div class="row">
-                <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-confirm']]);?>
-                <?=$this->Form->button('Next', [
-                    'class' => 'btn btn-primary'
-                ]);?>
-                <?=$this->Form->end();?>
-            </div>
-        </div>
+
+
+
+
+
         <?php
             }
+        ?>
+        <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-confirm']]);?>
+        <div class="row justify-content-around mt-5">
+            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary col-3', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button('Next', ['type' => 'submit', 'class' => 'btn btn-primary col-3']); ?>
+        </div>
+        <?= $this->Form->end() ?>
+        <?php
         }
         ?>
     </div>

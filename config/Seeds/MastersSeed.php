@@ -45,6 +45,14 @@ class MastersSeed extends AbstractSeed
                 'created' => '2023-05-22 03:38:09',
                 'modified' => '2023-05-22 03:38:09',
             ],
+            [
+                'id' => 4,
+                'type' => 0,
+                'name' => 'master type 1-3',
+                'rank' => 3,
+                'created' => '2023-06-01 02:12:19',
+                'modified' => '2023-06-01 02:12:19',
+            ],
         ];
 
         $table = $this->table('masters');

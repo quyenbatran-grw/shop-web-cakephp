@@ -58,11 +58,14 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/', ['controller' => 'Shops', 'action' => 'index', 'home']);
         $builder->connect('/shops/{id}', ['controller' => 'Shops', 'action' => 'category'], ['pass' => ['id']]);
         $builder->connect('/shops/login', ['controller' => 'Shops', 'action' => 'login']);
+        $builder->connect('/shops/logout', ['controller' => 'Shops', 'action' => 'logout']);
         $builder->connect('/shops/product', ['controller' => 'Shops', 'action' => 'product']);
         $builder->connect('/shops/cart-list', ['controller' => 'Shops', 'action' => 'cart-list']);
         $builder->connect('/shops/cart-confirm', ['controller' => 'Shops', 'action' => 'cart-confirm']);
         $builder->connect('/shops/order-info', ['controller' => 'Shops', 'action' => 'order-info']);
         $builder->connect('/shops/purchase', ['controller' => 'Shops', 'action' => 'purchase']);
+
+        $builder->connect('/shops/{action}/*', ['controller' => 'Shops']);
 
 
         /*
@@ -118,6 +121,10 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Masters', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Categories', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Products', 'action' => '*']);
+
+        $builder->scope('/inventory', ['prefix' => 'Admin'], function(RouteBuilder $builderInventory) {
+            $builderInventory->connect('/', ['controller' => 'ProductInventories', 'action' => 'index']);
+        });
     });
 
     $routes->scope('/users', ['prefix' => 'Users'], function(RouteBuilder $builder) {

@@ -21,93 +21,176 @@ class ProductsSeed extends AbstractSeed
     public function run(): void
     {
         $data = [
-            [
-                'id' => 17,
-                'category_id' => 2,
-                'name' => 'product life 1',
-                'quantity' => 10,
-                'unit_price' => '122.00',
-                'description' => 'product life 1 description
-product life 1 description
-product life 1 description',
-                'created' => '2023-05-23 00:30:16',
-                'modified' => '2023-05-23 00:30:16',
-            ],
-            [
-                'id' => 18,
-                'category_id' => 2,
-                'name' => 'life product 2',
-                'quantity' => 10,
-                'unit_price' => '100.00',
-                'description' => 'life product 2 detail info
-life product 2 detail info
-life product 2 detail info
-life product 2 detail info
-life product 2 detail info
-life product 2 detail info
-life product 2 detail info',
-                'created' => '2023-05-24 03:41:00',
-                'modified' => '2023-05-24 03:41:00',
-            ],
-            [
-                'id' => 19,
-                'category_id' => 1,
-                'name' => 'cosmetic product 1',
-                'quantity' => 20,
-                'unit_price' => '130.00',
-                'description' => 'cosmetic product 1 description
-cosmetic product 1 description
-cosmetic product 1 description
-cosmetic product 1 description
-cosmetic product 1 description
-cosmetic product 1 description
-cosmetic product 1 description',
-                'created' => '2023-05-24 03:41:44',
-                'modified' => '2023-05-24 03:41:44',
-            ],
-            [
-                'id' => 20,
-                'category_id' => 1,
-                'name' => 'cosmetic product 2',
-                'quantity' => 100,
-                'unit_price' => '999.99',
-                'description' => 'cosmetic product 2 description cosmetic product 2 description
-cosmetic product 2 description
-cosmetic product 2 descriptioncosmetic product 2 description
-cosmetic product 2 description
-cosmetic product 2 description
-cosmetic product 2 description',
-                'created' => '2023-05-24 03:42:33',
-                'modified' => '2023-05-24 03:42:33',
-            ],
-            [
-                'id' => 21,
-                'category_id' => 1,
-                'name' => 'cosmetic product 3',
-                'quantity' => 30,
-                'unit_price' => '156.00',
-                'description' => 'cosmetic product 3 description
-cosmetic product 3 description
-cosmetic product 3 description
-cosmetic product 3 description
-cosmetic product 3 descriptioncosmetic product 3 descriptioncosmetic product 3 description',
-                'created' => '2023-05-24 03:43:58',
-                'modified' => '2023-05-24 03:43:58',
-            ],
-            [
-                'id' => 22,
-                'category_id' => 1,
-                'name' => 'cosmetic product 4',
-                'quantity' => 90,
-                'unit_price' => '180.00',
-                'description' => 'cosmetic product 4 description
-cosmetic product 4 descriptioncosmetic product 4 descriptioncosmetic product 4 descriptioncosmetic product 4 descriptioncosmetic product 4 description
-cosmetic product 4 description
-cosmetic product 4 description
-cosmetic product 4 description',
-                'created' => '2023-05-24 03:44:39',
-                'modified' => '2023-05-24 03:44:39',
-            ],
+//             [
+//                 'id' => 75,
+//                 'category_id' => 1,
+//                 'name' => 'CP001',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'CP001 Description',
+//                 'created' => '2023-06-01 06:53:06',
+//                 'modified' => '2023-06-01 06:53:06',
+//             ],
+//             [
+//                 'id' => 76,
+//                 'category_id' => 2,
+//                 'name' => 'LP001',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'LP001 Description
+// LP001 Description',
+//                 'created' => '2023-06-01 06:57:24',
+//                 'modified' => '2023-06-01 06:57:24',
+//             ],
+//             [
+//                 'id' => 77,
+//                 'category_id' => 2,
+//                 'name' => 'LP002',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'LP002 Description
+// LP002 Description',
+//                 'created' => '2023-06-01 06:57:39',
+//                 'modified' => '2023-06-01 06:57:39',
+//             ],
+//             [
+//                 'id' => 78,
+//                 'category_id' => 2,
+//                 'name' => 'LP003',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'LP003 Description
+// LP003 Description',
+//                 'created' => '2023-06-01 06:57:49',
+//                 'modified' => '2023-06-01 06:57:49',
+//             ],
+//             [
+//                 'id' => 79,
+//                 'category_id' => 2,
+//                 'name' => 'LP004',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'LP004 Description
+// LP004 Description',
+//                 'created' => '2023-06-01 06:58:02',
+//                 'modified' => '2023-06-01 06:58:02',
+//             ],
+//             [
+//                 'id' => 80,
+//                 'category_id' => 1,
+//                 'name' => 'CP002',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'CP002 Description
+// CP002 Description',
+//                 'created' => '2023-06-01 06:58:58',
+//                 'modified' => '2023-06-01 06:58:58',
+//             ],
+//             [
+//                 'id' => 81,
+//                 'category_id' => 1,
+//                 'name' => 'CP003',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'CP003 Description
+// CP003 Description',
+//                 'created' => '2023-06-01 06:59:38',
+//                 'modified' => '2023-06-01 06:59:38',
+//             ],
+//             [
+//                 'id' => 82,
+//                 'category_id' => 1,
+//                 'name' => 'CP004',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'CP004 Description
+// CP004 Description
+// CP004 Description
+// CP004 Description
+// CP004 Description',
+//                 'created' => '2023-06-01 06:59:57',
+//                 'modified' => '2023-06-01 06:59:57',
+//             ],
+//             [
+//                 'id' => 83,
+//                 'category_id' => 1,
+//                 'name' => 'CP005',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'CP005 Description
+// CP005 Description
+// CP005 Description
+// CP005 Description
+// CP005 Description
+// CP005 Description
+// CP005 Description
+// CP005 Description',
+//                 'created' => '2023-06-01 07:00:14',
+//                 'modified' => '2023-06-01 07:00:14',
+//             ],
+//             [
+//                 'id' => 84,
+//                 'category_id' => 1,
+//                 'name' => 'CP006',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description
+// CP006 Description',
+//                 'created' => '2023-06-01 07:00:49',
+//                 'modified' => '2023-06-01 07:00:49',
+//             ],
+//             [
+//                 'id' => 85,
+//                 'category_id' => 1,
+//                 'name' => 'CP007',
+//                 'made_in' => 'VN',
+//                 'sponsor_name' => 'VNP',
+//                 'sponsor_address' => 'HN',
+//                 'sponsor_tel' => '012356985',
+//                 'description' => 'CP007 Description
+// CP007 Description
+// CP007 Description
+// CP007 Description
+// CP007 Description
+// CP007 Description
+// CP007 Description
+// CP007 Description
+// CP007 Description',
+//                 'created' => '2023-06-01 07:01:17',
+//                 'modified' => '2023-06-01 07:01:17',
+//             ],
         ];
 
         $table = $this->table('products');

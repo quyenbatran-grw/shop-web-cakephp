@@ -96,6 +96,7 @@ class ProductsController extends AppController
 
             } else {
                 $errors = $product->getErrors();
+                // var_dump($errors);
             }
             $this->set(compact('product', 'categories', 'image_products', 'errors'));
             $this->viewBuilder()->setOption('serialize', ['product', 'categories', 'image_products', 'errors']);
