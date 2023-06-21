@@ -207,3 +207,113 @@ Stack Trace:
 - D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
 - D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
 
+2023-06-06 02:13:03 error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'quantity' in 'field list' in D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php on line 346
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php:346
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:181
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\TimedOutputAdapter.php:102
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:181
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:656
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:628
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:686
+- D:\QUYENTB\test-app\shop-web-cakephp\config\Seeds\ProductsSeed.php:175
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php:146
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:420
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:612
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Console\Command\SeedRun.php:106
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\Phinx\CommandTrait.php:37
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\Phinx\Seed.php:76
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Command\Command.php:312
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:1022
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:314
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:168
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:126
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:198
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+
+2023-06-06 02:16:20 error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY' in D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php on line 346
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php:346
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:181
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\TimedOutputAdapter.php:102
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:181
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:656
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:628
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:686
+- D:\QUYENTB\test-app\shop-web-cakephp\config\Seeds\CategoriesSeed.php:48
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php:146
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:420
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:612
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Console\Command\SeedRun.php:106
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\Phinx\CommandTrait.php:37
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\Phinx\Seed.php:76
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Command\Command.php:312
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:1022
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:314
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:168
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:126
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:198
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+
+2023-06-06 02:16:41 error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list' in D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php on line 346
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php:346
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:181
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\TimedOutputAdapter.php:102
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:181
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:656
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:616
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:688
+- D:\QUYENTB\test-app\shop-web-cakephp\config\Seeds\CategoriesSeed.php:48
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php:146
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:420
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:612
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\robmorgan\phinx\src\Phinx\Console\Command\SeedRun.php:106
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\Phinx\CommandTrait.php:37
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\Phinx\Seed.php:76
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Command\Command.php:312
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:1022
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:314
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\symfony\console\Application.php:168
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:126
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:198
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+
+2023-06-06 08:55:42 error: [Cake\Database\Exception\DatabaseException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shop-app-dev.order' doesn't exist in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 160
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:118
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:521
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:111
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:94
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\AllCommand.php:115
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+
+Caused by: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shop-app-dev.order' doesn't exist in D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php on line 39
+Stack Trace:
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php:39
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:329
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Core\Retry\CommandRetry.php:70
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Connection.php:332
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:158
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php:118
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\ORM\Table.php:521
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:111
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\ModelCommand.php:94
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\bake\src\Command\AllCommand.php:115
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\BaseCommand.php:189
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:334
+- D:\QUYENTB\test-app\shop-web-cakephp\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\QUYENTB\test-app\shop-web-cakephp\bin\cake.php:12
+

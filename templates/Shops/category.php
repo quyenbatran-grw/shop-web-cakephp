@@ -24,10 +24,12 @@
                     $image_product = $product->image_products[0];
                     $image_url = '/img/products/'.$image_product['file_name'];
                 }
+                $isStock = true;
+                if(!isset($quantity_stocks[$product->id]) || $quantity_stocks[$product->id] <= 0) $isStock = false;
 
         ?>
         <div class="col-sm fix-wp-33">
-            <?=$this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'product', $product->category_id, $product->id], 'class' => ''])?>
+            <?=$isStock ? $this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'product', $product->category_id, $product->id], 'class' => '']) : ''?>
             <div class="card mb-3 fix-h-23">
                 <img src="<?=$image_url?>" class="w-100 fix-h-10" alt="...">
                 <div class="card-body text-truncate">
@@ -36,7 +38,7 @@
                     <!-- <p class="card-text"><small class="bg-danger text-white rounded p-2">New Arrival</small></p> -->
                 </div>
             </div>
-            <?=$this->Form->end()?>
+            <?=$isStock ? $this->Form->end() : ''?>
         </div>
         <?php
             }

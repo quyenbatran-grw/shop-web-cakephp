@@ -121,8 +121,9 @@ class ShopsController extends AppController
                             return null;
                         });
 
+        $quantity_stocks = $this->_getStockQuantity($id);
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $this->set(compact('products', 'cart_quantity'));
+        $this->set(compact('products', 'cart_quantity', 'quantity_stocks'));
         $this->render('category');
     }
 
@@ -136,6 +137,7 @@ class ShopsController extends AppController
     {
         $this->viewBuilder()->setLayout('shop');
         $cart_quantity = '';
+        $add_to_cart = false;
         $product = $this->Categories->Products
                         ->find()
                         ->contain([
@@ -148,37 +150,15 @@ class ShopsController extends AppController
                         ])
                         ->where(['Products.id' => $product_id])
                         ->firstOrFail();
+        // 在庫の数
+        $quantity_stocks = $this->_getStockQuantity($id, $product_id);
+        $stock_quantity = [];
 
-        $product_inventories = $this->Categories->Products->ProductInventories
-                        ->find();
-        $product_inventories = $product_inventories
-                        ->select(['product_id'])
-                        ->select(['quantity' => $product_inventories->func()->sum('quantity')])
-                        ->group('product_id')
-                        // ->all()
-                        ->formatResults(function($product_inventory) {
-                            return $product_inventory->combine(
-                                'product_id',
-                                function($row) {
-                                    return $row['quantity'];
-                                }
-                            );
-                        });
-                        // foreach ($product_inventories as $key => $value) {
-                        //     var_dump($value);
-                        // }
-                        // ->toArray();
-        $orders = $this->Categories->Products->Orders
-                        ->find();
-                        var_dump($product_inventories);
-        $orders = $orders
-                        ->select(['product_id'])
-                        ->select(['quantity' => $orders->func()->sum('quantity')])
-                        ->group('product_id')
-                        ->all()
-                        ->toArray();
-
-                        var_dump($orders);
+        if(isset($quantity_stocks[$product_id])) {
+            for($i = 1; $i <= $quantity_stocks[$product_id]; $i++) {
+                $stock_quantity[$i] = $i;
+            }
+        }
         $quantity = $this->request->getData('quantity', null);
 
         $shopping_cart = $this->request->getCookie(self::COOKIE_NM);
@@ -188,7 +168,7 @@ class ShopsController extends AppController
         } else {
             $shopping_cart = json_decode($shopping_cart, true);
         }
-        if(!is_null($quantity)) {
+        if(!is_null($quantity) && $stock_quantity >= $quantity) {
             $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] = $quantity;
             $cookie = (new Cookie(self::COOKIE_NM))
             ->withValue($shopping_cart)
@@ -200,12 +180,83 @@ class ShopsController extends AppController
             ->withHttpOnly(false);
 
             $this->response = $this->response->withCookie($cookie);
+            $add_to_cart = true;
         }
         $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
 
 
-        $this->set(compact('product', 'cart_quantity'));
+        $this->set(compact('product', 'cart_quantity', 'stock_quantity', 'add_to_cart'));
+        if($this->request->is(['post', 'put'])) return $this->redirect(['controller' => 'Shops', 'action' => 'product', $id, $product_id]);
         $this->render('product');
+
+    }
+
+    /**
+     * 商品の在庫数取得を行う
+     *
+     * @param int $category_id カテゴリーID
+     * @param int|null $product_id 商品ID
+     *
+     * @return array|null;
+     */
+    private function _getStockQuantity($category_id, $product_id = null)
+    {
+        $product_inventories = $this->Categories->Products
+                        ->find('search', ['search' => ['product_id' => $product_id]])
+                        ->where(['Products.category_id' => $category_id])
+                        ->contain([
+                            'ProductInventories' => function($query) {
+                                $query = $query
+                                ->select(['ProductInventories.product_id']);
+                                return $query
+                                ->select(['quantity' => $query->func()->sum('ProductInventories.quantity')])
+                                ->group('ProductInventories.product_id');
+                            }
+                        ])
+                        ->formatResults(function($product) {
+                            return $product->combine(
+                                'id',
+                                function($row) {
+                                    return isset($row['product_inventories'][0]) ? $row['product_inventories'][0]['quantity'] : null;
+                                }
+                            );
+                        })
+                        ->all()
+                        ->toArray();
+
+        // 注文した商品の数を取得する
+        $orders = $this->Categories->Products
+                        ->find('search', ['search' => ['product_id' => $product_id]])
+                        ->where(['Products.category_id' => $category_id])
+                        ->contain([
+                            'Orders' => function($query) {
+                                $query = $query
+                                ->select(['Orders.product_id']);
+                                return $query
+                                ->select(['quantity' => $query->func()->sum('Orders.quantity')])
+                                ->group('Orders.product_id');
+                            }
+                        ])
+                        ->formatResults(function($product) {
+                            return $product->combine(
+                                'id',
+                                function($row) {
+                                    return isset($row['orders'][0]) ? $row['orders'][0]['quantity'] : null;
+                                }
+                            );
+                        })
+                        ->all()
+                        ->toArray();
+
+        $product_inventories = array_filter($product_inventories, fn($n) => $n);
+        $orders = array_filter($orders, fn($n) => $n);
+        $quantity_stocks = [];
+        foreach ($product_inventories as $key => $quantity) {
+            if(isset($orders[$key])) $quantity = $quantity - $orders[$key];
+            $quantity_stocks[$key] = $quantity;
+        }
+        // var_dump($quantity_stocks);
+        return $quantity_stocks;
     }
 
     /**

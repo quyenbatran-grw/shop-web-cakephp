@@ -52,6 +52,7 @@ class ProductsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior("Search.Search");
 
         $this->belongsTo('Categories', [
             'foreignKey' => 'category_id',
@@ -121,5 +122,22 @@ class ProductsTable extends Table
         $rules->add($rules->existsIn('category_id', 'Categories'), ['errorField' => 'category_id']);
 
         return $rules;
+    }
+
+    /**
+     * 検索条件で絞り込む
+     */
+    public function searchManager()
+    {
+        $searchManager = $this->behaviors()->Search->searchManager();
+        $searchManager
+            ->callback('product_id', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['id' => $filter->value()]);
+                    }
+                }
+            ]);
+        return $searchManager;
     }
 }

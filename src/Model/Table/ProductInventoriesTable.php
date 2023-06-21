@@ -46,6 +46,7 @@ class ProductInventoriesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior("Search.Search");
 
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',
@@ -96,5 +97,24 @@ class ProductInventoriesTable extends Table
         $rules->add($rules->existsIn('product_id', 'Products'), ['errorField' => 'product_id']);
 
         return $rules;
+    }
+
+
+
+    /**
+     * 検索条件で絞り込む
+     */
+    public function searchManager()
+    {
+        $searchManager = $this->behaviors()->Search->searchManager();
+        $searchManager
+            ->callback('product_id', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['product_id' => $filter->value()]);
+                    }
+                }
+            ]);
+        return $searchManager;
     }
 }
