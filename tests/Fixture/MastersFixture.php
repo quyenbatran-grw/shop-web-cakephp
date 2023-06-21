@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Test\Fixture;
+
+use Cake\TestSuite\Fixture\TestFixture;
+
+/**
+ * MastersFixture
+ */
+class MastersFixture extends TestFixture
+{
+    /**
+     * Init method
+     *
+     * @return void
+     */
+    public function init(): void
+    {
+        $this->records = [
+            [
+                'id' => 1,
+                'type' => 1,
+                'name' => 'Lorem ipsum dolor sit amet',
+                'rank' => 1,
+                'created' => '2023-05-22 01:59:47',
+                'modified' => '2023-05-22 01:59:47',
+            ],
+        ];
+        parent::init();
+    }
+}

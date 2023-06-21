@@ -16,7 +16,10 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use App\Model\Entity\User;
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
+use Cake\Http\Response;
 
 /**
  * Application Controller
@@ -44,7 +47,8 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
-        // $this->loadComponent('Authentication.Authentication');
+        $this->loadComponent('Authentication.Authentication');
+
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
@@ -52,4 +56,21 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+    public function beforeFilter(EventInterface $event)
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        if(isset($this->Authentication)) {
+            $userResult = $this->Authentication->getResult();
+            if($userResult) {
+                $user = $userResult->getData();
+
+                if($user) {
+                    $this->Authentication->user = $user;
+                    if(($uri == '/admin' && !$user->role) || ($uri == '/users' && $user->role)) $this->redirect('/shops/logout');
+                }
+            }
+        }
+    }
+
 }

@@ -28,6 +28,7 @@ use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
 use Cake\Http\Middleware\CsrfProtectionMiddleware;
+use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
@@ -43,8 +44,7 @@ use Psr\Http\Message\ServerRequestInterface;
  * This defines the bootstrapping logic and middleware layers you
  * want to use in your application.
  */
-class Application extends BaseApplication
-// implements AuthenticationServiceProviderInterface
+class Application extends BaseApplication implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -56,7 +56,7 @@ class Application extends BaseApplication
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
-        // $this->addPlugin('Authentication');
+        $this->addPlugin('Authentication');
 
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
@@ -76,6 +76,7 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
+        $this->addPlugin('Search');
     }
 
     /**
@@ -107,8 +108,11 @@ class Application extends BaseApplication
             // Parse various types of encoded request bodies so that they are
             // available as array through $request->getData()
             // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
+            ->add(new EncryptedCookieMiddleware(
+                ['secrets', 'protected'],
+                Configure::read('Security.cookieKey')))
             ->add(new BodyParserMiddleware())
-            // ->add(new AuthenticationMiddleware($this))
+            ->add(new AuthenticationMiddleware($this))
 
             // Cross Site Request Forgery (CSRF) Protection Middleware
             // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
@@ -147,37 +151,37 @@ class Application extends BaseApplication
         // Load more plugins here
     }
 
-    // public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
-    // {
-    //     $service = new AuthenticationService();
-    //     $service->setConfig([
-    //         'unauthenticatedRedirect' => Router::url([
-    //                 'prefix' => false,
-    //                 'plugin' => null,
-    //                 'controller' => 'Users',
-    //                 'action' => 'login',
-    //         ]),
-    //         'queryParam' => 'redirect',
-    //     ]);
+    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
+    {
+        $service = new AuthenticationService();
+        $service->setConfig([
+            'unauthenticatedRedirect' => Router::url([
+                    'prefix' => false,
+                    'plugin' => null,
+                    'controller' => 'Shops',
+                    'action' => 'login',
+            ]),
+            'queryParam' => 'redirect',
+        ]);
 
-    //     $fields = [
-    //         IdentifierInterface::CREDENTIAL_USERNAME => 'username',
-    //         IdentifierInterface::CREDENTIAL_PASSWORD => 'password'
-    //     ];
-    //     // Load the authenticators. Session should be first.
-    //     $service->loadAuthenticator('Authentication.Session');
-    //     $service->loadAuthenticator('Authentication.Form', [
-    //         'fields' => $fields,
-    //         'loginUrl' => Router::url([
-    //             'prefix' => false,
-    //             'plugin' => null,
-    //             'controller' => 'Users',
-    //             'action' => 'login',
-    //         ]),
-    //     ]);
+        $fields = [
+            IdentifierInterface::CREDENTIAL_USERNAME => 'username',
+            IdentifierInterface::CREDENTIAL_PASSWORD => 'password'
+        ];
+        // Load the authenticators. Session should be first.
+        $service->loadAuthenticator('Authentication.Session');
+        $service->loadAuthenticator('Authentication.Form', [
+            'fields' => $fields,
+            'loginUrl' => Router::url([
+                'prefix' => false,
+                'plugin' => null,
+                'controller' => 'Shops',
+                'action' => 'login',
+            ]),
+        ]);
 
-    //     // Load identifiers
-    //     $service->loadIdentifier('Authentication.Password', compact('fields'));
-    //     return $service;
-    // }
+        // Load identifiers
+        $service->loadIdentifier('Authentication.Password', compact('fields'));
+        return $service;
+    }
 }

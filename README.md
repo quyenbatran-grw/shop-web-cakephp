@@ -65,6 +65,18 @@ bin/cake migrations migrate
 ## 前の実行済みマイグレーションを戻る
 bin/cake migrations rollback
 
+## 初期データを作成する
+bin/cake migrations seed
+bin/cake bake seed --data Users
+
+## Controller, Model, Templateの全て生成する
+bin/cake bake all users
+## Modelを生成する
 bin/cake bake model users
+## Controllerを生成する
 bin/cake bake controller users
+## UsersフォルダーにControllerを生成する
+bin/cake bake controller Users --prefix User
+
+## Templateを生成する
 bin/cake bake template users

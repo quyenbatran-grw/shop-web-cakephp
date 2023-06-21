@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'CakePHP';
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,8 +28,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->meta('icon') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake', 'bootstrap.min']) ?>
+    <?= $this->Html->script('bootstrap.min', ['block' => true]); ?>
+    <?= $this->Html->script('common', ['block' => true]); ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -37,12 +40,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
     <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
-        </div>
+        <!-- <div class="top-nav-title">
+            <a href="<?= $this->Url->build('/admin') ?>"><span>Cake</span>PHP</a>
+        </div> -->
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+            <a rel="noopener" href="<?= $this->Url->build('/admin') ?>">HOME</a>
+            <!-- <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a> -->
         </div>
     </nav>
     <main class="main">
@@ -52,6 +55,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </main>
     <footer>
+        <div class="text-center mt-5">
+            Copyright <?=date('Y')?><br>
+            Create by QUYENTB
+        </div>
     </footer>
 </body>
 </html>

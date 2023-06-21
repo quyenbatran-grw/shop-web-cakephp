@@ -76,6 +76,7 @@ return [
      */
     'Security' => [
         'salt' => env('SECURITY_SALT', '39db7452d95d35bfd72a4ae033bf2ade07448b867895af2fe8c5770a3dfc5cfd'),
+        'cookieKey' => 'shop_cookie'
     ],
 
     /*

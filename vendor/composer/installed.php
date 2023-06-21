@@ -3,7 +3,7 @@
         'name' => 'cakephp/app',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '983645c20c332efbace6ad99a02b3d4a4a578fa3',
+        'reference' => '86073fd7190bef8e103ea33f0828872b69c4807f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'cakephp/app' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '983645c20c332efbace6ad99a02b3d4a4a578fa3',
+            'reference' => '86073fd7190bef8e103ea33f0828872b69c4807f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -288,6 +288,15 @@
             'install_path' => __DIR__ . '/../doctrine/instantiator',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'friendsofcake/search' => array(
+            'pretty_version' => '6.2.4',
+            'version' => '6.2.4.0',
+            'reference' => '760d996aed32791b372bac9fc3c4adf206334b24',
+            'type' => 'cakephp-plugin',
+            'install_path' => __DIR__ . '/../friendsofcake/search',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'jasny/twig-extensions' => array(
             'pretty_version' => 'v1.3.0',

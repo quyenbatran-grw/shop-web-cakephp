@@ -21,10 +21,14 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use App\Controller\User\UsersController;
+use App\Middleware\AdminMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
 return static function (RouteBuilder $routes) {
+
+    $routes->registerMiddleware('Admin', AdminMiddleware::class);
     /*
      * The default class to use for all routes
      *
@@ -50,7 +54,19 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+        // $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+        $builder->connect('/', ['controller' => 'Shops', 'action' => 'index', 'home']);
+        $builder->connect('/shops/{id}', ['controller' => 'Shops', 'action' => 'category'], ['pass' => ['id']]);
+        $builder->connect('/shops/login', ['controller' => 'Shops', 'action' => 'login']);
+        $builder->connect('/shops/logout', ['controller' => 'Shops', 'action' => 'logout']);
+        $builder->connect('/shops/product', ['controller' => 'Shops', 'action' => 'product']);
+        $builder->connect('/shops/cart-list', ['controller' => 'Shops', 'action' => 'cart-list']);
+        $builder->connect('/shops/cart-confirm', ['controller' => 'Shops', 'action' => 'cart-confirm']);
+        $builder->connect('/shops/order-info', ['controller' => 'Shops', 'action' => 'order-info']);
+        $builder->connect('/shops/purchase', ['controller' => 'Shops', 'action' => 'purchase']);
+
+        $builder->connect('/shops/{action}/*', ['controller' => 'Shops']);
+
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
@@ -88,4 +104,35 @@ return static function (RouteBuilder $routes) {
      * });
      * ```
      */
+
+    $routes->prefix('User', ['path' => 'User'], function(RouteBuilder $builder) {
+        $builder->connect('/login', ['controller' => UsersController::class, 'action' => 'login']);
+    });
+
+    // $routes->connect('login', ['controller' => 'Login', 'action' => 'login']);
+
+
+    $routes->scope('/admin', ['prefix' => 'Admin'], function(RouteBuilder $builder) {
+        $builder->applyMiddleware('Admin');
+        $builder->connect('/', ['controller' => 'Profiles', 'action' => 'index']);
+        $builder->connect('/masters', ['controller' => 'Masters', 'action' => 'index']);
+        $builder->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);
+        $builder->connect('/products', ['controller' => 'Products', 'action' => 'index']);
+        $builder->connect('/{controller}/{action}/*', ['controller' => 'Masters', 'action' => '*']);
+        $builder->connect('/{controller}/{action}/*', ['controller' => 'Categories', 'action' => '*']);
+        $builder->connect('/{controller}/{action}/*', ['controller' => 'Products', 'action' => '*']);
+
+        $builder->scope('/inventory', ['prefix' => 'Admin'], function(RouteBuilder $builderInventory) {
+            $builderInventory->connect('/', ['controller' => 'ProductInventories', 'action' => 'index']);
+        });
+    });
+
+    $routes->scope('/users', ['prefix' => 'Users'], function(RouteBuilder $builder) {
+        $builder->connect('/', ['controller' => 'Profiles', 'action' => 'index']);
+        $builder->connect('/add', ['controller' => 'Profiles', 'action' => 'add']);
+        // $builder->connect('/', ['controller' => 'Users', 'action' => 'index']);
+        $builder->connect('/{action}/*', []);
+    });
+
+
 };
