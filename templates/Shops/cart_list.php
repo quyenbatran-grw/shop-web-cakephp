@@ -32,7 +32,9 @@
                     $image_product = $product->image_products[0];
                     $image_url = '/img/products/'.$image_product['file_name'];
                 }
-                $amount = $product->unit_price * $product->quantity;
+                $amount = 0;
+                $product_inventory = $product->product_inventory;
+                $amount = $product_inventory->unit_price * $product->quantity;
                 $total_amount += $amount;
         ?>
         <div class="d-flex flex-row bd-highlight mb-3">
@@ -43,7 +45,7 @@
                 <h2><?=$product->name?></h2>
                 <div class="row">
                     <div class="col">Price</div>
-                    <div class="col text-end"><?=$product->price?></div>
+                    <div class="col text-end"><?=$product_inventory->price?></div>
                 </div>
 
                 <div class="row">
@@ -57,7 +59,7 @@
                         'label' => false,
                         'class' => 'form-control text-center ms-2 w-50 float-end',
                         'value' => $product->quantity,
-                        'options' => [1 => 1,2 => 2, 3 => 3, 4 => 4],
+                        'options' => $product->quantity_stocks,
                     ])?>
                     <?=$this->Form->end();?>
                     </div>
@@ -82,18 +84,7 @@
             </div>
 
         </div>
-        <hr>
-        <div class="d-flex flex-row">
-        <div class="p-2 bd-highlight">
-                    Total
-                </div>
-                <div class="p-2 bd-highlight w-100">
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col text-end"><?=number_format($total_amount)?></div>
-                    </div>
-                </div>
-        </div>
+
 
 
 
@@ -102,6 +93,18 @@
         <?php
             }
         ?>
+        <hr>
+        <div class="d-flex flex-row">
+            <div class="p-2 bd-highlight">
+                    Total
+            </div>
+            <div class="p-2 bd-highlight w-100">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col text-end"><?=number_format($total_amount)?></div>
+                </div>
+            </div>
+        </div>
         <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-confirm']]);?>
         <div class="row justify-content-around mt-5">
             <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary col-3', 'onclick' => 'history.back()']) ?>

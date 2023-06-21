@@ -15,7 +15,8 @@
                     $image_product = $product->image_products[0];
                     $image_url = '/img/products/'.$image_product['file_name'];
                 }
-                $amount = $product->unit_price * $product->quantity;
+                $product_inventory = $product->product_inventory;
+                $amount = $product_inventory->unit_price * $product->quantity;
                 $total_amount += $amount;
         ?>
         <div class="d-flex flex-row bd-highlight mb-3">
@@ -26,12 +27,12 @@
                 <h2><?=$product->name?></h2>
                 <div class="row">
                     <div class="col fw-bold">Price</div>
-                    <div class="col text-end"><?=$product->price?></div>
+                    <div class="col text-end"><?=$product_inventory->price?></div>
                 </div>
 
                 <div class="row">
                     <div class="col fw-bold">Quantity</div>
-                    <div class="col text-end"><?=$product->quantity_format?></div>
+                    <div class="col text-end"><?=number_format($product->quantity)?></div>
                 </div>
                 <hr>
                 <div class="row">
@@ -59,20 +60,20 @@
             <div class="p-2 bd-highlight w-100 fs-5">
                 <div class="row">
                     <div class="col fw-bold">Contact Name</div>
-                    <div class="col text-end">AAA</div>
+                    <div class="col text-end"><?=$customer['name']?></div>
                 </div>
 
                 <div class="row">
                     <div class="col fw-bold">Contact Address</div>
-                    <div class="col text-end">CCCC</div>
+                    <div class="col text-end"><?=$customer['address']?></div>
                 </div>
                 <div class="row">
                     <div class="col fw-bold">Tel</div>
-                    <div class="col text-end">VVVV</div>
+                    <div class="col text-end"><?=$customer['tel']?></div>
                 </div>
                 <div class="row">
                     <div class="col fw-bold">Descriptions</div>
-                    <div class="col text-end">VVVV</div>
+                    <div class="col text-end"><?=$customer['memo']?></div>
                 </div>
 
             </div>
@@ -81,7 +82,7 @@
 
         <div class="d-flex flex-row justify-content-center">
             <div class="row">
-                <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'purchase']]);?>
+                <?=$this->Form->create($order, ['url' => ['controller' => 'Shops', 'action' => 'purchase']]);?>
                 <?=$this->Html->link('Back', '#',
                 [
                     'onclick' => 'history.back()',

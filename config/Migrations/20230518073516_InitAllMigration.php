@@ -291,12 +291,6 @@ class InitAllMigration extends AbstractMigration
 
         // Orders
         $this->table('orders')
-            ->addColumn('product_id', 'biginteger', [
-                'default' => null,
-                'null' => false,
-                'limit' => 20,
-                'comment' => 'id of product'
-            ])
             ->addColumn('user_id', 'biginteger', [
                 'default' => null,
                 'null' => true,
@@ -313,7 +307,7 @@ class InitAllMigration extends AbstractMigration
                 'default' => 0,
                 'null' => false,
                 'limit' => 11,
-                'comment' => 'delivery status(0:not delivery, 1: cancel, 2: delivering, 3: deliveried)'
+                'comment' => 'delivery status(0:preparing, 1: delivering, 2: deliveried, 3: cancel)'
             ])
             ->addColumn('order_name', 'string', [
                 'default' => null,
@@ -333,20 +327,7 @@ class InitAllMigration extends AbstractMigration
                 'limit' => 15,
                 'comment' => 'order tel'
             ])
-            ->addColumn('quantity', 'string', [
-                'default' => null,
-                'null' => false,
-                'limit' => 255,
-                'comment' => 'order name'
-            ])
-            ->addColumn('unit_price', 'decimal', [
-                'default' => null,
-                'null' => false,
-                'precision' => 11,
-                'scale' => 0,
-                'comment' => 'price of each product'
-            ])
-            ->addColumn('total_price', 'decimal', [
+            ->addColumn('order_amount', 'decimal', [
                 'default' => null,
                 'null' => false,
                 'precision' => 11,
@@ -368,8 +349,62 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'comment' => '更新日'
             ])
-            ->addIndex(['product_id', 'user_id'])
+            ->addIndex(['user_id'])
             ->addIndex('order_number', ['unique' => true])
+            ->create();
+
+
+            // OrderDetails
+        $this->table('order_details')
+            ->addColumn('order_id', 'biginteger', [
+                'default' => null,
+                'null' => false,
+                'limit' => 20,
+                'comment' => 'id of order'
+            ])
+            ->addColumn('product_id', 'biginteger', [
+                'default' => null,
+                'null' => false,
+                'limit' => 20,
+                'comment' => 'id of product'
+            ])
+            ->addColumn('quantity', 'string', [
+                'default' => null,
+                'null' => false,
+                'limit' => 255,
+                'comment' => 'order name'
+            ])
+            ->addColumn('unit_price', 'decimal', [
+                'default' => null,
+                'null' => false,
+                'precision' => 11,
+                'scale' => 0,
+                'comment' => 'price of each product'
+            ])
+            ->addColumn('amount', 'decimal', [
+                'default' => null,
+                'null' => false,
+                'precision' => 11,
+                'scale' => 0,
+                'comment' => 'total price of order product exclusive tax'
+            ])
+            ->addColumn('memo', 'text', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'memo'
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '作成日'
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '更新日'
+            ])
+            ->addIndex(['order_id', 'product_id'])
+            ->addIndex(['order_id', 'product_id'], ['unique' => true])
             // ->addForeignKey('product_id', 'products', 'id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             // ->addForeignKey('user_id', 'users', 'id')
             ->create();

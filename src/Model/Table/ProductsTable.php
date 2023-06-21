@@ -67,7 +67,7 @@ class ProductsTable extends Table
         $this->hasMany('ProductInventories', [
             'foreignKey' => 'product_id'
         ]);
-        $this->hasMany('Orders', [
+        $this->hasMany('OrderDetails', [
             'foreignKey' => 'product_id'
         ]);
     }
@@ -137,7 +137,28 @@ class ProductsTable extends Table
                         $query = $query->where(['id' => $filter->value()]);
                     }
                 }
+            ])
+            ->callback('category_id', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['category_id' => $filter->value()]);
+                    }
+                }
             ]);
         return $searchManager;
+    }
+
+    public function findProductCart(Query $query, $product_ids) {
+        return $query->contain([
+            'Categories',
+            'ImageProducts' => function(Query $query) {
+                return $query->limit(1);
+            },
+            'ProductInventories' => function($query) {
+                return $query
+                ->orderDesc('ProductInventories.date');
+            }
+        ])
+        ->where(['Products.id IN' => $product_ids]);
     }
 }

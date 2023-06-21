@@ -186,24 +186,265 @@ class ShopsController extends AppController
 
 
         $this->set(compact('product', 'cart_quantity', 'stock_quantity', 'add_to_cart'));
-        if($this->request->is(['post', 'put'])) return $this->redirect(['controller' => 'Shops', 'action' => 'product', $id, $product_id]);
+
+        if($this->request->is(['post', 'put'])) {
+            if($add_to_cart) $this->Flash->toast('Product is added to cart');
+            return $this->redirect(['controller' => 'Shops', 'action' => 'product', $id, $product_id]);
+        }
         $this->render('product');
 
     }
 
     /**
+     * CartList method
+     *
+     * @param integer|null $id Category id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function cartList($id = null)
+    {
+        $this->viewBuilder()->setLayout('shop');
+
+        $cart_products = $this->_getProductsFromCart();
+        $shopping_cart = null;
+        if($this->request->is(['put', 'delete'])) {
+            $quantity = $this->request->getData('quantity', null);
+            $category_id = $this->request->getData('category_id', 0);
+            $product_id = $this->request->getData('product_id', 0);
+            if(is_null($quantity)) unset($cart_products[$product_id]);
+            if(isset($cart_products[$product_id])) $cart_products[$product_id] = $quantity;
+            $shopping_cart = $this->_setShoppingProductCookie($category_id, $product_id, $quantity);
+        }
+        $products = null;
+        // 在庫の数
+        $quantity_stocks = $this->_getStockQuantity();
+        if(!empty($cart_products)) {
+            $product_ids = array_keys($cart_products);
+            $products = $this->Categories->Products
+                            ->find('productCart', $product_ids)
+                            // ->contain([
+                            //     'Categories',
+                            //     'ImageProducts' => function(Query $query) {
+                            //         return $query->limit(1);
+                            //     },
+                            //     'ProductInventories' => function($query) {
+                            //         return $query
+                            //         ->orderDesc('ProductInventories.date');
+                            //     }
+                            // ])
+                            // ->where(['Products.id IN' => $product_ids])
+                            ->all()
+                            ->map(function(Product $product) use($cart_products, $quantity_stocks) {
+                                $product['product_inventory'] = null;
+                                if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
+                                if(isset($quantity_stocks[$product->id])) $product->quantity_stocks = range(1, $quantity_stocks[$product->id]);
+                                if(isset($product['product_inventories'])) {
+                                    if(isset($product['product_inventories'][0])) {
+                                        $product['product_inventory'] = $product['product_inventories'][0];
+                                        unset($product['product_inventories']);
+                                    }
+                                }
+                                return $product;
+                            })
+                            ->toArray();
+        }
+        // debug($quantity_stocks);
+        $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
+        $this->set(compact('products', 'cart_quantity'));
+        $this->render('cart_list');
+    }
+
+    /**
+     * CartConfirm method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function cartConfirm($id = null)
+    {
+        $this->viewBuilder()->setLayout('shop');
+        $user = $this->Authentication->user;
+        $auth = false;
+        $continue = $this->request->getData('shopping_continue', false);
+        if($this->Authentication && $this->Authentication->user) {
+            $auth = true;
+        }
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $customer = $this->_getShopingCustomerCookie();
+        $this->set(compact('auth', 'cart_quantity', 'continue', 'customer'));
+        $this->render('cart_confirm');
+    }
+
+    /**
+     * OrderInfo method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function orderInfo($id = null)
+    {
+        $orderTable = $this->getTableLocator()->get('Orders');
+        $order = $orderTable->newEmptyEntity();
+        $this->viewBuilder()->setLayout('shop');
+        $customer = [];
+        if($this->request->is(['post', 'put'])) {
+            $customer = $this->request->getData();
+            $this->_setShoppingCustomer($customer);
+        }
+
+        $cart_products = $this->_getProductsFromCart();
+        $product_ids = array_keys($cart_products);
+        // 在庫の数
+        $quantity_stocks = $this->_getStockQuantity();
+        $products = $this->Categories->Products
+                            ->find('productCart', $product_ids)
+                            ->all()
+                            ->map(function(Product $product) use($cart_products, $quantity_stocks) {
+                                $product['product_inventory'] = null;
+                                if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
+                                if(isset($quantity_stocks[$product->id])) $product->quantity_stocks = range(1, $quantity_stocks[$product->id]);
+                                if(isset($product['product_inventories'])) {
+                                    if(isset($product['product_inventories'][0])) {
+                                        $product['product_inventory'] = $product['product_inventories'][0];
+                                        unset($product['product_inventories']);
+                                    }
+                                }
+                                return $product;
+                            })
+                            ->toArray();
+                            // debug($products);
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('products', 'cart_quantity', 'customer', 'order'));
+        $this->render('order_info');
+    }
+
+    /**
+     * OrderInfo method
+     *
+     * @param string|null $id Category id.
+     * @return \Cake\Http\Response|null|void Renders view
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function purchase($id = null)
+    {
+        $this->viewBuilder()->setLayout('shop');
+
+        $cart_products = $this->_getProductsFromCart();
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        if($this->request->is(['post', 'put'])) {
+            // debug($cart_products);
+            if(!empty($cart_products) && $cart_quantity) {
+                $customer = $this->_getShopingCustomerCookie();
+                // debug($customer);
+                $user = $this->Authentication->user;
+                $associated = ['OrderDetails'];
+                $order_details = [];
+                $order = [];
+                if(!empty($user)) $order['user_id'] = $user->id;
+                $order['order_number'] = time();
+                $order['order_name'] = $customer['name'];
+                $order['order_address'] = $customer['address'];
+                $order['order_tel'] = $customer['tel'];
+                $order['memo'] = $customer['memo'];
+                $order['order_amount'] = 0;
+                foreach ($cart_products as $product_id => $quantity) {
+                    $order_details[] = [
+                        'order_id' => 1,
+                        'product_id' => $product_id,
+                        'quantity' => $quantity,
+                        'unit_price' => 0,
+                        'amount' => 0,
+                    ];
+                }
+                $order['order_details'] = $order_details;
+
+                $order = [
+                    'order_number' => time(),
+                    'order_name' => 'test',
+                    'order_address' => 'test1',
+                    'order_tel' => '123445444',
+                    'order_amount' => 1000,
+                    'order_details' => [
+                        [
+                            'product_id' => 4,
+                            'quantity' => 2,
+                            'unit_price' => 130000
+                        ],
+                        [
+                            'product_id' => 10,
+                            'quantity' => 2,
+                            'unit_price' => 130000
+                        ]
+                    ]
+                ];
+
+
+                $orderTBL = $this->fetchTable('Orders');
+                $order_data = $orderTBL->find()->contain('OrderDetails')->where(['id' => 1])->first();
+                $order_data->order_details[0]->quantity = 10;
+                $orderTBL->save($order_data, ['associated' => ['OrderDetails']]);
+                dd($order_data);
+                // $orderDetailsTBL = $this->fetchTable('OrderDetails');
+
+                // $orderDetailEntity = $orderDetailsTBL->newEntities($order_details);
+
+                // $orderDetailsTBL->saveMany($orderDetailEntity);
+
+                // dd($orderDetailEntity);
+
+                // $orderEntity = $orderTBL->newEmptyEntity();
+                // $orderEntity = $orderTBL->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
+                // debug($orderEntity);
+                // $orderEntity->order_details = $orderDetailEntity;
+                // // $orderE = $orderTBL->find()->contain('OrderDetails')->all()->toArray();
+                // // dd($orderEntity->order_details);
+                // // $orderEntity = $orderTBL->newEntity($order, [
+                // //     'associated' => $associated
+                // // ]);
+                // // $orderEntity->order_details = $order_details;
+                // // $orderEntity->setDirty('order_details', true);
+
+
+
+                // // $orderEntity = $this->Products->Orders->newEntity($order, ['associated' => $associated]);
+                // // $orderEntity = $this->Products->Orders->newEmptyEntity();
+                // // $orderEntity = $this->Products->Orders->patchEntity($orderEntity, $order, ['associated' => $conditions]);
+                // if($orderTBL->save($orderEntity, ['associated' => ['OrderDetails']])) {
+                // //     // if($this->Products->Orders->save($orderEntity, $order, ['associated' => $associated])) {
+                //     debug(true);
+                // }
+
+                // debug($orderEntity);
+            }
+            // $this->_deleteShoppingCookie();
+            // $cart_quantity = null;
+        }
+
+
+
+        $this->set(compact('cart_quantity'));
+        $this->render('purchase');
+    }
+
+    /**
      * 商品の在庫数取得を行う
      *
-     * @param int $category_id カテゴリーID
+     * @param int|null $category_id カテゴリーID
      * @param int|null $product_id 商品ID
      *
      * @return array|null;
      */
-    private function _getStockQuantity($category_id, $product_id = null)
+    private function _getStockQuantity($category_id = null, $product_id = null)
     {
+        $search = [
+            'category_id' => $category_id,
+            'product_id' => $product_id
+        ];
         $product_inventories = $this->Categories->Products
-                        ->find('search', ['search' => ['product_id' => $product_id]])
-                        ->where(['Products.category_id' => $category_id])
+                        ->find('search', ['search' => $search])
                         ->contain([
                             'ProductInventories' => function($query) {
                                 $query = $query
@@ -226,22 +467,21 @@ class ShopsController extends AppController
 
         // 注文した商品の数を取得する
         $orders = $this->Categories->Products
-                        ->find('search', ['search' => ['product_id' => $product_id]])
-                        ->where(['Products.category_id' => $category_id])
+                        ->find('search', ['search' => $search])
                         ->contain([
-                            'Orders' => function($query) {
+                            'OrderDetails' => function($query) {
                                 $query = $query
-                                ->select(['Orders.product_id']);
+                                ->select(['OrderDetails.product_id']);
                                 return $query
-                                ->select(['quantity' => $query->func()->sum('Orders.quantity')])
-                                ->group('Orders.product_id');
+                                ->select(['quantity' => $query->func()->sum('OrderDetails.quantity')])
+                                ->group('OrderDetails.product_id');
                             }
                         ])
                         ->formatResults(function($product) {
                             return $product->combine(
                                 'id',
                                 function($row) {
-                                    return isset($row['orders'][0]) ? $row['orders'][0]['quantity'] : null;
+                                    return isset($row['order_details'][0]) ? $row['order_details'][0]['quantity'] : null;
                                 }
                             );
                         })
@@ -390,132 +630,6 @@ class ShopsController extends AppController
             $shopping_cart = $shopping_cart[self::CUSTOMER_COOKIE_NM];
         }
         return $shopping_cart;
-    }
-
-    /**
-     * CartList method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function cartList($id = null)
-    {
-        $this->viewBuilder()->setLayout('shop');
-
-        $cart_products = $this->_getProductsFromCart();
-        $shopping_cart = null;
-        if($this->request->is(['put', 'delete'])) {
-            $quantity = $this->request->getData('quantity', null);
-            $category_id = $this->request->getData('category_id', 0);
-            $product_id = $this->request->getData('product_id', 0);
-            if(is_null($quantity)) unset($cart_products[$product_id]);
-            if(isset($cart_products[$product_id])) $cart_products[$product_id] = $quantity;
-            $shopping_cart = $this->_setShoppingProductCookie($category_id, $product_id, $quantity);
-        }
-        $products = null;
-        if(!empty($cart_products)) {
-            $product_ids = array_keys($cart_products);
-            $products = $this->Categories->Products
-                            ->find()
-                            ->contain([
-                                'Categories',
-                                'ImageProducts' => function(Query $query) {
-                                    return $query->limit(1);
-                                }
-                            ])
-                            ->where(['Products.id IN' => $product_ids])
-                            ->all()
-                            ->map(function(Product $product) use($cart_products) {
-                                if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
-                                return $product;
-                            });
-        }
-        $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
-        $this->set(compact('products', 'cart_quantity'));
-        $this->render('cart_list');
-    }
-
-    /**
-     * CartConfirm method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function cartConfirm($id = null)
-    {
-        $this->viewBuilder()->setLayout('shop');
-        $user = $this->Authentication->user;
-        $auth = false;
-        $continue = $this->request->getData('shopping_continue', false);
-        if($this->Authentication && $this->Authentication->user) {
-            $auth = true;
-        }
-        $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $customer = $this->_getShopingCustomerCookie();
-        $this->set(compact('auth', 'cart_quantity', 'continue', 'customer'));
-        $this->render('cart_confirm');
-    }
-
-    /**
-     * OrderInfo method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function orderInfo($id = null)
-    {
-        $this->viewBuilder()->setLayout('shop');
-        $customer = [];
-        if($this->request->is(['post', 'put'])) {
-            $customer = $this->request->getData();
-            $this->_setShoppingCustomer($customer);
-        }
-
-        $cart_products = $this->_getProductsFromCart();
-        $product_ids = array_keys($cart_products);
-        $products = $this->Categories->Products
-                        ->find()
-                        ->contain([
-                            'Categories',
-                            'ImageProducts' => function(Query $query) {
-                                return $query->limit(1);
-                            }
-                        ])
-                        ->where(['Products.id IN' => $product_ids])
-                        ->all()
-                        ->map(function(Product $product) use($cart_products) {
-                            if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
-                            return $product;
-                        });
-        $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $this->set(compact('products', 'cart_quantity', 'customer'));
-        $this->render('order_info');
-    }
-
-    /**
-     * OrderInfo method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function purchase($id = null)
-    {
-        $this->viewBuilder()->setLayout('shop');
-
-        $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        if($this->request->is(['post', 'put'])) {
-            $this->_deleteShoppingCookie();
-            $cart_quantity = null;
-        }
-
-
-
-        $this->set(compact('cart_quantity'));
-        $this->render('purchase');
     }
 
 

@@ -66,6 +66,13 @@
   color: #1a1e21;
 }
 
+.link-wheat {
+  color: #f5deb3;
+}
+.link-wheat:hover, .link-wheat:focus {
+  color: #f7e5c2;
+}
+
 .ratio {
   position: relative;
   width: 100%;
@@ -182,7 +189,7 @@
 .text-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .align-baseline {
@@ -455,6 +462,10 @@
 
 .border-dark {
   border-color: #212529 !important;
+}
+
+.border-wheat {
+  border-color: #f5deb3 !important;
 }
 
 .border-white {
@@ -1711,6 +1722,10 @@
   color: #212529 !important;
 }
 
+.text-wheat {
+  color: #f5deb3 !important;
+}
+
 .text-white {
   color: #fff !important;
 }
@@ -1765,6 +1780,10 @@
 
 .bg-dark {
   background-color: #212529 !important;
+}
+
+.bg-wheat {
+  background-color: #f5deb3 !important;
 }
 
 .bg-body {
