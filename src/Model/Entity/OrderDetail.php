@@ -6,22 +6,21 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Order Entity
+ * OrderDetail Entity
  *
  * @property int $id
- * @property string $order_number
- * @property int $status
- * @property string $order_name
- * @property string $order_address
- * @property string $order_tel
- * @property string $order_amount
- * @property string|null $memo
+ * @property int $order_id
+ * @property int $product_id
+ * @property int $quantity
+ * @property string $unit_price
+ * @property string $amount
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
- * @property \App\Model\Entity\OrderDetail[] $order_details
+ * @property \App\Model\Entity\Order $order
+ * @property \App\Model\Entity\Product $product
  */
-class Order extends Entity
+class OrderDetail extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -33,15 +32,14 @@ class Order extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'order_number' => true,
-        'status' => true,
-        'order_name' => true,
-        'order_address' => true,
-        'order_tel' => true,
-        'order_amount' => true,
-        'memo' => true,
+        'order_id' => true,
+        'product_id' => true,
+        'quantity' => true,
+        'unit_price' => true,
+        'amount' => true,
         'created' => true,
         'modified' => true,
-        'order_details' => true,
+        'order' => true,
+        'product' => true,
     ];
 }

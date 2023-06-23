@@ -291,13 +291,7 @@ class InitAllMigration extends AbstractMigration
 
         // Orders
         $this->table('orders')
-            ->addColumn('user_id', 'biginteger', [
-                'default' => null,
-                'null' => true,
-                'limit' => 20,
-                'comment' => 'id of user'
-            ])
-            ->addColumn('order_number', 'biginteger', [
+            ->addColumn('order_number', 'string', [
                 'default' => null,
                 'null' => true,
                 'limit' => 20,
@@ -349,7 +343,6 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'comment' => '更新日'
             ])
-            ->addIndex(['user_id'])
             ->addIndex('order_number', ['unique' => true])
             ->create();
 
@@ -367,6 +360,12 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'limit' => 20,
                 'comment' => 'id of product'
+            ])
+            ->addColumn('user_id', 'biginteger', [
+                'default' => 0,
+                'null' => false,
+                'limit' => 20,
+                'comment' => 'id of user'
             ])
             ->addColumn('quantity', 'string', [
                 'default' => null,
@@ -403,7 +402,7 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'comment' => '更新日'
             ])
-            ->addIndex(['order_id', 'product_id'])
+            ->addIndex(['order_id', 'product_id', 'user_id'])
             ->addIndex(['order_id', 'product_id'], ['unique' => true])
             // ->addForeignKey('product_id', 'products', 'id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             // ->addForeignKey('user_id', 'users', 'id')

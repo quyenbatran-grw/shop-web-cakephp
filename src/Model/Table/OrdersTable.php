@@ -11,8 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Orders Model
  *
- * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsTo $Products
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\OrderDetailsTable&\Cake\ORM\Association\HasMany $OrderDetails
  *
  * @method \App\Model\Entity\Order newEmptyEntity()
  * @method \App\Model\Entity\Order newEntity(array $data, array $options = [])
@@ -48,12 +47,8 @@ class OrdersTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Products', [
-            'foreignKey' => 'product_id',
-            'joinType' => 'INNER',
-        ]);
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
+        $this->hasMany('OrderDetails', [
+            'foreignKey' => 'order_id',
         ]);
     }
 
@@ -66,17 +61,13 @@ class OrdersTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->notEmptyString('product_id');
-
-        $validator
-            ->allowEmptyString('user_id');
-
-        $validator
-            ->allowEmptyString('order_number')
+            ->scalar('order_number')
+            ->maxLength('order_number', 255)
+            ->requirePresence('order_number', 'create')
+            ->notEmptyString('order_number')
             ->add('order_number', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->integer('status')
             ->notEmptyString('status');
 
         $validator
@@ -93,28 +84,18 @@ class OrdersTable extends Table
 
         $validator
             ->scalar('order_tel')
-            ->maxLength('order_tel', 15)
+            ->maxLength('order_tel', 255)
             ->requirePresence('order_tel', 'create')
             ->notEmptyString('order_tel');
 
         $validator
-            ->scalar('quantity')
-            ->maxLength('quantity', 255)
-            ->requirePresence('quantity', 'create')
-            ->notEmptyString('quantity');
-
-        $validator
-            ->decimal('unit_price')
-            ->requirePresence('unit_price', 'create')
-            ->notEmptyString('unit_price');
-
-        $validator
-            ->decimal('total_price')
-            ->requirePresence('total_price', 'create')
-            ->notEmptyString('total_price');
+            ->decimal('order_amount')
+            ->requirePresence('order_amount', 'create')
+            ->notEmptyString('order_amount');
 
         $validator
             ->scalar('memo')
+            ->maxLength('memo', 255)
             ->allowEmptyString('memo');
 
         return $validator;
@@ -129,9 +110,7 @@ class OrdersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['order_number'], ['allowMultipleNulls' => true]), ['errorField' => 'order_number']);
-        $rules->add($rules->existsIn('product_id', 'Products'), ['errorField' => 'product_id']);
-        $rules->add($rules->existsIn('user_id', 'Users'), ['errorField' => 'user_id']);
+        $rules->add($rules->isUnique(['order_number']), ['errorField' => 'order_number']);
 
         return $rules;
     }

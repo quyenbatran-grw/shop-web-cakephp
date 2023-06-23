@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\OrdersTable;
+use App\Model\Table\OrderDetailsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\OrdersTable Test Case
+ * App\Model\Table\OrderDetailsTable Test Case
  */
-class OrdersTableTest extends TestCase
+class OrderDetailsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\OrdersTable
+     * @var \App\Model\Table\OrderDetailsTable
      */
-    protected $Orders;
+    protected $OrderDetails;
 
     /**
      * Fixtures
@@ -24,8 +24,9 @@ class OrdersTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Orders',
         'app.OrderDetails',
+        'app.Orders',
+        'app.Products',
     ];
 
     /**
@@ -36,8 +37,8 @@ class OrdersTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Orders') ? [] : ['className' => OrdersTable::class];
-        $this->Orders = $this->getTableLocator()->get('Orders', $config);
+        $config = $this->getTableLocator()->exists('OrderDetails') ? [] : ['className' => OrderDetailsTable::class];
+        $this->OrderDetails = $this->getTableLocator()->get('OrderDetails', $config);
     }
 
     /**
@@ -47,7 +48,7 @@ class OrdersTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->Orders);
+        unset($this->OrderDetails);
 
         parent::tearDown();
     }
@@ -56,7 +57,7 @@ class OrdersTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\OrdersTable::validationDefault()
+     * @uses \App\Model\Table\OrderDetailsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -67,7 +68,7 @@ class OrdersTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\OrdersTable::buildRules()
+     * @uses \App\Model\Table\OrderDetailsTable::buildRules()
      */
     public function testBuildRules(): void
     {

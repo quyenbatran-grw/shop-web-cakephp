@@ -371,22 +371,26 @@ class ShopsController extends AppController
                         [
                             'product_id' => 4,
                             'quantity' => 2,
-                            'unit_price' => 130000
+                            'unit_price' => 130000,
+                            'amount' => 260000,
                         ],
                         [
                             'product_id' => 10,
                             'quantity' => 2,
-                            'unit_price' => 130000
+                            'unit_price' => 130000,
+                            'amount' => 260000,
                         ]
                     ]
                 ];
 
 
                 $orderTBL = $this->fetchTable('Orders');
-                $order_data = $orderTBL->find()->contain('OrderDetails')->where(['id' => 1])->first();
-                $order_data->order_details[0]->quantity = 10;
-                $orderTBL->save($order_data, ['associated' => ['OrderDetails']]);
-                dd($order_data);
+                $orderEntity = $orderTBL->newEmptyEntity();
+                $orderEntity = $orderTBL->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
+                // $order_data = $orderTBL->find()->contain('OrderDetails')->where(['id' => 1])->first();
+                // $order_data->order_details[0]->quantity = 10;
+                $orderTBL->save($orderEntity);
+                // dd($order_data);
                 // $orderDetailsTBL = $this->fetchTable('OrderDetails');
 
                 // $orderDetailEntity = $orderDetailsTBL->newEntities($order_details);
