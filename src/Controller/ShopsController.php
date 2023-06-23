@@ -8,6 +8,7 @@ use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Http\Cookie\Cookie;
 use Cake\Http\Cookie\CookieInterface;
+use Cake\Http\Session;
 use Cake\ORM\Query;
 use DateTime;
 use Exception;
@@ -19,11 +20,18 @@ use function PHPUnit\Framework\isNull;
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
+ * @property \App\Model\Table\CategoriesTable $Categories
+ * @property \App\Model\Table\ProductsTable $Products
+ * @property \App\Model\Table\ImageProductsTable $ImageProducts
+ * @property \App\Model\Table\OrdersTable $Orders
+ * @property \Cake\Http\Session $Session
+ * @property $Authentication
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ShopsController extends AppController
 {
     const COOKIE_NM = 'shopping_carts';
+    const ORDER_NUMBERS_COOKIE_NM = 'order_numbers';
     const PRODUCT_COOKIE_NM = 'product';
     const CUSTOMER_COOKIE_NM = 'customer';
 
@@ -41,6 +49,7 @@ class ShopsController extends AppController
         $this->Categories = $this->fetchTable('Categories');
         $this->Products = $this->fetchTable('Products');
         $this->ImageProducts = $this->fetchTable('ImageProducts');
+        $this->Orders = $this->fetchTable('Orders');
 
         $this->Session = $this->request->getSession();
     }
@@ -352,7 +361,6 @@ class ShopsController extends AppController
                 $order['order_amount'] = 0;
                 foreach ($cart_products as $product_id => $quantity) {
                     $order_details[] = [
-                        'order_id' => 1,
                         'product_id' => $product_id,
                         'quantity' => $quantity,
                         'unit_price' => 0,
@@ -361,35 +369,35 @@ class ShopsController extends AppController
                 }
                 $order['order_details'] = $order_details;
 
-                $order = [
-                    'order_number' => time(),
-                    'order_name' => 'test',
-                    'order_address' => 'test1',
-                    'order_tel' => '123445444',
-                    'order_amount' => 1000,
-                    'order_details' => [
-                        [
-                            'product_id' => 4,
-                            'quantity' => 2,
-                            'unit_price' => 130000,
-                            'amount' => 260000,
-                        ],
-                        [
-                            'product_id' => 10,
-                            'quantity' => 2,
-                            'unit_price' => 130000,
-                            'amount' => 260000,
-                        ]
-                    ]
-                ];
+                // $order = [
+                //     'order_number' => time(),
+                //     'order_name' => 'test',
+                //     'order_address' => 'test1',
+                //     'order_tel' => '123445444',
+                //     'order_amount' => 1000,
+                //     'order_details' => [
+                //         [
+                //             'product_id' => 4,
+                //             'quantity' => 2,
+                //             'unit_price' => 130000,
+                //             'amount' => 260000,
+                //         ],
+                //         [
+                //             'product_id' => 10,
+                //             'quantity' => 2,
+                //             'unit_price' => 130000,
+                //             'amount' => 260000,
+                //         ]
+                //     ]
+                // ];
 
 
-                $orderTBL = $this->fetchTable('Orders');
-                $orderEntity = $orderTBL->newEmptyEntity();
-                $orderEntity = $orderTBL->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
+                $orderEntity = $this->Orders->newEmptyEntity();
+                $orderEntity = $this->Orders->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
+                // var_dump($orderEntity);
                 // $order_data = $orderTBL->find()->contain('OrderDetails')->where(['id' => 1])->first();
                 // $order_data->order_details[0]->quantity = 10;
-                $orderTBL->save($orderEntity);
+                // $this->Orders->save($orderEntity);
                 // dd($order_data);
                 // $orderDetailsTBL = $this->fetchTable('OrderDetails');
 
@@ -416,11 +424,16 @@ class ShopsController extends AppController
                 // // $orderEntity = $this->Products->Orders->newEntity($order, ['associated' => $associated]);
                 // // $orderEntity = $this->Products->Orders->newEmptyEntity();
                 // // $orderEntity = $this->Products->Orders->patchEntity($orderEntity, $order, ['associated' => $conditions]);
-                // if($orderTBL->save($orderEntity, ['associated' => ['OrderDetails']])) {
-                // //     // if($this->Products->Orders->save($orderEntity, $order, ['associated' => $associated])) {
-                //     debug(true);
-                // }
-
+                if($this->Orders->save($orderEntity)) {
+                //     // if($this->Products->Orders->save($orderEntity, $order, ['associated' => $associated])) {
+                    $order_numbers = $this->_getShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM);
+                    if(!in_array($orderEntity->order_number, $order_numbers)) {
+                        $order_numbers[] = $orderEntity->order_number;
+                        $this->_setShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM, $order_numbers);
+                    }
+                    debug(true);
+                }
+                debug($orderEntity->getErrors());
                 // debug($orderEntity);
             }
             // $this->_deleteShoppingCookie();
@@ -522,21 +535,29 @@ class ShopsController extends AppController
         }
         if(is_null($quantity)) unset($shopping_cart[self::PRODUCT_COOKIE_NM][$category_id][$product_id]);
         else $shopping_cart[self::PRODUCT_COOKIE_NM][$category_id][$product_id] = $quantity;
-        $this->_setShoppingCookie($shopping_cart);
+        $this->_setShoppingCookie(self::COOKIE_NM, $shopping_cart);
         return $shopping_cart;
+    }
+
+    /**
+     * クッキー情報を取得する
+     *
+     * @param string $cookie_name
+     * @return array|null
+     */
+    private function _getShoppingCookie($cookie_name) {
+        $shopping_cart = $this->request->getCookie($cookie_name);
+        return json_decode($shopping_cart, true);
     }
 
     /**
      * 購入商品の数量をクッキーに格納する
      *
-     * @param int $categoy_id カテゴリーID
-     * @param int $product_id 商品ID
-     * @param int $quantity 数量
-     *
-     * @return Array
+     * @param string $cookie_name クッキー名
+     * @param array $shopping_cart 購入商品
      */
-    private function _setShoppingCookie($shopping_cart) {
-        $cookie = (new Cookie(self::COOKIE_NM))
+    private function _setShoppingCookie($cookie_name, $shopping_cart) {
+        $cookie = (new Cookie($cookie_name))
                     ->withValue($shopping_cart)
                     ->withExpiry(new DateTime('+1 year'))
                     ->withPath('/')
@@ -619,7 +640,7 @@ class ShopsController extends AppController
             $shopping_cart = json_decode($shopping_cart, true);
         }
         $shopping_cart[self::CUSTOMER_COOKIE_NM] = $customer;
-        $this->_setShoppingCookie($shopping_cart);
+        $this->_setShoppingCookie(self::COOKIE_NM, $shopping_cart);
     }
 
     /**

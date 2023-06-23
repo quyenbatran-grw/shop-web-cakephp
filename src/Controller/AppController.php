@@ -19,7 +19,10 @@ namespace App\Controller;
 use App\Model\Entity\User;
 use Cake\Controller\Controller;
 use Cake\Event\EventInterface;
+use Cake\Http\Cookie\Cookie;
+use Cake\Http\Cookie\CookieInterface;
 use Cake\Http\Response;
+use DateTime;
 
 /**
  * Application Controller
@@ -71,6 +74,36 @@ class AppController extends Controller
                 }
             }
         }
+    }
+
+    /**
+     * クッキー情報を取得する
+     *
+     * @param string $cookie_name
+     * @return array
+     */
+    function getCookie($cookie_name): array {
+        $shopping_cart = $this->request->getCookie($cookie_name);
+        return json_decode($shopping_cart, true);
+    }
+
+    /**
+     * クッキーに格納する
+     *
+     * @param string $cookie_name クッキー名
+     * @param array $shopping_cart 購入商品
+     */
+    private function _setShoppingCookie($cookie_name, $shopping_cart) {
+        $cookie = (new Cookie($cookie_name))
+                    ->withValue($shopping_cart)
+                    ->withExpiry(new DateTime('+1 year'))
+                    ->withPath('/')
+                    ->withDomain('localhost')
+                    ->withSecure(false)
+                    ->withSameSite(CookieInterface::SAMESITE_STRICT)
+                    ->withHttpOnly(false);
+
+        $this->response->withCookie($cookie);
     }
 
 }
