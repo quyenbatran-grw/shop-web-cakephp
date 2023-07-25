@@ -112,6 +112,10 @@ $utilities: map-merge(
       values: (
         null: $border-width solid $border-color,
         0: 0,
+        1: 1px solid $border-color,
+        2: 2px solid $border-color,
+        3: 3px solid $border-color,
+        4: 4px solid $border-color,
       )
     ),
     "border-start": (
@@ -140,6 +144,7 @@ $utilities: map-merge(
       class: w,
       values: (
         25: 25%,
+        33: 100% / 3,
         50: 50%,
         75: 75%,
         100: 100%,
