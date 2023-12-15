@@ -8,20 +8,16 @@
     <?= $this->Html->link(__('New Order'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Orders') ?></h3>
     <div class="table-responsive">
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('product_id') ?></th>
-                    <th><?= $this->Paginator->sort('user_id') ?></th>
                     <th><?= $this->Paginator->sort('order_number') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('order_name') ?></th>
                     <th><?= $this->Paginator->sort('order_address') ?></th>
                     <th><?= $this->Paginator->sort('order_tel') ?></th>
-                    <th><?= $this->Paginator->sort('quantity') ?></th>
-                    <th><?= $this->Paginator->sort('unit_price') ?></th>
-                    <th><?= $this->Paginator->sort('total_price') ?></th>
+                    <th><?= $this->Paginator->sort('order_amount') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -31,16 +27,12 @@
                 <?php foreach ($orders as $order): ?>
                 <tr>
                     <td><?= $this->Number->format($order->id) ?></td>
-                    <td><?= $order->has('product') ? $this->Html->link($order->product->name, ['controller' => 'Products', 'action' => 'view', $order->product->id]) : '' ?></td>
-                    <td><?= $order->has('user') ? $this->Html->link($order->user->id, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
-                    <td><?= $order->order_number === null ? '' : $this->Number->format($order->order_number) ?></td>
+                    <td><?= h($order->order_number) ?></td>
                     <td><?= $this->Number->format($order->status) ?></td>
                     <td><?= h($order->order_name) ?></td>
                     <td><?= h($order->order_address) ?></td>
                     <td><?= h($order->order_tel) ?></td>
-                    <td><?= h($order->quantity) ?></td>
-                    <td><?= $this->Number->format($order->unit_price) ?></td>
-                    <td><?= $this->Number->format($order->total_price) ?></td>
+                    <td><?= $this->Number->format($order->order_amount) ?></td>
                     <td><?= h($order->created) ?></td>
                     <td><?= h($order->modified) ?></td>
                     <td class="actions">

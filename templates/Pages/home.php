@@ -96,6 +96,9 @@ $this->disableAutoLayout();
                     <?php
                     }
                     ?>
+                    <div class="carousel-item">
+                        <video src="/img/movie.mp4"></video>
+                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

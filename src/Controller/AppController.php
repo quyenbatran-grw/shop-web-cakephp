@@ -67,6 +67,7 @@ class AppController extends Controller
             $userResult = $this->Authentication->getResult();
             if($userResult) {
                 $user = $userResult->getData();
+                $this->set('auth', $user);
 
                 if($user) {
                     $this->Authentication->user = $user;

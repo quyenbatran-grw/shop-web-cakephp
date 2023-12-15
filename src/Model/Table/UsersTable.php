@@ -56,14 +56,14 @@ class UsersTable extends Table
     {
         $validator
             ->scalar('username')
-            ->maxLength('username', 255)
+            ->maxLength('username', 255, 'Please input max 255 characters')
             ->requirePresence('username', 'create')
-            ->notEmptyString('username')
-            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->notEmptyString('username', 'This field id required')
+            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'mesage' => 'Can\'t duplicate']);
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 100)
+            ->maxLength('password', 100, 'Please input max 100 characters')
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
 
@@ -76,9 +76,23 @@ class UsersTable extends Table
             ->notEmptyString('role');
 
         $validator
+            ->scalar('first_name')
+            ->maxLength('first_name', 30, 'Please input max 30 characters')
+            ->allowEmptyString('first_name');
+
+        $validator
             ->scalar('last_name')
-            ->maxLength('last_name', 30)
+            ->maxLength('last_name', 30, 'Please input max 30 characters')
             ->allowEmptyString('last_name');
+
+        $validator
+            ->scalar('tel')
+            ->maxLength('tel', 15, 'Please input max 15 characters')
+            ->notEmptyString('tel', 'This field id required');
+
+        $validator
+            ->scalar('address')
+            ->notEmptyString('address', 'This field id required');
 
         return $validator;
     }

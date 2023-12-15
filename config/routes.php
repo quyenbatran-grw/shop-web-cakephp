@@ -118,9 +118,11 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/masters', ['controller' => 'Masters', 'action' => 'index']);
         $builder->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);
         $builder->connect('/products', ['controller' => 'Products', 'action' => 'index']);
+        $builder->connect('/orders', ['controller' => 'Orders', 'action' => 'index']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Masters', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Categories', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Products', 'action' => '*']);
+        $builder->connect('/{controller}/{action}/*', ['controller' => 'Orders', 'action' => '*']);
 
         $builder->scope('/inventory', ['prefix' => 'Admin'], function(RouteBuilder $builderInventory) {
             $builderInventory->connect('/', ['controller' => 'ProductInventories', 'action' => 'index']);
@@ -130,6 +132,7 @@ return static function (RouteBuilder $routes) {
     $routes->scope('/users', ['prefix' => 'Users'], function(RouteBuilder $builder) {
         $builder->connect('/', ['controller' => 'Profiles', 'action' => 'index']);
         $builder->connect('/add', ['controller' => 'Profiles', 'action' => 'add']);
+        $builder->connect('/edit', ['controller' => 'Profiles', 'action' => 'edit']);
         // $builder->connect('/', ['controller' => 'Users', 'action' => 'index']);
         $builder->connect('/{action}/*', []);
     });

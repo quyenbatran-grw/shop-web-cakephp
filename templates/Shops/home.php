@@ -1,6 +1,6 @@
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
+<div id="carouselExampleControls" class="carousel slide z-1" data-bs-ride="carousel">
+    <div class="carousel-inner m-height-9">
         <?php
         $image_url = '';
         foreach ($image_products as $key => $image_product) {
@@ -12,6 +12,9 @@
         <?php
         }
         ?>
+        <div class="carousel-item">
+            <video autoplay src="/img/movie.mp4"></video>
+        </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -26,7 +29,7 @@
 <div class="content">
     <div class="row-sm">
         <?php
-        $image_url = '';
+        $image_url = '/img/noImage.svg';
         foreach ($categories as $key => $category) {
             if(empty($category)) continue;
             $image_product = null;
@@ -36,7 +39,7 @@
                     break;
                 }
             }
-            $image_url = '/img/products/'.$image_product['file_name'];
+            if(!is_null($image_product)) $image_url = '/img/products/'.$image_product['file_name'];
         ?>
         <?=$this->Form->create($category->products, ['url' => ['controller' => 'Shops', 'action' => 'category', 'id' => $category->id]])?>
             <div class="card mb-3 category-card">

@@ -83,9 +83,12 @@ hr {
 }
 
 .carousel-inner .carousel-item {
-    max-height: 150px;
+    /* max-height: 150px; */
 }
 
 .menu-link-list { margin-bottom: 1rem;}
 
 .main { min-height: 70vh;}
+
+.m-height-1 { max-height: 1rem; }
+.m-height-9 { max-height: 9rem; }

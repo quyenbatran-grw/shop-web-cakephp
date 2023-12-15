@@ -14,7 +14,10 @@ use Cake\ORM\Entity;
  * @property string $password
  * @property string|null $email
  * @property bool $role
+ * @property string|null $first_name
  * @property string|null $last_name
+ * @property string|null $address
+ * @property string|null $tel
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $updated
  */
@@ -34,7 +37,11 @@ class User extends Entity
         'password' => true,
         'email' => true,
         'role' => true,
+        'first_name' => true,
         'last_name' => true,
+        'address' => true,
+        'tel' => true,
+        'full_name' => true,
         'created' => true,
         'updated' => true,
     ];
@@ -53,5 +60,10 @@ class User extends Entity
     {
         $hasher = new DefaultPasswordHasher();
         return $hasher->hash($password, PASSWORD_DEFAULT);
+    }
+
+    protected function _getFullName()
+    {
+        return $this->first_name . '  ' . $this->last_name;
     }
 }

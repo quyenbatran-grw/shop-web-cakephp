@@ -19,37 +19,52 @@ class InitAllMigration extends AbstractMigration
             ->addColumn('username', 'string', [
                 'null' => false,
                 'limit' => 255,
-                'comment' => ''
+                'comment' => 'ログインアカウント'
             ])
             ->addColumn('password', 'string', [
                 'null' => false,
                 'limit' => 60,
-                'comment' => ''
+                'comment' => 'ログインパスワード'
             ])
             ->addColumn('email', 'string', [
                 'null' => true,
                 'limit' => 100,
-                'comment' => ''
+                'comment' => 'メールアドレス'
             ])
             ->addColumn('role', 'boolean', [
                 'null' => false,
-                'comment' => '',
+                'comment' => 'ログイン権限',
                 'default' => 0,
+            ])
+            ->addColumn('first_name', 'string', [
+                'null' => true,
+                'limit' => 30,
+                'comment' => '氏'
             ])
             ->addColumn('last_name', 'string', [
                 'null' => true,
                 'limit' => 30,
-                'comment' => ''
+                'comment' => '名'
+            ])
+            ->addColumn('address', 'string', [
+                'null' => true,
+                'limit' => 255,
+                'comment' => '住所'
+            ])
+            ->addColumn('tel', 'string', [
+                'null' => true,
+                'limit' => 11,
+                'comment' => '電話番号'
             ])
             ->addColumn('created', 'datetime', [
                 'default' => 'CURRENT_TIMESTAMP',
                 'null' => true,
-                'comment' => ''
+                'comment' => '作成日時'
             ])
             ->addColumn('updated', 'datetime', [
                 'default' => 'CURRENT_TIMESTAMP',
                 'null' => true,
-                'comment' => ''
+                'comment' => '更新日時'
             ])
             ->addIndex(['username'], ['unique' => true])
             ->create();

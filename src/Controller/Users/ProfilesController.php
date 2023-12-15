@@ -27,9 +27,9 @@ class ProfilesController extends AppController
     public function index()
     {
         // $profiles = $this->paginate($this->Profiles);
-        $profiles = null;
+        $profile = $this->Users->find()->where(['id' => $this->Authentication->user->id])->first();
 
-        $this->set(compact('profiles'));
+        $this->set(compact('profile'));
     }
 
     // /**
@@ -68,29 +68,31 @@ class ProfilesController extends AppController
     //     $this->set(compact('profile'));
     // }
 
-    // /**
-    //  * Edit method
-    //  *
-    //  * @param string|null $id Profile id.
-    //  * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-    //  * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-    //  */
-    // public function edit($id = null)
-    // {
-    //     $profile = $this->Profiles->get($id, [
-    //         'contain' => [],
-    //     ]);
-    //     if ($this->request->is(['patch', 'post', 'put'])) {
-    //         $profile = $this->Profiles->patchEntity($profile, $this->request->getData());
-    //         if ($this->Profiles->save($profile)) {
-    //             $this->Flash->success(__('The profile has been saved.'));
+    /**
+     * Edit method
+     *
+     * @param string|null $id Profile id.
+     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        if(empty($this->Authentication) || empty($this->Authentication->user)) {
+            $this->Flash->error(__('Please sign-in for editing profile'));
+            return $this->redirect(['action' => 'index']);
+        }
+        $profile = $this->Users->find()->where(['id' => $this->Authentication->user->id])->first();
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $profile = $this->Users->patchEntity($profile, $this->request->getData());
+            if ($this->Users->save($profile)) {
+                $this->Flash->success(__('The profile has been saved.'));
 
-    //             return $this->redirect(['action' => 'index']);
-    //         }
-    //         $this->Flash->error(__('The profile could not be saved. Please, try again.'));
-    //     }
-    //     $this->set(compact('profile'));
-    // }
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The profile could not be saved. Please, try again.'));
+        }
+        $this->set(compact('profile'));
+    }
 
     // /**
     //  * Delete method

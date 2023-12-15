@@ -8,8 +8,7 @@
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -393,10 +392,6 @@ legend + * {
 
 ::-webkit-color-swatch-wrapper {
   padding: 0;
-}
-
-::-webkit-file-upload-button {
-  font: inherit;
 }
 
 ::file-selector-button {
@@ -3527,4 +3522,4 @@ progress {
 .fix-wp-100 {
   min-width: 100% !important;
   max-width: 100% !important;
-}
+}/*# sourceMappingURL=bootstrap-reboot.css.map */

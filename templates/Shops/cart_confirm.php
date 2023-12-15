@@ -32,29 +32,29 @@
         <?=$this->Form->control('name', [
             'type' => 'text',
             'class' => 'form-control',
-            'label' => 'Contact Name',
+            'label' => 'Contact Name※',
             'required' => true,
-            'value' => $customer['name'] ?? $customer['name']
+            'value' => $customer && $customer['full_name'] ? $customer['full_name'] : ''
         ]);?>
         <?=$this->Form->control('address', [
             'type' => 'text',
             'class' => 'form-control',
-            'label' => 'Contact address',
+            'label' => 'Contact address※',
             'required' => true,
-            'value' => $customer['address'] ?? $customer['address']
+            'value' => $customer && $customer['address'] ? $customer['address'] : ''
         ]);?>
         <?=$this->Form->control('tel', [
             'type' => 'text',
             'class' => 'form-control',
-            'label' => 'Contact tel',
+            'label' => 'Contact tel※',
             'required' => true,
-            'value' => $customer['tel'] ?? $customer['tel']
+            'value' => $customer && $customer['tel'] ? $customer['tel'] : ''
         ]);?>
         <?=$this->Form->control('memo', [
             'type' => 'textarea',
             'class' => 'form-control',
             'label' => 'Descriptions',
-            'value' => $customer['memo'] ?? $customer['memo']
+            'value' => $customer && $customer['memo'] ? $customer['memo'] : ''
         ]);?>
         <div class="row justify-content-around mt-5">
             <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary col-3', 'onclick' => 'history.back()']) ?>

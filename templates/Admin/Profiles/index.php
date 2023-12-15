@@ -30,4 +30,10 @@
         'class' => 'btn btn-primary'
     ]);
     ?>
+
+    <?php
+    echo $this->Html->link('Manage Order', 'admin/orders', [
+        'class' => 'btn btn-primary'
+    ]);
+    ?>
 </div>

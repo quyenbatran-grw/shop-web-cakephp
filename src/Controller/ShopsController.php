@@ -277,11 +277,12 @@ class ShopsController extends AppController
         $user = $this->Authentication->user;
         $auth = false;
         $continue = $this->request->getData('shopping_continue', false);
+        $customer = $this->_getShopingCustomerCookie();
         if($this->Authentication && $this->Authentication->user) {
             $auth = true;
+            $customer = $this->Authentication->user;
         }
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $customer = $this->_getShopingCustomerCookie();
         $this->set(compact('auth', 'cart_quantity', 'continue', 'customer'));
         $this->render('cart_confirm');
     }
@@ -353,7 +354,7 @@ class ShopsController extends AppController
                 $order_details = [];
                 $order = [];
                 if(!empty($user)) $order['user_id'] = $user->id;
-                $order['order_number'] = time();
+                $order['order_number'] = date('ym') . time();
                 $order['order_name'] = $customer['name'];
                 $order['order_address'] = $customer['address'];
                 $order['order_tel'] = $customer['tel'];
@@ -426,17 +427,18 @@ class ShopsController extends AppController
                 // // $orderEntity = $this->Products->Orders->patchEntity($orderEntity, $order, ['associated' => $conditions]);
                 if($this->Orders->save($orderEntity)) {
                 //     // if($this->Products->Orders->save($orderEntity, $order, ['associated' => $associated])) {
-                    $order_numbers = $this->_getShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM);
-                    if(!in_array($orderEntity->order_number, $order_numbers)) {
-                        $order_numbers[] = $orderEntity->order_number;
-                        $this->_setShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM, $order_numbers);
-                    }
-                    debug(true);
+                    // $order_numbers = $this->_getShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM);
+                    // if(!in_array($orderEntity->order_number, $order_numbers)) {
+                    //     $order_numbers[] = $orderEntity->order_number;
+                    //     // $this->_setShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM, $order_numbers);
+                        $this->_deleteShoppingCookie();
+                    // }
+                    // debug(true);
                 }
-                debug($orderEntity->getErrors());
+                // debug($orderEntity->getErrors());
                 // debug($orderEntity);
             }
-            // $this->_deleteShoppingCookie();
+            $this->_deleteShoppingCookie();
             // $cart_quantity = null;
         }
 
@@ -573,7 +575,7 @@ class ShopsController extends AppController
      * 購入商品クッキーを削除する
      */
     private function _deleteShoppingCookie() {
-        $cookie = (new Cookie(self::PRODUCT_COOKIE_NM))
+        $cookie = (new Cookie(self::COOKIE_NM))
                     ->withExpiry(new DateTime('-1 year'))
                     ->withPath('/')
                     ->withDomain('localhost')
@@ -652,7 +654,7 @@ class ShopsController extends AppController
         $shopping_cart = $this->request->getCookie(self::COOKIE_NM, null);
         if(!is_null($shopping_cart)) {
             $shopping_cart = json_decode($shopping_cart, true);
-            $shopping_cart = $shopping_cart[self::CUSTOMER_COOKIE_NM];
+            $shopping_cart = isset($shopping_cart[self::CUSTOMER_COOKIE_NM]) ? $shopping_cart[self::CUSTOMER_COOKIE_NM] : null;
         }
         return $shopping_cart;
     }

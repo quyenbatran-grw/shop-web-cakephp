@@ -13,11 +13,11 @@
     <fieldset>
         <legend><?= __('Please enter your email and password') ?></legend>
         <?= $this->Form->control('username', ['class' => 'form-control']) ?>
-        <?= $this->Form->control('password') ?>
+        <?= $this->Form->control('password', ['class' => 'form-control']) ?>
     </fieldset>
 
     <div class="d-flex justify-content-center">
-    <?= $this->Form->button(__('Login'), ['class' => 'mt-5']); ?>
+    <?= $this->Form->button(__('Login'), ['class' => 'btn btn-primary btn-lg mt-5']); ?>
     </div>
     <?= $this->Form->end() ?>
 </div>

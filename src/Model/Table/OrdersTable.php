@@ -62,12 +62,12 @@ class OrdersTable extends Table
     {
         $validator
             ->scalar('order_number')
-            ->maxLength('order_number', 255)
-            ->requirePresence('order_number', 'create')
-            ->notEmptyString('order_number')
+            ->maxLength('order_number', 20)
+            ->allowEmptyString('order_number')
             ->add('order_number', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
+            ->integer('status')
             ->notEmptyString('status');
 
         $validator
@@ -84,7 +84,7 @@ class OrdersTable extends Table
 
         $validator
             ->scalar('order_tel')
-            ->maxLength('order_tel', 255)
+            ->maxLength('order_tel', 15)
             ->requirePresence('order_tel', 'create')
             ->notEmptyString('order_tel');
 
@@ -95,7 +95,6 @@ class OrdersTable extends Table
 
         $validator
             ->scalar('memo')
-            ->maxLength('memo', 255)
             ->allowEmptyString('memo');
 
         return $validator;
@@ -110,7 +109,7 @@ class OrdersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['order_number']), ['errorField' => 'order_number']);
+        $rules->add($rules->isUnique(['order_number'], ['allowMultipleNulls' => true]), ['errorField' => 'order_number']);
 
         return $rules;
     }

@@ -33,8 +33,12 @@
                     $image_url = '/img/products/'.$image_product['file_name'];
                 }
                 $amount = 0;
+                $price = 0;
                 $product_inventory = $product->product_inventory;
-                $amount = $product_inventory->unit_price * $product->quantity;
+                if(!empty($product_inventory)) {
+                    $amount = $product_inventory->unit_price * $product->quantity;
+                    $price = $product_inventory->price;
+                }
                 $total_amount += $amount;
         ?>
         <div class="d-flex flex-row bd-highlight mb-3">
@@ -45,7 +49,7 @@
                 <h2><?=$product->name?></h2>
                 <div class="row">
                     <div class="col">Price</div>
-                    <div class="col text-end"><?=$product_inventory->price?></div>
+                    <div class="col text-end"><?=$price?></div>
                 </div>
 
                 <div class="row">

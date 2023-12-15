@@ -33,11 +33,19 @@
             <div class="carousel-inner">
                 <?php
                 $image_url = '/img/noImage.svg';
-                foreach ($image_products as $key => $image_product) {
-                    $image_url = '/img/products/'.$image_product['file_name'];
+                if(count($image_products)) {
+                    foreach ($image_products as $key => $image_product) {
+                        if(!empty($image_product) && !empty($image_product['file_name'])) $image_url = '/img/products/'.$image_product['file_name'];
                 ?>
-                <div class="carousel-item <?=$key ? '' : 'active'?>">
-                <img src="<?=$image_url?>" class="d-block w-100" alt="...">
+                <div class="carousel-item h-100 <?=$key ? '' : 'active'?>">
+                <img src="<?=$image_url?>" class="d-block w-100 h-100" alt="...">
+                </div>
+                <?php
+                    }
+                } else {
+                ?>
+                <div class="carousel-item h-100 active">
+                <img src="<?=$image_url?>" class="d-block w-100 h-100" alt="...">
                 </div>
                 <?php
                 }

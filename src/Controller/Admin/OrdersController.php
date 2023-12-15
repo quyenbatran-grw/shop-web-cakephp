@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\ORM\Query;
 
 /**
  * Orders Controller
@@ -20,9 +21,6 @@ class OrdersController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Products', 'Users'],
-        ];
         $orders = $this->paginate($this->Orders);
 
         $this->set(compact('orders'));
@@ -38,7 +36,9 @@ class OrdersController extends AppController
     public function view($id = null)
     {
         $order = $this->Orders->get($id, [
-            'contain' => ['Products', 'Users'],
+            'contain' => ['OrderDetails' => function(Query $query) {
+                return $query->contain('Products');
+            }],
         ]);
 
         $this->set(compact('order'));
@@ -61,9 +61,7 @@ class OrdersController extends AppController
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $products = $this->Orders->Products->find('list', ['limit' => 200])->all();
-        $users = $this->Orders->Users->find('list', ['limit' => 200])->all();
-        $this->set(compact('order', 'products', 'users'));
+        $this->set(compact('order'));
     }
 
     /**
@@ -87,9 +85,7 @@ class OrdersController extends AppController
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $products = $this->Orders->Products->find('list', ['limit' => 200])->all();
-        $users = $this->Orders->Users->find('list', ['limit' => 200])->all();
-        $this->set(compact('order', 'products', 'users'));
+        $this->set(compact('order'));
     }
 
     /**
