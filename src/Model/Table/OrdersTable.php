@@ -94,6 +94,11 @@ class OrdersTable extends Table
             ->notEmptyString('order_amount');
 
         $validator
+            ->decimal('payment_type')
+            ->requirePresence('payment_type', 'create')
+            ->notEmptyString('payment_type');
+
+        $validator
             ->scalar('memo')
             ->allowEmptyString('memo');
 
