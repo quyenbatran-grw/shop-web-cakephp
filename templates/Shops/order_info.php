@@ -86,9 +86,25 @@
 
         </div>
 
-        <div class="d-flex flex-row justify-content-center">
+
+        <div class="d-flex flex-row justify-content-center mt-4">
             <div class="row">
                 <?=$this->Form->create($order, ['url' => ['controller' => 'Shops', 'action' => 'purchase']]);?>
+                <div>
+                    <div class="input radio">
+                        Please select kind of payment
+                        <div class="d-flex">
+                        <?=$this->Form->radio('payment',
+                            [1 => 'Cash', 2 => 'Banking'],
+                            ['class' => 'form-check-input ms-4', 'value' => 1, 'onchange' => 'changePaymentType(this)']
+                        );?>
+                        </div>
+                    </div>
+                    <div class="banking-qr-code d-none">
+                        <img src="/img/noImage.svg" class="d-block w-100 fix-img-size" alt="">
+                    </div>
+                    <div class="cash-payment ms-4">AAAAAAAAAAAAAAAAAAAAAAaaaa</div>
+                </div>
                 <?=$this->Html->link('Back', '#',
                 [
                     'onclick' => 'history.back()',

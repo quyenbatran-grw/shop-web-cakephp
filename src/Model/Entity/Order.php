@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property string $order_address
  * @property string $order_tel
  * @property string $order_amount
+ * @property string $payment_type
  * @property string|null $memo
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
@@ -37,7 +38,7 @@ class Order extends Entity
     const DELIVERING_STATUS = 2;
     const DELIVERED_STATUS = 3;
     const CANCELED_STATUS = 4;
-    private $statusList = [
+    public static $statusList = [
         self::PREPARING_STATUS => 'PREPARING'
     ,   self::PAID_STATUS => 'PAID'
     ,   self::DELIVERING_STATUS => 'DELIVERING'
@@ -51,6 +52,7 @@ class Order extends Entity
         'order_address' => true,
         'order_tel' => true,
         'order_amount' => true,
+        'payment_type' => true,
         'memo' => true,
         'created' => true,
         'modified' => true,
@@ -58,6 +60,6 @@ class Order extends Entity
     ];
 
     protected function _getStatusName() {
-        return $this->statusList[$this->status];
+        return self::$statusList[$this->status];
     }
 }

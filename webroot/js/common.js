@@ -25,6 +25,7 @@
 
     }, false);
 
+
     // function getImageList(files) {
     //     let images_list = [];
     //     files.forEach(async (v, k) => {
@@ -133,6 +134,9 @@
     }
 
 
+    function changeStatusConfirm() {
+        console.log('change status');
+    }
     /**
      * POSTで送信する
      *

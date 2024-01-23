@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Model\Entity\Order;
 use Cake\ORM\Query;
 
 /**
@@ -41,7 +42,9 @@ class OrdersController extends AppController
             }],
         ]);
 
-        $this->set(compact('order'));
+        $status_list = Order::$statusList;
+
+        $this->set(compact('order', 'status_list'));
     }
 
     /**

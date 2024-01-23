@@ -343,6 +343,12 @@ class InitAllMigration extends AbstractMigration
                 'scale' => 0,
                 'comment' => 'total price of order exclusive tax'
             ])
+            ->addColumn('payment_type', 'integer', [
+                'default' => 1,
+                'null' => false,
+                'limit' => 11,
+                'comment' => 'kind of payment'
+            ])
             ->addColumn('memo', 'text', [
                 'default' => null,
                 'null' => true,

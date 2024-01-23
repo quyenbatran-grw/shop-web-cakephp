@@ -138,6 +138,7 @@ class ShopsController extends AppController
 
 
     /**
+     * カートに商品を追加する
      * Product method
      *
      * @return \Cake\Http\Response|null|void Renders view
@@ -360,13 +361,23 @@ class ShopsController extends AppController
                 $order['order_tel'] = $customer['tel'];
                 $order['memo'] = $customer['memo'];
                 $order['order_amount'] = 0;
+                $order['payment_type'] = $this->request->getData('payment', 1);
                 foreach ($cart_products as $product_id => $quantity) {
+                    $product = $this->Categories->Products->ProductInventories
+                        ->find()
+                        ->where(['ProductInventories.product_id' => $product_id])
+                        ->order(['ProductInventories.date' => 'DESC'])
+                        ->firstOrFail();
+                    $unit_price = 0;
+                    if(!empty($product)) $unit_price = intval($product->unit_price);
+                    $amount = $quantity * $unit_price;
                     $order_details[] = [
                         'product_id' => $product_id,
                         'quantity' => $quantity,
-                        'unit_price' => 0,
-                        'amount' => 0,
+                        'unit_price' => $unit_price,
+                        'amount' => $amount,
                     ];
+                    $order['order_amount'] += $amount;
                 }
                 $order['order_details'] = $order_details;
 

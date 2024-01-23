@@ -17,7 +17,7 @@
     <div class="column-responsive column-80">
         <div class="orders view content">
             <!-- <h3><?= h($order->id) ?></h3> -->
-            <table>
+            <table class="table">
                 <tr>
                     <th><?= __('Order Number') ?></th>
                     <td><?= h($order->order_number) ?></td>
@@ -40,7 +40,16 @@
                 </tr> -->
                 <tr>
                     <th><?= __('Status') ?></th>
-                    <td><?= $order->status_name ?></td>
+                    <td>
+                        <?=$this->Form->control('status', [
+                            'class' => 'form-select w-25',
+                            'options' => $status_list,
+                            'label' => false,
+                            'multiple' => false,
+                            'onChange' => 'changeStatusConfirm'
+                        ])?>
+                        <!-- <?= $order->status_name ?> -->
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Order Amount') ?></th>
@@ -65,7 +74,7 @@
                 <h4><?= __('Related Order Details') ?></h4>
                 <?php if (!empty($order->order_details)) : ?>
                 <div class="table-responsive">
-                    <table>
+                    <table class="table table-striped table-hover">
                         <tr>
                             <th><?= __('No') ?></th>
                             <!-- <th><?= __('Order Id') ?></th> -->

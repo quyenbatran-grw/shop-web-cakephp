@@ -162,9 +162,9 @@ th {
 .input.checkbox label > input {
     margin-right: 1.0rem;
 }
-.input.radio label:first-of-type {
+/* .input.radio label:first-of-type {
     margin-bottom: 2.0rem;
-}
+} */
 
 /* Paginator */
 .paginator {
