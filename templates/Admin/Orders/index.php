@@ -5,7 +5,7 @@
  */
 ?>
 <div class="orders index content">
-    <?= $this->Html->link(__('New Order'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <!-- <?= $this->Html->link(__('New Order'), ['action' => 'add'], ['class' => 'button float-right']) ?> -->
     <h3><?= __('Orders') ?></h3>
     <div class="table-responsive">
         <table class="table table-striped table-hover">

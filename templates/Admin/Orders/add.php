@@ -13,9 +13,30 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="orders form content">
+            <legend><?= __('Add Order') ?></legend>
             <?= $this->Form->create($order) ?>
+            <table class="table">
+                <tr>
+                    <th><?= __('Order Name') ?></th>
+                    <td><?=$this->Form->control('order_number', [
+                            'class' => 'form-control',
+                            'label' => false,
+                            'multiple' => false,
+                        ])?></td>
+                </tr>
+
+                <tr>
+                    <th><?= __('Order Status') ?></th>
+                    <td><?=$this->Form->control('status', [
+                            'class' => 'form-select w-25',
+                            'options' => $status_list,
+                            'label' => false,
+                            'multiple' => false,
+                            'onChange' => 'changeStatusConfirm'
+                        ])?></td>
+                </tr>
+            </table>
             <fieldset>
-                <legend><?= __('Add Order') ?></legend>
                 <?php
                     echo $this->Form->control('order_number');
                     echo $this->Form->control('status');

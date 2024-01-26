@@ -19,7 +19,7 @@ class ProductInventoriesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
+        $this->paginate += [
             'contain' => ['Products'],
         ];
         $productInventories = $this->paginate($this->ProductInventories);

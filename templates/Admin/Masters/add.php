@@ -19,11 +19,25 @@ use App\Model\Table\MastersTable;
             <?= $this->Form->create($master) ?>
             <fieldset>
                 <legend><?= __('Add Master') ?></legend>
-                <?php
-                    echo $this->Form->control('type', ['options' => MastersTable::$master_type]);
-                    echo $this->Form->control('name');
-                ?>
             </fieldset>
+            <table class="table">
+                <tr>
+                    <th class="w-25"><?=__('Type')?></th>
+                    <td><?=$this->Form->control('type', [
+                        'class' => 'form-control',
+                        'required' => true,
+                        'label' => false
+                    ]);?></td>
+                </tr>
+                <tr>
+                    <th class="w-25"><?=__('Name')?></th>
+                    <td><?=$this->Form->control('name', [
+                        'class' => 'form-control',
+                        'required' => true,
+                        'label' => false
+                    ]);?></td>
+                </tr>
+            </table>
             <div class="row justify-content-between col-md-7 mx-auto mt-5">
             <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-3', 'onclick' => 'history.back()']) ?>
             <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-lg col-3']) ?>

@@ -21,7 +21,7 @@ class ProductsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
+        $this->paginate += [
             'contain' => ['Categories'],
         ];
         $products = $this->paginate($this->Products);
@@ -117,13 +117,13 @@ class ProductsController extends AppController
     public function edit($id = null)
     {
         $product = $this->Products->get($id, [
-            'contain' => [],
+            'contain' => ['ImageProducts'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
-
+                exit();
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The product could not be saved. Please, try again.'));

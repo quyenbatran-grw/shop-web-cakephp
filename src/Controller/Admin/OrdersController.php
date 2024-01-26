@@ -64,7 +64,8 @@ class OrdersController extends AppController
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $this->set(compact('order'));
+        $status_list = Order::$statusList;
+        $this->set(compact('order', 'status_list'));
     }
 
     /**

@@ -8,7 +8,7 @@
     <?= $this->Html->link(__('New Product'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Products') ?></h3>
     <div class="table-responsive">
-        <table>
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
@@ -41,14 +41,15 @@
             </tbody>
         </table>
     </div>
+
+    <br>
     <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <ul class="pagination justify-content-center">
+            <?= $this->Paginator->first('<< ') ?>
+            <?= $this->Paginator->prev('< ') ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(' >') ?>
+            <?= $this->Paginator->last(' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>

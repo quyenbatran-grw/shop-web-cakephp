@@ -13,9 +13,6 @@ use App\Controller\AppController;
  */
 class MastersController extends AppController
 {
-    public $paginate = [
-        'limit' => 2
-    ];
     /**
      * Index method
      *
@@ -23,8 +20,15 @@ class MastersController extends AppController
      */
     public function index()
     {
+        $queryParams = $this->request->getQueryParams();
+        $orders = [];
+        if(isset($queryParams['sort'])) {
+            $orders[$queryParams['sort']] = isset($queryParams['direction']) ? $queryParams['direction'] : 'ASC';
+        } else {
+            $orders = ['type' => 'ASC', 'rank' => 'ASC'];
+        }
         $masters = $this->Masters->find()
-                        ->order(['type' => 'ASC', 'rank' => 'ASC']);
+                        ->order($orders);
         $masters = $this->paginate($masters);
 
         $this->set(compact('masters'));

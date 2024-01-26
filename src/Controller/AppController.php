@@ -34,6 +34,9 @@ use DateTime;
  */
 class AppController extends Controller
 {
+    public $paginate = [
+        'limit' => 20
+    ];
     /**
      * Initialization hook method.
      *
@@ -106,5 +109,6 @@ class AppController extends Controller
 
         $this->response->withCookie($cookie);
     }
+
 
 }

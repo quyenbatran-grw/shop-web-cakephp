@@ -17,14 +17,60 @@
             <?= $this->Form->create($productInventory) ?>
             <fieldset>
                 <legend><?= __('Add Product Inventory') ?></legend>
-                <?php
-                    echo $this->Form->control('product_id', ['options' => $products]);
-                    echo $this->Form->control('date', ['value' => date('Y/m/d H:i:s')]);
-                    echo $this->Form->control('unit_price', ['value' => 150000]);
-                    echo $this->Form->control('quantity', ['value' => 150]);
-                    echo $this->Form->control('memo', ['value' => 'add inventory']);
-                ?>
             </fieldset>
+
+            <table class="table">
+                <tr>
+                    <th class="w-25"><?= __('Product') ?></th>
+                    <td>
+                        <?=$this->Form->control('product_id', [
+                            'options' => $products,
+                            'class' => 'form-select',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('Date') ?></th>
+                    <td>
+                        <?=$this->Form->date('date', [
+                            'class' => 'form-control',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('Unit Price') ?></th>
+                    <td>
+                        <?=$this->Form->control('unit_price', [
+                            'class' => 'form-control',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('Quantity') ?></th>
+                    <td>
+                        <?=$this->Form->control('quantity', [
+                            'class' => 'form-control',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('memo') ?></th>
+                    <td>
+                        <?=$this->Form->control('memo', [
+                            'class' => 'form-control',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+            </table>
 
             <div class="d-flex justify-content-between mx-9 my-4">
             <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-4', 'onclick' => 'history.back()']) ?>

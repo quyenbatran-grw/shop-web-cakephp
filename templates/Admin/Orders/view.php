@@ -78,7 +78,7 @@
                         <tr>
                             <th><?= __('No') ?></th>
                             <!-- <th><?= __('Order Id') ?></th> -->
-                            <th><?= __('Product Id') ?></th>
+                            <th><?= __('Product') ?></th>
                             <!-- <th><?= __('User Id') ?></th> -->
                             <th><?= __('Quantity') ?></th>
                             <th><?= __('Unit Price') ?></th>
@@ -86,7 +86,7 @@
                             <th><?= __('Memo') ?></th>
                             <!-- <th><?= __('Created') ?></th> -->
                             <!-- <th><?= __('Modified') ?></th> -->
-                            <th class="actions"><?= __('Actions') ?></th>
+                            <!-- <th class="actions"><?= __('Actions') ?></th> -->
                         </tr>
                         <?php foreach ($order->order_details as $key => $orderDetails) : ?>
                         <tr>
@@ -103,7 +103,7 @@
                             <td class="actions">
                                 <!-- <?= $this->Html->link(__('View'), ['controller' => 'OrderDetails', 'action' => 'view', $orderDetails->id]) ?> -->
                                 <!-- <?= $this->Html->link(__('Edit'), ['controller' => 'OrderDetails', 'action' => 'edit', $orderDetails->id]) ?> -->
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'OrderDetails', 'action' => 'delete', $orderDetails->id], ['confirm' => __('Are you sure you want to delete # {0}?', $orderDetails->id)]) ?>
+                                <!-- <?= $this->Form->postLink(__('Delete'), ['controller' => 'OrderDetails', 'action' => 'delete', $orderDetails->id], ['confirm' => __('Are you sure you want to delete # {0}?', $orderDetails->id)]) ?> -->
                             </td>
                         </tr>
                         <?php endforeach; ?>
