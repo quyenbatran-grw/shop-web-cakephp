@@ -22,7 +22,7 @@ use App\Model\Table\MastersTable;
             </fieldset>
             <table class="table">
                 <tr>
-                    <th class="w-25"><?=__('Type')?></th>
+                    <th class="w-25"><?=__('Type*')?></th>
                     <td><?=$this->Form->control('type', [
                         'class' => 'form-control',
                         'required' => true,
@@ -30,7 +30,7 @@ use App\Model\Table\MastersTable;
                     ]);?></td>
                 </tr>
                 <tr>
-                    <th class="w-25"><?=__('Name')?></th>
+                    <th class="w-25"><?=__('Name*')?></th>
                     <td><?=$this->Form->control('name', [
                         'class' => 'form-control',
                         'required' => true,

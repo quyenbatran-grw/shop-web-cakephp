@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 use App\Controller\AppController;
+use App\Model\Entity\Product;
+use App\Model\Entity\ProductInventory;
 
 /**
  * ProductInventories Controller
@@ -22,7 +24,10 @@ class ProductInventoriesController extends AppController
         $this->paginate += [
             'contain' => ['Products'],
         ];
-        $productInventories = $this->paginate($this->ProductInventories);
+        $productInventories = $this->ProductInventories
+        ->find()
+        ->order(['product_id', 'date' => 'DESC']);
+        $productInventories = $this->paginate($productInventories);
 
         $this->set(compact('productInventories'));
     }
@@ -57,8 +62,12 @@ class ProductInventoriesController extends AppController
                 $this->Flash->success(__('The product inventory has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
+            } else {
+                $error = $productInventory->getErrors();
+                var_dump($error);
+                // $this->Flash->error(__('The product inventory could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The product inventory could not be saved. Please, try again.'));
+
         }
         $products = $this->ProductInventories->Products->find('list', ['limit' => 200])->all();
         $this->set(compact('productInventory', 'products'));

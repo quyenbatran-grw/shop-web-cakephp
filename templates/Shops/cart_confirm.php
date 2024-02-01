@@ -9,7 +9,7 @@
     <?php
     if(!$auth && !$continue) {
     ?>
-    <div>If you have an account. You can login to continue shopping</div>
+    <div><?=__(MSG_0002)?></div>
 
     <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-confirm']]);?>
     <div class="d-flex justify-content-center mt-5">
@@ -26,7 +26,7 @@
     <?php
     } else {
     ?>
-    <div>Please fill all below information before purchase</div>
+    <div><?=__(MSG_0003)?></div>
     <div >
         <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'order-info']]);?>
         <?=$this->Form->control('name', [

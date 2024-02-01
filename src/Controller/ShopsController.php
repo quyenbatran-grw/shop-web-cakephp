@@ -9,6 +9,9 @@ use Cake\Core\Configure;
 use Cake\Http\Cookie\Cookie;
 use Cake\Http\Cookie\CookieInterface;
 use Cake\Http\Session;
+use Cake\I18n\FrozenDate;
+use Cake\I18n\FrozenTime;
+use Cake\I18n\Number;
 use Cake\ORM\Query;
 use DateTime;
 use Exception;
@@ -148,18 +151,30 @@ class ShopsController extends AppController
         $this->viewBuilder()->setLayout('shop');
         $cart_quantity = '';
         $add_to_cart = false;
+        $other_products = $this->Categories->Products
+        ->find()
+        ->contain([
+            'ImageProducts',
+            'ProductInventories' => function($query) {
+                return $query
+                    ->order(['ProductInventories.date' => 'DESC']);
+            },
+            'Categories'
+        ])
+        ->where(['Products.id <>' => $product_id])
+        ->toArray();
         $product = $this->Categories->Products
-                        ->find()
-                        ->contain([
-                            'ImageProducts',
-                            'ProductInventories' => function($query) {
-                                return $query
-                                    ->order(['ProductInventories.date' => 'DESC']);
-                            },
-                            'Categories'
-                        ])
-                        ->where(['Products.id' => $product_id])
-                        ->firstOrFail();
+            ->find()
+            ->contain([
+                'ImageProducts',
+                'ProductInventories' => function($query) {
+                    return $query
+                        ->order(['ProductInventories.date' => 'DESC']);
+                },
+                'Categories'
+            ])
+            ->where(['Products.id' => $product_id])
+            ->firstOrFail();
         // 在庫の数
         $quantity_stocks = $this->_getStockQuantity($id, $product_id);
         $stock_quantity = [];
@@ -181,13 +196,13 @@ class ShopsController extends AppController
         if(!is_null($quantity) && $stock_quantity >= $quantity) {
             $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] = $quantity;
             $cookie = (new Cookie(self::COOKIE_NM))
-            ->withValue($shopping_cart)
-            ->withExpiry(new DateTime('+1 year'))
-            ->withPath('/')
-            ->withDomain('localhost')
-            ->withSecure(false)
-            ->withSameSite(CookieInterface::SAMESITE_STRICT)
-            ->withHttpOnly(false);
+                ->withValue($shopping_cart)
+                ->withExpiry(new DateTime('+1 year'))
+                ->withPath('/')
+                ->withDomain('localhost')
+                ->withSecure(false)
+                ->withSameSite(CookieInterface::SAMESITE_STRICT)
+                ->withHttpOnly(false);
 
             $this->response = $this->response->withCookie($cookie);
             $add_to_cart = true;
@@ -195,10 +210,10 @@ class ShopsController extends AppController
         $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
 
 
-        $this->set(compact('product', 'cart_quantity', 'stock_quantity', 'add_to_cart'));
+        $this->set(compact('product', 'cart_quantity', 'stock_quantity', 'add_to_cart', 'other_products'));
 
         if($this->request->is(['post', 'put'])) {
-            if($add_to_cart) $this->Flash->toast('Product is added to cart');
+            if($add_to_cart) $this->Flash->toast(MSG_0001);
             return $this->redirect(['controller' => 'Shops', 'action' => 'product', $id, $product_id]);
         }
         $this->render('product');
@@ -219,7 +234,7 @@ class ShopsController extends AppController
         $cart_products = $this->_getProductsFromCart();
         $shopping_cart = null;
         if($this->request->is(['put', 'delete'])) {
-            $quantity = $this->request->getData('quantity', null);
+            $quantity = $this->request->getData('quantity', 0);
             $category_id = $this->request->getData('category_id', 0);
             $product_id = $this->request->getData('product_id', 0);
             if(is_null($quantity)) unset($cart_products[$product_id]);
@@ -233,22 +248,11 @@ class ShopsController extends AppController
             $product_ids = array_keys($cart_products);
             $products = $this->Categories->Products
                             ->find('productCart', $product_ids)
-                            // ->contain([
-                            //     'Categories',
-                            //     'ImageProducts' => function(Query $query) {
-                            //         return $query->limit(1);
-                            //     },
-                            //     'ProductInventories' => function($query) {
-                            //         return $query
-                            //         ->orderDesc('ProductInventories.date');
-                            //     }
-                            // ])
-                            // ->where(['Products.id IN' => $product_ids])
                             ->all()
                             ->map(function(Product $product) use($cart_products, $quantity_stocks) {
                                 $product['product_inventory'] = null;
                                 if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
-                                if(isset($quantity_stocks[$product->id])) $product->quantity_stocks = range(1, $quantity_stocks[$product->id]);
+                                if(isset($quantity_stocks[$product->id])) $product->quantity_stocks = range(0, $quantity_stocks[$product->id]);
                                 if(isset($product['product_inventories'])) {
                                     if(isset($product['product_inventories'][0])) {
                                         $product['product_inventory'] = $product['product_inventories'][0];
@@ -259,7 +263,6 @@ class ShopsController extends AppController
                             })
                             ->toArray();
         }
-        // debug($quantity_stocks);
         $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
         $this->set(compact('products', 'cart_quantity'));
         $this->render('cart_list');
@@ -311,22 +314,21 @@ class ShopsController extends AppController
         // 在庫の数
         $quantity_stocks = $this->_getStockQuantity();
         $products = $this->Categories->Products
-                            ->find('productCart', $product_ids)
-                            ->all()
-                            ->map(function(Product $product) use($cart_products, $quantity_stocks) {
-                                $product['product_inventory'] = null;
-                                if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
-                                if(isset($quantity_stocks[$product->id])) $product->quantity_stocks = range(1, $quantity_stocks[$product->id]);
-                                if(isset($product['product_inventories'])) {
-                                    if(isset($product['product_inventories'][0])) {
-                                        $product['product_inventory'] = $product['product_inventories'][0];
-                                        unset($product['product_inventories']);
-                                    }
-                                }
-                                return $product;
-                            })
-                            ->toArray();
-                            // debug($products);
+            ->find('productCart', $product_ids)
+            ->all()
+            ->map(function(Product $product) use($cart_products, $quantity_stocks) {
+                $product['product_inventory'] = null;
+                if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
+                if(isset($quantity_stocks[$product->id])) $product->quantity_stocks = range(1, $quantity_stocks[$product->id]);
+                if(isset($product['product_inventories'])) {
+                    if(isset($product['product_inventories'][0])) {
+                        $product['product_inventory'] = $product['product_inventories'][0];
+                        unset($product['product_inventories']);
+                    }
+                }
+                return $product;
+            })
+            ->toArray();
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
         $this->set(compact('products', 'cart_quantity', 'customer', 'order'));
         $this->render('order_info');
@@ -346,16 +348,29 @@ class ShopsController extends AppController
         $cart_products = $this->_getProductsFromCart();
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
         if($this->request->is(['post', 'put'])) {
-            // debug($cart_products);
             if(!empty($cart_products) && $cart_quantity) {
                 $customer = $this->_getShopingCustomerCookie();
-                // debug($customer);
                 $user = $this->Authentication->user;
                 $associated = ['OrderDetails'];
                 $order_details = [];
                 $order = [];
                 if(!empty($user)) $order['user_id'] = $user->id;
-                $order['order_number'] = date('ym') . time();
+                // 本日の最新注文番号を取得する
+                $today = FrozenDate::today()->i18nFormat('yyMMdd');
+                $order_number = $this->Orders
+                    ->find()
+                    ->where(['order_number >=' => $today . '0000', ['order_number <=' => $today . '9999']])
+                    ->orderDesc('order_number')
+                    ->first();
+                if(!empty($order_number)) {
+                    $order_number = substr($order_number['order_number'], -4);
+                    $order_number = intval($order_number) + 1;
+                    $order_number = $today . str_pad((string)$order_number, 4, '0', STR_PAD_LEFT);
+                } else {
+                    $order_number = $today . '0001';
+                }
+                //保存データを整理
+                $order['order_number'] = $order_number;
                 $order['order_name'] = $customer['name'];
                 $order['order_address'] = $customer['address'];
                 $order['order_tel'] = $customer['tel'];
@@ -380,81 +395,15 @@ class ShopsController extends AppController
                     $order['order_amount'] += $amount;
                 }
                 $order['order_details'] = $order_details;
-
-                // $order = [
-                //     'order_number' => time(),
-                //     'order_name' => 'test',
-                //     'order_address' => 'test1',
-                //     'order_tel' => '123445444',
-                //     'order_amount' => 1000,
-                //     'order_details' => [
-                //         [
-                //             'product_id' => 4,
-                //             'quantity' => 2,
-                //             'unit_price' => 130000,
-                //             'amount' => 260000,
-                //         ],
-                //         [
-                //             'product_id' => 10,
-                //             'quantity' => 2,
-                //             'unit_price' => 130000,
-                //             'amount' => 260000,
-                //         ]
-                //     ]
-                // ];
-
-
                 $orderEntity = $this->Orders->newEmptyEntity();
                 $orderEntity = $this->Orders->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
-                // var_dump($orderEntity);
-                // $order_data = $orderTBL->find()->contain('OrderDetails')->where(['id' => 1])->first();
-                // $order_data->order_details[0]->quantity = 10;
-                // $this->Orders->save($orderEntity);
-                // dd($order_data);
-                // $orderDetailsTBL = $this->fetchTable('OrderDetails');
-
-                // $orderDetailEntity = $orderDetailsTBL->newEntities($order_details);
-
-                // $orderDetailsTBL->saveMany($orderDetailEntity);
-
-                // dd($orderDetailEntity);
-
-                // $orderEntity = $orderTBL->newEmptyEntity();
-                // $orderEntity = $orderTBL->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
-                // debug($orderEntity);
-                // $orderEntity->order_details = $orderDetailEntity;
-                // // $orderE = $orderTBL->find()->contain('OrderDetails')->all()->toArray();
-                // // dd($orderEntity->order_details);
-                // // $orderEntity = $orderTBL->newEntity($order, [
-                // //     'associated' => $associated
-                // // ]);
-                // // $orderEntity->order_details = $order_details;
-                // // $orderEntity->setDirty('order_details', true);
-
-
-
-                // // $orderEntity = $this->Products->Orders->newEntity($order, ['associated' => $associated]);
-                // // $orderEntity = $this->Products->Orders->newEmptyEntity();
-                // // $orderEntity = $this->Products->Orders->patchEntity($orderEntity, $order, ['associated' => $conditions]);
                 if($this->Orders->save($orderEntity)) {
-                //     // if($this->Products->Orders->save($orderEntity, $order, ['associated' => $associated])) {
-                    // $order_numbers = $this->_getShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM);
-                    // if(!in_array($orderEntity->order_number, $order_numbers)) {
-                    //     $order_numbers[] = $orderEntity->order_number;
-                    //     // $this->_setShoppingCookie(self::ORDER_NUMBERS_COOKIE_NM, $order_numbers);
-                        $this->_deleteShoppingCookie();
-                    // }
-                    // debug(true);
+                    // 注文データを保存できたらクッキーのデータを削除
+                    $this->_deleteShoppingCookie();
                 }
-                // debug($orderEntity->getErrors());
-                // debug($orderEntity);
             }
             $this->_deleteShoppingCookie();
-            // $cart_quantity = null;
         }
-
-
-
         $this->set(compact('cart_quantity'));
         $this->render('purchase');
     }
@@ -474,49 +423,49 @@ class ShopsController extends AppController
             'product_id' => $product_id
         ];
         $product_inventories = $this->Categories->Products
-                        ->find('search', ['search' => $search])
-                        ->contain([
-                            'ProductInventories' => function($query) {
-                                $query = $query
-                                ->select(['ProductInventories.product_id']);
-                                return $query
-                                ->select(['quantity' => $query->func()->sum('ProductInventories.quantity')])
-                                ->group('ProductInventories.product_id');
-                            }
-                        ])
-                        ->formatResults(function($product) {
-                            return $product->combine(
-                                'id',
-                                function($row) {
-                                    return isset($row['product_inventories'][0]) ? $row['product_inventories'][0]['quantity'] : null;
-                                }
-                            );
-                        })
-                        ->all()
-                        ->toArray();
+            ->find('search', ['search' => $search])
+            ->contain([
+                'ProductInventories' => function($query) {
+                    $query = $query
+                    ->select(['ProductInventories.product_id']);
+                    return $query
+                    ->select(['quantity' => $query->func()->sum('ProductInventories.quantity')])
+                    ->group('ProductInventories.product_id');
+                }
+            ])
+            ->formatResults(function($product) {
+                return $product->combine(
+                    'id',
+                    function($row) {
+                        return isset($row['product_inventories'][0]) ? $row['product_inventories'][0]['quantity'] : null;
+                    }
+                );
+            })
+            ->all()
+            ->toArray();
 
         // 注文した商品の数を取得する
         $orders = $this->Categories->Products
-                        ->find('search', ['search' => $search])
-                        ->contain([
-                            'OrderDetails' => function($query) {
-                                $query = $query
-                                ->select(['OrderDetails.product_id']);
-                                return $query
-                                ->select(['quantity' => $query->func()->sum('OrderDetails.quantity')])
-                                ->group('OrderDetails.product_id');
-                            }
-                        ])
-                        ->formatResults(function($product) {
-                            return $product->combine(
-                                'id',
-                                function($row) {
-                                    return isset($row['order_details'][0]) ? $row['order_details'][0]['quantity'] : null;
-                                }
-                            );
-                        })
-                        ->all()
-                        ->toArray();
+            ->find('search', ['search' => $search])
+            ->contain([
+                'OrderDetails' => function($query) {
+                    $query = $query
+                    ->select(['OrderDetails.product_id']);
+                    return $query
+                    ->select(['quantity' => $query->func()->sum('OrderDetails.quantity')])
+                    ->group('OrderDetails.product_id');
+                }
+            ])
+            ->formatResults(function($product) {
+                return $product->combine(
+                    'id',
+                    function($row) {
+                        return isset($row['order_details'][0]) ? $row['order_details'][0]['quantity'] : null;
+                    }
+                );
+            })
+            ->all()
+            ->toArray();
 
         $product_inventories = array_filter($product_inventories, fn($n) => $n);
         $orders = array_filter($orders, fn($n) => $n);
@@ -698,11 +647,11 @@ class ShopsController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__(MSG_1000));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__(MSG_2000));
         }
         $this->set(compact('user'));
     }
@@ -722,11 +671,11 @@ class ShopsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__(MSG_1000));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__(MSG_2000));
         }
         $this->set(compact('user'));
     }
@@ -743,9 +692,9 @@ class ShopsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__(MSG_1001));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__(MSG_2001));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -764,7 +713,7 @@ class ShopsController extends AppController
             return $this->redirect($target);
         }
         if ($this->request->is('post')) {
-            $this->Flash->error('Invalid username or password');
+            $this->Flash->error(MSG_2002);
         }
     }
 

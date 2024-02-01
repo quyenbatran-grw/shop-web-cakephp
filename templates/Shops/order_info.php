@@ -1,6 +1,6 @@
 
 <div class="content">
-    <div class="mb-3">There are your shopping cart information. If don't have any mistake, you can press to Order button to finish. Otherwise please press to Back button</div>
+    <div class="mb-3"><?=__(MSG_0007)?></div>
 
     <div class="">
         <?php
@@ -88,11 +88,11 @@
 
 
         <div class="d-flex flex-row justify-content-center mt-4">
-            <div class="row">
+            <div class="w-100">
                 <?=$this->Form->create($order, ['url' => ['controller' => 'Shops', 'action' => 'purchase']]);?>
-                <div>
+                <div class="mb-3">
                     <div class="input radio">
-                        Please select kind of payment
+                        <?=__(MSG_0005)?>
                         <div class="d-flex">
                         <?=$this->Form->radio('payment',
                             [1 => 'Cash', 2 => 'Banking'],
@@ -103,16 +103,18 @@
                     <div class="banking-qr-code d-none">
                         <img src="/img/noImage.svg" class="d-block w-100 fix-img-size" alt="">
                     </div>
-                    <div class="cash-payment ms-4">AAAAAAAAAAAAAAAAAAAAAAaaaa</div>
+                    <div class="cash-payment ms-4"><?=__(MSG_0006)?></div>
                 </div>
+                <div class="justify-content-center d-flex mt-5">
                 <?=$this->Html->link('Back', '#',
                 [
                     'onclick' => 'history.back()',
-                    'class' => 'btn btn-primary m-1',
+                    'class' => 'btn btn-primary me-4 w-33',
                 ]);?>
                 <?=$this->Form->button('Order', [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-primary w-33'
                 ]);?>
+                </div>
                 <?=$this->Form->end();?>
             </div>
         </div>

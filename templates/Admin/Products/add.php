@@ -23,7 +23,7 @@ use App\Model\Table\ProductsTable;
             </fieldset>
             <table class="table">
                 <tr>
-                    <th class="w-25"><?=__('Category')?></th>
+                    <th class="w-25"><?=__('Category*')?></th>
                     <td>
                         <?=$this->Form->control('category_id', [
                         'options' => $categories,
@@ -34,7 +34,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Name')?></th>
+                    <th class="w-25"><?=__('Name*')?></th>
                     <td>
                         <?=$this->Form->control('name', [
                             'value' => 'Cosmetic product 01',
@@ -53,11 +53,12 @@ use App\Model\Table\ProductsTable;
                             'class' => 'btn btn-primary btn-lg',
                             'escapeTitle' => false
                         ]);?>
+                        <div class="image_list mt-4 row row-cols-2 row-cols-lg-2 g-2 g-lg-3"></div>
                     </td>
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Madein')?></th>
+                    <th class="w-25"><?=__('Madein*')?></th>
                     <td>
                         <?=$this->Form->control('made_in', [
                             'options' => ProductsTable::$sponsors,
@@ -74,7 +75,7 @@ use App\Model\Table\ProductsTable;
                             'class' => 'form-control',
                             'value' => 'VNSP',
                             'maxLength' => 255,
-                            'label' => false
+                            'label' => false,
                         ]);?>
                     </td>
                 </tr>
@@ -92,7 +93,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Sponsor TEL')?></th>
+                    <th class="w-25"><?=__('Sponsor TEL*')?></th>
                     <td>
                         <?=$this->Form->control('sponsor_tel', [
                             'class' => 'form-control',

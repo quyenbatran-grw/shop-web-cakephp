@@ -22,6 +22,7 @@ use Cake\Event\EventInterface;
 use Cake\Http\Cookie\Cookie;
 use Cake\Http\Cookie\CookieInterface;
 use Cake\Http\Response;
+use Cake\I18n\FrozenDate;
 use DateTime;
 
 /**
@@ -109,6 +110,20 @@ class AppController extends Controller
 
         $this->response->withCookie($cookie);
     }
+
+    // /**
+    //  * 本日の日付を取得する
+    //  * @param string $format default = 'Y-m-d'
+    //  * return string
+    //  */
+    // public function _today($format = 'Y-m-d') {
+    //     $now = FrozenDate::now();
+    //     return $now->i18nFormat('Y-m-d');
+    // }
+
+    /**
+     *
+     */
 
 
 }

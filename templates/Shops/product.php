@@ -24,12 +24,20 @@
 
         ?>
         <h2 class="fw-bold"><?=$product->name?></h2>
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active rounded-circle" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+            <button type="button" class="carousel-control-prev" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">前へ</span>
+            </button>
+            <button type="button" class="carousel-control-next" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">次へ</span>
+            </button>
             <div class="carousel-inner">
                 <?php
                 $image_url = '/img/noImage.svg';
@@ -56,8 +64,9 @@
         </div>
 
         <div class="fw-bold">Price: <?=$product->product_inventories[0]->price;?></div>
+        <div class="fw-bold fs-5">Description</div>
 
-        <div>
+        <div class="fs-6">
             <?=nl2br($product->description)?>
         </div>
 
@@ -81,10 +90,40 @@
                 'type' => 'submit',
                 'class' => 'btn btn-primary ms-4 mt-4',
                 'escapeTitle' => false,
-                'onClick' => 'addItemToCart(this)'
             ]); ?>
         </div>
         <?=$this->Form->end();?>
         <?php } ?>
+
+        <div class="mt-2">Relative Products</div>
+        <table class="table table-responsive">
+            <tr>
+                <?php foreach ($other_products as $other_product) {
+                    $product_images = $other_product->image_products;
+                    $image_url = '/img/noImage.svg';
+                    $className = 'fix-h-15';
+                    if(count($product_images)) {
+                        $product_image = $product_images[0];
+                        $image_url = '/img/products/'.$product_images[0]['file_name'];
+                    }
+
+                ?>
+                <td>
+                    <?= $this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'product', $other_product->category_id, $other_product->id], 'class' => ''])?>
+                    <button class="btn text-start">
+                    <div class="fix-w-12">
+                        <div class="fix-h-15"><img src="<?=$image_url?>" class="fix-h-15 fix-w-12 rounded" alt="..."></div>
+                        <div class="fix-h-6">
+                            <div class="fs-5"><?=$other_product->name?></div>
+                            <div class="fs-5"><?=isset($other_product->product_inventories[0]) ? $other_product->product_inventories[0]->price : '';?></div>
+                        </div>
+                    </div>
+                    </button>
+                    <?=$this->Form->end();?>
+                </td>
+                <?php } ?>
+            </tr>
+        </table>
+
     </div>
 </div>

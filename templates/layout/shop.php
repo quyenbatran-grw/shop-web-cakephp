@@ -40,7 +40,7 @@ $cakeDescription = 'CakePHP';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <header>
+    <header class="fixed-top">
         <!-- <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="#">Product Detail</a>
@@ -69,7 +69,7 @@ $cakeDescription = 'CakePHP';
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/shops">ホーム</a>
+                <a class="navbar-brand" href="/shops">HOME</a>
                 <!-- <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="" aria-controls="" aria-expanded="false" aria-label="ナビゲーションの切替">
                 <span class="navbar-toggler-icon"></span>
                 </button> -->
@@ -129,8 +129,8 @@ $cakeDescription = 'CakePHP';
             <?= $this->fetch('content') ?>
         </div>
     </main>
-    <footer>
-        <div class="text-center">
+    <footer class="">
+        <div class="text-center fs-8">
             Copyright <?=date('Y')?><br>
             Create by QUYENTB
         </div>

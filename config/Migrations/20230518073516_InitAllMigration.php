@@ -182,7 +182,7 @@ class InitAllMigration extends AbstractMigration
             ])
             ->addColumn('deleted', 'datetime', [
                 'default' => null,
-                'null' => false,
+                'null' => true,
                 'comment' => 'delete'
             ])
             ->addColumn('created', 'datetime', [
@@ -192,7 +192,7 @@ class InitAllMigration extends AbstractMigration
             ])
             ->addColumn('modified', 'datetime', [
                 'default' => null,
-                'null' => false,
+                'null' => true,
                 'comment' => '更新日'
             ])
             ->addIndex(['category_id'])
@@ -207,9 +207,9 @@ class InitAllMigration extends AbstractMigration
                 'comment' => 'id of product'
             ])
             ->addColumn('date', 'datetime', [
-                'default' => null,
+                'default' => 'CURRENT_TIMESTAMP',
                 'null' => false,
-                'comment' => 'id of product'
+                'comment' => 'stocking date'
             ])
             ->addColumn('unit_price', 'decimal', [
                 'default' => null,
@@ -224,10 +224,20 @@ class InitAllMigration extends AbstractMigration
                 'limit' => 20,
                 'comment' => 'quantity of product'
             ])
+            ->addColumn('expired_date', 'date', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'expired date'
+            ])
             ->addColumn('memo', 'text', [
                 'default' => null,
                 'null' => true,
                 'comment' => 'memo'
+            ])
+            ->addColumn('deleted', 'datetime', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'delete'
             ])
             ->addColumn('created', 'datetime', [
                 'default' => null,

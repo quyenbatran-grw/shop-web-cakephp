@@ -14,10 +14,11 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('category_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('quantity') ?></th>
-                    <th><?= $this->Paginator->sort('unit_price') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    <th><?= $this->Paginator->sort('made_in') ?></th>
+                    <th><?= $this->Paginator->sort('sponsor_name') ?></th>
+                    <th><?= $this->Paginator->sort('sponsor_address') ?></th>
+                    <th><?= $this->Paginator->sort('sponsor_tel') ?></th>
+                    <th><?= $this->Paginator->sort('description') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -27,10 +28,11 @@
                     <td><?= $this->Number->format($product->id) ?></td>
                     <td><?= $product->has('category') ? $this->Html->link($product->category->name, ['controller' => 'Categories', 'action' => 'view', $product->category->id]) : '' ?></td>
                     <td><?= h($product->name) ?></td>
-                    <td><?= $this->Number->format($product->quantity) ?></td>
-                    <td><?= $this->Number->format($product->unit_price) ?></td>
-                    <td><?= h($product->created) ?></td>
-                    <td><?= h($product->modified) ?></td>
+                    <td><?= h($product->made_name) ?></td>
+                    <td><?= h($product->sponsor_name) ?></td>
+                    <td><?= h($product->sponsor_address) ?></td>
+                    <td><?= h($product->sponsor_tel) ?></td>
+                    <td><?= h($product->description) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $product->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $product->id]) ?>
@@ -43,6 +45,7 @@
     </div>
 
     <br>
+    <?php if($this->Paginator->param('pageCount') > 1) { ?>
     <div class="paginator">
         <ul class="pagination justify-content-center">
             <?= $this->Paginator->first('<< ') ?>
@@ -52,4 +55,5 @@
             <?= $this->Paginator->last(' >>') ?>
         </ul>
     </div>
+    <?php } ?>
 </div>

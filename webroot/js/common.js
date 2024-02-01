@@ -14,7 +14,12 @@
 
         // バリデーション要求のフォームを送信する時
         btnAction = document.getElementById('js-validate-form');
-        if(btnAction) btnAction.addEventListener('submit', submitValidateForm)
+        if(btnAction) btnAction.addEventListener('submit', submitValidateForm);
+
+        //
+        document.querySelectorAll('button.delete-image-button').forEach((elm) => {
+            elm.addEventListener('click', removeUploadedImg)
+        });
 
         let cards = document.querySelectorAll('.card');
         if(cards) {
@@ -77,10 +82,13 @@
                     console.log('resizedImgData', resizedImgData);
                     const blob = base64ImgToBlob(resizedImgData, 'image/png');
                     let file = v.closest('.img-group').querySelector('input[type="file"]');
-                    file = file.files[0];
-                    console.log('file', file)
-                    const newFile = new File([blob], file.name, { type: 'image/png' });
-                    formData.append('save_images[]', newFile);
+                    console.log('file', file);
+                    if(file) {
+                        file = file.files[0];
+                        console.log('file', file)
+                        const newFile = new File([blob], file.name, { type: 'image/png' });
+                        formData.append('save_images[]', newFile);
+                    }
                 });
                 resolve(true);
             }
@@ -94,18 +102,20 @@
                 if(document.querySelector('.message.success')) document.querySelector('.message.success').remove();
                 if(Object.keys(errors).length) {
                     for(const error of Object.entries(errors)) {
-                        for(const err_mess of Object.entries(error[1])) {
+                        let errorContent = Object.entries(error[1]);
+                        let textContent = errorContent[0] && errorContent[0][1] ? errorContent[0][1] : '';
+                        if(textContent != '') {
+                            console.log('error', errorContent[0][1]);
                             let errorElm = document.createElement('div');
-                            errorElm.classList = 'message error';
-                            errorElm.onclick = this.classList.add('hidden');
-                            errorElm.innerText = err_mess[1];
-                            document.querySelector('.container .row').before(errorElm);
-                            window.scrollTo(0,0);
-                            return;
+                            errorElm.classList = 'fs-6 text-danger';
+                            errorElm.textContent = textContent;
+                            document.querySelector('[name="'+error[0]+'"]').parentElement.append(errorElm);
                         }
-
                     }
                 } else {
+                    if(data.redirect) {
+                        location.href = data.redirect;
+                    }
                     let errorElm = document.createElement('div');
                     errorElm.classList = 'message success';
                     errorElm.onclick = this.classList.add('hidden');
@@ -115,6 +125,8 @@
                 }
 
             };
+            console.log('action', e.target.action);
+            console.log('formdata', formData);
             postFetch(e.target.action, formData, callback);
             console.log('save_images', Object.keys(save_images))
         });
@@ -253,7 +265,7 @@
     function addInputFile(e) {
         // image group element
         let imgGroup = document.createElement('div');
-        imgGroup.classList = 'd-grid gap-2 img-group mb-2';
+        imgGroup.classList = 'col img-group col-mb-2';
         // image upload element
         let inputFile = document.createElement('input');
         inputFile.classList = 'visually-hidden';
@@ -267,15 +279,15 @@
         let imgDiv = document.createElement('div');
         imgDiv.classList = 'image';
         let deleteBtn = document.createElement('button');
-        deleteBtn.innerText = 'Delete';
+        deleteBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
         deleteBtn.type = 'button';
-        deleteBtn.className = 'btn btn-danger mx-2 d-none delete-image-button';
-        deleteBtn.addEventListener('click', removeUploadedImg);
+        deleteBtn.className = 'btn-danger d-none delete-image-button';
+        // deleteBtn.addEventListener('click', removeUploadedImg);
         showImg.append(imgDiv);
         showImg.append(deleteBtn);
         imgGroup.append(showImg);
 
-        let imageFileList = document.querySelector('.input.file');
+        let imageFileList = document.querySelector('.image_list');
         imageFileList.append(imgGroup);
         inputFile.click();
 
@@ -291,8 +303,20 @@
         // console.log(imgGroup)
     }
 
+    /**
+     * アップロードした未登録の画像を削除
+     * @param {*} e
+     */
     function removeUploadedImg(e) {
-        e.target.closest('.img-group').remove();
+        let parent = e.target.parentElement;
+        if(parent.getAttribute('delete-id') != undefined && parent.getAttribute('delete-id') != '') {
+            var deleted_img = document.querySelector('input[name="deleted_img"]').value;
+            deleted_img = (deleted_img != '' ? deleted_img + ',' : '') + parent.getAttribute('delete-id');
+            document.querySelector('input[name="deleted_img"]').value = deleted_img
+            e.target.closest('.img-group').remove();
+        } else {
+            e.target.closest('.img-group').remove();
+        }
     }
 
     /**

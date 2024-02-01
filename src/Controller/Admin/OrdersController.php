@@ -92,6 +92,19 @@ class OrdersController extends AppController
         $this->set(compact('order'));
     }
 
+    public function updateStatus($id) {
+        $order = $this->Orders->find()->where(['id' => $id])->firstOrFail();
+        if(!empty($order)) {
+            $order = $this->Orders->patchEntity($order, $this->request->getData());
+            if($this->Orders->save($order)) {
+                $this->Flash->success(__('The order has been updated.'));
+            } else {
+                $this->Flash->error(__('The order count not be saved.'));
+            }
+        }
+        $this->redirect(['action' => 'view', $id]);
+    }
+
     /**
      * Delete method
      *

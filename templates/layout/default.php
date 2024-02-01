@@ -39,7 +39,7 @@ $cakeDescription = 'CakePHP';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <header>
+    <header class="fixed-top <?=!$auth || !$auth->role ? 'd-none' : ''?>">
         <nav class="top-nav">
             <!-- <div class="top-nav-title">
                 <a href="<?= $this->Url->build('/admin') ?>"><span>Cake</span>PHP</a>
@@ -60,8 +60,8 @@ $cakeDescription = 'CakePHP';
             <?= $this->fetch('content') ?>
         </div>
     </main>
-    <footer>
-        <div class="text-center mt-5">
+    <footer class="">
+        <div class="text-center fs-8">
             Copyright <?=date('Y')?><br>
             Create by QUYENTB
         </div>

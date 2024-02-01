@@ -61,8 +61,7 @@
                     <?=$this->Form->control('quantity', [
                         'type' => 'select',
                         'label' => false,
-                        'class' => 'form-control text-center ms-2 w-50 float-end',
-                        'value' => $product->quantity,
+                        'class' => 'form-control text-center ms-2 w-75 float-end',
                         'options' => $product->quantity_stocks,
                     ])?>
                     <?=$this->Form->end();?>

@@ -19,6 +19,7 @@ declare(strict_types=1);
  * Configure paths required to find CakePHP + general filepath constants
  */
 require __DIR__ . DIRECTORY_SEPARATOR . 'paths.php';
+require __DIR__ . DIRECTORY_SEPARATOR . 'messages.php';
 
 /*
  * Bootstrap CakePHP.
@@ -79,7 +80,6 @@ use Cake\Utility\Security;
 try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
-    Configure::load('messages', 'default', false);
 } catch (\Exception $e) {
     exit($e->getMessage() . "\n");
 }

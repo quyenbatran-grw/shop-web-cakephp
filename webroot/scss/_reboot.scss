@@ -652,4 +652,9 @@ progress {
         min-width: $i * 1% !important;
         max-width: $i * 1% !important;
     }
+
+    .fix-size-#{$i} {
+        width: $i * 1rem !important;
+        height: $i * 1rem !important;
+    }
 }

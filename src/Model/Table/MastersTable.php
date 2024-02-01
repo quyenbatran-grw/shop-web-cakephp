@@ -67,13 +67,13 @@ class MastersTable extends Table
         $validator
             ->integer('type')
             ->requirePresence('type', 'create')
-            ->notEmptyString('type');
+            ->notEmptyString('type', REQUIRED_INPUT);
 
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->notEmptyString('name', REQUIRED_INPUT);
 
         $validator
             ->integer('rank')

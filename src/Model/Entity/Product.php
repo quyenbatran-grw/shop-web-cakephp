@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Model\Table\ProductsTable;
 use Cake\ORM\Entity;
 
 /**
@@ -39,11 +40,18 @@ class Product extends Entity
         'sponsor_address' => true,
         'sponsor_tel' => true,
         'description' => true,
+        'deleted' => true,
         'created' => true,
         'modified' => true,
         'category' => true,
         'image_products' => true,
     ];
+
+    protected $_virtual = ['made_name'];
+
+    protected function _getMadeName() {
+        return $this->made_in != '' ? ProductsTable::$sponsors[$this->made_in] : '';
+    }
 
 
 }

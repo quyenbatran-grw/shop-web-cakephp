@@ -12,6 +12,10 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="users form content">
+            <div class="row justify-content-start">
+                <div class="col-md-4 fw-bold">UserName</div>
+                <div class="col-md-8"><?=__($profile->username)?></div>
+            </div>
             <?= $this->Form->create($profile) ?>
             <div class="row justify-content-start">
                 <div class="col-md-4 fw-bold">First Name</div>
@@ -70,10 +74,10 @@
 
             <div class="row justify-content-around">
                 <div class="col-md-4">
-                    <?= $this->Form->button('Cancel', ['class' => 'btn btn-primary btn-lg rounded-pill col-md-4 mt-4 w-100', 'type' => 'button', 'onclick' => 'history.back()']); ?>
+                    <?= $this->Form->button('Save', ['class' => 'btn btn-primary btn-lg rounded-pill col-md-4 mt-4 w-100']); ?>
                 </div>
                 <div class="col-md-4">
-                    <?= $this->Form->button('Save', ['class' => 'btn btn-primary btn-lg rounded-pill col-md-4 mt-4 w-100']); ?>
+                    <?= $this->Form->button('Cancel', ['class' => 'btn btn-primary btn-lg rounded-pill col-md-4 mt-4 w-100', 'type' => 'button', 'onclick' => 'history.back()']); ?>
                 </div>
             </div>
             <?= $this->Form->end() ?>

@@ -12,21 +12,21 @@
 }
 body {
     /* padding: 60px 0; */
+    background: linear-gradient(#ffd2d2, #a3aaff) !important;
 }
 header {
-    height: 70px;
-    margin-bottom: 20px;
-    background: #a9e1ff;
-    background-image: url(https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+    height: 50px;
+    /* margin-bottom: 20px; */
+    background: #fff;
+    /* background: linear-gradient(#eb8484, #9198e5); */
+    /* background-image: url(https://images.pexels.com/photos/683039/pexels-photo-683039.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260); */
 }
 footer {
-    margin-top: 60px;
-    height: 70px;
+    padding-top: 5px;
+    height: 40px;
     background: #defcff;
 }
-img {
-    margin-bottom: 10px;
-}
+.main { min-height: 84vh; margin-top: 60px; margin-bottom: 10px; }
 h1 {
     font-weight: bold;
 }
@@ -88,7 +88,10 @@ hr {
 
 .menu-link-list { margin-bottom: 1rem;}
 
-.main { min-height: 70vh;}
 
 .m-height-1 { max-height: 1rem; }
 .m-height-9 { max-height: 9rem; }
+.fs-7 { font-size: 0.75em !important; }
+.fs-8 { font-size: 0.5em !important; }
+.fs-9 { font-size: 0.25em !important; }
+#cart-item, .account-link { top: 5px; }

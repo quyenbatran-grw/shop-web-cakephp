@@ -62,12 +62,12 @@ class CategoriesTable extends Table
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
-            ->notEmptyString('name', 'Please input this item');
+            ->notEmptyString('name', REQUIRED_INPUT);
 
         $validator
             ->scalar('description')
             ->requirePresence('description', 'create')
-            ->notEmptyString('description');
+            ->allowEmptyString('description');
 
         return $validator;
     }

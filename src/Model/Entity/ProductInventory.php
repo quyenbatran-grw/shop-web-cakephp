@@ -36,6 +36,7 @@ class ProductInventory extends Entity
         'unit_price' => true,
         'quantity' => true,
         'memo' => true,
+        'expired_date' => true,
         'created' => true,
         'modified' => true,
         'product' => true,

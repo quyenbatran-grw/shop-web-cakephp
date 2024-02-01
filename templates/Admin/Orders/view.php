@@ -41,13 +41,15 @@
                 <tr>
                     <th><?= __('Status') ?></th>
                     <td>
+                        <?=$this->Form->create($order, ['url' => ['controller' => 'Orders', 'action' => 'update-status', $order->id]])?>
                         <?=$this->Form->control('status', [
-                            'class' => 'form-select w-25',
+                            'class' => 'form-select w-50',
                             'options' => $status_list,
                             'label' => false,
                             'multiple' => false,
-                            'onChange' => 'changeStatusConfirm'
+                            'onChange' => 'submit(this.form)'
                         ])?>
+                        <?=$this->Form->end()?>
                         <!-- <?= $order->status_name ?> -->
                     </td>
                 </tr>

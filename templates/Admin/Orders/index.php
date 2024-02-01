@@ -13,13 +13,12 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('order_number') ?></th>
+                    <th><?= $this->Paginator->sort('created', 'Order Date') ?></th>
                     <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('order_name') ?></th>
                     <th><?= $this->Paginator->sort('order_address') ?></th>
                     <th><?= $this->Paginator->sort('order_tel') ?></th>
                     <th><?= $this->Paginator->sort('order_amount') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -28,13 +27,12 @@
                 <tr>
                     <td><?= $this->Number->format($order->id) ?></td>
                     <td><?= h($order->order_number) ?></td>
+                    <td><?= h($order->created) ?></td>
                     <td><?= $order->status_name ?></td>
                     <td><?= h($order->order_name) ?></td>
                     <td><?= h($order->order_address) ?></td>
                     <td><?= h($order->order_tel) ?></td>
                     <td><?= $this->Number->format($order->order_amount) ?></td>
-                    <td><?= h($order->created) ?></td>
-                    <td><?= h($order->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $order->id]) ?>
                         <!-- <?= $this->Html->link(__('Edit'), ['action' => 'edit', $order->id]) ?> -->
@@ -45,14 +43,15 @@
             </tbody>
         </table>
     </div>
+    <?php if($this->Paginator->param('pageCount') > 1) { ?>
     <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <ul class="pagination justify-content-center">
+            <?= $this->Paginator->first('<< ') ?>
+            <?= $this->Paginator->prev('< ') ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(' >') ?>
+            <?= $this->Paginator->last(' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
+    <?php } ?>
 </div>

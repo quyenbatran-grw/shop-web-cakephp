@@ -34,7 +34,7 @@
                 <tr>
                     <th class="w-25"><?= __('Date') ?></th>
                     <td>
-                        <?=$this->Form->date('date', [
+                        <?=$this->Form->dateTime('date', [
                             'class' => 'form-control',
                             'label' => false
                         ]);?>

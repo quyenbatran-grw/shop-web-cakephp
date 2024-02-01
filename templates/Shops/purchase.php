@@ -1,6 +1,6 @@
 <div class="content mt-3">
 
-    <div>Your orders are finished. Please wait for contact from our shop</div>
+    <div><?=__(MSG_0004)?></div>
 
 
     <div class="d-flex flex-row justify-content-center">

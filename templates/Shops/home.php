@@ -24,9 +24,8 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
-    </div>
 </div>
-<div class="content">
+<div class="content mt-2">
     <div class="row-sm">
         <?php
         $image_url = '/img/noImage.svg';
@@ -51,7 +50,7 @@
                     <div class="card-body">
                         <h2 class="card-title fw-bold"><?=$category->name?></h2>
                         <p class="card-text"><?=$category->description?></p>
-                        <p class="card-text"><small class="bg-danger text-white rounded p-2">New Arrival</small></p>
+                        <p class="card-text"><small class="bg-danger text-white rounded p-1 fs-7 new-arrival">New Arrival</small> <small class="bg-danger text-white rounded p-1 fs-7 new-arrival">AAAA</small></p>
                     </div>
                     </div>
                 </div>

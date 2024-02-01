@@ -82,20 +82,20 @@ class ProductsTable extends Table
     {
         $validator
             ->integer('category_id')
-            ->notEmptyString('category_id');
+            ->notEmptyString('category_id', REQUIRED_INPUT);
 
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->notEmptyString('name', REQUIRED_INPUT);
 
         $validator
             ->notEmptyString('made_in', 'Please input value')
             ->add('made_in', 'validValue', ['rule' => ['range', 0, 3], 'message' => '[0~3]まで登録してください']);
 
         $validator
-            ->maxLength('sponsor_name', 255, 'Please input under 255 charactors')
+            ->maxLength('sponsor_name', 5, sprintf(OVER_MAX_LENGTH, 255))
             ->isEmptyAllowed('sponsor_name', true);
 
         $validator
@@ -160,5 +160,9 @@ class ProductsTable extends Table
             }
         ])
         ->where(['Products.id IN' => $product_ids]);
+    }
+
+    public function findValid(Query $query) {
+        return $query->where(['deleted IS NULL']);
     }
 }

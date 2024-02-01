@@ -17,14 +17,14 @@ use App\Model\Table\ProductsTable;
     </aside>
     <div class="column-responsive">
         <div class="products form content">
-            <?= $this->Form->create($product) ?>
+            <?= $this->Form->create($product, ['enctype' => 'multipart/form-data', 'id' => 'js-validate-form']) ?>
             <fieldset>
                 <legend><?= __('Edit Product') ?></legend>
             </fieldset>
 
             <table class="table">
                 <tr>
-                    <th class="w-25"><?=__('Category')?></th>
+                    <th class="w-25"><?=__('Category*')?></th>
                     <td>
                         <?=$this->Form->control('category_id', [
                         'options' => $categories,
@@ -35,7 +35,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Name')?></th>
+                    <th class="w-25"><?=__('Name*')?></th>
                     <td>
                         <?=$this->Form->control('name', [
                             'value' => 'Cosmetic product 01',
@@ -48,27 +48,31 @@ use App\Model\Table\ProductsTable;
                 <tr>
                     <th class="w-25"><?=__('Images')?></th>
                     <td>
-                        <div class="input file">
-                            <div class="row align-items-start">
-                                <?php foreach ($product->image_products as $key => $value) { ?>
-
-                                <div class="col col-md-4">
-                                    <img src="/img/products/<?=$value['file_name']?>" alt="">
-                                </div>
-                                <?php } ?>
-                            </div>
-                        </div>
                         <?=$this->Form->button('<i class="bi bi-plus-lg fs-4"></i>Add Image', [
                             'type' => 'button',
                             'id' => 'add-image-button',
                             'class' => 'btn btn-primary btn-lg',
                             'escapeTitle' => false
                         ]);?>
+                        <div class="image_list mt-4 row row-cols-2 row-cols-lg-2 g-2 g-lg-3">
+                            <input type="hidden" name="deleted_img">
+                            <?php foreach ($product->image_products as $key => $value) { ?>
+                            <div class="col img-group col-mb-2">
+                                <div class="show-image w-75 d-flex">
+                                    <div class="image"><img src="/img/products/<?=$value['file_name']?>" alt=""></div>
+
+                                    <button type="button" class="btn-danger delete-image-button" delete-id="<?=$value['id']?>"><i class="bi bi-x-lg"></i></button>
+                                </div>
+
+                            </div>
+
+                            <?php } ?>
+                        </div>
                     </td>
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Madein')?></th>
+                    <th class="w-25"><?=__('Madein*')?></th>
                     <td>
                         <?=$this->Form->control('made_in', [
                             'options' => ProductsTable::$sponsors,
@@ -101,7 +105,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Sponsor TEL')?></th>
+                    <th class="w-25"><?=__('Sponsor TEL*')?></th>
                     <td>
                         <?=$this->Form->control('sponsor_tel', [
                             'class' => 'form-control',

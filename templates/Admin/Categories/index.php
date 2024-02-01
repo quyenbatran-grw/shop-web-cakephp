@@ -36,6 +36,7 @@
         </table>
     </div>
     <br>
+    <?php if($this->Paginator->param('pageCount') > 1) { ?>
     <div class="paginator">
         <ul class="pagination justify-content-center">
             <?= $this->Paginator->first('<< ') ?>
@@ -45,4 +46,5 @@
             <?= $this->Paginator->last(' >>') ?>
         </ul>
     </div>
+    <?php } ?>
 </div>

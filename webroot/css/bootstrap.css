@@ -485,6 +485,11 @@ progress {
   max-width: 1% !important;
 }
 
+.fix-size-1 {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
 .min-h-2 {
   min-height: 2rem !important;
 }
@@ -514,6 +519,11 @@ progress {
 .fix-wp-2 {
   min-width: 2% !important;
   max-width: 2% !important;
+}
+
+.fix-size-2 {
+  width: 2rem !important;
+  height: 2rem !important;
 }
 
 .min-h-3 {
@@ -547,6 +557,11 @@ progress {
   max-width: 3% !important;
 }
 
+.fix-size-3 {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
 .min-h-4 {
   min-height: 4rem !important;
 }
@@ -576,6 +591,11 @@ progress {
 .fix-wp-4 {
   min-width: 4% !important;
   max-width: 4% !important;
+}
+
+.fix-size-4 {
+  width: 4rem !important;
+  height: 4rem !important;
 }
 
 .min-h-5 {
@@ -609,6 +629,11 @@ progress {
   max-width: 5% !important;
 }
 
+.fix-size-5 {
+  width: 5rem !important;
+  height: 5rem !important;
+}
+
 .min-h-6 {
   min-height: 6rem !important;
 }
@@ -638,6 +663,11 @@ progress {
 .fix-wp-6 {
   min-width: 6% !important;
   max-width: 6% !important;
+}
+
+.fix-size-6 {
+  width: 6rem !important;
+  height: 6rem !important;
 }
 
 .min-h-7 {
@@ -671,6 +701,11 @@ progress {
   max-width: 7% !important;
 }
 
+.fix-size-7 {
+  width: 7rem !important;
+  height: 7rem !important;
+}
+
 .min-h-8 {
   min-height: 8rem !important;
 }
@@ -700,6 +735,11 @@ progress {
 .fix-wp-8 {
   min-width: 8% !important;
   max-width: 8% !important;
+}
+
+.fix-size-8 {
+  width: 8rem !important;
+  height: 8rem !important;
 }
 
 .min-h-9 {
@@ -733,6 +773,11 @@ progress {
   max-width: 9% !important;
 }
 
+.fix-size-9 {
+  width: 9rem !important;
+  height: 9rem !important;
+}
+
 .min-h-10 {
   min-height: 10rem !important;
 }
@@ -762,6 +807,11 @@ progress {
 .fix-wp-10 {
   min-width: 10% !important;
   max-width: 10% !important;
+}
+
+.fix-size-10 {
+  width: 10rem !important;
+  height: 10rem !important;
 }
 
 .min-h-11 {
@@ -795,6 +845,11 @@ progress {
   max-width: 11% !important;
 }
 
+.fix-size-11 {
+  width: 11rem !important;
+  height: 11rem !important;
+}
+
 .min-h-12 {
   min-height: 12rem !important;
 }
@@ -824,6 +879,11 @@ progress {
 .fix-wp-12 {
   min-width: 12% !important;
   max-width: 12% !important;
+}
+
+.fix-size-12 {
+  width: 12rem !important;
+  height: 12rem !important;
 }
 
 .min-h-13 {
@@ -857,6 +917,11 @@ progress {
   max-width: 13% !important;
 }
 
+.fix-size-13 {
+  width: 13rem !important;
+  height: 13rem !important;
+}
+
 .min-h-14 {
   min-height: 14rem !important;
 }
@@ -886,6 +951,11 @@ progress {
 .fix-wp-14 {
   min-width: 14% !important;
   max-width: 14% !important;
+}
+
+.fix-size-14 {
+  width: 14rem !important;
+  height: 14rem !important;
 }
 
 .min-h-15 {
@@ -919,6 +989,11 @@ progress {
   max-width: 15% !important;
 }
 
+.fix-size-15 {
+  width: 15rem !important;
+  height: 15rem !important;
+}
+
 .min-h-16 {
   min-height: 16rem !important;
 }
@@ -948,6 +1023,11 @@ progress {
 .fix-wp-16 {
   min-width: 16% !important;
   max-width: 16% !important;
+}
+
+.fix-size-16 {
+  width: 16rem !important;
+  height: 16rem !important;
 }
 
 .min-h-17 {
@@ -981,6 +1061,11 @@ progress {
   max-width: 17% !important;
 }
 
+.fix-size-17 {
+  width: 17rem !important;
+  height: 17rem !important;
+}
+
 .min-h-18 {
   min-height: 18rem !important;
 }
@@ -1010,6 +1095,11 @@ progress {
 .fix-wp-18 {
   min-width: 18% !important;
   max-width: 18% !important;
+}
+
+.fix-size-18 {
+  width: 18rem !important;
+  height: 18rem !important;
 }
 
 .min-h-19 {
@@ -1043,6 +1133,11 @@ progress {
   max-width: 19% !important;
 }
 
+.fix-size-19 {
+  width: 19rem !important;
+  height: 19rem !important;
+}
+
 .min-h-20 {
   min-height: 20rem !important;
 }
@@ -1072,6 +1167,11 @@ progress {
 .fix-wp-20 {
   min-width: 20% !important;
   max-width: 20% !important;
+}
+
+.fix-size-20 {
+  width: 20rem !important;
+  height: 20rem !important;
 }
 
 .min-h-21 {
@@ -1105,6 +1205,11 @@ progress {
   max-width: 21% !important;
 }
 
+.fix-size-21 {
+  width: 21rem !important;
+  height: 21rem !important;
+}
+
 .min-h-22 {
   min-height: 22rem !important;
 }
@@ -1134,6 +1239,11 @@ progress {
 .fix-wp-22 {
   min-width: 22% !important;
   max-width: 22% !important;
+}
+
+.fix-size-22 {
+  width: 22rem !important;
+  height: 22rem !important;
 }
 
 .min-h-23 {
@@ -1167,6 +1277,11 @@ progress {
   max-width: 23% !important;
 }
 
+.fix-size-23 {
+  width: 23rem !important;
+  height: 23rem !important;
+}
+
 .min-h-24 {
   min-height: 24rem !important;
 }
@@ -1196,6 +1311,11 @@ progress {
 .fix-wp-24 {
   min-width: 24% !important;
   max-width: 24% !important;
+}
+
+.fix-size-24 {
+  width: 24rem !important;
+  height: 24rem !important;
 }
 
 .min-h-25 {
@@ -1229,6 +1349,11 @@ progress {
   max-width: 25% !important;
 }
 
+.fix-size-25 {
+  width: 25rem !important;
+  height: 25rem !important;
+}
+
 .min-h-26 {
   min-height: 26rem !important;
 }
@@ -1258,6 +1383,11 @@ progress {
 .fix-wp-26 {
   min-width: 26% !important;
   max-width: 26% !important;
+}
+
+.fix-size-26 {
+  width: 26rem !important;
+  height: 26rem !important;
 }
 
 .min-h-27 {
@@ -1291,6 +1421,11 @@ progress {
   max-width: 27% !important;
 }
 
+.fix-size-27 {
+  width: 27rem !important;
+  height: 27rem !important;
+}
+
 .min-h-28 {
   min-height: 28rem !important;
 }
@@ -1320,6 +1455,11 @@ progress {
 .fix-wp-28 {
   min-width: 28% !important;
   max-width: 28% !important;
+}
+
+.fix-size-28 {
+  width: 28rem !important;
+  height: 28rem !important;
 }
 
 .min-h-29 {
@@ -1353,6 +1493,11 @@ progress {
   max-width: 29% !important;
 }
 
+.fix-size-29 {
+  width: 29rem !important;
+  height: 29rem !important;
+}
+
 .min-h-30 {
   min-height: 30rem !important;
 }
@@ -1382,6 +1527,11 @@ progress {
 .fix-wp-30 {
   min-width: 30% !important;
   max-width: 30% !important;
+}
+
+.fix-size-30 {
+  width: 30rem !important;
+  height: 30rem !important;
 }
 
 .min-h-31 {
@@ -1415,6 +1565,11 @@ progress {
   max-width: 31% !important;
 }
 
+.fix-size-31 {
+  width: 31rem !important;
+  height: 31rem !important;
+}
+
 .min-h-32 {
   min-height: 32rem !important;
 }
@@ -1444,6 +1599,11 @@ progress {
 .fix-wp-32 {
   min-width: 32% !important;
   max-width: 32% !important;
+}
+
+.fix-size-32 {
+  width: 32rem !important;
+  height: 32rem !important;
 }
 
 .min-h-33 {
@@ -1477,6 +1637,11 @@ progress {
   max-width: 33% !important;
 }
 
+.fix-size-33 {
+  width: 33rem !important;
+  height: 33rem !important;
+}
+
 .min-h-34 {
   min-height: 34rem !important;
 }
@@ -1506,6 +1671,11 @@ progress {
 .fix-wp-34 {
   min-width: 34% !important;
   max-width: 34% !important;
+}
+
+.fix-size-34 {
+  width: 34rem !important;
+  height: 34rem !important;
 }
 
 .min-h-35 {
@@ -1539,6 +1709,11 @@ progress {
   max-width: 35% !important;
 }
 
+.fix-size-35 {
+  width: 35rem !important;
+  height: 35rem !important;
+}
+
 .min-h-36 {
   min-height: 36rem !important;
 }
@@ -1568,6 +1743,11 @@ progress {
 .fix-wp-36 {
   min-width: 36% !important;
   max-width: 36% !important;
+}
+
+.fix-size-36 {
+  width: 36rem !important;
+  height: 36rem !important;
 }
 
 .min-h-37 {
@@ -1601,6 +1781,11 @@ progress {
   max-width: 37% !important;
 }
 
+.fix-size-37 {
+  width: 37rem !important;
+  height: 37rem !important;
+}
+
 .min-h-38 {
   min-height: 38rem !important;
 }
@@ -1630,6 +1815,11 @@ progress {
 .fix-wp-38 {
   min-width: 38% !important;
   max-width: 38% !important;
+}
+
+.fix-size-38 {
+  width: 38rem !important;
+  height: 38rem !important;
 }
 
 .min-h-39 {
@@ -1663,6 +1853,11 @@ progress {
   max-width: 39% !important;
 }
 
+.fix-size-39 {
+  width: 39rem !important;
+  height: 39rem !important;
+}
+
 .min-h-40 {
   min-height: 40rem !important;
 }
@@ -1692,6 +1887,11 @@ progress {
 .fix-wp-40 {
   min-width: 40% !important;
   max-width: 40% !important;
+}
+
+.fix-size-40 {
+  width: 40rem !important;
+  height: 40rem !important;
 }
 
 .min-h-41 {
@@ -1725,6 +1925,11 @@ progress {
   max-width: 41% !important;
 }
 
+.fix-size-41 {
+  width: 41rem !important;
+  height: 41rem !important;
+}
+
 .min-h-42 {
   min-height: 42rem !important;
 }
@@ -1754,6 +1959,11 @@ progress {
 .fix-wp-42 {
   min-width: 42% !important;
   max-width: 42% !important;
+}
+
+.fix-size-42 {
+  width: 42rem !important;
+  height: 42rem !important;
 }
 
 .min-h-43 {
@@ -1787,6 +1997,11 @@ progress {
   max-width: 43% !important;
 }
 
+.fix-size-43 {
+  width: 43rem !important;
+  height: 43rem !important;
+}
+
 .min-h-44 {
   min-height: 44rem !important;
 }
@@ -1816,6 +2031,11 @@ progress {
 .fix-wp-44 {
   min-width: 44% !important;
   max-width: 44% !important;
+}
+
+.fix-size-44 {
+  width: 44rem !important;
+  height: 44rem !important;
 }
 
 .min-h-45 {
@@ -1849,6 +2069,11 @@ progress {
   max-width: 45% !important;
 }
 
+.fix-size-45 {
+  width: 45rem !important;
+  height: 45rem !important;
+}
+
 .min-h-46 {
   min-height: 46rem !important;
 }
@@ -1878,6 +2103,11 @@ progress {
 .fix-wp-46 {
   min-width: 46% !important;
   max-width: 46% !important;
+}
+
+.fix-size-46 {
+  width: 46rem !important;
+  height: 46rem !important;
 }
 
 .min-h-47 {
@@ -1911,6 +2141,11 @@ progress {
   max-width: 47% !important;
 }
 
+.fix-size-47 {
+  width: 47rem !important;
+  height: 47rem !important;
+}
+
 .min-h-48 {
   min-height: 48rem !important;
 }
@@ -1940,6 +2175,11 @@ progress {
 .fix-wp-48 {
   min-width: 48% !important;
   max-width: 48% !important;
+}
+
+.fix-size-48 {
+  width: 48rem !important;
+  height: 48rem !important;
 }
 
 .min-h-49 {
@@ -1973,6 +2213,11 @@ progress {
   max-width: 49% !important;
 }
 
+.fix-size-49 {
+  width: 49rem !important;
+  height: 49rem !important;
+}
+
 .min-h-50 {
   min-height: 50rem !important;
 }
@@ -2002,6 +2247,11 @@ progress {
 .fix-wp-50 {
   min-width: 50% !important;
   max-width: 50% !important;
+}
+
+.fix-size-50 {
+  width: 50rem !important;
+  height: 50rem !important;
 }
 
 .min-h-51 {
@@ -2035,6 +2285,11 @@ progress {
   max-width: 51% !important;
 }
 
+.fix-size-51 {
+  width: 51rem !important;
+  height: 51rem !important;
+}
+
 .min-h-52 {
   min-height: 52rem !important;
 }
@@ -2064,6 +2319,11 @@ progress {
 .fix-wp-52 {
   min-width: 52% !important;
   max-width: 52% !important;
+}
+
+.fix-size-52 {
+  width: 52rem !important;
+  height: 52rem !important;
 }
 
 .min-h-53 {
@@ -2097,6 +2357,11 @@ progress {
   max-width: 53% !important;
 }
 
+.fix-size-53 {
+  width: 53rem !important;
+  height: 53rem !important;
+}
+
 .min-h-54 {
   min-height: 54rem !important;
 }
@@ -2126,6 +2391,11 @@ progress {
 .fix-wp-54 {
   min-width: 54% !important;
   max-width: 54% !important;
+}
+
+.fix-size-54 {
+  width: 54rem !important;
+  height: 54rem !important;
 }
 
 .min-h-55 {
@@ -2159,6 +2429,11 @@ progress {
   max-width: 55% !important;
 }
 
+.fix-size-55 {
+  width: 55rem !important;
+  height: 55rem !important;
+}
+
 .min-h-56 {
   min-height: 56rem !important;
 }
@@ -2188,6 +2463,11 @@ progress {
 .fix-wp-56 {
   min-width: 56% !important;
   max-width: 56% !important;
+}
+
+.fix-size-56 {
+  width: 56rem !important;
+  height: 56rem !important;
 }
 
 .min-h-57 {
@@ -2221,6 +2501,11 @@ progress {
   max-width: 57% !important;
 }
 
+.fix-size-57 {
+  width: 57rem !important;
+  height: 57rem !important;
+}
+
 .min-h-58 {
   min-height: 58rem !important;
 }
@@ -2250,6 +2535,11 @@ progress {
 .fix-wp-58 {
   min-width: 58% !important;
   max-width: 58% !important;
+}
+
+.fix-size-58 {
+  width: 58rem !important;
+  height: 58rem !important;
 }
 
 .min-h-59 {
@@ -2283,6 +2573,11 @@ progress {
   max-width: 59% !important;
 }
 
+.fix-size-59 {
+  width: 59rem !important;
+  height: 59rem !important;
+}
+
 .min-h-60 {
   min-height: 60rem !important;
 }
@@ -2312,6 +2607,11 @@ progress {
 .fix-wp-60 {
   min-width: 60% !important;
   max-width: 60% !important;
+}
+
+.fix-size-60 {
+  width: 60rem !important;
+  height: 60rem !important;
 }
 
 .min-h-61 {
@@ -2345,6 +2645,11 @@ progress {
   max-width: 61% !important;
 }
 
+.fix-size-61 {
+  width: 61rem !important;
+  height: 61rem !important;
+}
+
 .min-h-62 {
   min-height: 62rem !important;
 }
@@ -2374,6 +2679,11 @@ progress {
 .fix-wp-62 {
   min-width: 62% !important;
   max-width: 62% !important;
+}
+
+.fix-size-62 {
+  width: 62rem !important;
+  height: 62rem !important;
 }
 
 .min-h-63 {
@@ -2407,6 +2717,11 @@ progress {
   max-width: 63% !important;
 }
 
+.fix-size-63 {
+  width: 63rem !important;
+  height: 63rem !important;
+}
+
 .min-h-64 {
   min-height: 64rem !important;
 }
@@ -2436,6 +2751,11 @@ progress {
 .fix-wp-64 {
   min-width: 64% !important;
   max-width: 64% !important;
+}
+
+.fix-size-64 {
+  width: 64rem !important;
+  height: 64rem !important;
 }
 
 .min-h-65 {
@@ -2469,6 +2789,11 @@ progress {
   max-width: 65% !important;
 }
 
+.fix-size-65 {
+  width: 65rem !important;
+  height: 65rem !important;
+}
+
 .min-h-66 {
   min-height: 66rem !important;
 }
@@ -2498,6 +2823,11 @@ progress {
 .fix-wp-66 {
   min-width: 66% !important;
   max-width: 66% !important;
+}
+
+.fix-size-66 {
+  width: 66rem !important;
+  height: 66rem !important;
 }
 
 .min-h-67 {
@@ -2531,6 +2861,11 @@ progress {
   max-width: 67% !important;
 }
 
+.fix-size-67 {
+  width: 67rem !important;
+  height: 67rem !important;
+}
+
 .min-h-68 {
   min-height: 68rem !important;
 }
@@ -2560,6 +2895,11 @@ progress {
 .fix-wp-68 {
   min-width: 68% !important;
   max-width: 68% !important;
+}
+
+.fix-size-68 {
+  width: 68rem !important;
+  height: 68rem !important;
 }
 
 .min-h-69 {
@@ -2593,6 +2933,11 @@ progress {
   max-width: 69% !important;
 }
 
+.fix-size-69 {
+  width: 69rem !important;
+  height: 69rem !important;
+}
+
 .min-h-70 {
   min-height: 70rem !important;
 }
@@ -2622,6 +2967,11 @@ progress {
 .fix-wp-70 {
   min-width: 70% !important;
   max-width: 70% !important;
+}
+
+.fix-size-70 {
+  width: 70rem !important;
+  height: 70rem !important;
 }
 
 .min-h-71 {
@@ -2655,6 +3005,11 @@ progress {
   max-width: 71% !important;
 }
 
+.fix-size-71 {
+  width: 71rem !important;
+  height: 71rem !important;
+}
+
 .min-h-72 {
   min-height: 72rem !important;
 }
@@ -2684,6 +3039,11 @@ progress {
 .fix-wp-72 {
   min-width: 72% !important;
   max-width: 72% !important;
+}
+
+.fix-size-72 {
+  width: 72rem !important;
+  height: 72rem !important;
 }
 
 .min-h-73 {
@@ -2717,6 +3077,11 @@ progress {
   max-width: 73% !important;
 }
 
+.fix-size-73 {
+  width: 73rem !important;
+  height: 73rem !important;
+}
+
 .min-h-74 {
   min-height: 74rem !important;
 }
@@ -2746,6 +3111,11 @@ progress {
 .fix-wp-74 {
   min-width: 74% !important;
   max-width: 74% !important;
+}
+
+.fix-size-74 {
+  width: 74rem !important;
+  height: 74rem !important;
 }
 
 .min-h-75 {
@@ -2779,6 +3149,11 @@ progress {
   max-width: 75% !important;
 }
 
+.fix-size-75 {
+  width: 75rem !important;
+  height: 75rem !important;
+}
+
 .min-h-76 {
   min-height: 76rem !important;
 }
@@ -2808,6 +3183,11 @@ progress {
 .fix-wp-76 {
   min-width: 76% !important;
   max-width: 76% !important;
+}
+
+.fix-size-76 {
+  width: 76rem !important;
+  height: 76rem !important;
 }
 
 .min-h-77 {
@@ -2841,6 +3221,11 @@ progress {
   max-width: 77% !important;
 }
 
+.fix-size-77 {
+  width: 77rem !important;
+  height: 77rem !important;
+}
+
 .min-h-78 {
   min-height: 78rem !important;
 }
@@ -2870,6 +3255,11 @@ progress {
 .fix-wp-78 {
   min-width: 78% !important;
   max-width: 78% !important;
+}
+
+.fix-size-78 {
+  width: 78rem !important;
+  height: 78rem !important;
 }
 
 .min-h-79 {
@@ -2903,6 +3293,11 @@ progress {
   max-width: 79% !important;
 }
 
+.fix-size-79 {
+  width: 79rem !important;
+  height: 79rem !important;
+}
+
 .min-h-80 {
   min-height: 80rem !important;
 }
@@ -2932,6 +3327,11 @@ progress {
 .fix-wp-80 {
   min-width: 80% !important;
   max-width: 80% !important;
+}
+
+.fix-size-80 {
+  width: 80rem !important;
+  height: 80rem !important;
 }
 
 .min-h-81 {
@@ -2965,6 +3365,11 @@ progress {
   max-width: 81% !important;
 }
 
+.fix-size-81 {
+  width: 81rem !important;
+  height: 81rem !important;
+}
+
 .min-h-82 {
   min-height: 82rem !important;
 }
@@ -2994,6 +3399,11 @@ progress {
 .fix-wp-82 {
   min-width: 82% !important;
   max-width: 82% !important;
+}
+
+.fix-size-82 {
+  width: 82rem !important;
+  height: 82rem !important;
 }
 
 .min-h-83 {
@@ -3027,6 +3437,11 @@ progress {
   max-width: 83% !important;
 }
 
+.fix-size-83 {
+  width: 83rem !important;
+  height: 83rem !important;
+}
+
 .min-h-84 {
   min-height: 84rem !important;
 }
@@ -3056,6 +3471,11 @@ progress {
 .fix-wp-84 {
   min-width: 84% !important;
   max-width: 84% !important;
+}
+
+.fix-size-84 {
+  width: 84rem !important;
+  height: 84rem !important;
 }
 
 .min-h-85 {
@@ -3089,6 +3509,11 @@ progress {
   max-width: 85% !important;
 }
 
+.fix-size-85 {
+  width: 85rem !important;
+  height: 85rem !important;
+}
+
 .min-h-86 {
   min-height: 86rem !important;
 }
@@ -3118,6 +3543,11 @@ progress {
 .fix-wp-86 {
   min-width: 86% !important;
   max-width: 86% !important;
+}
+
+.fix-size-86 {
+  width: 86rem !important;
+  height: 86rem !important;
 }
 
 .min-h-87 {
@@ -3151,6 +3581,11 @@ progress {
   max-width: 87% !important;
 }
 
+.fix-size-87 {
+  width: 87rem !important;
+  height: 87rem !important;
+}
+
 .min-h-88 {
   min-height: 88rem !important;
 }
@@ -3180,6 +3615,11 @@ progress {
 .fix-wp-88 {
   min-width: 88% !important;
   max-width: 88% !important;
+}
+
+.fix-size-88 {
+  width: 88rem !important;
+  height: 88rem !important;
 }
 
 .min-h-89 {
@@ -3213,6 +3653,11 @@ progress {
   max-width: 89% !important;
 }
 
+.fix-size-89 {
+  width: 89rem !important;
+  height: 89rem !important;
+}
+
 .min-h-90 {
   min-height: 90rem !important;
 }
@@ -3242,6 +3687,11 @@ progress {
 .fix-wp-90 {
   min-width: 90% !important;
   max-width: 90% !important;
+}
+
+.fix-size-90 {
+  width: 90rem !important;
+  height: 90rem !important;
 }
 
 .min-h-91 {
@@ -3275,6 +3725,11 @@ progress {
   max-width: 91% !important;
 }
 
+.fix-size-91 {
+  width: 91rem !important;
+  height: 91rem !important;
+}
+
 .min-h-92 {
   min-height: 92rem !important;
 }
@@ -3304,6 +3759,11 @@ progress {
 .fix-wp-92 {
   min-width: 92% !important;
   max-width: 92% !important;
+}
+
+.fix-size-92 {
+  width: 92rem !important;
+  height: 92rem !important;
 }
 
 .min-h-93 {
@@ -3337,6 +3797,11 @@ progress {
   max-width: 93% !important;
 }
 
+.fix-size-93 {
+  width: 93rem !important;
+  height: 93rem !important;
+}
+
 .min-h-94 {
   min-height: 94rem !important;
 }
@@ -3366,6 +3831,11 @@ progress {
 .fix-wp-94 {
   min-width: 94% !important;
   max-width: 94% !important;
+}
+
+.fix-size-94 {
+  width: 94rem !important;
+  height: 94rem !important;
 }
 
 .min-h-95 {
@@ -3399,6 +3869,11 @@ progress {
   max-width: 95% !important;
 }
 
+.fix-size-95 {
+  width: 95rem !important;
+  height: 95rem !important;
+}
+
 .min-h-96 {
   min-height: 96rem !important;
 }
@@ -3428,6 +3903,11 @@ progress {
 .fix-wp-96 {
   min-width: 96% !important;
   max-width: 96% !important;
+}
+
+.fix-size-96 {
+  width: 96rem !important;
+  height: 96rem !important;
 }
 
 .min-h-97 {
@@ -3461,6 +3941,11 @@ progress {
   max-width: 97% !important;
 }
 
+.fix-size-97 {
+  width: 97rem !important;
+  height: 97rem !important;
+}
+
 .min-h-98 {
   min-height: 98rem !important;
 }
@@ -3490,6 +3975,11 @@ progress {
 .fix-wp-98 {
   min-width: 98% !important;
   max-width: 98% !important;
+}
+
+.fix-size-98 {
+  width: 98rem !important;
+  height: 98rem !important;
 }
 
 .min-h-99 {
@@ -3523,6 +4013,11 @@ progress {
   max-width: 99% !important;
 }
 
+.fix-size-99 {
+  width: 99rem !important;
+  height: 99rem !important;
+}
+
 .min-h-100 {
   min-height: 100rem !important;
 }
@@ -3552,6 +4047,11 @@ progress {
 .fix-wp-100 {
   min-width: 100% !important;
   max-width: 100% !important;
+}
+
+.fix-size-100 {
+  width: 100rem !important;
+  height: 100rem !important;
 }
 
 .lead {
@@ -9091,7 +9591,7 @@ textarea.form-control-lg {
 .carousel-fade .active.carousel-item-end {
   z-index: 0;
   opacity: 0;
-  transition: opacity 0s 0.6s;
+  transition: opacity 0.6s 0.6s;
 }
 @media (prefers-reduced-motion: reduce) {
   .carousel-fade .active.carousel-item-start,
@@ -9197,7 +9697,7 @@ textarea.form-control-lg {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   opacity: 0.5;
-  transition: opacity 0.6s ease;
+  transition: opacity 10s ease;
 }
 @media (prefers-reduced-motion: reduce) {
   .carousel-indicators [data-bs-target] {

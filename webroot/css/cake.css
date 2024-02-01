@@ -218,6 +218,16 @@ th {
 
 .account-link { position: absolute; right: 10px; }
 
+.delete-image-button {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: -25px;
+    left: -25px;
+    border: none;
+}
+
 @media screen and (max-width: 640px) {
     .top-nav {
         margin: 0 auto;
