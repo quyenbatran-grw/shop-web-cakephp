@@ -20,19 +20,19 @@
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($productInventory->id) ?></td>
+                    <td><?= number_format($productInventory->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Unit Price') ?></th>
-                    <td><?= $this->Number->format($productInventory->unit_price) ?></td>
+                    <td><?= number_format($productInventory->unit_price) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Quantity') ?></th>
-                    <td><?= $this->Number->format($productInventory->quantity) ?></td>
+                    <td><?= number_format($productInventory->quantity) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Date') ?></th>
-                    <td><?= h($productInventory->date) ?></td>
+                    <td><?= h($productInventory->date->i18nFormat('Y/MM/dd')) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Memo') ?></th>

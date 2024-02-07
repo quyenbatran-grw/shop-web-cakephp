@@ -18,6 +18,7 @@ use Cake\ORM\Entity;
  * @property string|null $last_name
  * @property string|null $address
  * @property string|null $tel
+ * @property int $point
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $updated
  */
@@ -41,6 +42,7 @@ class User extends Entity
         'last_name' => true,
         'address' => true,
         'tel' => true,
+        'point' => true,
         'full_name' => true,
         'created' => true,
         'updated' => true,

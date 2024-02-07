@@ -26,10 +26,18 @@ class ProductsController extends AppController
         $this->paginate += [
             'contain' => ['Categories'],
         ];
-        $products = $this->Products->find('valid');
+        $searchParam = $this->request->getData();
+        $products = $this->Products->find('search', ['search' => $searchParam])->find('valid');
         $products = $this->paginate($products);
 
-        $this->set(compact('products'));
+        $categoryList = $this->Products->Categories->find()
+            ->combine('id', 'name')
+            ->toArray();
+        $categoryList = ['All'] + $categoryList;
+
+        $this->sendNotify();
+
+        $this->set(compact('products', 'categoryList', 'searchParam'));
     }
 
     /**
@@ -198,5 +206,47 @@ class ProductsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    private function sendNotify() {
+        $FIREBASE_API_KEY = "AAAAFkT__IQ:APA91bGmZt6pTEszdNQfAtAUySHXQHPi15ppxogks1QpCoPt8efpngzUoCnPKw-TZv0DMDnmDMCTEpo01KcH9KUXj0nun_6k-6VIMZ-30SPqeOwqUt-xF-2FFHPWswhb8Bu568tUsVj7";
+        $device_token = 'fARpDTXbSEpCnlFX9mcklR:APA91bEek68XOlXNL5zbdw649po1XBy_I9p9hbtM3FmmoaU7wKTD6xF1WgoiIsnyDksDRo7MjndeXxbrh4lTrfaDZazx_crjFnlBh-GTWmOt9PmpzEcKrHro3O5mz_V8MMYlIoukuSim';
+        $end_point = "https://fcm.googleapis.com/fcm/send";
+        $headers = array(
+            'Authorization: key=' . $FIREBASE_API_KEY,
+            'Content-Type: application/json'
+        );
+
+        $data = array(
+            "to" => $device_token
+        ,	"notification" => array(
+                "body" => 'Immediate Order'
+            ,	"title" => 'Order'
+            ,	"badge" => 1
+            ,	"sound" => "default",
+            )
+        ,	"data" => array(
+                "body" => "AAAA"
+            ,	"title" => "TEST"
+            )
+        ,	"apns" => [
+                "payload" => [
+                    "aps" => [
+                        "sound" => "default",
+                        "badge" => 1
+                    ],
+                ],
+            ],
+        );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $end_point);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        $push_result = curl_exec($ch);
+        var_dump($push_result);
+        curl_close($ch);
     }
 }

@@ -5,7 +5,7 @@
  */
 ?>
 <div class="users index content">
-    <h3><?= __('Admin Users') ?></h3>
+    <h3><?= __('Admin Home Page') ?></h3>
 
     <?php
     echo $this->Html->link('Add Master', 'admin/masters', [
@@ -33,6 +33,12 @@
 
     <?php
     echo $this->Html->link('Manage Order', 'admin/orders', [
+        'class' => 'btn btn-primary'
+    ]);
+    ?>
+
+    <?php
+    echo $this->Html->link('Manage User', 'admin/list', [
         'class' => 'btn btn-primary'
     ]);
     ?>

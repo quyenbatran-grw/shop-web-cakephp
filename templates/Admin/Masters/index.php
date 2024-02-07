@@ -29,7 +29,7 @@
                     <td><?= $this->Number->format($master->rank) ?></td>
                     <!-- <td><?= h($master->created) ?></td> -->
                     <!-- <td><?= h($master->modified) ?></td> -->
-                    <td class="actions">
+                    <td class="actions text-center">
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $master->id], ['class' => 'float-end', 'confirm' => __('Are you sure you want to delete # {0}?', $master->id)]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $master->id], ['class' => 'float-end']) ?>
                         <?= $this->Html->link(__('View'), ['action' => 'view', $master->id], ['class' => 'float-end']) ?>

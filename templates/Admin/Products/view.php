@@ -17,7 +17,7 @@
             <table class="table">
                 <tr>
                     <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($product->id) ?></td>
+                    <td><?= number_format($product->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Name') ?></th>
@@ -28,12 +28,12 @@
                     <td><?= $product->has('category') ? $this->Html->link($product->category->name, ['controller' => 'Categories', 'action' => 'view', $product->category->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Quantity') ?></th>
-                    <td><?= $this->Number->format($product->quantity) ?></td>
+                    <th><?= __('Made In') ?></th>
+                    <td><?= $product->made_name ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Unit Price') ?></th>
-                    <td><?= $this->Number->format($product->unit_price) ?></td>
+                    <th><?= __('Sponsor') ?></th>
+                    <td><?= $product->sponsor_name ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Description') ?></th>

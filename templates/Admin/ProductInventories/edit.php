@@ -4,6 +4,9 @@
  * @var \App\Model\Entity\ProductInventory $productInventory
  * @var string[]|\Cake\Collection\CollectionInterface $products
  */
+
+use App\Model\Entity\ProductInventory;
+
 ?>
 <div class="row">
     <aside class="column">
@@ -20,7 +23,7 @@
             </fieldset>
             <table class="table">
                 <tr>
-                    <th class="w-25"><?= __('Product') ?></th>
+                    <th class="w-25"><?= __('Product*') ?></th>
                     <td>
                         <?=$this->Form->control('product_id', [
                             'options' => $products,
@@ -31,17 +34,29 @@
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?= __('Date') ?></th>
+                    <th class="w-25"><?= __('Date*') ?></th>
                     <td>
                         <?=$this->Form->date('date', [
                             'class' => 'form-control',
+                            'required' => true,
                             'label' => false
                         ]);?>
                     </td>
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?= __('Unit Price') ?></th>
+                    <th class="w-25"><?= __('Expired Date') ?></th>
+                    <td>
+                        <?=$this->Form->date('expired_date', [
+                            'class' => 'form-control',
+                            'required' => false,
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('Unit Price*') ?></th>
                     <td>
                         <?=$this->Form->control('unit_price', [
                             'class' => 'form-control',
@@ -51,11 +66,22 @@
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?= __('Quantity') ?></th>
+                    <th class="w-25"><?= __('Quantity*') ?></th>
                     <td>
                         <?=$this->Form->control('quantity', [
                             'class' => 'form-control',
                             'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('Unit*') ?></th>
+                    <td>
+                        <?=$this->Form->control('unit', [
+                            'class' => 'form-select',
+                            'label' => false,
+                            'options' => ProductInventory::$units
                         ]);?>
                     </td>
                 </tr>

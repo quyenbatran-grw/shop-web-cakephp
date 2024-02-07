@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 use App\Model\Entity\Product;
 use App\Model\Entity\ProductInventory;
+use Cake\I18n\FrozenTime;
 
 /**
  * ProductInventories Controller
@@ -24,12 +25,13 @@ class ProductInventoriesController extends AppController
         $this->paginate += [
             'contain' => ['Products'],
         ];
+        $searchParam = $this->request->getData();
         $productInventories = $this->ProductInventories
-        ->find()
+        ->find('search', ['search' => $searchParam])
         ->order(['product_id', 'date' => 'DESC']);
         $productInventories = $this->paginate($productInventories);
 
-        $this->set(compact('productInventories'));
+        $this->set(compact('productInventories', 'searchParam'));
     }
 
     /**
@@ -86,7 +88,9 @@ class ProductInventoriesController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $productInventory = $this->ProductInventories->patchEntity($productInventory, $this->request->getData());
+            $requestData = $this->request->getData();
+            $requestData['date'] = FrozenTime::parse($requestData['date'] . FrozenTime::now()->i18nFormat(' HH:mm:ss'));
+            $productInventory = $this->ProductInventories->patchEntity($productInventory, $requestData);
             if ($this->ProductInventories->save($productInventory)) {
                 $this->Flash->success(__('The product inventory has been saved.'));
 

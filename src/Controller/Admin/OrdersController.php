@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Model\Entity\Order;
+use Cake\I18n\Number;
 use Cake\ORM\Query;
 
 /**
@@ -22,9 +23,12 @@ class OrdersController extends AppController
      */
     public function index()
     {
-        $orders = $this->paginate($this->Orders);
+        $searchParam = $this->request->getData();
+        $orders = $this->Orders->find('search', ['search' => $searchParam])
+            ->order(['status' => 'ASC', 'immediate' => 'DESC', 'created' => 'ASC']);
+        $orders = $this->paginate($orders);
 
-        $this->set(compact('orders'));
+        $this->set(compact('orders', 'searchParam'));
     }
 
     /**
@@ -97,6 +101,17 @@ class OrdersController extends AppController
         if(!empty($order)) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
             if($this->Orders->save($order)) {
+                if($order->status == Order::DELIVERED) {
+                    // ポイント計算
+                    $amount = $order->order_amount;
+                    $point = floor($amount / 100000);
+                    $user = $this->Orders->Users->find()
+                        ->where(['id' => $order->user_id])
+                        ->firstOrFail();
+                    if(!empty($user->point)) $point = $point + intval($user->point);
+                    $user->set('point', $point);
+                    $this->Orders->Users->save($user);
+                }
                 $this->Flash->success(__('The order has been updated.'));
             } else {
                 $this->Flash->error(__('The order count not be saved.'));

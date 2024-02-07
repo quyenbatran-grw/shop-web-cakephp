@@ -1,6 +1,6 @@
 <div class="menu-link-list">
 <?=$this->Html->link(
-    '<i class="bi bi-caret-left"></i>Category',
+    '<i class="bi bi-caret-left"></i>Back',
     ['controller' => 'Pages', 'action' => 'index'],
     ['escape' => false, 'escapeTitle' => false]
 );?>
@@ -46,22 +46,23 @@
                 <img src="<?=$image_url?>" style="width: 100px" alt="">
             </div>
             <div class="p-2 bd-highlight w-100">
-                <h2><?=$product->name?></h2>
+                <h3><?=$product->name?></h3>
                 <div class="row">
-                    <div class="col">Price</div>
-                    <div class="col text-end"><?=$price?></div>
+                    <div class="col fs-5">Price</div>
+                    <div class="col fs-5 text-end"><?=$price?></div>
                 </div>
 
                 <div class="row">
-                    <div class="col">Quantity</div>
+                    <div class="col fs-5">Quantity</div>
                     <div class="col">
                     <?=$this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
                     <?=$this->Form->hidden('category_id', ['value' => $product->category_id]);?>
                     <?=$this->Form->hidden('product_id', ['value' => $product->id]);?>
-                    <?=$this->Form->control('quantity', [
+                    <?=$this->Form->control('quantity['.$product->id.']', [
                         'type' => 'select',
                         'label' => false,
-                        'class' => 'form-control text-center ms-2 w-75 float-end',
+                        'class' => 'form-control text-center ms-2 w-75 float-end change-quantity',
+                        'value' => $product->quantity,
                         'options' => $product->quantity_stocks,
                     ])?>
                     <?=$this->Form->end();?>
@@ -85,23 +86,32 @@
 
                 </div>
             </div>
-
         </div>
-
-
-
-
-
-
         <?php
             }
         ?>
         <hr>
         <div class="d-flex flex-row">
-            <div class="p-2 bd-highlight">
-                    Total
+            <div class="ps-2 bd-highlight fs-5">Amount</div>
+            <div class="pe-2 bd-highlight w-100">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col text-end"><?=number_format($total_amount)?></div>
+                </div>
             </div>
-            <div class="p-2 bd-highlight w-100">
+        </div>
+        <div class="d-flex flex-row">
+            <div class="ps-2 bd-highlight fs-5">VAT(10%)</div>
+            <div class="pe-2 bd-highlight w-100">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col text-end fs-5">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="ps-2 bd-highlight fs-5">Total</div>
+            <div class="pe-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
                     <div class="col text-end"><?=number_format($total_amount)?></div>
@@ -110,8 +120,8 @@
         </div>
         <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-confirm']]);?>
         <div class="row justify-content-around mt-5">
-            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary col-3', 'onclick' => 'history.back()']) ?>
-            <?= $this->Form->button('Next', ['type' => 'submit', 'class' => 'btn btn-primary col-3']); ?>
+            <?= $this->Html->link(__('Back'), ['action' => '/'], ['class' => 'btn btn-secondary col-3']) ?>
+            <?= $this->Form->button('Next', ['type' => 'submit', 'class' => 'btn btn-primary col-3 ' . ($total_amount == 0 ? 'disabled' : '')]); ?>
         </div>
         <?= $this->Form->end() ?>
         <?php

@@ -21,6 +21,23 @@
             elm.addEventListener('click', removeUploadedImg)
         });
 
+        // 配達日時変更
+        btnAction = document.querySelector('input[name="delivery_date"]');
+        if(btnAction) btnAction.addEventListener('change', changeDeliveryDate);
+
+        btnAction = document.querySelector('select[name="delivery_hour_start"]');
+        if(btnAction) btnAction.addEventListener('change', changeDeliveryDate);
+
+        btnAction = document.querySelector('select[name="delivery_hour_end"]');
+        if(btnAction) btnAction.addEventListener('change', changeDeliveryDate);
+
+        // 緊急配達依頼
+        btnAction = document.querySelector('input[name="immediate"]');
+        if(btnAction) btnAction.addEventListener('change', changeImmediateFlg);
+
+        // キャンセルボタン押下で確認モーダル表示
+
+
         let cards = document.querySelectorAll('.card');
         if(cards) {
             cards.forEach((card, k) => {
@@ -133,7 +150,7 @@
     }
 
     function updateCartQuantity() {
-        let quantityElements = document.querySelectorAll('.cart-list select[name="quantity"]');
+        let quantityElements = document.querySelectorAll('.cart-list select.change-quantity');
         if(quantityElements) {
             quantityElements.forEach((v, k) => {
                 v.addEventListener('change', (e) => {
@@ -325,8 +342,81 @@
      * @param HtmlElement e
      */
     function cardRedirectUrl(e) {
-        let parentForm = e.target.closest('form').submit();
-        console.log('cardRedirectUrl', parentForm);
+        if(e.target.closest('form')) e.target.closest('form').submit();
+    }
+
+    /**
+     * 配送日時変更
+     * @param {*} e
+     */
+    function changeDeliveryDate(e) {
+        console.log(e.target.value)
+        if(e.target.name == 'delivery_date') {
+            // 日付変更
+            let today = moment().format('YYYY-MM-DD');
+            if(e.target.value < today) e.target.value = today
+            else {
+                let start_time = moment().add(1, 'H').format('HH');
+                let end_time = moment().add(2, 'H').format('HH');
+                document.querySelector('select[name="delivery_hour_start"]').value = start_time;
+                document.querySelector('select[name="delivery_hour_end"]').value = end_time;
+                document.querySelectorAll('select[name="delivery_hour_start"] option').forEach((elm) => {
+                    elm.disabled = false;
+                    if(e.target.value == today && elm.value < start_time) elm.disabled = true;
+                });
+                document.querySelectorAll('select[name="delivery_hour_end"] option').forEach((elm) => {
+                    elm.disabled = false;
+                    if(e.target.value == today && elm.value < start_time) elm.disabled = true;
+                });
+            }
+        } else if(e.target.name == 'delivery_hour_start' || e.target.name == 'delivery_hour_end') {
+            let start_time = document.querySelector('select[name="delivery_hour_start"]').value;
+            let end_time = document.querySelector('select[name="delivery_hour_end"]').value;
+            console.log('start_time', start_time)
+            console.log('end_time', end_time)
+            if(start_time > end_time) document.querySelector('select[name="delivery_hour_end"]').classList.add('border', 'border-danger');
+            else document.querySelector('select[name="delivery_hour_end"]').classList.remove('border', 'border-danger');
+        }
+        // var start_hour, start_min;
+        // let current_time = moment().format('YYYY-MM-DD HH:mm');
+
+        // let delivery_type = document.querySelector('input[name="delivery_type"]:checked').value;
+        // if(delivery_type == 1) {
+        //     start_hour = moment().add(60, 'm').format('HH');
+        //     start_min = moment().add(60, 'm').format('mm');
+        // } else {
+        //     start_hour = moment().add(30, 'm').format('HH');
+        //     start_min = moment().add(30, 'm').format('mm');
+        // }
+        // document.querySelector('select[name="delivery_hour_start"]').value = start_hour;
+        // document.querySelector('select[name="delivery_min_start"]').value = start_min;
+        // document.querySelector('select[name="delivery_hour_end"]').value = start_hour;
+        // document.querySelector('select[name="delivery_min_end"]').value = start_min;
+        // let delivery_date = e.target.value;
+        // current_time.setMinutes(current_time.getMinutes + 30);
+        // var check_time = current_time.getFullYear() + '-' + ('0' + (current_time.getMonth() + 1)).slice(-2) + '-' + ('0' + current_time.getDate()).slice(-2);
+        // check_time += current_time.getHours() + current_time.getMinutes();
+
+        // console.log('delivery_type', delivery_type)
+        // console.log('start_time', start_hour)
+        // console.log('start_min', start_min)
+    }
+
+    /**
+     * 緊急配送依頼の有無
+     * @param {*} e
+     */
+    function changeImmediateFlg(e) {
+        if(e.target.checked) {
+            document.querySelector('input[name="delivery_date"]').disabled = true;
+            document.querySelector('select[name="delivery_hour_start"]').disabled = true;
+            document.querySelector('select[name="delivery_hour_end"]').disabled = true;
+        } else {
+            document.querySelector('input[name="delivery_date"]').disabled = false;
+            document.querySelector('select[name="delivery_hour_start"]').disabled = false;
+            document.querySelector('select[name="delivery_hour_end"]').disabled = false;
+        }
+        console.log(e.target.checked)
     }
 
     /* コードの終了 */

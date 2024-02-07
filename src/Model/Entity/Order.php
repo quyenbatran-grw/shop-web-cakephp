@@ -15,8 +15,13 @@ use Cake\ORM\Entity;
  * @property string $order_address
  * @property string $order_tel
  * @property string $order_amount
+ * @property int $payment_point
  * @property string $payment_type
  * @property string|null $memo
+ * @property boolean $immediate
+ * @property int $delivery_type
+ * @property \Cake\I18n\FrozenTime $delivery_start_time
+ * @property \Cake\I18n\FrozenTime $delivery_end_time
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
@@ -33,32 +38,50 @@ class Order extends Entity
      *
      * @var array<string, bool>
      */
-    const PREPARING_STATUS = 0;
-    const PAID_STATUS = 1;
-    const DELIVERING_STATUS = 2;
-    const DELIVERED_STATUS = 3;
-    const CANCELED_STATUS = 4;
+    const PREPARING = 0;
+    const PAID = 1;
+    const DELIVERING = 2;
+    const DELIVERED = 3;
+    const CANCELED = 4;
     public static $statusList = [
-        self::PREPARING_STATUS => 'PREPARING'
-    ,   self::PAID_STATUS => 'PAID'
-    ,   self::DELIVERING_STATUS => 'DELIVERING'
-    ,   self::DELIVERED_STATUS => 'DELIVERED'
-    ,   self::CANCELED_STATUS => 'CANCELED'
+        self::PREPARING => 'PREPARING'
+    ,   self::PAID => 'PAID'
+    ,   self::DELIVERING => 'DELIVERING'
+    ,   self::DELIVERED => 'DELIVERED'
+    ,   self::CANCELED => 'CANCELED'
+    ];
+    public static $statusBackground = [
+        self::PREPARING => 'bg-danger'
+    ,   self::PAID => 'bg-warning'
+    ,   self::DELIVERING => 'bg-info'
+    ,   self::DELIVERED => 'bg-success'
+    ,   self::CANCELED => 'bg-secondary'
     ];
     protected $_accessible = [
         'order_number' => true,
+        'user_id' => true,
         'status' => true,
+        'status_name' => true,
         'order_name' => true,
         'order_address' => true,
         'order_tel' => true,
         'order_amount' => true,
+        'payment_point' => true,
         'payment_type' => true,
         'memo' => true,
+        'immediate' => true,
+        'delivery_type' => true,
+        'delivery_start_time' => true,
+        'delivery_end_time' => true,
         'created' => true,
         'modified' => true,
         'order_details' => true,
     ];
 
+    /**
+     * ステータス名称を取得
+     * @return string
+     */
     protected function _getStatusName() {
         return self::$statusList[$this->status];
     }

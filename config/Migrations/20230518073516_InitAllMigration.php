@@ -56,6 +56,12 @@ class InitAllMigration extends AbstractMigration
                 'limit' => 11,
                 'comment' => '電話番号'
             ])
+            ->addColumn('point', 'integer', [
+                'null' => false,
+                'default' => 0,
+                'limit' => 20,
+                'comment' => '貯まるポイント'
+            ])
             ->addColumn('created', 'datetime', [
                 'default' => 'CURRENT_TIMESTAMP',
                 'null' => true,
@@ -211,6 +217,11 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'comment' => 'stocking date'
             ])
+            ->addColumn('expired_date', 'date', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'expired date'
+            ])
             ->addColumn('unit_price', 'decimal', [
                 'default' => null,
                 'null' => false,
@@ -224,10 +235,11 @@ class InitAllMigration extends AbstractMigration
                 'limit' => 20,
                 'comment' => 'quantity of product'
             ])
-            ->addColumn('expired_date', 'date', [
-                'default' => null,
-                'null' => true,
-                'comment' => 'expired date'
+            ->addColumn('unit', 'integer', [
+                'default' => 0,
+                'null' => false,
+                'limit' => 11,
+                'comment' => 'unit of product'
             ])
             ->addColumn('memo', 'text', [
                 'default' => null,
@@ -322,6 +334,12 @@ class InitAllMigration extends AbstractMigration
                 'limit' => 20,
                 'comment' => 'id of user'
             ])
+            ->addColumn('user_id', 'biginteger', [
+                'default' => null,
+                'null' => true,
+                'limit' => 20,
+                'comment' => 'id of user'
+            ])
             ->addColumn('status', 'integer', [
                 'default' => 0,
                 'null' => false,
@@ -353,6 +371,12 @@ class InitAllMigration extends AbstractMigration
                 'scale' => 0,
                 'comment' => 'total price of order exclusive tax'
             ])
+            ->addColumn('payment_point', 'biginteger', [
+                'default' => null,
+                'null' => false,
+                'limit' => 20,
+                'comment' => 'point are used for payment'
+            ])
             ->addColumn('payment_type', 'integer', [
                 'default' => 1,
                 'null' => false,
@@ -363,6 +387,27 @@ class InitAllMigration extends AbstractMigration
                 'default' => null,
                 'null' => true,
                 'comment' => 'memo'
+            ])
+            ->addColumn('immediate', 'boolean', [
+                'default' => 0,
+                'null' => false,
+                'comment' => 'immediate'
+            ])
+            ->addColumn('delivery_type', 'integer', [
+                'default' => 0,
+                'null' => false,
+                'limit' => 3,
+                'comment' => 'delivery type'
+            ])
+            ->addColumn('delivery_start_time', 'datetime', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'delivery datetime'
+            ])
+            ->addColumn('delivery_end_time', 'datetime', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'delivery datetime'
             ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
@@ -375,6 +420,7 @@ class InitAllMigration extends AbstractMigration
                 'comment' => '更新日'
             ])
             ->addIndex('order_number', ['unique' => true])
+            ->addIndex('user_id')
             ->create();
 
 
@@ -391,12 +437,6 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'limit' => 20,
                 'comment' => 'id of product'
-            ])
-            ->addColumn('user_id', 'biginteger', [
-                'default' => 0,
-                'null' => false,
-                'limit' => 20,
-                'comment' => 'id of user'
             ])
             ->addColumn('quantity', 'string', [
                 'default' => null,
@@ -433,7 +473,7 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'comment' => '更新日'
             ])
-            ->addIndex(['order_id', 'product_id', 'user_id'])
+            ->addIndex(['order_id', 'product_id'])
             ->addIndex(['order_id', 'product_id'], ['unique' => true])
             // ->addForeignKey('product_id', 'products', 'id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             // ->addForeignKey('user_id', 'users', 'id')

@@ -79,6 +79,9 @@ class ProductInventoriesTable extends Table
             ->notEmptyString('quantity');
 
         $validator
+            ->notEmptyString('unit', REQUIRED_INPUT);
+
+        $validator
             ->scalar('memo')
             ->allowEmptyString('memo');
 
@@ -112,6 +115,44 @@ class ProductInventoriesTable extends Table
                 'callback' => function($query, $args, $filter) {
                     if($filter->value()) {
                         $query = $query->where(['product_id' => $filter->value()]);
+                    }
+                }
+            ])
+            ->callback('product_name', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['Products.name LIKE ' => '%'.$filter->value().'%']);
+                    }
+                }
+            ])
+            ->callback('start_date', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['date >=' => $filter->value()]);
+                    }
+                }
+            ])
+            ->callback('end_date', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $end_date = $filter->value() . ' 23:59:59';
+                        $query = $query->where(['date <=' => $end_date]);
+                    }
+                }
+            ])
+            ->callback('unit', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value() > 0) {
+                        if($filter->value() == 99) {
+                            $query = $query->where([
+                                'OR' => [
+                                    'unit' => $filter->value(),
+                                    'unit' => 0
+                                ]
+                            ]);
+                        } else {
+                            $query = $query->where(['unit' => $filter->value()]);
+                        }
                     }
                 }
             ]);

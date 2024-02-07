@@ -33,7 +33,7 @@ $cakeDescription = 'CakePHP';
     <?= $this->Html->css(['cake', 'home', 'bootstrap.min']) ?>
 
     <?= $this->Html->script('bootstrap.min', ['block' => true]); ?>
-    <?= $this->Html->script(['common', 'functions'], ['block' => true]); ?>
+    <?= $this->Html->script(['common', 'functions', 'moment'], ['block' => true]); ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -41,32 +41,6 @@ $cakeDescription = 'CakePHP';
 </head>
 <body>
     <header class="fixed-top">
-        <!-- <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white" href="#">Product Detail</a>
-                <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
-                <?= $this->Form->button('<i class="bi bi-cart3"></i><span class="badge bg-danger rounded-circle">'.$cart_quantity.'</span>', [
-                    'id' => 'cart-item',
-                    'type' => 'submit',
-                    'class' => 'border-0 bg-transparent text-white ms-5',
-                    'escapeTitle' => false,
-                ]); ?>
-                <?=$this->Form->end();?>
-                <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse bg-white" id="navbarSupportedContent">
-
-                    <div class="d-flex">
-                        <ul>
-                            <li><a href="/shops/login" class="nav-link">Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav> -->
-
-
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/shops">HOME</a>
@@ -114,8 +88,8 @@ $cakeDescription = 'CakePHP';
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
-        <?= $this->Form->button('<i class="bi bi-cart3"></i><span class="badge bg-danger rounded-circle cart-number">'.$cart_quantity.'</span>', [
+        <?=$this->Form->create(null, ['url' => '/shops/cart-list']);?>
+        <?= $this->Form->button(__('<i class="bi bi-cart3"></i>'.($cart_quantity ? '<span class="badge bg-danger rounded-circle cart-number">{0}</span>' : ''), $cart_quantity), [
             'id' => 'cart-item',
             'type' => 'submit',
             'class' => 'border-0 bg-transparent cart',
@@ -131,8 +105,11 @@ $cakeDescription = 'CakePHP';
     </main>
     <footer class="">
         <div class="text-center fs-8">
-            Copyright <?=date('Y')?><br>
-            Create by QUYENTB
+            AAAAA <br>
+            大阪府吹田市
+            <a href="tel:6031112298">6031112298</a> <br>
+            Create by QUYENTB @<?=date('Y')?><br>
+
         </div>
     </footer>
 </body>

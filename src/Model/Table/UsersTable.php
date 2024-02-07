@@ -44,6 +44,11 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Search.Search');
+
+        $this->hasMany('Orders', [
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**
@@ -110,5 +115,29 @@ class UsersTable extends Table
         // $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
 
         return $rules;
+    }
+
+    /**
+     * 検索条件で絞り込む
+     */
+    public function searchManager()
+    {
+        $searchManager = $this->behaviors()->Search->searchManager();
+        $searchManager
+            ->callback('first_name', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['first_name LIKE' => '%' . $filter->value() . '%']);
+                    }
+                }
+            ])
+            ->callback('last_name', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['last_name LIKE' => '%' . $filter->value() . '%']);
+                    }
+                }
+            ]);
+        return $searchManager;
     }
 }

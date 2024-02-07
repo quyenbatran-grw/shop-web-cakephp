@@ -40,18 +40,15 @@ $cakeDescription = 'CakePHP';
 </head>
 <body>
     <header class="fixed-top <?=!$auth || !$auth->role ? 'd-none' : ''?>">
-        <nav class="top-nav">
-            <!-- <div class="top-nav-title">
-                <a href="<?= $this->Url->build('/admin') ?>"><span>Cake</span>PHP</a>
-            </div> -->
-            <div class="top-nav-links">
-                <?php if($auth && $auth->role) { ?>
-                <a rel="noopener" href="<?= $this->Url->build('/admin') ?>">HOME</a>
-                <?php } else if($auth && !$auth->role) { ?>
-                <!-- <a rel="noopener" href="<?= $this->Url->build('/shops') ?>">HOME</a> -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/admin">HOME</a>
+                <?php if(!empty($auth)) { ?>
+                <a href="/admin/profiles" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
+                <?php } else { ?>
+                <a href="/shops/login/" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
                 <?php } ?>
-                <!-- <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a> -->
-            </div>
+            </div><!-- /.container-fluid -->
         </nav>
     </header>
     <main class="main">

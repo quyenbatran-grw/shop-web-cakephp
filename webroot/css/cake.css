@@ -144,10 +144,10 @@ th {
 }
 
 /* Forms */
-.input.radio,
+/* .input.radio,
 .input.checkbox {
     margin-bottom: 2.0rem;
-}
+} */
 .input.radio input,
 .input.checkbox input {
     margin: 0;
@@ -158,9 +158,10 @@ th {
     display: flex;
     align-items: center;
 }
-.input.radio label > input,
+.input.radio label > input { margin-right: 0.5rem;}
 .input.checkbox label > input {
-    margin-right: 1.0rem;
+    margin-right: 0.5rem;
+    transform: scale(1.5);
 }
 /* .input.radio label:first-of-type {
     margin-bottom: 2.0rem;

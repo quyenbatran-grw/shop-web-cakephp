@@ -74,30 +74,23 @@ class ShopsController extends AppController
     {
         $this->viewBuilder()->setLayout('shop');
         $categories = $this->Categories
-                        ->find()
-                        // ->innerJoinWith('Products', function(Query $query) {
-                        //     return $query
-                        //             ->innerJoinWith('ProductInventories', function(Query $query) {
-                        //                 return $query;
-                        //             });
-                        // })
-
-                        ->contain([
-                            'Products' => function(Query $query) {
-                                return $query
-                                        ->innerJoinWith('ProductInventories', function(Query $query) {
-                                            return $query;
-                                        })
-                                        ->contain(['ImageProducts']);
-                            }
-                        ])
-                        ->all()
-                        ->map(function($category) {
-                            // $result = $product_inventory;
-                            // $result['category']
-                            if(count($category->products)) return $category;
-                            return null;
-                        });
+            ->find()
+            ->contain([
+                'Products' => function(Query $query) {
+                    return $query
+                            ->innerJoinWith('ProductInventories', function(Query $query) {
+                                return $query;
+                            })
+                            ->contain(['ImageProducts']);
+                }
+            ])
+            ->all()
+            ->map(function($category) {
+                // $result = $product_inventory;
+                // $result['category']
+                if(count($category->products)) return $category;
+                return null;
+            });
                         // var_dump($categories->toArray());
         $image_products = $this->ImageProducts->find()->limit(3)->all();
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
@@ -118,20 +111,25 @@ class ShopsController extends AppController
         $this->viewBuilder()->setLayout('shop');
 
         $products = $this->Categories->Products
-                        ->find()
-                        ->contain([
-                            'ImageProducts',
-                            'ProductInventories' => function($query) {
-                                return $query
-                                    ->order(['ProductInventories.date' => 'DESC']);
-                            }
-                        ])
-                        ->where(['Products.category_id' => $id])
-                        ->all()
-                        ->map(function($product) {
-                            if(isset($product->product_inventories) && count($product->product_inventories)) return $product;
-                            return null;
-                        });
+            ->find()
+            ->contain([
+                'ImageProducts',
+                'ProductInventories' => function($query) {
+                    return $query
+                        ->order(['ProductInventories.date' => 'DESC']);
+                }
+            ])
+            ->where(['Products.category_id' => $id])
+            ->order(['Products.name'])
+            ->all()
+            ->toArray();
+        $product_arr = [];
+        $product_sold_out_arr = [];
+        foreach ($products as $product) {
+            if(count($product->product_inventories)) $product_arr[] = $product;
+            else $product_sold_out_arr[] = $product;
+        }
+        $products = array_merge($product_arr, $product_sold_out_arr);
 
         $quantity_stocks = $this->_getStockQuantity($id);
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
@@ -143,7 +141,8 @@ class ShopsController extends AppController
     /**
      * カートに商品を追加する
      * Product method
-     *
+     * @param int|null $id カテゴリーID
+     * @param int|null $product_id 商品ID
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function product($id = null, $product_id = null)
@@ -152,17 +151,21 @@ class ShopsController extends AppController
         $cart_quantity = '';
         $add_to_cart = false;
         $other_products = $this->Categories->Products
-        ->find()
-        ->contain([
-            'ImageProducts',
-            'ProductInventories' => function($query) {
-                return $query
-                    ->order(['ProductInventories.date' => 'DESC']);
-            },
-            'Categories'
-        ])
-        ->where(['Products.id <>' => $product_id])
-        ->toArray();
+            ->find()
+            ->contain([
+                'ImageProducts',
+                'ProductInventories' => function($query) {
+                    return $query
+                        ->order(['ProductInventories.date' => 'DESC']);
+                },
+                'Categories'
+            ])
+            ->where([
+                'Products.id <>' => $product_id,
+                'Products.category_id' => $id
+            ])
+            ->order(['Products.name'])
+            ->toArray();
         $product = $this->Categories->Products
             ->find()
             ->contain([
@@ -177,14 +180,9 @@ class ShopsController extends AppController
             ->firstOrFail();
         // 在庫の数
         $quantity_stocks = $this->_getStockQuantity($id, $product_id);
-        $stock_quantity = [];
+        $stock_quantity = range(0, $quantity_stocks[$product->id]);
+        unset($stock_quantity[0]);
 
-        if(isset($quantity_stocks[$product_id])) {
-            for($i = 1; $i <= $quantity_stocks[$product_id]; $i++) {
-                $stock_quantity[$i] = $i;
-            }
-        }
-        $quantity = $this->request->getData('quantity', null);
 
         $shopping_cart = $this->request->getCookie(self::COOKIE_NM);
         if(is_null($shopping_cart)) {
@@ -193,29 +191,32 @@ class ShopsController extends AppController
         } else {
             $shopping_cart = json_decode($shopping_cart, true);
         }
-        if(!is_null($quantity) && $stock_quantity >= $quantity) {
-            $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] = $quantity;
-            $cookie = (new Cookie(self::COOKIE_NM))
-                ->withValue($shopping_cart)
-                ->withExpiry(new DateTime('+1 year'))
-                ->withPath('/')
-                ->withDomain('localhost')
-                ->withSecure(false)
-                ->withSameSite(CookieInterface::SAMESITE_STRICT)
-                ->withHttpOnly(false);
-
-            $this->response = $this->response->withCookie($cookie);
-            $add_to_cart = true;
-        }
-        $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
+        // $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
 
 
-        $this->set(compact('product', 'cart_quantity', 'stock_quantity', 'add_to_cart', 'other_products'));
 
         if($this->request->is(['post', 'put'])) {
+            $quantity = $this->request->getData('quantity', null);
+            if(!is_null($quantity) && $quantity_stocks[$product->id] >= $quantity) {
+                if(isset($shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id])) $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] += $quantity;
+                else $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] = $quantity;
+                $cookie = (new Cookie(self::COOKIE_NM))
+                    ->withValue($shopping_cart)
+                    ->withExpiry(new DateTime('+1 year'))
+                    ->withPath('/')
+                    ->withDomain('localhost')
+                    ->withSecure(false)
+                    ->withSameSite(CookieInterface::SAMESITE_STRICT)
+                    ->withHttpOnly(false);
+
+                $this->response = $this->response->withCookie($cookie);
+                $add_to_cart = true;
+            }
             if($add_to_cart) $this->Flash->toast(MSG_0001);
             return $this->redirect(['controller' => 'Shops', 'action' => 'product', $id, $product_id]);
         }
+        $cart_quantity = $this->_getShoppingCartTotalQuantity($shopping_cart);
+        $this->set(compact('product', 'cart_quantity', 'stock_quantity', 'add_to_cart', 'other_products'));
         $this->render('product');
 
     }
@@ -234,12 +235,15 @@ class ShopsController extends AppController
         $cart_products = $this->_getProductsFromCart();
         $shopping_cart = null;
         if($this->request->is(['put', 'delete'])) {
-            $quantity = $this->request->getData('quantity', 0);
+            $quantity = $this->request->getData('quantity', null);
             $category_id = $this->request->getData('category_id', 0);
             $product_id = $this->request->getData('product_id', 0);
-            if(is_null($quantity)) unset($cart_products[$product_id]);
-            if(isset($cart_products[$product_id])) $cart_products[$product_id] = $quantity;
-            $shopping_cart = $this->_setShoppingProductCookie($category_id, $product_id, $quantity);
+            foreach ($quantity as $key => $value) {
+                $product_id = $key;
+                if(is_null($value)) unset($cart_products[$product_id]);
+                if(isset($cart_products[$product_id])) $cart_products[$product_id] = $value;
+                $shopping_cart = $this->_setShoppingProductCookie($category_id, $product_id, $value);
+            }
         }
         $products = null;
         // 在庫の数
@@ -302,11 +306,29 @@ class ShopsController extends AppController
     {
         $orderTable = $this->getTableLocator()->get('Orders');
         $order = $orderTable->newEmptyEntity();
+        $delivery_time = FrozenTime::now()->addMinute(60);
+        $order->set([
+            'delivery_datetime' => $delivery_time->i18nFormat('Y/MM/dd HH:mm:ss')
+        ]);
+        $order['delivery_date'] = $delivery_time->i18nFormat('Y/MM/dd');
+        $order['delivery_hour_start'] = $delivery_time->i18nFormat('HH');
+        $order['delivery_min_start'] = $delivery_time->i18nFormat('00');
+        $delivery_time = FrozenTime::now()->addMinute(120);
+        $order['delivery_hour_end'] = $delivery_time->i18nFormat('HH');
+        $order['delivery_min_end'] = $delivery_time->i18nFormat('00');
+
         $this->viewBuilder()->setLayout('shop');
         $customer = [];
         if($this->request->is(['post', 'put'])) {
             $customer = $this->request->getData();
             $this->_setShoppingCustomer($customer);
+        } else {
+            $customer = $this->_getShopingCustomerCookie();
+        }
+        $customer['point'] = 0;
+        if($this->Authentication->user) {
+            $user = $this->Users->get($this->Authentication->user->id);
+            $customer['point'] = $user->point < 0 ? 0 : $user->point;
         }
 
         $cart_products = $this->_getProductsFromCart();
@@ -330,7 +352,15 @@ class ShopsController extends AppController
             })
             ->toArray();
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
-        $this->set(compact('products', 'cart_quantity', 'customer', 'order'));
+        $hours = $this->_getSelectionRange();
+        $disable_hours = [];
+        foreach ($hours as $key => $value) {
+            $hours[$key] = $value.':00';
+            if($order['delivery_hour_start'] > $value) $disable_hours[] = $value;
+        }
+        // $minutes = $this->_getSelectionRange(0, 59);
+
+        $this->set(compact('products', 'cart_quantity', 'customer', 'order', 'hours', 'disable_hours'));
         $this->render('order_info');
     }
 
@@ -349,11 +379,38 @@ class ShopsController extends AppController
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
         if($this->request->is(['post', 'put'])) {
             if(!empty($cart_products) && $cart_quantity) {
+                // 配送時間をチェック
+                $requestData = $this->request->getData();
+                $delivery_type = $this->request->getData('delivery_type', 0);
+                $immediate = $this->request->getData('immediate', null);
+                $delivery_start_time = null;
+                $delivery_end_time = null;
+                if(is_null($immediate)) {
+                    // 日時チェック
+                    $delivery_date = FrozenTime::parse($this->request->getData('delivery_date'))->i18nFormat('Y/MM/dd');
+                    $delivery_time_start = $this->request->getData('delivery_hour_start') . ':00:00';
+                    $delivery_time_end = $this->request->getData('delivery_hour_end') . ':00:00';
+                    if($delivery_time_start > $delivery_time_end) {
+                        $this->Flash->error(MSG_2003);
+                        return $this->redirect(['controller' => 'Shops', 'action' => 'order-info']);
+                    }
+                    $check_time = FrozenTime::now()->i18nFormat('Y/MM/dd HH:mm:00');
+                    $delivery_start_time = __('{0} {1}', $delivery_date, $delivery_time_start);
+                    $delivery_end_time = __('{0} {1}', $delivery_date, $delivery_time_end);
+                    // var_dump($delivery_datetime);
+                    // var_dump($check_time);
+                    // exit();
+                    if($check_time > $delivery_start_time) {
+                        $this->Flash->error(MSG_2003);
+                        return $this->redirect(['controller' => 'Shops', 'action' => 'order-info']);
+                    }
+                }
+
                 $customer = $this->_getShopingCustomerCookie();
                 $user = $this->Authentication->user;
                 $associated = ['OrderDetails'];
                 $order_details = [];
-                $order = [];
+                $order = $requestData;
                 if(!empty($user)) $order['user_id'] = $user->id;
                 // 本日の最新注文番号を取得する
                 $today = FrozenDate::today()->i18nFormat('yyMMdd');
@@ -371,12 +428,22 @@ class ShopsController extends AppController
                 }
                 //保存データを整理
                 $order['order_number'] = $order_number;
-                $order['order_name'] = $customer['name'];
+                $order['order_name'] = $customer['full_name'];
                 $order['order_address'] = $customer['address'];
                 $order['order_tel'] = $customer['tel'];
                 $order['memo'] = $customer['memo'];
                 $order['order_amount'] = 0;
+                $order['payment_point'] = $this->request->getData('payment_point', 0);
                 $order['payment_type'] = $this->request->getData('payment', 1);
+                $order['user_id'] = null;
+                if(is_null($immediate)) {
+                    $order['delivery_start_time'] = FrozenTime::parse($delivery_start_time);
+                    $order['delivery_end_time'] = FrozenTime::parse($delivery_end_time);
+                }
+                if($this->Authentication && $this->Authentication->user) {
+                    $order['user_id'] = $this->Authentication->user->id;
+                    $user = $this->Users->get($this->Authentication->user->id);
+                }
                 foreach ($cart_products as $product_id => $quantity) {
                     $product = $this->Categories->Products->ProductInventories
                         ->find()
@@ -394,12 +461,21 @@ class ShopsController extends AppController
                     ];
                     $order['order_amount'] += $amount;
                 }
+                $order['order_amount'] -= $order['payment_point'];
                 $order['order_details'] = $order_details;
                 $orderEntity = $this->Orders->newEmptyEntity();
                 $orderEntity = $this->Orders->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
                 if($this->Orders->save($orderEntity)) {
+                    if(!empty($user)) {
+                        $point = $user->point - $order['payment_point'];
+                        $point = $point < 0 ? 0 : $point;
+                        $user = $this->Users->patchEntity($user, ['point' => $point]);
+                        $this->Users->save($user);
+                    }
+                    $this->sendNotify('NEW ORDER', __(MSG_0009, 'for immediation'));
                     // 注文データを保存できたらクッキーのデータを削除
                     $this->_deleteShoppingCookie();
+                    $cart_quantity = 0;
                 }
             }
             $this->_deleteShoppingCookie();
@@ -535,15 +611,20 @@ class ShopsController extends AppController
      * 購入商品クッキーを削除する
      */
     private function _deleteShoppingCookie() {
-        $cookie = (new Cookie(self::COOKIE_NM))
-                    ->withExpiry(new DateTime('-1 year'))
-                    ->withPath('/')
-                    ->withDomain('localhost')
-                    ->withSecure(false)
-                    ->withSameSite(CookieInterface::SAMESITE_STRICT)
-                    ->withHttpOnly(false);
+        $shopping_cart = $this->_getShoppingCookie(self::COOKIE_NM);
+        if(!is_null($shopping_cart)) {
+            unset($shopping_cart[self::PRODUCT_COOKIE_NM]);
+        }
+        $this->_setShoppingCookie(self::COOKIE_NM, $shopping_cart);
+        // $cookie = (new Cookie(self::COOKIE_NM))
+        //             ->withExpiry(new DateTime('-1 year'))
+        //             ->withPath('/')
+        //             ->withDomain('localhost')
+        //             ->withSecure(false)
+        //             ->withSameSite(CookieInterface::SAMESITE_STRICT)
+        //             ->withHttpOnly(false);
 
-        $this->response = $this->response->withCookie($cookie);
+        // $this->response = $this->response->withCookie($cookie);
     }
 
 
@@ -617,6 +698,51 @@ class ShopsController extends AppController
             $shopping_cart = isset($shopping_cart[self::CUSTOMER_COOKIE_NM]) ? $shopping_cart[self::CUSTOMER_COOKIE_NM] : null;
         }
         return $shopping_cart;
+    }
+
+    /**
+     * プッシュ通知を行う
+     */
+    private function sendNotify($title = '', $message = '') {
+        $FIREBASE_API_KEY = "AAAAFkT__IQ:APA91bGmZt6pTEszdNQfAtAUySHXQHPi15ppxogks1QpCoPt8efpngzUoCnPKw-TZv0DMDnmDMCTEpo01KcH9KUXj0nun_6k-6VIMZ-30SPqeOwqUt-xF-2FFHPWswhb8Bu568tUsVj7";
+        $device_token = 'fARpDTXbSEpCnlFX9mcklR:APA91bEek68XOlXNL5zbdw649po1XBy_I9p9hbtM3FmmoaU7wKTD6xF1WgoiIsnyDksDRo7MjndeXxbrh4lTrfaDZazx_crjFnlBh-GTWmOt9PmpzEcKrHro3O5mz_V8MMYlIoukuSim';
+        $end_point = "https://fcm.googleapis.com/fcm/send";
+        $headers = array(
+            'Authorization: key=' . $FIREBASE_API_KEY,
+            'Content-Type: application/json'
+        );
+        if(!empty($title) && !empty($message)) {
+            $data = array(
+                "to" => $device_token
+            ,	"notification" => array(
+                    "body" => $message
+                ,	"title" => $title
+                ,	"badge" => 1
+                ,	"sound" => "default",
+                )
+            ,	"data" => array(
+                    "body" => "AAAA"
+                ,	"title" => "TEST"
+                )
+            ,	"apns" => [
+                    "payload" => [
+                        "aps" => [
+                            "sound" => "default",
+                            "badge" => 1
+                        ],
+                    ],
+                ],
+            );
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $end_point);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            $push_result[] = curl_exec($ch);
+            curl_close($ch);
+        }
     }
 
 

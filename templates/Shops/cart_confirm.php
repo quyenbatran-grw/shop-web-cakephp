@@ -1,7 +1,7 @@
 <div class="menu-link-list">
 <?=$this->Html->link(
-    '<i class="bi bi-caret-left"></i>Category',
-    ['controller' => 'Pages', 'action' => 'index'],
+    '<i class="bi bi-caret-left"></i>Back',
+    ['controller' => 'Shops', 'action' => 'cart_list'],
     ['escape' => false, 'escapeTitle' => false]
 );?>
 </div>
@@ -29,7 +29,7 @@
     <div><?=__(MSG_0003)?></div>
     <div >
         <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'order-info']]);?>
-        <?=$this->Form->control('name', [
+        <?=$this->Form->control('full_name', [
             'type' => 'text',
             'class' => 'form-control',
             'label' => 'Contact Name※',
@@ -57,7 +57,7 @@
             'value' => $customer && $customer['memo'] ? $customer['memo'] : ''
         ]);?>
         <div class="row justify-content-around mt-5">
-            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary col-3', 'onclick' => 'history.back()']) ?>
+            <?= $this->Html->link(__('Back'), ['action' => '/cart-list'], ['class' => 'btn btn-secondary col-3']) ?>
             <?= $this->Form->button('Next', ['class' => 'btn btn-primary col-3']); ?>
         </div>
         <?=$this->Form->end();?>

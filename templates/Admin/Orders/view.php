@@ -34,10 +34,6 @@
                     <th><?= __('Order Tel') ?></th>
                     <td><?= h($order->order_tel) ?></td>
                 </tr>
-                <!-- <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($order->id) ?></td>
-                </tr> -->
                 <tr>
                     <th><?= __('Status') ?></th>
                     <td>
@@ -55,11 +51,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Order Amount') ?></th>
-                    <td><?= $this->Number->format($order->order_amount) ?></td>
+                    <td><?= number_format($order->order_amount) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>
-                    <td><?= h($order->created) ?></td>
+                    <td><?= h($order->created->i18nFormat('Y/MM/dd HH:mm')) ?></td>
                 </tr>
                 <!-- <tr>
                     <th><?= __('Modified') ?></th>

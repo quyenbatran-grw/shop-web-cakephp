@@ -36,7 +36,7 @@ use DateTime;
 class AppController extends Controller
 {
     public $paginate = [
-        'limit' => 20
+        'limit' => 10
     ];
     /**
      * Initialization hook method.
@@ -111,6 +111,28 @@ class AppController extends Controller
         $this->response->withCookie($cookie);
     }
 
+    /**
+     * 時間選択肢作成
+     *
+     * @param int $from 選択肢の最小値
+     * @param int $end 選択肢の最大値
+     * @param int $interval 選択肢の間隔
+     * @param string $pad 選択肢値の前に文字を埋める
+     * @param int $padNum 選択肢の前に文字を埋める桁数
+     * @param int $padMode 選択肢の前に文字を埋めるモード
+     * @return array
+     */
+    protected function _getSelectionRange($from = 0, $end = 23, $interval = 1, $pad = '0', $padNum = 2, $padMode = STR_PAD_LEFT) {
+        $result = [];
+        $i = $from;
+        do {
+            $str = str_pad((string)$i, $padNum, $pad, $padMode);
+            $result[$str] = $str;
+            $i += $interval;
+        } while ($i <= $end);
+        return $result;
+    }
+
     // /**
     //  * 本日の日付を取得する
     //  * @param string $format default = 'Y-m-d'
@@ -124,6 +146,8 @@ class AppController extends Controller
     /**
      *
      */
-
+    public function formatDate($date = null, $format = 'Y-MM-dd') {
+        return $date->i18nFormat($format);
+    }
 
 }

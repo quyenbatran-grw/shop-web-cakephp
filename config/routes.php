@@ -106,7 +106,8 @@ return static function (RouteBuilder $routes) {
      */
 
     $routes->prefix('User', ['path' => 'User'], function(RouteBuilder $builder) {
-        $builder->connect('/login', ['controller' => UsersController::class, 'action' => 'login']);
+        // $builder->connect('/login', ['controller' => UsersController::class, 'action' => 'login']);
+        $builder->connect('/shops/{action}/*', ['controller' => 'Shops']);
     });
 
     // $routes->connect('login', ['controller' => 'Login', 'action' => 'login']);
@@ -115,10 +116,12 @@ return static function (RouteBuilder $routes) {
     $routes->scope('/admin', ['prefix' => 'Admin'], function(RouteBuilder $builder) {
         $builder->applyMiddleware('Admin');
         $builder->connect('/', ['controller' => 'Profiles', 'action' => 'index']);
+        $builder->connect('/list', ['controller' => 'Profiles', 'action' => 'list']);
         $builder->connect('/masters', ['controller' => 'Masters', 'action' => 'index']);
         $builder->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);
         $builder->connect('/products', ['controller' => 'Products', 'action' => 'index']);
         $builder->connect('/orders', ['controller' => 'Orders', 'action' => 'index']);
+        $builder->connect('/profiles', ['controller' => 'Profiles', 'action' => 'view']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Masters', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Categories', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Products', 'action' => '*']);
@@ -134,7 +137,7 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/add', ['controller' => 'Profiles', 'action' => 'add']);
         $builder->connect('/edit', ['controller' => 'Profiles', 'action' => 'edit']);
         // $builder->connect('/', ['controller' => 'Users', 'action' => 'index']);
-        $builder->connect('/{action}/*', []);
+        $builder->connect('/{action}/*', ['controller' => 'Profiles']);
     });
 
 

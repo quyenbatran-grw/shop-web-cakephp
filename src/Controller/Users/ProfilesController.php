@@ -4,6 +4,10 @@ declare(strict_types=1);
 namespace App\Controller\Users;
 
 use App\Controller\AppController;
+use App\Controller\ShopsController;
+use App\Model\Entity\Order;
+use Cake\Database\Query;
+use Cake\I18n\FrozenDate;
 
 /**
  * Profiles Controller
@@ -16,8 +20,10 @@ class ProfilesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
+        $this->viewBuilder()->setLayout('shop');
 
         $this->Users = $this->fetchTable('Users');
+        $this->Orders = $this->fetchTable('Orders');
     }
     /**
      * Index method
@@ -28,8 +34,155 @@ class ProfilesController extends AppController
     {
         // $profiles = $this->paginate($this->Profiles);
         $profile = $this->Users->find()->where(['id' => $this->Authentication->user->id])->first();
+        // 決済済の注文
+        $query = $this->Orders->find()
+            ->where(['user_id' => $this->Authentication->user->id, 'status IN' => [Order::DELIVERED, Order::PAID]]);
+        $query = $query->select(['count' => $query->func()->count('id'), 'amount' => $query->func()->sum('order_amount')])
+            ->firstOrFail();
+        $order_count = 0;
+        $paid = 0;
+        $unpaid = 0;
+        if(!empty($query)) {
+            $order_count = $query->count;
+            $paid = $query->amount ? number_format($query->amount) : 0;
+        }
+        $query = $this->Orders->find()
+            ->where(['user_id' => $this->Authentication->user->id, 'status NOT IN' => [Order::DELIVERED, Order::PAID]]);
+        $query = $query->select(['count' => $query->func()->count('id'), 'amount' => $query->func()->sum('order_amount')])
+            ->firstOrFail();
+        if(!empty($query)) {
+            $order_count += $query->count;
+            $unpaid = $query->amount ? number_format($query->amount) : 0;
+        }
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('profile', 'cart_quantity', 'order_count', 'paid', 'unpaid'));
+    }
 
-        $this->set(compact('profile'));
+    /**
+     * ログイン中のユーザーに該当する注文データを取得
+     */
+    public function orderList() {
+        $new_orders = $this->Orders->find()
+            ->contain([
+                'OrderDetails' => function($query) {
+                    return $query->contain('Products', function($query) {
+                        return $query->contain('ImageProducts', function($query) {
+                            return $query->limit(1);
+                        });
+                    });
+                }
+            ])
+            ->where([
+                'Orders.user_id' => $this->Authentication->user->id,
+                'Orders.status NOT IN' => [Order::DELIVERED, Order::CANCELED]
+            ])
+            ->order(['Orders.status' => 'ASC', 'Orders.order_number' => 'ASC'])
+            ->map(function(Order $order) {
+                $order['order_date'] = $order->created->format('Y-m-d');
+                return $order;
+            })
+            ->toList();
+
+        $old_orders = $this->Orders->find()
+            ->contain([
+                'OrderDetails' => function($query) {
+                    return $query->contain('Products', function($query) {
+                        return $query->contain('ImageProducts', function($query) {
+                            return $query->limit(1);
+                        });
+                    });
+                }
+            ])
+            ->where([
+                'Orders.user_id' => $this->Authentication->user->id,
+                'OR' => [
+                    'Orders.status IN' => [Order::DELIVERED, Order::CANCELED]
+                ]
+            ])
+            ->order(['Orders.status' => 'ASC', 'Orders.order_number' => 'DESC'])
+            ->map(function(Order $order) {
+                $order['order_date'] = $order->created->format('Y-m-d');
+                return $order;
+            })
+            ->toList();
+            // var_dump($old_orders);
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('cart_quantity', 'new_orders', 'old_orders'));
+    }
+
+    /**
+     * 注文詳細データを取得
+     */
+    public function orderDetail($id = null) {
+        $order = $this->Orders->find()
+            ->contain([
+                'OrderDetails' => function($query) {
+                    return $query->contain('Products', function($query) {
+                        return $query->contain(['ImageProducts', 'Categories'])
+                        ->order(['Products.category_id', 'Products.name']);
+                    })
+                    ->order('OrderDetails.product_id');
+                }
+            ])
+            ->where([
+                'Orders.id' => $id,
+            ])
+            ->map(function(Order $order) {
+                $order['order_date'] = $order->created->format('Y-m-d');
+                return $order;
+            })->first();
+
+            // var_dump($order);
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('cart_quantity', 'order'));
+    }
+
+    /**
+     * 注文のキャンセル
+     *
+     * @param int $id 注文ID
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function orderCancel($id = null) {
+        if(is_null($id)) {
+            $this->Flash->error('AAAA');
+        }
+        if($this->request->is(['put', 'post'])) {
+            $order = $this->Orders->get($id);
+            if($order) {
+                $order->set('status', Order::CANCELED);
+                $payment_point = $order->payment_point;
+                $user = $this->Users->get($this->Authentication->user->id);
+                $user->point += $payment_point;
+                if($this->Orders->save($order)) {
+                    $this->Users->save($user);
+                    $this->Flash->success(MSG_1000);
+                }
+            }
+        }
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('cart_quantity'));
+    }
+
+    /**
+     * 購入商品カートの数を取得する
+     *
+     * @param array $shopping_cart クッキーに格納している情報
+     * @return int
+     */
+    private function _getShoppingCartTotalQuantity($shopping_cart = null)
+    {
+        if(empty($shopping_cart)) {
+            $shopping_cart = $this->request->getCookie(ShopsController::COOKIE_NM);
+            if(!empty($shopping_cart)) $shopping_cart = json_decode($shopping_cart, true);
+        }
+        $quantity = 0;
+        if(!empty($shopping_cart[ShopsController::PRODUCT_COOKIE_NM])) {
+            foreach ($shopping_cart[ShopsController::PRODUCT_COOKIE_NM] as $key => $category) {
+                if(is_array($category)) $quantity += array_sum($category);
+            }
+        }
+        return $quantity ? $quantity : null;
     }
 
     // /**
@@ -91,7 +244,8 @@ class ProfilesController extends AppController
             }
             $this->Flash->error(__('The profile could not be saved. Please, try again.'));
         }
-        $this->set(compact('profile'));
+        $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $this->set(compact('profile', 'cart_quantity'));
     }
 
     // /**

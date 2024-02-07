@@ -95,7 +95,7 @@ class ProductsTable extends Table
             ->add('made_in', 'validValue', ['rule' => ['range', 0, 3], 'message' => '[0~3]まで登録してください']);
 
         $validator
-            ->maxLength('sponsor_name', 5, sprintf(OVER_MAX_LENGTH, 255))
+            ->maxLength('sponsor_name', 5, __(OVER_MAX_LENGTH, 255))
             ->isEmptyAllowed('sponsor_name', true);
 
         $validator
@@ -142,6 +142,20 @@ class ProductsTable extends Table
                 'callback' => function($query, $args, $filter) {
                     if($filter->value()) {
                         $query = $query->where(['category_id' => $filter->value()]);
+                    }
+                }
+            ])
+            ->callback('product_name', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['Products.name LIKE' => '%' . $filter->value() . '%']);
+                    }
+                }
+            ])
+            ->callback('sponsor_name', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['sponsor_name LIKE' => '%' . $filter->value() . '%']);
                     }
                 }
             ]);

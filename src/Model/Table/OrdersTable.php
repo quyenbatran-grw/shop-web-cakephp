@@ -31,6 +31,13 @@ use Cake\Validation\Validator;
  */
 class OrdersTable extends Table
 {
+    // 検索条件の期間
+    public static $filterTimes = ['Current month', '3 month ago', '6 month ago'];
+    // 配達方法
+    public static $deliveryTypes = ['Reveice In Shop', 'Develiry To Home'];
+    // 支払方法
+    public static $paymentTypes = ['Cash', 'Banking'];
+
     /**
      * Initialize method
      *
@@ -46,9 +53,14 @@ class OrdersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior("Search.Search");
 
         $this->hasMany('OrderDetails', [
             'foreignKey' => 'order_id',
+        ]);
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
         ]);
     }
 
@@ -102,6 +114,10 @@ class OrdersTable extends Table
             ->scalar('memo')
             ->allowEmptyString('memo');
 
+        $validator
+            ->scalar('delivery_type')
+            ->notEmptyString('delivery_type');
+
         return $validator;
     }
 
@@ -117,5 +133,53 @@ class OrdersTable extends Table
         $rules->add($rules->isUnique(['order_number'], ['allowMultipleNulls' => true]), ['errorField' => 'order_number']);
 
         return $rules;
+    }
+
+    /**
+     * 検索条件で絞り込む
+     *
+     */
+    public function searchManager()
+    {
+        $searchManager = $this->behaviors()->Search->searchManager();
+        $searchManager
+            ->callback('order_number', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['order_number' => $filter->value()]);
+                    }
+                }
+            ])
+            ->callback('status', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value() && $filter->value() != 0) {
+                        $query = $query->where(['status' => $filter->value() - 1]);
+                    }
+                }
+            ])
+            ->callback('immediate', [
+                'callback' => function($query, $args, $filter) {
+                    $immediate = $filter->value();
+                    if($immediate != 2) {
+                        $query = $query->where(['immediate' => $filter->value()]);
+                    }
+                }
+            ])
+            ->callback('start_date', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $query = $query->where(['created >=' => $filter->value()]);
+                    }
+                }
+            ])
+            ->callback('end_date', [
+                'callback' => function($query, $args, $filter) {
+                    if($filter->value()) {
+                        $end_date = $filter->value() . ' 23:59:59';
+                        $query = $query->where(['created <=' => $end_date]);
+                    }
+                }
+            ]);
+        return $searchManager;
     }
 }

@@ -11,8 +11,10 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $product_id
  * @property \Cake\I18n\FrozenTime $date
+ * @property \Cake\I18n\FrozenDate $expired_date
  * @property string $unit_price
  * @property int $quantity
+ * @property int $unit
  * @property string|null $memo
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
@@ -21,6 +23,12 @@ use Cake\ORM\Entity;
  */
 class ProductInventory extends Entity
 {
+    public static $units = [
+        1 => 'Pack',
+        2 => 'Lock',
+        3 => 'Unit',
+        99 => 'Other'
+    ];
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -35,6 +43,7 @@ class ProductInventory extends Entity
         'date' => true,
         'unit_price' => true,
         'quantity' => true,
+        'unit' => true,
         'memo' => true,
         'expired_date' => true,
         'created' => true,
@@ -70,5 +79,16 @@ class ProductInventory extends Entity
     protected function _getQuantityFormat()
     {
         return number_format((float)$this->quantity);
+    }
+
+    /**
+     * 単位名称
+     *
+     * @return string
+     */
+    protected function _getUnitName()
+    {
+        if(in_array($this->unit, array_keys(self::$units))) return self::$units[$this->unit];
+        else return self::$units[99];
     }
 }

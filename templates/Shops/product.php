@@ -1,12 +1,12 @@
 <div class="menu-link-list">
-<?=$this->Html->link(
+<!-- <?=$this->Html->link(
     '<i class="bi bi-caret-left"></i>Categories',
     ['controller' => 'Pages', 'action' => 'index'],
     ['escape' => false, 'escapeTitle' => false]
-);?>
+);?> -->
 <?=$this->Html->link(
-    '<i class="bi bi-chevron-left fs-6"></i>Product List',
-    ['controller' => 'Shops', 'action' => 'category', 'id' => 1],
+    '<i class="bi bi-chevron-left fs-6"></i>Back',
+    ['controller' => 'Shops', 'action' => 'category', 'id' => $product->category_id],
     ['escape' => false, 'escapeTitle' => false, 'class' => '']
 );?>
 </div>
@@ -102,6 +102,8 @@
                     $product_images = $other_product->image_products;
                     $image_url = '/img/noImage.svg';
                     $className = 'fix-h-15';
+                    $isStock = true;
+                    if(count($other_product->product_inventories) == 0) continue;
                     if(count($product_images)) {
                         $product_image = $product_images[0];
                         $image_url = '/img/products/'.$product_images[0]['file_name'];
@@ -115,7 +117,7 @@
                         <div class="fix-h-15"><img src="<?=$image_url?>" class="fix-h-15 fix-w-12 rounded" alt="..."></div>
                         <div class="fix-h-6">
                             <div class="fs-5"><?=$other_product->name?></div>
-                            <div class="fs-5"><?=isset($other_product->product_inventories[0]) ? $other_product->product_inventories[0]->price : '';?></div>
+                            <div class="fs-5 <?=!$isStock ? 'text-danger' : ''?>"><?=$isStock ? $other_product->product_inventories[0]->price : 'Sold Out';?></div>
                         </div>
                     </div>
                     </button>

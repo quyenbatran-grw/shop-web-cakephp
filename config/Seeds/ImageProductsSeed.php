@@ -23,7 +23,7 @@ class ImageProductsSeed extends AbstractSeed
         $data = [
             [
                 'id' => 69,
-                'product_id' => 75,
+                'product_id' => 1,
                 'name' => 'DSC_1202.jpg',
                 'file_name' => 'e6e54aa6177a405c34fc9237e633bbbd.png',
                 'file_type' => 'image/png',
@@ -33,7 +33,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 70,
-                'product_id' => 75,
+                'product_id' => 1,
                 'name' => 'DSC_9113.JPG',
                 'file_name' => 'e68475251a925c61f23a30cba6aa76e3.png',
                 'file_type' => 'image/png',
@@ -43,7 +43,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 71,
-                'product_id' => 76,
+                'product_id' => 1,
                 'name' => '_DSC2263.JPG',
                 'file_name' => 'bc6e3daf79e2c2677baf685bf698d8c8.png',
                 'file_type' => 'image/png',
@@ -53,7 +53,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 72,
-                'product_id' => 76,
+                'product_id' => 1,
                 'name' => 'DSC_1153.jpg',
                 'file_name' => '447d6a2de53f433788a77b1c3adefe52.png',
                 'file_type' => 'image/png',
@@ -63,7 +63,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 73,
-                'product_id' => 77,
+                'product_id' => 2,
                 'name' => '_DSC2263.JPG',
                 'file_name' => 'ad97f258fb32335131e8d88f1bde6077.png',
                 'file_type' => 'image/png',
@@ -73,7 +73,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 74,
-                'product_id' => 77,
+                'product_id' => 2,
                 'name' => 'DSC_1153.jpg',
                 'file_name' => 'c3ff0a53eba8b93c0aa31f114f15c307.png',
                 'file_type' => 'image/png',
@@ -83,7 +83,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 75,
-                'product_id' => 78,
+                'product_id' => 6,
                 'name' => '_DSC2263.JPG',
                 'file_name' => '74da61d722de995c52e1776dac33b87c.png',
                 'file_type' => 'image/png',
@@ -93,7 +93,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 76,
-                'product_id' => 78,
+                'product_id' => 6,
                 'name' => 'DSC_1153.jpg',
                 'file_name' => 'cc070bbdae31c06e3d7787157b02f1b8.png',
                 'file_type' => 'image/png',
@@ -103,7 +103,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 77,
-                'product_id' => 79,
+                'product_id' => 6,
                 'name' => '_DSC2263.JPG',
                 'file_name' => '944b4805140d619bda35e59f1ef31790.png',
                 'file_type' => 'image/png',
@@ -113,7 +113,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 78,
-                'product_id' => 79,
+                'product_id' => 6,
                 'name' => 'DSC_1153.jpg',
                 'file_name' => '158b6adb2a82685716412e86cb454b8e.png',
                 'file_type' => 'image/png',
@@ -123,7 +123,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 79,
-                'product_id' => 80,
+                'product_id' => 3,
                 'name' => 'p-chan.jpg',
                 'file_name' => '5f652458b1034cb2c5bad661028ea7d1.png',
                 'file_type' => 'image/png',
@@ -133,7 +133,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 80,
-                'product_id' => 80,
+                'product_id' => 3,
                 'name' => 'DSC_9113.JPG',
                 'file_name' => '6818ca6fe6d69a37142409516be592bd.png',
                 'file_type' => 'image/png',
@@ -143,7 +143,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 81,
-                'product_id' => 80,
+                'product_id' => 3,
                 'name' => 'DSC_1202.jpg',
                 'file_name' => '30df2f9e6f3c3f7352b8fb3e8fa9ad57.png',
                 'file_type' => 'image/png',
@@ -153,7 +153,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 82,
-                'product_id' => 81,
+                'product_id' => 4,
                 'name' => 'p-chan.jpg',
                 'file_name' => '31bcd67c7ab03337a940fd98bea2be12.png',
                 'file_type' => 'image/png',
@@ -163,7 +163,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 83,
-                'product_id' => 81,
+                'product_id' => 4,
                 'name' => 'DSC_9113.JPG',
                 'file_name' => '1e49b7fcc18a8583edc9b09f99f02cb8.png',
                 'file_type' => 'image/png',
@@ -173,7 +173,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 84,
-                'product_id' => 81,
+                'product_id' => 4,
                 'name' => 'DSC_1202.jpg',
                 'file_name' => 'd0e3d93a9da0b2dc7e2c2a57b0979c62.png',
                 'file_type' => 'image/png',
@@ -183,7 +183,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 85,
-                'product_id' => 81,
+                'product_id' => 4,
                 'name' => 'DSC_1153.jpg',
                 'file_name' => 'bc47b62eac02285645b6b0eb3db0a489.png',
                 'file_type' => 'image/png',
@@ -193,7 +193,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 86,
-                'product_id' => 82,
+                'product_id' => 5,
                 'name' => 'DSC_9113.JPG',
                 'file_name' => '4425dc342d710f98865465e54ffa6d7f.png',
                 'file_type' => 'image/png',
@@ -203,7 +203,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 87,
-                'product_id' => 82,
+                'product_id' => 5,
                 'name' => 'DSC_1202.jpg',
                 'file_name' => 'c08be9d465fdcb476833d252153a5d3b.png',
                 'file_type' => 'image/png',
@@ -213,7 +213,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 88,
-                'product_id' => 82,
+                'product_id' => 5,
                 'name' => 'DSC_1153.jpg',
                 'file_name' => 'a97133ff0fb7e1d9c5c48f23c7ada711.png',
                 'file_type' => 'image/png',
@@ -223,7 +223,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 89,
-                'product_id' => 83,
+                'product_id' => 5,
                 'name' => 'DSC_9113.JPG',
                 'file_name' => '378597abb431917b8517bc7f71d3fe2e.png',
                 'file_type' => 'image/png',
@@ -233,7 +233,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 90,
-                'product_id' => 83,
+                'product_id' => 6,
                 'name' => 'DSC_1202.jpg',
                 'file_name' => '4bafe01c06ed35c3a03da5bcbfb29a0d.png',
                 'file_type' => 'image/png',
@@ -243,7 +243,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 91,
-                'product_id' => 83,
+                'product_id' => 6,
                 'name' => 'DSC_1153.jpg',
                 'file_name' => 'f7fee94ae1d748cf208e704203d409dc.png',
                 'file_type' => 'image/png',
@@ -253,7 +253,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 92,
-                'product_id' => 84,
+                'product_id' => 6,
                 'name' => 'DSC_9113.JPG',
                 'file_name' => '1dbb6b7c26d835efaa8339f10daa8a14.png',
                 'file_type' => 'image/png',
@@ -263,7 +263,7 @@ class ImageProductsSeed extends AbstractSeed
             ],
             [
                 'id' => 93,
-                'product_id' => 84,
+                'product_id' => 6,
                 'name' => 'DSC_1202.jpg',
                 'file_name' => '69d6608492aad596737dbd3448a81413.png',
                 'file_type' => 'image/png',

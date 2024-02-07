@@ -95,3 +95,7 @@ hr {
 .fs-8 { font-size: 0.5em !important; }
 .fs-9 { font-size: 0.25em !important; }
 #cart-item, .account-link { top: 5px; }
+
+@media screen and (min-width: 375px) {
+    .main { min-height: 90vh; }
+}
