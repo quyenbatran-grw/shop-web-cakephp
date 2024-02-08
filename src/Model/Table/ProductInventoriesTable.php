@@ -158,4 +158,19 @@ class ProductInventoriesTable extends Table
             ]);
         return $searchManager;
     }
+
+    /**
+     * 入港品数を取得
+     *
+     * @param \Cake\ORM\Query $query The rules object to be modified.
+     * @return \Cake\ORM\Query
+     */
+    public function findStockin(Query $query) {
+        return $query
+            ->select([
+                'ProductInventories.product_id',
+                'sum' => $query->func()->sum('quantity')
+            ])
+            ->group('ProductInventories.product_id');
+    }
 }

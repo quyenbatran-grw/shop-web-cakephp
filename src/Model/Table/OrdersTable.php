@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Entity\Order;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -181,5 +182,24 @@ class OrdersTable extends Table
                 }
             ]);
         return $searchManager;
+    }
+
+    /**
+     * 出庫品数取得
+     *
+     * @param \Cake\ORM\Query $query
+     * @return \Cake\ORM\Query
+     */
+    public function findStockOut(Query $query) {
+        return $query
+            ->where(['Orders.status <>' => Order::CANCELED])
+            ->innerJoinWith('OrderDetails', function ($q) {
+                return $q;
+            })
+            ->select([
+                'OrderDetails.product_id',
+                'sum' => $query->func()->sum('quantity'),
+            ])
+            ->group(['OrderDetails.product_id']);
     }
 }

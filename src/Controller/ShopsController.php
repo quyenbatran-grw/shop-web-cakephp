@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Order;
 use App\Model\Entity\Product;
 use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Core\Configure;
@@ -526,6 +527,9 @@ class ShopsController extends AppController
             ->contain([
                 'OrderDetails' => function($query) {
                     $query = $query
+                    ->innerJoinWith('Orders', function($query) {
+                        return $query->where(['Orders.status <>' => Order::CANCELED]);
+                    })
                     ->select(['OrderDetails.product_id']);
                     return $query
                     ->select(['quantity' => $query->func()->sum('OrderDetails.quantity')])

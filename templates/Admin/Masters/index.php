@@ -8,9 +8,9 @@
     <?= $this->Html->link(__('New Master'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Masters') ?></h3>
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover table-bordered">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <!-- <th><?= $this->Paginator->sort('id') ?></th> -->
                     <th><?= $this->Paginator->sort('type') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
@@ -30,9 +30,10 @@
                     <!-- <td><?= h($master->created) ?></td> -->
                     <!-- <td><?= h($master->modified) ?></td> -->
                     <td class="actions text-center">
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $master->id], ['class' => 'float-end', 'confirm' => __('Are you sure you want to delete # {0}?', $master->id)]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $master->id], ['class' => 'float-end']) ?>
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $master->id], ['class' => 'float-end']) ?>
+                        <?= $this->Html->link(__('<i class="bi bi-sticky"></i>'), ['action' => 'view', $master->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
+                        <?= $this->Html->link(__('<i class="bi bi-pen-fill"></i>'), ['action' => 'edit', $master->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
+                        <?= $this->Form->postLink(__('<i class="bi bi-trash3"></i>'), ['action' => 'delete', $master->id],
+                        ['confirm' => __('Are you sure you want to delete # {0}?', $master->id), 'escapeTitle' => false, 'class' => 'border border-danger rounded text-danger']) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

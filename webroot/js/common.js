@@ -35,7 +35,11 @@
         btnAction = document.querySelector('input[name="immediate"]');
         if(btnAction) btnAction.addEventListener('change', changeImmediateFlg);
 
-        // キャンセルボタン押下で確認モーダル表示
+        // 管理者画面でサイドメニューの切替
+        changeSideMenu();
+        // document.querySelectorAll('.side-left .side-left-menu li').forEach((elm) => {
+        //     elm.addEventListener('click', changeSideMenu);
+        // });
 
 
         let cards = document.querySelectorAll('.card');
@@ -417,6 +421,38 @@
             document.querySelector('select[name="delivery_hour_end"]').disabled = false;
         }
         console.log(e.target.checked)
+    }
+
+    function changeSideMenu() {
+        let pathname = location.pathname;
+        var activeItem = '';
+        if(pathname.indexOf('categories') >= 0) {
+            activeItem = 'categories';
+        } else if(pathname.indexOf('products') >= 0) {
+            activeItem = 'products';
+        } else if(pathname.indexOf('inventory') >= 0) {
+            activeItem = 'inventory';
+        } else if(pathname.indexOf('orders') >= 0) {
+            activeItem = 'orders';
+        } else if(pathname.indexOf('list') >= 0 || pathname.indexOf('profiles')) {
+            activeItem = 'profiles';
+        }
+        if(pathname == '/admin') activeItem = '';
+        if(activeItem != '') {
+            let item = document.querySelector('.side-left .' + activeItem);
+            if(item) {
+                item.classList.add('active');
+                item.querySelector('a').classList.remove('link-primary');
+                item.querySelector('a').classList.add('link-light');
+            }
+        } else {
+            let item = document.querySelector('.side-left .list-group-item:first-child');
+            if(item) {
+                item.classList.add('active');
+                item.querySelector('a').classList.remove('link-primary');
+                item.querySelector('a').classList.add('link-light');
+            }
+        }
     }
 
     /* コードの終了 */

@@ -103,6 +103,22 @@ th {
     padding: 0.5rem 0;
 }
 
+.side-left {
+    min-height: 50vh;
+    max-height: 50vh;
+    width: 200px;
+    background-color: #ffffff;
+    float: left;
+    position: fixed;
+    padding: 10px;
+}
+
+/* .container.admin { float: right; min-width: calc(100% - 200px) !important; max-width: calc(100% - 200px) !important; margin-bottom: 3rem;} */
+.container.admin {
+    margin-bottom: 3rem;
+    margin-left: 200px;
+    min-width: calc(100% - 200px) !important; max-width: calc(100% - 200px) !important;
+}
 /* View action */
 .view.content .text {
     margin-top: 1.2rem;
@@ -227,6 +243,12 @@ th {
     top: -25px;
     left: -25px;
     border: none;
+}
+
+.fix-header thead {
+    z-index: 1;
+    top: -1px;
+    background-color: #ffffff;
 }
 
 @media screen and (max-width: 640px) {

@@ -42,6 +42,16 @@
                 </tr>
 
                 <tr>
+                    <th class="w-25"><?= __('Date') ?></th>
+                    <td>
+                        <?=$this->Form->date('expired_date', [
+                            'class' => 'form-control',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
                     <th class="w-25"><?= __('Unit Price') ?></th>
                     <td>
                         <?=$this->Form->control('unit_price', [
@@ -55,6 +65,7 @@
                     <th class="w-25"><?= __('Quantity') ?></th>
                     <td>
                         <?=$this->Form->control('quantity', [
+                            'type' => 'number',
                             'class' => 'form-control',
                             'label' => false
                         ]);?>

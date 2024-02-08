@@ -129,6 +129,7 @@ return static function (RouteBuilder $routes) {
 
         $builder->scope('/inventory', ['prefix' => 'Admin'], function(RouteBuilder $builderInventory) {
             $builderInventory->connect('/', ['controller' => 'ProductInventories', 'action' => 'index']);
+            $builderInventory->connect('/{action}/*', ['controller' => 'ProductInventories', 'action' => '*']);
         });
     });
 

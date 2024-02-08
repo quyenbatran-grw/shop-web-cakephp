@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Model\Entity\Order;
 
 /**
  * Profiles Controller
@@ -18,6 +19,7 @@ class ProfilesController extends AppController
         parent::initialize();
 
         $this->Users = $this->fetchTable('Users');
+        $this->Orders = $this->fetchTable('Orders');
     }
     /**
      * Index method
@@ -28,8 +30,13 @@ class ProfilesController extends AppController
     {
         // $profiles = $this->paginate($this->Profiles);
         $profiles = null;
+        $orders = $this->Orders->find()
+            ->where(['status' => Order::PREPARING])
+            ->order(['status' => 'ASC', 'immediate' => 'DESC', 'created' => 'ASC'])
+            ->limit(5)
+            ->toList();
 
-        $this->set(compact('profiles'));
+        $this->set(compact('orders'));
     }
 
     /**

@@ -54,22 +54,24 @@ use App\Model\Entity\ProductInventory;
     </div>
     <div class="row justify-content-center mt-4 border-bottom pb-4">
         <div class="col col-md-2">
-            <?=$this->Form->button('Search', [
-                'class' => 'btn btn-primary w-100'
+            <?=$this->Form->button('<i class="bi bi-search"></i> Search', [
+                'class' => 'btn btn-primary w-100',
+                'escapeTitle' => false
             ])?>
         </div>
         <div class="col col-md-2"></div>
         <div class="col col-md-2">
-            <?=$this->Html->link('Clear', ['action' => ''], [
-                'class' => 'btn btn-primary w-100'
+            <?=$this->Html->link('<i class="bi bi-x-circle"></i> Clear', ['action' => ''], [
+                'class' => 'btn btn-primary w-100',
+                'escapeTitle' => false
             ])?>
         </div>
     </div>
     <?=$this->Form->end()?>
     <h3 class="mt-4"><?= __('Product Inventories List') ?></h3>
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
-            <thead>
+        <table class="table table-striped table-hover table-bordered fix-header">
+            <thead class="sticky-top">
                 <tr class="text-center">
                     <!-- <th><?= $this->Paginator->sort('id') ?></th> -->
                     <th><?= $this->Paginator->sort('product_id') ?></th>
@@ -96,15 +98,25 @@ use App\Model\Entity\ProductInventory;
                     <!-- <td><?= h($productInventory->created->i18nFormat('Y/MM/dd')) ?></td> -->
                     <!-- <td><?= h($productInventory->modified) ?></td> -->
                     <td class="actions text-center">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $productInventory->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productInventory->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $productInventory->id], ['confirm' => __('Are you sure you want to delete # {0}?', $productInventory->id)]) ?>
+                        <?= $this->Html->link(__('<i class="bi bi-sticky"></i>'), ['action' => 'view', $productInventory->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
+                        <?= $this->Html->link(__('<i class="bi bi-pen-fill"></i>'), ['action' => 'edit', $productInventory->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
+                        <?= $this->Form->postLink(__('<i class="bi bi-trash3"></i>'),
+                        ['action' => 'delete', $productInventory->id],
+                        ['confirm' => __('Are you sure you want to delete # {0}?', $productInventory->id), 'escapeTitle' => false, 'class' => 'border border-danger rounded text-danger']) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+
+    <!-- <div class="row">
+        <div class="col col-md-1">
+        <?=$this->Html->link('Stock', ['controller' => 'ProductInventories', 'action' => 'stock'], [
+            'class' => 'btn btn-primary w-100'
+        ])?>
+        </div>
+    </div> -->
 
     <br>
     <?php if($this->Paginator->param('pageCount') > 1) { ?>

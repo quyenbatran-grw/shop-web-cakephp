@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Entity\OrderDetail;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -104,4 +105,5 @@ class OrderDetailsTable extends Table
 
         return $rules;
     }
+
 }

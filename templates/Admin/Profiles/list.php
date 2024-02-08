@@ -8,8 +8,8 @@ use App\Model\Table\UsersTable;
 <div class="users index content">
     <?=$this->Form->create()?>
     <div class="row mt-4 pb-2">
-        <div class="col col-md-1">First Name</div>
-        <div class="col col-md-2">
+        <div class="col col-md-2">First Name</div>
+        <div class="col col-md-3">
             <?=$this->Form->control('first_name', [
                 'class' => 'form-control',
                 'label' => false,
@@ -18,7 +18,7 @@ use App\Model\Table\UsersTable;
             ])?>
         </div>
 
-        <div class="col col-md-1">Last Name</div>
+        <div class="col col-md-2">Last Name</div>
         <div class="col col-md-3">
             <?=$this->Form->control('last_name', [
                 'class' => 'form-control',
@@ -30,14 +30,16 @@ use App\Model\Table\UsersTable;
     </div>
     <div class="row justify-content-center mt-4 mb-3 border-bottom p-4">
         <div class="col col-md-2">
-            <?=$this->Form->button('Search', [
-                'class' => 'btn btn-primary w-100'
+            <?=$this->Form->button('<i class="bi bi-search"></i> Search', [
+                'class' => 'btn btn-success w-100',
+                'escapeTitle' => false
             ])?>
         </div>
         <div class="col col-md-2"></div>
         <div class="col col-md-2">
-            <?=$this->Html->link('Clear', ['action' => ''], [
-                'class' => 'btn btn-primary w-100'
+            <?=$this->Html->link('<i class="bi bi-x-circle"></i> Clear', ['action' => ''], [
+                'class' => 'btn btn-primary w-100',
+                'escapeTitle' => false
             ])?>
         </div>
     </div>
@@ -78,9 +80,10 @@ use App\Model\Table\UsersTable;
                     <td><?=h($user->tel)?></td>
                     <td class="text-end"><?=number_format($user->point)?></td>
                     <td class="actions text-center">
-                        <!-- <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?> -->
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                        <?= $this->Html->link(__('<i class="bi bi-pen-fill"></i>'), ['action' => 'edit', $user->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
+                        <?= $this->Form->postLink(__('<i class="bi bi-trash3"></i>'),
+                        ['action' => 'delete', $user->id],
+                        ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'escapeTitle' => false, 'class' => 'border border-danger rounded text-danger']) ?>
                     </td>
                 </tr>
                 <?php } ?>

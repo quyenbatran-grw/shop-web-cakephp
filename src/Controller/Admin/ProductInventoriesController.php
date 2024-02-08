@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 use App\Controller\AppController;
+use App\Model\Entity\OrderDetail;
 use App\Model\Entity\Product;
 use App\Model\Entity\ProductInventory;
 use Cake\I18n\FrozenTime;
@@ -120,5 +121,53 @@ class ProductInventoriesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function stock() {
+        $searchParam = $this->request->getData();
+        $categories = $this->ProductInventories->Products->Categories->find()->all()
+            ->combine('id', 'name')
+            ->toArray();
+        $categories = ['All'] + $categories;
+
+        $products = $this->ProductInventories->Products->find()->all()
+            ->combine('id', 'name')
+            ->toArray();
+        $products = ['All'] + $products;
+
+        // 販売済み品数を取得
+        $solds = $this->ProductInventories->Products->OrderDetails->find();
+        $solds = $solds
+            ->select([
+                'OrderDetails.product_id',
+                'sum' => $solds->func()->sum('quantity')
+            ])
+            ->group('OrderDetails.product_id')
+            ->all()
+            ->combine('product_id', function(OrderDetail $orderDetail) {
+                return $orderDetail;
+            })
+            ->toArray();
+            // var_dump($sold);
+
+        // 購入した品数を取得
+        $inventories = $this->ProductInventories->find('search', ['search' => $searchParam]);
+        $inventories = $inventories
+            ->select([
+                'ProductInventories.product_id',
+                'sum' => $inventories->func()->sum('quantity')
+            ])
+            ->group('ProductInventories.product_id')
+            ->contain('Products')
+            ->all()
+            ->map(function(ProductInventory $productInventory) use($solds) {
+                if(isset($sold[$productInventory->product_id])) {
+                    $productInventory['sold'] = $solds[$productInventory->product_id]->sum;
+                }
+                return $productInventory;
+            })
+            ->toArray();
+            // var_dump($inventories);
+        $this->set(compact('categories', 'products', 'inventories'));
     }
 }

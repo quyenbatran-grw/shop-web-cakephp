@@ -36,10 +36,10 @@
                     <div class="p-2">
                         <div class="text-wrap">
                             <h4 class="card-title fw-bold"><?=$product->name?> </h4>
-                            <div class="text-danger fs-5"><?=$product_inventory ? $product_inventory->price_k . 'K' : 'Sold Out'?></div>
+                            <div class="text-danger fs-5"><?=$isStock ? $product_inventory->price_k . 'K' : 'Sold Out'?></div>
                             <div class="fw-bold fs-5">Detail</div>
                             <p class="card-text fs-6 ps-2 text-truncate"><?=nl2br(substr($product->description, 0, 60)) . (strlen($product->description) > 60 ? ' ...' : '')?></p>
-                            <!-- <p class="card-text"><small class="bg-danger text-white rounded p-2">New Arrival</small></p> -->
+
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,10 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use App\Model\Entity\Order;
+use App\Model\Entity\OrderDetail;
+use App\Model\Entity\Product;
+use App\Model\Entity\ProductInventory;
 use Cake\I18n\FrozenTime;
 use Laminas\Diactoros\UploadedFile;
 use Cake\I18n\Time;
@@ -27,6 +31,7 @@ class ProductsController extends AppController
             'contain' => ['Categories'],
         ];
         $searchParam = $this->request->getData();
+        $inventories = $this->_getStockProductQuantity($searchParam);
         $products = $this->Products->find('search', ['search' => $searchParam])->find('valid');
         $products = $this->paginate($products);
 
@@ -35,9 +40,7 @@ class ProductsController extends AppController
             ->toArray();
         $categoryList = ['All'] + $categoryList;
 
-        $this->sendNotify();
-
-        $this->set(compact('products', 'categoryList', 'searchParam'));
+        $this->set(compact('products', 'categoryList', 'searchParam', 'inventories'));
     }
 
     /**
@@ -206,6 +209,47 @@ class ProductsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * 商品毎に入庫・出庫品数を取得
+     */
+    private function _getStockProductQuantity($searchParam = []) {
+        // 出庫品数を取得
+        $solds = $this->Products->OrderDetails->Orders->find('stockout')
+        //     ->where(['Orders.status <>' => Order::CANCELED])
+        //     ->innerJoinWith('OrderDetails', function ($q) {
+        //         return $q;
+        //     });
+        // $solds = $solds
+        //     ->select([
+        //         'OrderDetails.product_id',
+        //         'sum' => $solds->func()->sum('quantity'),
+        //     ])
+        //     ->group(['OrderDetails.product_id'])
+            ->all()
+            ->combine(function(Order $order) {
+                return $order->_matchingData['OrderDetails']->product_id;
+            }, function(Order $order) {
+                return $order;
+            })
+            ->toArray();
+
+        // 入庫品数を取得
+        $inventories = $this->Products->ProductInventories->find('search', ['search' => $searchParam])
+            ->find('stockin')
+            ->all()
+            ->map(function(ProductInventory $productInventory) use($solds) {
+                if(isset($solds[$productInventory->product_id])) {
+                    $productInventory['sold'] = $solds[$productInventory->product_id]->sum;
+                }
+                return $productInventory;
+            })
+            ->combine('product_id', function(ProductInventory $productInventory) {
+                return $productInventory;
+            })
+            ->toArray();
+        return $inventories;
     }
 
     private function sendNotify() {

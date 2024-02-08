@@ -26,9 +26,11 @@
                     <!-- <td><?= h($category->created) ?></td> -->
                     <!-- <td><?= h($category->modified) ?></td> -->
                     <td class="actions w-25 text-center">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $category->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]) ?>
+                        <?= $this->Html->link(__('<i class="bi bi-sticky"></i>'), ['action' => 'view', $category->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
+                        <?= $this->Html->link(__('<i class="bi bi-pen-fill"></i>'), ['action' => 'edit', $category->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
+                        <?= $this->Form->postLink(__('<i class="bi bi-trash3"></i>'),
+                        ['action' => 'delete', $category->id],
+                        ['confirm' => __('Are you sure you want to delete # {0}?', $category->id), 'escapeTitle' => false, 'class' => 'border border-danger rounded text-danger']) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
