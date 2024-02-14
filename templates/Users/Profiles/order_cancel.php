@@ -12,9 +12,9 @@
     <div class="column-responsive column-80">
         <div class="menu-link-list">
         <?=$this->Html->link(
-            '<i class="bi bi-caret-left"></i>Back',
+            '<i class="bi bi-caret-left"></i>Quay Lại',
             ['controller' => 'Profiles', 'action' => 'order-list'],
-            ['escape' => false, 'escapeTitle' => false]
+            ['escape' => false, 'escapeTitle' => false, 'class' => 'text-decoration-none']
         );?>
         </div>
         <div class="form content">

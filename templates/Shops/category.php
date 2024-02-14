@@ -1,8 +1,8 @@
 <div class="menu-link-list">
 <?=$this->Html->link(
-    '<i class="bi bi-caret-left"></i>Back',
+    '<i class="bi bi-caret-left"></i>Quay Lại',
     ['controller' => 'Pages', 'action' => 'index'],
-    ['escape' => false, 'escapeTitle' => false]
+    ['escape' => false, 'escapeTitle' => false, 'class' => 'text-decoration-none']
 );?>
 </div>
 <div class="">

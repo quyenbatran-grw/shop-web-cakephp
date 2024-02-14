@@ -8,11 +8,11 @@ use App\Model\Entity\ProductInventory;
 
 ?>
 <div class="productInventories index content">
-    <?= $this->Html->link(__('New Product Inventory'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Thêm mới'), ['action' => 'add'], ['class' => 'button float-right']) ?>
 
     <?=$this->Form->create()?>
     <div class="row mt-4 pb-2">
-        <div class="col col-md-1">Product</div>
+        <div class="col col-md-1">Sản phẩm</div>
         <div class="col col-md-3">
             <?=$this->Form->control('product_name', [
                 'class' => 'form-control',
@@ -22,8 +22,8 @@ use App\Model\Entity\ProductInventory;
             ])?>
         </div>
 
-        <div class="col col-md-1 text-end">Date</div>
-        <div class="col col-md-4 d-flex">
+        <div class="col col-md-2 text-end">Ngày nhập</div>
+        <div class="col col-md-3 d-flex">
             <?=$this->Form->date('start_date', [
                 'class' => 'form-control',
                 'lable' => false,
@@ -37,10 +37,10 @@ use App\Model\Entity\ProductInventory;
             ])?>
         </div>
 
-        <div class="col col-md-1 text-end">Unit</div>
+        <div class="col col-md-1 text-end">Đơn vị</div>
         <div class="col col-md-2">
             <?php
-            $unitList = ['ALL'];
+            $unitList = ['Tất cả'];
             $unitList += ProductInventory::$units;
             ?>
             <?=$this->Form->control('unit', [
@@ -54,35 +54,35 @@ use App\Model\Entity\ProductInventory;
     </div>
     <div class="row justify-content-center mt-4 border-bottom pb-4">
         <div class="col col-md-2">
-            <?=$this->Form->button('<i class="bi bi-search"></i> Search', [
+            <?=$this->Form->button('<i class="bi bi-search"></i> Tìm kiếm', [
                 'class' => 'btn btn-primary w-100',
                 'escapeTitle' => false
             ])?>
         </div>
         <div class="col col-md-2"></div>
         <div class="col col-md-2">
-            <?=$this->Html->link('<i class="bi bi-x-circle"></i> Clear', ['action' => ''], [
+            <?=$this->Html->link('<i class="bi bi-x-circle"></i> Xóa', ['action' => ''], [
                 'class' => 'btn btn-primary w-100',
                 'escapeTitle' => false
             ])?>
         </div>
     </div>
     <?=$this->Form->end()?>
-    <h3 class="mt-4"><?= __('Product Inventories List') ?></h3>
+    <h3 class="mt-4"><?= __('Danh sách kho') ?></h3>
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered fix-header">
             <thead class="sticky-top">
                 <tr class="text-center">
-                    <!-- <th><?= $this->Paginator->sort('id') ?></th> -->
-                    <th><?= $this->Paginator->sort('product_id') ?></th>
-                    <th><?= $this->Paginator->sort('date') ?></th>
-                    <th><?= $this->Paginator->sort('expired_date') ?></th>
-                    <th><?= $this->Paginator->sort('unit_price') ?></th>
-                    <th><?= $this->Paginator->sort('quantity') ?></th>
-                    <th><?= $this->Paginator->sort('unit') ?></th>
+                    <!-- <th><?= $this->Paginator->sort('id', 'ID') ?></th> -->
+                    <th><?= $this->Paginator->sort('product_id', 'Sản phẩm') ?></th>
+                    <th><?= $this->Paginator->sort('date', 'Ngày nhập') ?></th>
+                    <th><?= $this->Paginator->sort('expired_date', 'Hạn sử dụng') ?></th>
+                    <th><?= $this->Paginator->sort('unit_price', 'Đơn giá') ?></th>
+                    <th><?= $this->Paginator->sort('quantity', 'Số lượng') ?></th>
+                    <th><?= $this->Paginator->sort('unit', 'Đơn vị') ?></th>
                     <!-- <th><?= $this->Paginator->sort('created') ?></th> -->
                     <!-- <th><?= $this->Paginator->sort('modified') ?></th> -->
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th class="actions"><?= __('') ?></th>
                 </tr>
             </thead>
             <tbody>

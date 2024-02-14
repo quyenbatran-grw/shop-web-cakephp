@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Model\Entity\Order;
+use App\Model\Table\OrdersTable;
 use Cake\I18n\Number;
 use Cake\ORM\Query;
 
@@ -46,7 +47,7 @@ class OrdersController extends AppController
             }],
         ]);
 
-        $status_list = Order::$statusList;
+        $status_list = OrdersTable::$statusList;
 
         $this->set(compact('order', 'status_list'));
     }
@@ -68,7 +69,7 @@ class OrdersController extends AppController
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $status_list = Order::$statusList;
+        $status_list = OrdersTable::$statusList;
         $this->set(compact('order', 'status_list'));
     }
 
@@ -101,7 +102,7 @@ class OrdersController extends AppController
         if(!empty($order)) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
             if($this->Orders->save($order)) {
-                if($order->status == Order::DELIVERED) {
+                if($order->status == OrdersTable::DELIVERED) {
                     // ポイント計算
                     $amount = $order->order_amount;
                     $point = floor($amount / 100000);
@@ -111,6 +112,7 @@ class OrdersController extends AppController
                     if(!empty($user->point)) $point = $point + intval($user->point);
                     $user->set('point', $point);
                     $this->Orders->Users->save($user);
+                    exit();
                 }
                 $this->Flash->success(__('The order has been updated.'));
             } else {

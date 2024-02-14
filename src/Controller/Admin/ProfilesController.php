@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Model\Entity\Order;
+use App\Model\Table\OrdersTable;
 
 /**
  * Profiles Controller
@@ -31,9 +32,10 @@ class ProfilesController extends AppController
         // $profiles = $this->paginate($this->Profiles);
         $profiles = null;
         $orders = $this->Orders->find()
-            ->where(['status' => Order::PREPARING])
+            ->where(['status' => OrdersTable::PREPARING])
             ->order(['status' => 'ASC', 'immediate' => 'DESC', 'created' => 'ASC'])
             ->limit(5)
+            ->all()
             ->toList();
 
         $this->set(compact('orders'));

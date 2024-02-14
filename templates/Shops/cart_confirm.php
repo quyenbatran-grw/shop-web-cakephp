@@ -1,8 +1,8 @@
 <div class="menu-link-list">
 <?=$this->Html->link(
-    '<i class="bi bi-caret-left"></i>Back',
+    '<i class="bi bi-caret-left"></i>Quay Lại',
     ['controller' => 'Shops', 'action' => 'cart_list'],
-    ['escape' => false, 'escapeTitle' => false]
+    ['escape' => false, 'escapeTitle' => false, 'class' => 'text-decoration-none']
 );?>
 </div>
 <div class="content mt-3">
@@ -32,33 +32,33 @@
         <?=$this->Form->control('full_name', [
             'type' => 'text',
             'class' => 'form-control',
-            'label' => 'Contact Name※',
+            'label' => 'Tên※',
             'required' => true,
             'value' => $customer && $customer['full_name'] ? $customer['full_name'] : ''
         ]);?>
         <?=$this->Form->control('address', [
             'type' => 'text',
             'class' => 'form-control',
-            'label' => 'Contact address※',
+            'label' => 'Địa chỉ※',
             'required' => true,
             'value' => $customer && $customer['address'] ? $customer['address'] : ''
         ]);?>
         <?=$this->Form->control('tel', [
             'type' => 'text',
             'class' => 'form-control',
-            'label' => 'Contact tel※',
+            'label' => 'Số điện thoại※',
             'required' => true,
             'value' => $customer && $customer['tel'] ? $customer['tel'] : ''
         ]);?>
         <?=$this->Form->control('memo', [
             'type' => 'textarea',
             'class' => 'form-control',
-            'label' => 'Descriptions',
+            'label' => 'Ghi chú(nếu có)',
             'value' => $customer && $customer['memo'] ? $customer['memo'] : ''
         ]);?>
         <div class="row justify-content-around mt-5">
-            <?= $this->Html->link(__('Back'), ['action' => '/cart-list'], ['class' => 'btn btn-secondary col-3']) ?>
-            <?= $this->Form->button('Next', ['class' => 'btn btn-primary col-3']); ?>
+            <?= $this->Html->link(__('Quay lại'), ['action' => '/cart-list'], ['class' => 'btn btn-secondary col-3']) ?>
+            <?= $this->Form->button('Tiếp tục', ['class' => 'btn btn-primary col-3']); ?>
         </div>
         <?=$this->Form->end();?>
     </div>

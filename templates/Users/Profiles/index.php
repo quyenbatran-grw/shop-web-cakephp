@@ -20,25 +20,25 @@
                 <?php if(!empty($profile->email)) { ?>
                 <div class="col-md-7 fs-6">Email: <?=$profile->email?></div>
                 <?php } ?>
-                <div class="col-md-7 fs-6">ID: <?=$profile->username?></div>
-                <div class="col-md-7 fs-6">TEL: <?=$profile->tel?></div>
-                <div class="col-md-7 fs-6"><p>Address: <?=$profile->address?></p></div>
+                <div class="col-md-7 fs-6">Tài khoản: <?=$profile->username?></div>
+                <div class="col-md-7 fs-6">SĐT: <?=$profile->tel?></div>
+                <div class="col-md-7 fs-6"><p>Địa chỉ: <?=$profile->address?></p></div>
             </div>
         </div>
     </div>
 
 
-    <h3><?= __('Point') ?><span class="ms-3 fs-1 text-danger"><?=number_format($profile->point)?><span class="fs-7">P</span></span></h3>
+    <h3><?= __('Điểm tích lũy') ?><span class="ms-3 fs-1 text-danger"><?=number_format($profile->point)?><span class="fs-7">P</span></span></h3>
     <div class="d-flex">
-        <div><h3><?= __('Total Orders') ?><span class="ms-3 fs-1 text-danger"><?=$order_count?></span></h3></div>
+        <div><h3><?= __('Tổng đơn hàng') ?><span class="ms-3 fs-1 text-danger"><?=$order_count?></span></h3></div>
         <div class="ms-3">
             <?=$this->Form->create(null, ['type' => 'GET', 'url' => ['controller' => 'Profiles', 'action' => 'order-list']]);?>
             <?= $this->Form->button('<i class="bi bi-card-list"></i>', ['class' => 'btn btn-outline-primary btn-sm', 'escapeTitle' => false]); ?>
             <?=$this->Form->end();?>
         </div>
     </div>
-    <h3><?= __('Paid Amount') ?><span class="ms-3 fs-1 text-danger"><?=$paid?><span class="fs-7"></span></span></h3>
-    <h3><?= __('UnPaid Amount') ?><span class="ms-3 fs-1 text-danger"><?=$unpaid?><span class="fs-7"></span></span></h3>
+    <h3><?= __('Đã thanh toán') ?><span class="ms-3 fs-1 text-danger"><?=$paid?><span class="fs-7"></span></span></h3>
+    <h3><?= __('Chưa thanh toán') ?><span class="ms-3 fs-1 text-danger"><?=$unpaid?><span class="fs-7"></span></span></h3>
 
     <!-- <div class="row border-bottom justify-content-start mt-2">
         <div class="col-md-5 fw-bold">UserName</div>
@@ -79,7 +79,7 @@
         </div> -->
         <div class="col-md-4 text-center">
         <?=$this->Html->link(
-            'Shopping Continue',
+            'Tiếp tục mua hàng',
             '/shops',
             ['escape' => false, 'escapeTitle' => false]
         );?>
@@ -89,7 +89,7 @@
 
     <div class="row justify-content-around mt-2">
         <div class="col-md-2 text-center">
-            <a href="/shops/logout/">Logout</a>
+            <a href="/shops/logout/">Đăng xuất</a>
         </div>
     </div>
 </div>

@@ -39,7 +39,7 @@
                     <td><?= $this->Number->format($shoppingCart->id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Quantity') ?></th>
+                    <th><?= __('Số Lượng') ?></th>
                     <td><?= $this->Number->format($shoppingCart->quantity) ?></td>
                 </tr>
             </table>

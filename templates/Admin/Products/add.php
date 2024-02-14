@@ -11,19 +11,19 @@ use App\Model\Table\ProductsTable;
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Products'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <!-- <h4 class="heading"><?= __('Actions') ?></h4> -->
+            <?= $this->Html->link(__('Quay lại'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive">
         <div class="products form content">
             <?= $this->Form->create($product, ['enctype' => 'multipart/form-data', 'id' => 'js-validate-form']) ?>
             <fieldset>
-                <legend><?= __('Add Product') ?></legend>
+                <legend><?= __('Thêm mới sản phẩm') ?></legend>
             </fieldset>
             <table class="table">
                 <tr>
-                    <th class="w-25"><?=__('Category*')?></th>
+                    <th class="w-25"><?=__('Danh mục*')?></th>
                     <td>
                         <?=$this->Form->control('category_id', [
                         'options' => $categories,
@@ -34,7 +34,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Name*')?></th>
+                    <th class="w-25"><?=__('Tên sản phẩm*')?></th>
                     <td>
                         <?=$this->Form->control('name', [
                             'value' => 'Cosmetic product 01',
@@ -45,9 +45,9 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Images')?></th>
+                    <th class="w-25"><?=__('Hình ảnh')?></th>
                     <td>
-                        <?=$this->Form->button('<i class="bi bi-plus-lg fs-4"></i>Add Image', [
+                        <?=$this->Form->button('<i class="bi bi-plus-lg fs-4"></i>Thêm ảnh', [
                             'type' => 'button',
                             'id' => 'add-image-button',
                             'class' => 'btn btn-primary btn-lg',
@@ -58,7 +58,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Madein*')?></th>
+                    <th class="w-25"><?=__('Xuất xứ*')?></th>
                     <td>
                         <?=$this->Form->control('made_in', [
                             'options' => ProductsTable::$sponsors,
@@ -69,7 +69,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Sponsor')?></th>
+                    <th class="w-25"><?=__('Nhà phân phối')?></th>
                     <td>
                         <?=$this->Form->control('sponsor_name', [
                             'class' => 'form-control',
@@ -81,7 +81,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Sponsor Address')?></th>
+                    <th class="w-25"><?=__('Địa chỉ nhà PP')?></th>
                     <td>
                         <?=$this->Form->control('sponsor_address', [
                             'class' => 'form-control',
@@ -93,7 +93,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Sponsor TEL*')?></th>
+                    <th class="w-25"><?=__('SĐT nhà PP*')?></th>
                     <td>
                         <?=$this->Form->control('sponsor_tel', [
                             'class' => 'form-control',
@@ -105,7 +105,7 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Description')?></th>
+                    <th class="w-25"><?=__('Mô tả')?></th>
                     <td>
                         <?=$this->Form->control('description', [
                             'class' => 'form-control',
@@ -117,8 +117,8 @@ use App\Model\Table\ProductsTable;
             </table>
 
             <div class="d-flex justify-content-between mx-9 my-4">
-            <?= $this->Form->button(__('Back'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-4', 'onclick' => 'history.back()']) ?>
-            <?= $this->Form->button('Submit', ['type' => 'submit', 'id' => 'save-product-button', 'class' => 'btn btn-primary btn-lg col-4']); ?>
+            <?= $this->Form->button(__('Quay lại'), ['type' => 'button', 'class' => 'btn btn-secondary btn-lg col-4', 'onclick' => 'history.back()']) ?>
+            <?= $this->Form->button('Lưu', ['type' => 'submit', 'id' => 'save-product-button', 'class' => 'btn btn-primary btn-lg col-4']); ?>
             </div>
             <?= $this->Form->end() ?>
         </div>

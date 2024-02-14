@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP';
+$cakeDescription = 'NgaHung';
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,7 @@ $cakeDescription = 'CakePHP';
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/be-vietnam" rel="stylesheet">
 
     <?= $this->Html->css(['cake', 'home', 'bootstrap.min']) ?>
 
@@ -50,7 +51,7 @@ $cakeDescription = 'CakePHP';
                 <?php if(!empty($auth)) { ?>
                 <a href="/users" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
                 <?php } else { ?>
-                <a href="/shops/login/" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
+                <a href="/shops/login" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
                 <?php } ?>
                 <div class="collapse navbar-collapse" id="Navber">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -89,7 +90,7 @@ $cakeDescription = 'CakePHP';
             </div><!-- /.container-fluid -->
         </nav>
         <?=$this->Form->create(null, ['url' => '/shops/cart-list']);?>
-        <?= $this->Form->button(__('<i class="bi bi-cart3"></i>'.($cart_quantity ? '<span class="badge bg-danger rounded-circle cart-number">{0}</span>' : ''), $cart_quantity), [
+        <?= $this->Form->button(__('<i class="bi bi-cart3 text-black"></i>'.($cart_quantity ? '<span class="badge bg-danger rounded-circle cart-number">{0}</span>' : ''), $cart_quantity), [
             'id' => 'cart-item',
             'type' => 'submit',
             'class' => 'border-0 bg-transparent cart',

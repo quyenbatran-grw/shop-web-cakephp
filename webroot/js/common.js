@@ -35,11 +35,22 @@
         btnAction = document.querySelector('input[name="immediate"]');
         if(btnAction) btnAction.addEventListener('change', changeImmediateFlg);
 
+        //========================管理者画面======================
         // 管理者画面でサイドメニューの切替
         changeSideMenu();
         // document.querySelectorAll('.side-left .side-left-menu li').forEach((elm) => {
         //     elm.addEventListener('click', changeSideMenu);
         // });
+
+        // 注文追加画面で商品検索モダール開く
+        // document.querySelectorAll('.add-order input.product-name').forEach((elm) => {
+        //     elm.addEventListener('F1', openSearchProductModal);
+        // });
+        document.onkeydown = openSearchProductModal;
+
+        //========================管理者画面======================
+
+
 
 
         let cards = document.querySelectorAll('.card');
@@ -453,6 +464,25 @@
                 item.querySelector('a').classList.add('link-light');
             }
         }
+    }
+
+    /**
+     * 商品検索モーダルを開く
+     * @param {*} e
+     */
+    function openSearchProductModal(e) {
+        if(e.key == 'F1') {
+            e.preventDefault();
+            const activeElement = document.activeElement;
+            if(activeElement.classList.contains('product-name') && activeElement.type == 'text') {
+                const myModal = new bootstrap.Modal('#searchProduct', {keyboard: false})
+                myModal.show();
+            }
+
+            console.log(activeElement.classList.contains('product-name'))
+            console.log(activeElement.type)
+        }
+        // console.log(e)
     }
 
     /* コードの終了 */

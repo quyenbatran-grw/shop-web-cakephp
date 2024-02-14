@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP';
+$cakeDescription = 'NgaHung';
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,7 +46,7 @@ $cakeDescription = 'CakePHP';
                 <?php if(!empty($auth)) { ?>
                 <a href="/admin/profiles" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
                 <?php } else { ?>
-                <a href="/shops/login/" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
+                <a href="/shops/login" class="btn btn-outline-success flex-shrink-0 account-link"><i class="bi bi-person"></i></a>
                 <?php } ?>
             </div><!-- /.container-fluid -->
         </nav>
@@ -55,12 +55,12 @@ $cakeDescription = 'CakePHP';
         <?php if(!empty($auth)) { ?>
         <div class="side-left text-start">
             <ul class="side-left-menu list-group list-group-flush">
-                <li class="list-group-item " aria-current="true"><a href="/admin" class="link-primary text-decoration-none">Dashboard</a></li>
-                <li class="list-group-item categories"><a href="/admin/categories" class="link-primary text-decoration-none">Categories</a></li>
-                <li class="list-group-item products"><a href="/admin/products" class="link-primary text-decoration-none">Products</a></li>
-                <li class="list-group-item inventory"><a href="/admin/inventory" class="link-primary text-decoration-none">Stocks</a></li>
-                <li class="list-group-item orders"><a href="/admin/orders" class="link-primary text-decoration-none">Orders</a></li>
-                <li class="list-group-item profiles"><a href="/admin/list" class="link-primary text-decoration-none">Users</a></li>
+                <li class="list-group-item " aria-current="true"><a href="/admin" class="link-primary text-decoration-none">Trang chủ</a></li>
+                <li class="list-group-item categories"><a href="/admin/categories" class="link-primary text-decoration-none">Danh mục</a></li>
+                <li class="list-group-item products"><a href="/admin/products" class="link-primary text-decoration-none">Sản phẩm</a></li>
+                <li class="list-group-item inventory"><a href="/admin/inventory" class="link-primary text-decoration-none">Kho</a></li>
+                <li class="list-group-item orders"><a href="/admin/orders" class="link-primary text-decoration-none">Đơn hàng</a></li>
+                <li class="list-group-item profiles"><a href="/admin/list" class="link-primary text-decoration-none">Tài khoản</a></li>
             </ul>
         </div>
         <div class="container admin">

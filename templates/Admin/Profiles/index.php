@@ -5,25 +5,26 @@
  */
 
 use App\Model\Entity\Order;
+use App\Model\Table\OrdersTable;
 
 ?>
 <div class="users index content">
-    <h3><?= __('Dash Board') ?></h3>
+    <h3><?= __('Trang chủ') ?></h3>
 
     <div>
-        <div>New Orders</div>
+        <div>Đơn hàng mới nhất</div>
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr class="text-center">
                         <th><?= $this->Paginator->sort('id') ?></th>
-                        <th><?= $this->Paginator->sort('order_number') ?></th>
-                        <th><?= $this->Paginator->sort('created', 'Order Date') ?></th>
-                        <th><?= $this->Paginator->sort('status') ?></th>
-                        <th><?= $this->Paginator->sort('order_name') ?></th>
-                        <th><?= $this->Paginator->sort('order_address') ?></th>
-                        <th><?= $this->Paginator->sort('order_tel') ?></th>
-                        <th><?= $this->Paginator->sort('order_amount') ?></th>
+                        <th><?= $this->Paginator->sort('order_number', 'Mã ĐH') ?></th>
+                        <th><?= $this->Paginator->sort('created', 'Ngày đặt') ?></th>
+                        <th><?= $this->Paginator->sort('status', 'Trạng thái') ?></th>
+                        <th><?= $this->Paginator->sort('order_name', 'Tên LH') ?></th>
+                        <th><?= $this->Paginator->sort('order_address', 'Địa chỉ') ?></th>
+                        <th><?= $this->Paginator->sort('order_tel', 'SĐT') ?></th>
+                        <th><?= $this->Paginator->sort('order_amount', 'Tổng HĐ') ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +42,7 @@ use App\Model\Entity\Order;
                         </td>
                         <td><?=$order->order_number?></td>
                         <td><?=$order->created->i18nFormat('Y/MM/dd')?></td>
-                        <td class="text-center"><span class="<?=Order::$statusBackground[$order->status]?> ps-1 pe-1 text-white rounded"><?= $order->status_name ?></span></td>
+                        <td class="text-center"><span class="<?=OrdersTable::$statusBackground[$order->status]?> ps-1 pe-1 text-white rounded"><?= $order->status_name ?></span></td>
                         <td><?= h($order->order_name) ?></td>
                         <td><?= h($order->order_address) ?></td>
                         <td><?= h($order->order_tel) ?></td>

@@ -11,16 +11,16 @@
     </div>
 
     <fieldset>
-        <legend><?= __(MSG_0008) ?></legend>
-        <?= $this->Form->control('username', ['class' => 'form-control']) ?>
-        <?= $this->Form->control('password', ['class' => 'form-control']) ?>
+        <!-- <legend><?= __(MSG_0008) ?></legend> -->
+        <?= $this->Form->control('username', ['label' => 'Tên đăng nhập', 'class' => 'form-control']) ?>
+        <?= $this->Form->control('password', ['label' => 'Mật khẩu', 'class' => 'form-control']) ?>
     </fieldset>
 
     <div class="d-flex justify-content-center">
-    <?= $this->Form->button(__('Login'), ['class' => 'btn btn-primary btn-lg mt-5']); ?>
+    <?= $this->Form->button(__('Đăng nhập'), ['class' => 'btn btn-primary btn-lg mt-5']); ?>
     </div>
     <div class="d-flex justify-content-center">
-        <?=$this->Html->link('Shopping without login',
+        <?=$this->Html->link('Bắt đầu mua sắm',
         ['controller' => 'Pages', 'action' => 'index'],
         ['escape' => false, 'escapeTitle' => false]
         );?>

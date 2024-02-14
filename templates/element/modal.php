@@ -21,9 +21,9 @@
     <div class="modal-body">
         <?=isset($message) ? $message : 'Modal Message'?>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary">OK</button>
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Đóng</button>
+        <button class="btn btn-primary w-25">OK</button>
     </div>
     </div>
 </div>

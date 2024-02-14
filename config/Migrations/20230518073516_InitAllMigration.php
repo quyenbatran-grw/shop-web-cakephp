@@ -346,6 +346,12 @@ class InitAllMigration extends AbstractMigration
                 'limit' => 11,
                 'comment' => 'delivery status(0:preparing, 1: delivering, 2: deliveried, 3: cancel)'
             ])
+            ->addColumn('payment_status', 'integer', [
+                'default' => 0,
+                'null' => false,
+                'limit' => 3,
+                'comment' => 'payment status(0:unpayment, 1: paid a part, 2: paid all, 3: refurned)'
+            ])
             ->addColumn('order_name', 'string', [
                 'default' => null,
                 'null' => false,
@@ -370,6 +376,13 @@ class InitAllMigration extends AbstractMigration
                 'precision' => 11,
                 'scale' => 0,
                 'comment' => 'total price of order exclusive tax'
+            ])
+            ->addColumn('paid_amount', 'decimal', [
+                'default' => null,
+                'null' => false,
+                'precision' => 11,
+                'scale' => 0,
+                'comment' => 'total price are paid'
             ])
             ->addColumn('payment_point', 'biginteger', [
                 'default' => null,

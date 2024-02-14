@@ -32,12 +32,42 @@ use Cake\Validation\Validator;
  */
 class OrdersTable extends Table
 {
+    const PREPARING = 0;
+    const PAID = 1;
+    const DELIVERING = 2;
+    const DELIVERED = 3;
+    const CANCELED = 4;
+    const CASH = 0;
+    const BANKING = 1;
+    // 注文のステータス
+    public static $statusList = [
+        self::PREPARING => 'Đang xử lý'
+    // ,   self::PAID => 'Đã thanh toán'
+    ,   self::DELIVERING => 'Đang giao hàng'
+    ,   self::DELIVERED => 'Đã giao'
+    ,   self::CANCELED => 'Đã hủy'
+    ];
+    // 支払状態
+    public static $paymentStatus = [
+        self::PREPARING => 'Chưa thanh toán'
+    ,   self::PAID => 'Thanh toán 1 phần'
+    ,   self::DELIVERED => 'Đã thanh toán'
+    ,   self::CANCELED => 'Đã hoàn tiền'
+    ];
+    // 注文のステータス背景色
+    public static $statusBackground = [
+        self::PREPARING => 'bg-danger'
+    ,   self::PAID => 'bg-warning'
+    ,   self::DELIVERING => 'bg-info'
+    ,   self::DELIVERED => 'bg-success'
+    ,   self::CANCELED => 'bg-secondary'
+    ];
     // 検索条件の期間
-    public static $filterTimes = ['Current month', '3 month ago', '6 month ago'];
+    public static $filterTimes = ['Tháng hiện tại', '3 tháng trước', '6 tháng trước'];
     // 配達方法
-    public static $deliveryTypes = ['Reveice In Shop', 'Develiry To Home'];
+    public static $deliveryTypes = ['Nhập tại của hàng', 'Giao tận nhà(MIỄN PHÍ)'];
     // 支払方法
-    public static $paymentTypes = ['Cash', 'Banking'];
+    public static $paymentTypes = [self::CASH => 'Tiền mặt', self::BANKING => 'Chuyển khoản'];
 
     /**
      * Initialize method
@@ -192,7 +222,7 @@ class OrdersTable extends Table
      */
     public function findStockOut(Query $query) {
         return $query
-            ->where(['Orders.status <>' => Order::CANCELED])
+            ->where(['Orders.status <>' => OrdersTable::CANCELED])
             ->innerJoinWith('OrderDetails', function ($q) {
                 return $q;
             })

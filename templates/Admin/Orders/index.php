@@ -9,11 +9,11 @@ use App\Model\Table\OrdersTable;
 
 ?>
 <div class="orders index content">
-    <!-- <?= $this->Html->link(__('New Order'), ['action' => 'add'], ['class' => 'button float-right']) ?> -->
+    <?= $this->Html->link(__('Thêm đơn hàng'), ['action' => 'add'], ['class' => 'button float-right mb-2']) ?>
     <!-- <h3><?= __('Orders') ?></h3> -->
     <?=$this->Form->create()?>
     <div class="row border-bottom pb-2">
-        <div class="col col-md-2">Order Number</div>
+        <div class="col col-md-2">Mã đơn hàng</div>
         <div class="col col-md-2">
             <?=$this->Form->control('order_number', [
                 'class' => 'form-control',
@@ -23,7 +23,7 @@ use App\Model\Table\OrdersTable;
             ])?>
         </div>
 
-        <div class="col col-md-2 text-end">Order Date</div>
+        <div class="col col-md-2 text-end">Ngày</div>
         <div class="col col-md-4 d-flex">
             <?=$this->Form->date('start_date', [
                 'class' => 'form-control',
@@ -40,11 +40,11 @@ use App\Model\Table\OrdersTable;
     </div>
 
     <div class="row pt-2">
-        <div class="col col-md-2">Status</div>
+        <div class="col col-md-2">trạng thái</div>
         <div class="col col-md-2">
             <?php
-            $statusList = ['ALL'];
-            $statusList += Order::$statusList;
+            $statusList = ['Tất cả'];
+            $statusList += OrdersTable::$statusList;
             ?>
             <?=$this->Form->control('status', [
                 'type' => 'select',
@@ -55,9 +55,9 @@ use App\Model\Table\OrdersTable;
             ])?>
         </div>
 
-        <div class="col col-md-2 text-end">Immediation</div>
+        <div class="col col-md-2 text-end">Giao gấp</div>
         <div class="col col-md-3">
-            <?=$this->Form->radio('immediate', [2 => 'All', 1 => 'Yes', 0 => 'No'], [
+            <?=$this->Form->radio('immediate', [2 => 'Tất cả', 1 => 'Có', 0 => 'Không'], [
                 'class' => 'form-check-input ms-4',
                 'hiddenField' => false,
                 'value' => isset($searchParam['immediate']) ? $searchParam['immediate'] : 2
@@ -67,14 +67,14 @@ use App\Model\Table\OrdersTable;
 
     <div class="row justify-content-center mt-4 border-bottom pb-4">
         <div class="col col-md-2">
-            <?=$this->Form->button('<i class="bi bi-search"></i> Search', [
+            <?=$this->Form->button('<i class="bi bi-search"></i> Tìm kiếm', [
                 'class' => 'btn btn-primary w-100',
                 'escapeTitle' => false
             ])?>
         </div>
         <div class="col col-md-2"></div>
         <div class="col col-md-2">
-            <?=$this->Html->link('<i class="bi bi-x-circle"></i> Clear', ['action' => ''], [
+            <?=$this->Html->link('<i class="bi bi-x-circle"></i> Xóa', ['action' => ''], [
                 'class' => 'btn btn-primary w-100',
                 'escapeTitle' => false
             ])?>
@@ -82,19 +82,20 @@ use App\Model\Table\OrdersTable;
     </div>
     <?=$this->Form->end()?>
     <div class="table-responsive">
-        <span class="text-danger fs-5">(*) is immediated order</span>
+        <span class="text-danger fs-5">(*) giao gấp</span>
         <table class="table table-striped table-hover table-bordered fix-header">
             <thead class="sticky-top">
                 <tr class="text-center">
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('order_number') ?></th>
-                    <th><?= $this->Paginator->sort('created', 'Order Date') ?></th>
-                    <th><?= $this->Paginator->sort('status') ?></th>
-                    <th><?= $this->Paginator->sort('order_name') ?></th>
-                    <th><?= $this->Paginator->sort('order_address') ?></th>
-                    <th><?= $this->Paginator->sort('order_tel') ?></th>
-                    <th><?= $this->Paginator->sort('order_amount') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th><?= $this->Paginator->sort('id', 'ID') ?></th>
+                    <th><?= $this->Paginator->sort('order_number', 'Mã đơn hàng') ?></th>
+                    <th><?= $this->Paginator->sort('created', 'Ngày đặt') ?></th>
+                    <th><?= $this->Paginator->sort('status', 'Trạng thái') ?></th>
+                    <th><?= $this->Paginator->sort('order_name', 'Tên') ?></th>
+                    <th><?= $this->Paginator->sort('order_address', 'Địa chỉ') ?></th>
+                    <th><?= $this->Paginator->sort('order_tel', 'SĐT') ?></th>
+                    <th><?= $this->Paginator->sort('order_amount', 'Tổng tiền') ?></th>
+                    <th><?= __('Thanh toán') ?></th>
+                    <th class="actions"><?= __('') ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -102,17 +103,18 @@ use App\Model\Table\OrdersTable;
                 <tr class="">
                     <td>
                         <?= $this->Number->format($order->id) ?>
-                        <?php if($order->immediate && $order->status != Order::CANCELED && $order->status != Order::DELIVERED) { ?>
+                        <?php if($order->immediate && $order->status != OrdersTable::CANCELED && $order->status != OrdersTable::DELIVERED) { ?>
                         <span class="text-danger">*</span>
                         <?php } ?>
                     </td>
                     <td><?= h($order->order_number) ?></td>
                     <td><?= h($order->created->i18nFormat('Y/MM/dd HH:mm')) ?></td>
-                    <td class="text-center"><span class="<?=Order::$statusBackground[$order->status]?> ps-1 pe-1 text-white rounded"><?= $order->status_name ?></span></td>
+                    <td class="text-center"><span class="<?=OrdersTable::$statusBackground[$order->status]?> ps-1 pe-1 text-white rounded"><?= $order->status_name ?></span></td>
                     <td><?= h($order->order_name) ?></td>
                     <td><?= h($order->order_address) ?></td>
                     <td><?= h($order->order_tel) ?></td>
                     <td class="text-end"><?= number_format($order->order_amount) ?></td>
+                    <td class="text-end <?=$order->payment_status == OrdersTable::CANCELED ? 'bg-secondary text-white' : ''?>"><?= number_format($order->paid_amount) ?></td>
                     <td class="actions text-center">
                         <?= $this->Html->link(__('<i class="bi bi-sticky"></i>'), ['action' => 'view', $order->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
                         <!-- <?= $this->Html->link(__('<i class="bi bi-pen-fill"></i>'), ['action' => 'edit', $order->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?> -->

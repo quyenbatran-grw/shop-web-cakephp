@@ -16,9 +16,9 @@ use Cake\Chronos\Date;
     <div class="column-responsive column-80">
         <div class="menu-link-list">
         <?=$this->Html->link(
-            '<i class="bi bi-caret-left"></i>Back',
+            '<i class="bi bi-caret-left"></i>Quay Lại',
             ['controller' => 'Profiles', 'action' => 'index'],
-            ['escape' => false, 'escapeTitle' => false]
+            ['escape' => false, 'escapeTitle' => false, 'class' => 'text-decoration-none']
         );?>
         </div>
         <div class="form content">
@@ -32,7 +32,7 @@ use Cake\Chronos\Date;
             <!-- <h4 class="heading fw-bold mt-2"><?= __('Order List') ?></h4> -->
             <?php if(count($new_orders)) { ?>
             <div class="row justify-content-start">
-                <div class="fw-bold">Newest</div>
+                <div class="fw-bold">Mới nhất</div>
                 <div>
                     <?php
                     $image_url = '/img/noImage.svg';
@@ -43,8 +43,8 @@ use Cake\Chronos\Date;
                             $image_product = $order->order_details[0]->product->image_products[0];
                             $image_url = '/img/products/'.$image_product['file_name'];
                         }
-                        if($order->status == Order::DELIVERING) $status_name_bg = 'bg-info';
-                        else if($order->status == Order::PAID) $status_name_bg = 'bg-warning';
+                        if($order->status == OrdersTable::DELIVERING) $status_name_bg = 'bg-info';
+                        else if($order->status == OrdersTable::PAID) $status_name_bg = 'bg-warning';
                         $url = '/users/order-detail/' . $order->id;
                     ?>
                     <?=$this->Form->create($order, ['url' => $url, 'class' => ''])?>
@@ -53,9 +53,9 @@ use Cake\Chronos\Date;
                             <div class="fix-w-6 fix-h-8"><img src="<?=$image_url?>" class="w-100 h-100" alt="..."></div>
                             <div class="p-2 w-100">
                                 <h4 class="fs-5 w-75 text-center fw-bold <?=$status_name_bg?> rounded text-white p-1"><?=$order->status_name?></h4>
-                                <div class="fs-5">Quantity: <?=number_format(count($order->order_details))?> Items</div>
-                                <div class="fs-5">Amount: <?=number_format($order->order_amount)?></div>
-                                <div class="fs-7">Order Date: <?=$order->order_date?></div>
+                                <div class="fs-5">SL: <?=number_format(count($order->order_details))?> Sản phẩm</div>
+                                <div class="fs-5">Tổng: <?=number_format($order->order_amount)?></div>
+                                <div class="fs-7">Ngày: <?=$order->order_date?></div>
                             </div>
                         </div>
 
@@ -68,9 +68,9 @@ use Cake\Chronos\Date;
                 </div>
             </div>
             <?php } ?>
-            <?php if(count($new_orders)) { ?>
+            <?php if(count($old_orders)) { ?>
             <div class="row justify-content-start">
-                <div class="fw-bold">Older</div>
+                <div class="fw-bold">Đơn đã xử lý</div>
                 <div>
                     <?php
                     $image_url = '/img/noImage.svg';
@@ -82,7 +82,7 @@ use Cake\Chronos\Date;
                             $image_product = $order->order_details[0]->product->image_products[0];
                             $image_url = '/img/products/'.$image_product['file_name'];
                         }
-                        if($order->status == Order::CANCELED) $status_name_bg = 'bg-secondary';
+                        if($order->status == OrdersTable::CANCELED) $status_name_bg = 'bg-secondary';
                         $url = 'users/order-detail/' . $order->id;
                     ?>
                     <?=$this->Form->create($order, ['url' => $url, 'class' => ''])?>
@@ -91,9 +91,9 @@ use Cake\Chronos\Date;
                             <div class="fix-w-6 fix-h-8"><img src="<?=$image_url?>" class="w-100 h-100" alt="..."></div>
                             <div class="p-2 w-100">
                                 <h4 class="fs-5 w-75 text-center fw-bold <?=$status_name_bg?> rounded text-white p-1"><?=$order->status_name?></h4>
-                                <div class="fs-5">Quantity: <?=number_format(count($order->order_details))?> Items</div>
-                                <div class="fs-5">Amount: <?=number_format($order->order_amount)?></div>
-                                <div class="fs-7">Order Date: <?=$order->order_date?></div>
+                                <div class="fs-5">SL: <?=number_format(count($order->order_details))?> Sản phẩm</div>
+                                <div class="fs-5">Tổng: <?=number_format($order->order_amount)?></div>
+                                <div class="fs-7">Ngày: <?=$order->order_date?></div>
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@ use Cake\Chronos\Date;
             </div>
             <?php } ?>
             <?php if(count($new_orders) == 0 && count($old_orders) == 0) { ?>
-            <h2 class="mt-4 text-center fw-bold">You are have not any order</h2>
+            <h2 class="mt-4 text-center fw-bold"><?=__(MSG_0010)?></h2>
             <?php } ?>
         </div>
     </div>

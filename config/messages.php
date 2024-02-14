@@ -1,30 +1,31 @@
 <?php
-define('REQUIRED_INPUT', 'Please input this field');
-define('OVER_MAX_LENGTH', 'Please input under %s characters');
+define('REQUIRED_INPUT', 'Làm ơn hãy nhập mục này');
+define('OVER_MAX_LENGTH', 'Làm ơn nhập tối đa %s ký tự');
 /**
  * Notification message 0001 ~ 0999
 */
-define('MSG_0001', 'Product is added to cart');
-define('MSG_0002', 'If you have an account. You can login to continue shopping');
-define('MSG_0003', 'Please fill all below information before purchase');
-define('MSG_0004', 'Your orders are finished. Please wait for contact from our shop');
-define('MSG_0005', 'Please select kind of payment');
-define('MSG_0006', 'Please pay all amount when products are delivered');
-define('MSG_0007', 'There are your shopping cart information. If don\'t have any mistake, you can press to Order button to finish. Otherwise please press to Back button');
-define('MSG_0008', 'Please enter your email and password');
-define('MSG_0009', 'You have new order {0}.Please check it');
-define('MSG_0010', '');
+define('MSG_0001', 'Sản phẩm đã được thêm vào giỏ hàng');
+define('MSG_0002', 'Hãy đăng nhập nếu bạn là thành viên để nhận được các dịch vụ ưu đãi');
+define('MSG_0003', 'Làm ơn nhập đầy đủ thông tin dưới đây trước khi thanh toán');
+define('MSG_0004', 'Cảm ơn bạn đã đặt hàng.<br>{0}<br>Chúng tôi sẽ liên hệ lại trong thời gian sớm nhất');
+define('MSG_0005', 'Làm ơn hãy chọn phương thức thanh toán');
+define('MSG_0006', 'Làm ơn thanh toán đầy đủ tiền khi chúng tôi giao hàng tới nơi');
+define('MSG_0007', 'Làm ơn hãy kiểm tra lại đơn hàng. Để hoàn thành giao dịch hãy chọn [Đặt Hàng], hoặc [Quay Lại] để tiếp tục mua hàng');
+define('MSG_0008', 'Làm ơn điền tên đăng nhập và mật khẩu');
+define('MSG_0009', 'Hãy kiểm tra đơn hàng mới');
+define('MSG_0010', 'Bạn chưa có đơn hàng nào.');
+define('MSG_0011', '');
 
 /**
  * Success message 1000 ~ 1999
  */
-define('MSG_1000', 'The information have been saved');
-define('MSG_1001', 'The information have been deleted');
-define('MSG_1002', 'Your order is canceled <br>When you paid, please contact with our to refurn money');
+define('MSG_1000', 'Thông tin đã được lưu');
+define('MSG_1001', 'Thông tin đã được xóa');
+define('MSG_1002', 'Bạn đã thực hiện hủy đơn hàng, hãy liên hệ với chúng tôi để hoàn trả thanh toán nếu bạn đã thực hiện thanh toán cho đơn hàng');
  /**
   * Error message 2001 ~ 2009
   */
-define('MSG_2000', 'The information count not be saved.Please try again');
-define('MSG_2001', 'The information count not be deleted.Please try again');
-define('MSG_2002', 'Invalid username or password');
-define('MSG_2003', 'Delivery datetime is invalid');
+define('MSG_2000', 'Thông tin lưu không thành công. Làm ơn kiểm tra lại các mục');
+define('MSG_2001', 'Thông tin xóa không thành công. Làm ơn kiểm tra lại các mục');
+define('MSG_2002', 'Tên đang nhập hoặc mật khẩu không đúng');
+define('MSG_2003', 'Thời gian giao hàng không đúng');

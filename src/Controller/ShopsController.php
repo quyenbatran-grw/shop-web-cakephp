@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Model\Entity\Order;
 use App\Model\Entity\Product;
+use App\Model\Table\OrdersTable;
 use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Core\Configure;
 use Cake\Http\Cookie\Cookie;
@@ -14,6 +15,7 @@ use Cake\I18n\FrozenDate;
 use Cake\I18n\FrozenTime;
 use Cake\I18n\Number;
 use Cake\ORM\Query;
+use DateInterval;
 use DateTime;
 use Exception;
 use Psr\Http\Message\ServerRequestInterface;
@@ -92,7 +94,6 @@ class ShopsController extends AppController
                 if(count($category->products)) return $category;
                 return null;
             });
-                        // var_dump($categories->toArray());
         $image_products = $this->ImageProducts->find()->limit(3)->all();
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
         $this->set(compact('image_products', 'categories', 'cart_quantity'));
@@ -201,17 +202,20 @@ class ShopsController extends AppController
             if(!is_null($quantity) && $quantity_stocks[$product->id] >= $quantity) {
                 if(isset($shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id])) $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] += $quantity;
                 else $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] = $quantity;
-                $cookie = (new Cookie(self::COOKIE_NM))
-                    ->withValue($shopping_cart)
-                    ->withExpiry(new DateTime('+1 year'))
-                    ->withPath('/')
-                    ->withDomain('localhost')
-                    ->withSecure(false)
-                    ->withSameSite(CookieInterface::SAMESITE_STRICT)
-                    ->withHttpOnly(false);
+                // $cookie = (new Cookie(self::COOKIE_NM))
+                //     ->withValue($shopping_cart)
+                //     ->withExpiry(new DateTime('+1 year'))
+                //     ->withPath('/')
+                //     ->withDomain('localhost')
+                //     ->withSecure(false)
+                //     ->withSameSite(CookieInterface::SAMESITE_STRICT)
+                //     ->withHttpOnly(false);
 
-                $this->response = $this->response->withCookie($cookie);
+                // $this->response = $this->response->withCookie($cookie);
+                $this->_setShoppingCookie(self::COOKIE_NM, $shopping_cart);
                 $add_to_cart = true;
+                // var_dump($shopping_cart);
+                // var_dump($_COOKIE);exit();
             }
             if($add_to_cart) $this->Flash->toast(MSG_0001);
             return $this->redirect(['controller' => 'Shops', 'action' => 'product', $id, $product_id]);
@@ -378,6 +382,7 @@ class ShopsController extends AppController
 
         $cart_products = $this->_getProductsFromCart();
         $cart_quantity = $this->_getShoppingCartTotalQuantity();
+        $order = null;
         if($this->request->is(['post', 'put'])) {
             if(!empty($cart_products) && $cart_quantity) {
                 // 配送時間をチェック
@@ -435,7 +440,9 @@ class ShopsController extends AppController
                 $order['memo'] = $customer['memo'];
                 $order['order_amount'] = 0;
                 $order['payment_point'] = $this->request->getData('payment_point', 0);
+                if(empty($order['payment_point'])) $order['payment_point'] = 0;
                 $order['payment_type'] = $this->request->getData('payment', 1);
+                $order['payment_status'] = OrdersTable::PREPARING;
                 $order['user_id'] = null;
                 if(is_null($immediate)) {
                     $order['delivery_start_time'] = FrozenTime::parse($delivery_start_time);
@@ -481,7 +488,19 @@ class ShopsController extends AppController
             }
             $this->_deleteShoppingCookie();
         }
-        $this->set(compact('cart_quantity'));
+
+        if($this->Authentication->user && is_null($order)) {
+            $order = $this->Orders->find()
+                ->where([
+                    'user_id' => $this->Authentication->user->id,
+                    'payment_status' => OrdersTable::PREPARING,
+                    'payment_type' => OrdersTable::BANKING
+                ])
+                ->orderAsc('order_number')
+                ->limit(1)
+                ->firstOrFail();
+        }
+        $this->set(compact('order', 'cart_quantity'));
         $this->render('purchase');
     }
 
@@ -528,7 +547,7 @@ class ShopsController extends AppController
                 'OrderDetails' => function($query) {
                     $query = $query
                     ->innerJoinWith('Orders', function($query) {
-                        return $query->where(['Orders.status <>' => Order::CANCELED]);
+                        return $query->where(['Orders.status <>' => OrdersTable::CANCELED]);
                     })
                     ->select(['OrderDetails.product_id']);
                     return $query
@@ -601,9 +620,9 @@ class ShopsController extends AppController
     private function _setShoppingCookie($cookie_name, $shopping_cart) {
         $cookie = (new Cookie($cookie_name))
                     ->withValue($shopping_cart)
-                    ->withExpiry(new DateTime('+1 year'))
+                    ->withExpiry(FrozenTime::now()->addYear(1))
                     ->withPath('/')
-                    ->withDomain('localhost')
+                    ->withDomain('')
                     ->withSecure(false)
                     ->withSameSite(CookieInterface::SAMESITE_STRICT)
                     ->withHttpOnly(false);

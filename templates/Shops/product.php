@@ -2,12 +2,12 @@
 <!-- <?=$this->Html->link(
     '<i class="bi bi-caret-left"></i>Categories',
     ['controller' => 'Pages', 'action' => 'index'],
-    ['escape' => false, 'escapeTitle' => false]
+    ['escape' => false, 'escapeTitle' => false, 'class' => 'text-decoration-none']
 );?> -->
 <?=$this->Html->link(
-    '<i class="bi bi-chevron-left fs-6"></i>Back',
+    '<i class="bi bi-chevron-left fs-6"></i>Quay Lại',
     ['controller' => 'Shops', 'action' => 'category', 'id' => $product->category_id],
-    ['escape' => false, 'escapeTitle' => false, 'class' => '']
+    ['escape' => false, 'escapeTitle' => false, 'class' => 'text-decoration-none']
 );?>
 </div>
 
@@ -76,17 +76,17 @@
         <div class="add-cart-group d-flex mt-3" role="group" aria-label="Basic example">
             <!-- <div>Quantity</div> -->
 
-            <div class="w-25">
+            <div class="">
                 <?=$this->Form->control('quantity', [
                     'type' => 'select',
-                    'label' => 'Quantity',
+                    'label' => 'Số Lượng',
                     'class' => 'form-control text-center ms-2',
                     'options' => $stock_quantity
                 ])?>
             </div>
 
 
-            <?= $this->Form->button('<i class="bi bi-cart3"></i>Add To Card', [
+            <?= $this->Form->button('<i class="bi bi-cart3"></i>Thêm Giỏ Hàng', [
                 'type' => 'submit',
                 'class' => 'btn btn-primary ms-4 mt-4',
                 'escapeTitle' => false,
@@ -95,7 +95,7 @@
         <?=$this->Form->end();?>
         <?php } ?>
 
-        <div class="mt-2">Relative Products</div>
+        <div class="mt-2">Sản Phẩm Liên Quan</div>
         <table class="table table-responsive">
             <tr>
                 <?php foreach ($other_products as $other_product) {

@@ -6,6 +6,7 @@ namespace App\Controller\Users;
 use App\Controller\AppController;
 use App\Controller\ShopsController;
 use App\Model\Entity\Order;
+use App\Model\Table\OrdersTable;
 use Cake\Database\Query;
 use Cake\I18n\FrozenDate;
 
@@ -36,7 +37,7 @@ class ProfilesController extends AppController
         $profile = $this->Users->find()->where(['id' => $this->Authentication->user->id])->first();
         // 決済済の注文
         $query = $this->Orders->find()
-            ->where(['user_id' => $this->Authentication->user->id, 'status IN' => [Order::DELIVERED, Order::PAID]]);
+            ->where(['user_id' => $this->Authentication->user->id, 'status IN' => [OrdersTable::DELIVERED, OrdersTable::PAID]]);
         $query = $query->select(['count' => $query->func()->count('id'), 'amount' => $query->func()->sum('order_amount')])
             ->firstOrFail();
         $order_count = 0;
@@ -47,7 +48,7 @@ class ProfilesController extends AppController
             $paid = $query->amount ? number_format($query->amount) : 0;
         }
         $query = $this->Orders->find()
-            ->where(['user_id' => $this->Authentication->user->id, 'status NOT IN' => [Order::DELIVERED, Order::PAID]]);
+            ->where(['user_id' => $this->Authentication->user->id, 'status NOT IN' => [OrdersTable::DELIVERED, OrdersTable::PAID]]);
         $query = $query->select(['count' => $query->func()->count('id'), 'amount' => $query->func()->sum('order_amount')])
             ->firstOrFail();
         if(!empty($query)) {
@@ -74,9 +75,17 @@ class ProfilesController extends AppController
             ])
             ->where([
                 'Orders.user_id' => $this->Authentication->user->id,
-                'Orders.status NOT IN' => [Order::DELIVERED, Order::CANCELED]
+                'OR' => [
+                    'Orders.status' => OrdersTable::PREPARING,
+                    'Orders.status' => OrdersTable::DELIVERING,
+                    'AND' => [
+                        'Orders.status' => OrdersTable::CANCELED,
+                        'Orders.payment_status <>' => OrdersTable::CANCELED,
+                    ],
+                ],
             ])
             ->order(['Orders.status' => 'ASC', 'Orders.order_number' => 'ASC'])
+            ->all()
             ->map(function(Order $order) {
                 $order['order_date'] = $order->created->format('Y-m-d');
                 return $order;
@@ -96,10 +105,11 @@ class ProfilesController extends AppController
             ->where([
                 'Orders.user_id' => $this->Authentication->user->id,
                 'OR' => [
-                    'Orders.status IN' => [Order::DELIVERED, Order::CANCELED]
+                    'Orders.status IN' => [OrdersTable::DELIVERED, OrdersTable::CANCELED]
                 ]
             ])
             ->order(['Orders.status' => 'ASC', 'Orders.order_number' => 'DESC'])
+            ->all()
             ->map(function(Order $order) {
                 $order['order_date'] = $order->created->format('Y-m-d');
                 return $order;
@@ -127,6 +137,7 @@ class ProfilesController extends AppController
             ->where([
                 'Orders.id' => $id,
             ])
+            ->all()
             ->map(function(Order $order) {
                 $order['order_date'] = $order->created->format('Y-m-d');
                 return $order;
@@ -150,13 +161,13 @@ class ProfilesController extends AppController
         if($this->request->is(['put', 'post'])) {
             $order = $this->Orders->get($id);
             if($order) {
-                $order->set('status', Order::CANCELED);
+                $order->set('status', OrdersTable::CANCELED);
                 $payment_point = $order->payment_point;
                 $user = $this->Users->get($this->Authentication->user->id);
                 $user->point += $payment_point;
                 if($this->Orders->save($order)) {
                     $this->Users->save($user);
-                    $this->Flash->success(MSG_1000);
+                    // $this->Flash->success(MSG_1000);
                 }
             }
         }

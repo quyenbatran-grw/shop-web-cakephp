@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use App\Model\Table\OrdersTable;
 use Cake\ORM\Entity;
 
 /**
@@ -11,10 +12,12 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string|null $order_number
  * @property int $status
+ * @property int $payment_status
  * @property string $order_name
  * @property string $order_address
  * @property string $order_tel
  * @property string $order_amount
+ * @property string $paid_amount
  * @property int $payment_point
  * @property string $payment_type
  * @property string|null $memo
@@ -38,34 +41,18 @@ class Order extends Entity
      *
      * @var array<string, bool>
      */
-    const PREPARING = 0;
-    const PAID = 1;
-    const DELIVERING = 2;
-    const DELIVERED = 3;
-    const CANCELED = 4;
-    public static $statusList = [
-        self::PREPARING => 'PREPARING'
-    ,   self::PAID => 'PAID'
-    ,   self::DELIVERING => 'DELIVERING'
-    ,   self::DELIVERED => 'DELIVERED'
-    ,   self::CANCELED => 'CANCELED'
-    ];
-    public static $statusBackground = [
-        self::PREPARING => 'bg-danger'
-    ,   self::PAID => 'bg-warning'
-    ,   self::DELIVERING => 'bg-info'
-    ,   self::DELIVERED => 'bg-success'
-    ,   self::CANCELED => 'bg-secondary'
-    ];
     protected $_accessible = [
         'order_number' => true,
         'user_id' => true,
         'status' => true,
         'status_name' => true,
+        'payment_status' => true,
+        'payment_status_name' => true,
         'order_name' => true,
         'order_address' => true,
         'order_tel' => true,
         'order_amount' => true,
+        'paid_amount' => true,
         'payment_point' => true,
         'payment_type' => true,
         'memo' => true,
@@ -83,6 +70,6 @@ class Order extends Entity
      * @return string
      */
     protected function _getStatusName() {
-        return self::$statusList[$this->status];
+        return OrdersTable::$statusList[$this->status];
     }
 }

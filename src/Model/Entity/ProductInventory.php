@@ -24,10 +24,10 @@ use Cake\ORM\Entity;
 class ProductInventory extends Entity
 {
     public static $units = [
-        1 => 'Pack',
-        2 => 'Lock',
-        3 => 'Unit',
-        99 => 'Other'
+        1 => 'Gói',
+        2 => 'Lóc',
+        3 => 'Cái',
+        99 => 'Khác'
     ];
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

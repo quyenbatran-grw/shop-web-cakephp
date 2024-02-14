@@ -1,8 +1,8 @@
 <div class="menu-link-list">
 <?=$this->Html->link(
-    '<i class="bi bi-caret-left"></i>Back',
+    '<i class="bi bi-caret-left"></i>Quay Lại',
     ['controller' => 'Pages', 'action' => 'index'],
-    ['escape' => false, 'escapeTitle' => false]
+    ['escape' => false, 'escapeTitle' => false, 'class' => 'text-decoration-none']
 );?>
 </div>
 <div class="content cart-list">
@@ -17,7 +17,7 @@
         ?>
         <div class="d-flex flex-row justify-content-center">
             <div class="row">
-            <?=$this->Html->link('Shopping Continue', ['controller' => 'Pages', 'action' => 'display'],
+            <?=$this->Html->link('Tiếp tục mua hàng', ['controller' => 'Pages', 'action' => 'display'],
             [
                 'class' => 'mt-3',
             ]);?>
@@ -48,12 +48,12 @@
             <div class="p-2 bd-highlight w-100">
                 <h3><?=$product->name?></h3>
                 <div class="row">
-                    <div class="col fs-5">Price</div>
+                    <div class="col fs-5">Giá</div>
                     <div class="col fs-5 text-end"><?=$price?></div>
                 </div>
 
                 <div class="row">
-                    <div class="col fs-5">Quantity</div>
+                    <div class="col fs-5">SL</div>
                     <div class="col">
                     <?=$this->Form->create($product, ['url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
                     <?=$this->Form->hidden('category_id', ['value' => $product->category_id]);?>
@@ -70,14 +70,14 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col">Amount</div>
+                    <div class="col">Tiền</div>
                     <div class="col text-end"><?=number_format($amount)?></div>
                 </div>
                 <div class="row">
                     <?=$this->Form->create($product, ['type' => 'delete', 'url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
                     <?=$this->Form->hidden('category_id', ['value' => $product->category_id]);?>
                     <?=$this->Form->hidden('product_id', ['value' => $product->id]);?>
-                    <?=$this->Form->button('Remove', [
+                    <?=$this->Form->button('Xóa', [
                         'type' => 'submit',
                         'label' => false,
                         'class' => 'btn btn-link text-center float-end',
@@ -92,7 +92,7 @@
         ?>
         <hr>
         <div class="d-flex flex-row">
-            <div class="ps-2 bd-highlight fs-5">Amount</div>
+            <div class="ps-2 bd-highlight fs-5">Tổng tiền</div>
             <div class="pe-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
@@ -110,7 +110,7 @@
             </div>
         </div>
         <div class="d-flex flex-row">
-            <div class="ps-2 bd-highlight fs-5">Total</div>
+            <div class="ps-2 bd-highlight fs-5">Tổng hóa đơn</div>
             <div class="pe-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
@@ -120,8 +120,8 @@
         </div>
         <?=$this->Form->create(null, ['url' => ['controller' => 'Shops', 'action' => 'cart-confirm']]);?>
         <div class="row justify-content-around mt-5">
-            <?= $this->Html->link(__('Back'), ['action' => '/'], ['class' => 'btn btn-secondary col-3']) ?>
-            <?= $this->Form->button('Next', ['type' => 'submit', 'class' => 'btn btn-primary col-3 ' . ($total_amount == 0 ? 'disabled' : '')]); ?>
+            <?= $this->Html->link(__('Quay lại'), ['action' => '/'], ['class' => 'btn btn-secondary col-3']) ?>
+            <?= $this->Form->button('Tiếp tục', ['type' => 'submit', 'class' => 'btn btn-primary col-3 ' . ($total_amount == 0 ? 'disabled' : '')]); ?>
         </div>
         <?= $this->Form->end() ?>
         <?php

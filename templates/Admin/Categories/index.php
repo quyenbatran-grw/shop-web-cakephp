@@ -5,17 +5,17 @@
  */
 ?>
 <div class="categories index content">
-    <?= $this->Html->link(__('New Category'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Categories') ?></h3>
+    <?= $this->Html->link(__('Thêm mới'), ['action' => 'add'], ['class' => 'button float-right mb-2']) ?>
+    <h3><?= __('Danh mục') ?></h3>
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr class="text-center">
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
+                    <th><?= $this->Paginator->sort('id', 'ID') ?></th>
+                    <th><?= $this->Paginator->sort('name', 'Tên danh mục') ?></th>
                     <!-- <th><?= $this->Paginator->sort('created') ?></th> -->
                     <!-- <th><?= $this->Paginator->sort('modified') ?></th> -->
-                    <th class="actions"><?= __('Actions') ?></th>
+                    <th class="actions"><?= __('') ?></th>
                 </tr>
             </thead>
             <tbody>

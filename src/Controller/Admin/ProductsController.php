@@ -32,10 +32,16 @@ class ProductsController extends AppController
         ];
         $searchParam = $this->request->getData();
         $inventories = $this->_getStockProductQuantity($searchParam);
-        $products = $this->Products->find('search', ['search' => $searchParam])->find('valid');
+        $products = $this->Products->find('search', ['search' => $searchParam])->find('valid')
+            ->contain([
+                'ProductInventories' => function($query) {
+                    return $query->limit(1);
+                }
+            ]);
         $products = $this->paginate($products);
 
         $categoryList = $this->Products->Categories->find()
+            ->all()
             ->combine('id', 'name')
             ->toArray();
         $categoryList = ['All'] + $categoryList;
@@ -217,16 +223,6 @@ class ProductsController extends AppController
     private function _getStockProductQuantity($searchParam = []) {
         // 出庫品数を取得
         $solds = $this->Products->OrderDetails->Orders->find('stockout')
-        //     ->where(['Orders.status <>' => Order::CANCELED])
-        //     ->innerJoinWith('OrderDetails', function ($q) {
-        //         return $q;
-        //     });
-        // $solds = $solds
-        //     ->select([
-        //         'OrderDetails.product_id',
-        //         'sum' => $solds->func()->sum('quantity'),
-        //     ])
-        //     ->group(['OrderDetails.product_id'])
             ->all()
             ->combine(function(Order $order) {
                 return $order->_matchingData['OrderDetails']->product_id;
