@@ -76,15 +76,15 @@ class ProfilesController extends AppController
             ->where([
                 'Orders.user_id' => $this->Authentication->user->id,
                 'OR' => [
-                    'Orders.status' => OrdersTable::PREPARING,
-                    'Orders.status' => OrdersTable::DELIVERING,
+                    'Orders.status IN ' => [OrdersTable::PREPARING, OrdersTable::DELIVERING],
                     'AND' => [
                         'Orders.status' => OrdersTable::CANCELED,
-                        'Orders.payment_status <>' => OrdersTable::CANCELED,
+                        'Orders.payment_status IN' => [OrdersTable::PAID, OrdersTable::DELIVERED],
                     ],
                 ],
             ])
             ->order(['Orders.status' => 'ASC', 'Orders.order_number' => 'ASC'])
+            // ->sql();
             ->all()
             ->map(function(Order $order) {
                 $order['order_date'] = $order->created->format('Y-m-d');
@@ -105,7 +105,11 @@ class ProfilesController extends AppController
             ->where([
                 'Orders.user_id' => $this->Authentication->user->id,
                 'OR' => [
-                    'Orders.status IN' => [OrdersTable::DELIVERED, OrdersTable::CANCELED]
+                    'Orders.status' => OrdersTable::DELIVERED,
+                    'AND' => [
+                        'Orders.status' => OrdersTable::CANCELED,
+                        'Orders.payment_status IN' => [OrdersTable::PREPARING, OrdersTable::CANCELED],
+                    ]
                 ]
             ])
             ->order(['Orders.status' => 'ASC', 'Orders.order_number' => 'DESC'])

@@ -38,7 +38,7 @@ use Cake\Chronos\Date;
             </div>
 
             <div class="row">
-                <div class="col col-md-2">Tổng</div>
+                <div class="col col-md-2">T.Tiền</div>
                 <div class="col col-md-2 text-end"><?=number_format($order->order_amount + $order->payment_point)?></div>
             </div>
 
@@ -48,9 +48,20 @@ use Cake\Chronos\Date;
             </div>
 
             <div class="row border-top">
-                <div class="col col-md-2"></div>
+                <div class="col col-md-2">Tổng</div>
                 <div class="col col-md-2 text-end"><?=number_format($order->order_amount)?></div>
             </div>
+
+            <div class="row">
+                <div class="col col-md-2">Đã trả</div>
+                <div class="col col-md-2 text-end"><?=number_format($order->paid_amount)?></div>
+            </div>
+            <?php if($order->status == OrdersTable::CANCELED && $order->payment_status == OrdersTable::CANCELED) {?>
+            <div class="row">
+                <div class="col col-md-2">Hoàn trả</div>
+                <div class="col col-md-2 text-end"><?=number_format($order->paid_amount)?></div>
+            </div>
+            <?php } ?>
 
             <?php if($order->status != OrdersTable::CANCELED && $order->status != OrdersTable::DELIVERED) {?>
             <?=$this->Form->create(null, ['url' => ['controller' => 'Profiles', 'action' => 'order-cancel', $order->id]])?>
@@ -62,6 +73,7 @@ use Cake\Chronos\Date;
             </div> -->
 
             <?php if($order->payment_status == OrdersTable::PREPARING && $order->payment_type == OrdersTable::BANKING) { ?>
+            <hr>
             <div class="fs-5">Đơn hàng này chưa được thanh toán. Làm ơn quét mã QR dưới đây để hoàn thành thanh toán với nội dung</div>
             <span class="text-danger">ĐH<?=$order['order_number']?> <?=$order['order_name']?></span>
             <img src="/img/bankingQR.png" class="d-block w-100 fix-img-size" alt="">
