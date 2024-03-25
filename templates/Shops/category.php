@@ -24,8 +24,8 @@
                     $image_product = $product->image_products[0];
                     $image_url = '/img/products/'.$image_product['file_name'];
                 }
-                $isStock = true;
-                if(!isset($quantity_stocks[$product->id]) || $quantity_stocks[$product->id] <= 0) $isStock = false;
+                $isStock = $product->quantity > 0 ?? false;
+                // if(!isset($quantity_stocks[$product->id]) || $quantity_stocks[$product->id] <= 0) $isStock = false;
 
         ?>
         <div class="">
@@ -36,7 +36,7 @@
                     <div class="p-2">
                         <div class="text-wrap">
                             <h4 class="card-title fw-bold"><?=$product->name?> </h4>
-                            <div class="text-danger fs-5"><?=$isStock ? $product_inventory->price_k . 'K' : 'Sold Out'?></div>
+                            <div class="text-danger fs-5"><?=$isStock ? $product->sell_price_f : 'Sold Out'?></div>
                             <div class="fw-bold fs-5">Detail</div>
                             <p class="card-text fs-6 ps-2 text-truncate"><?=nl2br(substr($product->description, 0, 60)) . (strlen($product->description) > 60 ? ' ...' : '')?></p>
 
@@ -54,6 +54,17 @@
         ?>
     <!-- </div> -->
 
-
-
+    <?php if($this->Paginator->param('pageCount') > 1) { ?>
+    <div class="row">
+    <div class="paginator col col-md-8">
+        <ul class="pagination justify-content-center">
+            <?= $this->Paginator->first('<< ') ?>
+            <?= $this->Paginator->current() > 1 ? $this->Paginator->prev($this->Paginator->current() - 1) : '' ?>
+            <li class="page-item active"><a class="page-link" href="?page=<?= $this->Paginator->current() ?>"><?= $this->Paginator->current() ?></a></li>
+            <?= $this->Paginator->current() < $this->Paginator->param('pageCount') ? $this->Paginator->next($this->Paginator->current() + 1) : '' ?>
+            <?= $this->Paginator->last(' >>') ?>
+        </ul>
+    </div>
+    </div>
+    <?php } ?>
 </div>

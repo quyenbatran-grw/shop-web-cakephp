@@ -163,7 +163,7 @@ class ProfilesController extends AppController
             $this->Flash->error('AAAA');
         }
         if($this->request->is(['put', 'post'])) {
-            $order = $this->Orders->get($id);
+            $order = $this->Orders->find()->where(['id' => $id])->contain('OrderDetails')->first();
             if($order) {
                 $order->set('status', OrdersTable::CANCELED);
                 $payment_point = $order->payment_point;
@@ -171,6 +171,17 @@ class ProfilesController extends AppController
                 $user->point += $payment_point;
                 if($this->Orders->save($order)) {
                     $this->Users->save($user);
+                    $products = [];
+                    foreach ($order->order_details as $key => $order_detail) {
+                        $product = $this->Orders->OrderDetails->Products->find()->where(['id' => $order_detail->product_id])->first();
+                        if(!empty($product)) {
+                            $product->quantity += $order_detail->quantity;
+                            $products[] = $product;
+                        }
+                    }
+                    if(count($products) > 0) {
+                        $this->Orders->OrderDetails->Products->saveMany($products);
+                    }
                     // $this->Flash->success(MSG_1000);
                 }
             }

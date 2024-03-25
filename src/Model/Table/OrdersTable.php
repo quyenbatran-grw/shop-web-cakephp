@@ -8,6 +8,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Orders Model
@@ -220,7 +221,10 @@ class OrdersTable extends Table
      * @param \Cake\ORM\Query $query
      * @return \Cake\ORM\Query
      */
-    public function findStockOut(Query $query) {
+    public function findStockOut(Query $query, $options = []) {
+        if(isset($options['product_id'])) {
+            $query = $query->where(['product_id'=> $options['product_id']]);
+        }
         return $query
             ->where(['Orders.status <>' => OrdersTable::CANCELED])
             ->innerJoinWith('OrderDetails', function ($q) {
@@ -231,5 +235,30 @@ class OrdersTable extends Table
                 'sum' => $query->func()->sum('quantity'),
             ])
             ->group(['OrderDetails.product_id']);
+    }
+
+    public function saveOrder(Order $order) {
+        $conn = ConnectionManager::get('default');
+        return $conn->transactional(function() use ($order) {   
+            if($this->save($order)) {
+                // $conn = ConnectionManager::get('default');
+                // return $conn->transactional(function() use ($order) {
+                    $products = [];
+                    foreach($order->order_details as $order_detail) {
+                        $product = $this->OrderDetails->Products->find()->where(['id'=> $order_detail->product_id])->first();
+                        if(!empty($product)) {
+                            $product->quantity = $product->quantity - $order_detail->quantity;
+                            if($product->quantity < 0) $product->quantity = 0;
+                            $products[] = $product;
+                        }
+                    }
+                    if(count($products) > 0) {
+                        return $this->OrderDetails->Products->saveMany($products);
+                    }
+                // });
+                
+            }
+            return false;
+        });
     }
 }

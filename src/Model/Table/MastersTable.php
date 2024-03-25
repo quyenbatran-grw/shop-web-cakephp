@@ -7,9 +7,10 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
-use function PHPSTORM_META\type;
-
+use ArrayObject;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\EventInterface;
+use App\Model\Entity\Master;
 /**
  * Masters Model
  *
@@ -31,13 +32,13 @@ use function PHPSTORM_META\type;
  */
 class MastersTable extends Table
 {
-    const MST_TYPE_0 = 0;
-    const MST_TYPE_1 = 1;
-    const MST_TYPE_2 = 2;
-    public static $master_type = [
-        self::MST_TYPE_0 => 'Type 1',
-        self::MST_TYPE_1 => 'Type 2',
-        self::MST_TYPE_2 => 'Type 3',
+    const MADE_IN = 1;
+    const SPONSOR = 2;
+    const UNIT = 3;
+    public static $types = [
+        self::MADE_IN => 'Xuất xứ',
+        self::SPONSOR => 'Nhà phân phối',
+        self::UNIT => 'Đơn vị sản phẩm',
     ];
     /**
      * Initialize method
@@ -54,6 +55,12 @@ class MastersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        // $this->addBehavior('Tree', [
+        //     'parent' => 'type',
+        //     // 'recoverOrder' => ['ranking' => 'DESC'],
+        //     'left' => 'ranking',
+        //     'right' => 'ranking'
+        // ]);
     }
 
     /**
@@ -66,27 +73,90 @@ class MastersTable extends Table
     {
         $validator
             ->integer('type')
-            ->requirePresence('type', 'create')
-            ->notEmptyString('type', REQUIRED_INPUT);
+            ->notEmptyString('type');
 
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
-            ->notEmptyString('name', REQUIRED_INPUT);
+            ->notEmptyString('name');
 
         $validator
-            ->integer('rank')
-            ->notEmptyString('rank');
+            ->notEmptyString('ranking');
 
         return $validator;
     }
 
-    public function findByType(Query $query, $options = [])
-    {
-        if(isset($options['type'])) {
-            $query->where(['type' => $options['type']]);
+    public function afterDelete(EventInterface $event, EntityInterface $entity, ArrayObject $options) {
+        $masters = $this->find()->where(['type' => $entity->type])->orderAsc('ranking')->all();
+        foreach ($masters as $key => $master) {
+            $master->ranking = $key + 1;
+        }
+        $this->saveMany($masters);
+    }
+
+    /**
+     * 種別でマスター一覧を取得
+     * @param int $type 種別
+     * @return Query
+     */
+    public function findByType(Query $query, array $options): Query {
+        if (!empty($options['type'])) {
+            $query->where(['type'=> $options['type']]);
         }
         return $query;
+    }
+
+    /**
+     * 上に並び順の変更
+     * @param App\Modal\Entity\Master
+     * @return Boolean
+     */
+    public function moveUp($master) {
+        $ranking = $master->ranking;
+        $masters = $this->find()->where(['type' => $master->type]);
+        if($ranking > 1) {
+            foreach ($masters as $key => $master) {
+                if($master->ranking == $ranking) {
+                    $master->ranking = $ranking - 1;
+                } else if($master->ranking == $ranking - 1) {
+                    $master->ranking = $ranking;
+                }
+            }
+        }
+        return $this->saveMany($masters);
+    }
+
+    /**
+     * 下に並び順の変更
+     * @param App\Modal\Entity\Master
+     * @return Boolean
+     */
+    public function moveDown($master) {
+        $ranking = $master->ranking;
+        $masters = $this->find()->where(['type' => $master->type]);
+        if($ranking < count($masters->toArray())) {
+            foreach ($masters as $key => $master) {
+                if($master->ranking == $ranking) {
+                    $master->ranking = $ranking + 1;
+                } else if($master->ranking == $ranking + 1) {
+                    $master->ranking = $ranking;
+                }
+            }
+        }
+        return $this->saveMany($masters);
+    }
+
+    /**
+     * 
+     */
+    public function resetRanking($type) {
+        $ranking = 0;
+        $this->find()->where(['type'=> $type])->all()
+        ->map(function(Master $master) use($ranking) {
+            $ranking++;
+            $master->ranking = $ranking;
+            return $master;
+        });
     }
 }

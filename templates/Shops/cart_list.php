@@ -35,10 +35,10 @@
                 $amount = 0;
                 $price = 0;
                 $product_inventory = $product->product_inventory;
-                if(!empty($product_inventory)) {
-                    $amount = $product_inventory->unit_price * $product->quantity;
-                    $price = $product_inventory->price;
-                }
+                // if(!empty($product_inventory)) {
+                    $amount = $product->sell_price * $product->quantity;
+                    $price = $product->sell_price_f;
+                // }
                 $total_amount += $amount;
         ?>
         <div class="d-flex flex-row bd-highlight mb-3">
@@ -71,7 +71,7 @@
                 <hr>
                 <div class="row">
                     <div class="col">Tiền</div>
-                    <div class="col text-end"><?=number_format($amount)?></div>
+                    <div class="col text-end"><?=number_format($amount)?>đ</div>
                 </div>
                 <div class="row">
                     <?=$this->Form->create($product, ['type' => 'delete', 'url' => ['controller' => 'Shops', 'action' => 'cart-list']]);?>
@@ -96,7 +96,7 @@
             <div class="pe-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
-                    <div class="col text-end"><?=number_format($total_amount)?></div>
+                    <div class="col text-end"><?=number_format($total_amount)?>đ</div>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
             <div class="pe-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
-                    <div class="col text-end"><?=number_format($total_amount)?></div>
+                    <div class="col text-end"><?=number_format($total_amount)?>đ</div>
                 </div>
             </div>
         </div>

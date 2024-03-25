@@ -17,7 +17,7 @@ use App\Model\Table\ProductsTable;
     </aside>
     <div class="column-responsive">
         <div class="products form content">
-            <?= $this->Form->create($product, ['enctype' => 'multipart/form-data', 'id' => 'js-validate-form']) ?>
+            <?= $this->Form->create($product, ['enctype' => 'multipart/form-data', 'class' => 'js-validate-form']) ?>
             <fieldset>
                 <legend><?= __('Thêm mới sản phẩm') ?></legend>
             </fieldset>
@@ -37,10 +37,111 @@ use App\Model\Table\ProductsTable;
                     <th class="w-25"><?=__('Tên sản phẩm*')?></th>
                     <td>
                         <?=$this->Form->control('name', [
-                            'value' => 'Cosmetic product 01',
+                            'class' => 'form-control',
+                            'required' => false,
+                            'label' => false,
+                            'error' => true
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('Ngày nhập*') ?></th>
+                    <td>
+                        <?=$this->Form->dateTime('import_date', [
                             'class' => 'form-control',
                             'label' => false
                         ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?= __('Ngày hết hạn') ?></th>
+                    <td>
+                        <?=$this->Form->date('expired_date', [
+                            'class' => 'form-control',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?=__('Mã vạch')?></th>
+                    <td>
+                        <?=$this->Form->control('barcode', [
+                            'class' => 'form-control',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?=__('Số lượng*')?></th>
+                    <td>
+                        <?=$this->Form->control('quantity', [
+                            'class' => 'form-control',
+                            'required' => false,
+                            'type' => 'number',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?=__('Giá nhập*')?></th>
+                    <td>
+                        <?=$this->Form->control('unit_price', [
+                            'class' => 'form-control',
+                            'required' => false,
+                            'type' => 'number',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?=__('Giá bán lẻ*')?></th>
+                    <td>
+                        <?=$this->Form->control('sell_price', [
+                            'class' => 'form-control',
+                            'required' => false,
+                            'type' => 'number',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?=__('Giá bán buôn')?></th>
+                    <td>
+                        <?=$this->Form->control('sell_price_2', [
+                            'class' => 'form-control',
+                            'required' => false,
+                            'type' => 'number',
+                            'label' => false
+                        ]);?>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="w-25"><?=__('Trọng lượng/đơn vị')?></th>
+                    <td>
+                        <div class="d-flex">
+                        <?=$this->Form->control('wet', [
+                            'class' => 'form-control',
+                            'required' => false,
+                            'type' => 'number',
+                            'label' => false
+                        ]);?>
+                        <?=$this->Form->control('unit', [
+                            'class' => 'form-select ms-2',
+                            'label' => false
+                        ]);?>
+                        <!-- <?=$this->Form->control('name', [
+                            'class' => 'form-select ms-2',
+                            'label' => false
+                        ]);?> -->
+                        </div>
                     </td>
                 </tr>
 
@@ -58,10 +159,11 @@ use App\Model\Table\ProductsTable;
                 </tr>
 
                 <tr>
-                    <th class="w-25"><?=__('Xuất xứ*')?></th>
+                    <th class="w-25"><?=__('Xuất xứ')?></th>
                     <td>
-                        <?=$this->Form->control('made_in', [
-                            'options' => ProductsTable::$sponsors,
+                        <?=$this->Form->control('original_id', [
+                            'options' => $mades,
+                            'required' => false,
                             'class' => 'form-select',
                             'label' => false
                         ]);?>
@@ -71,16 +173,16 @@ use App\Model\Table\ProductsTable;
                 <tr>
                     <th class="w-25"><?=__('Nhà phân phối')?></th>
                     <td>
-                        <?=$this->Form->control('sponsor_name', [
-                            'class' => 'form-control',
-                            'value' => 'VNSP',
-                            'maxLength' => 255,
+                        <?=$this->Form->control('sponsor_id', [
+                            'options' => $sponsors,
+                            'required' => false,
+                            'class' => 'form-select',
                             'label' => false,
                         ]);?>
                     </td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <th class="w-25"><?=__('Địa chỉ nhà PP')?></th>
                     <td>
                         <?=$this->Form->control('sponsor_address', [
@@ -90,9 +192,9 @@ use App\Model\Table\ProductsTable;
                             'label' => false
                         ]);?>
                     </td>
-                </tr>
+                </tr> -->
 
-                <tr>
+                <!-- <tr>
                     <th class="w-25"><?=__('SĐT nhà PP*')?></th>
                     <td>
                         <?=$this->Form->control('sponsor_tel', [
@@ -102,14 +204,13 @@ use App\Model\Table\ProductsTable;
                             'label' => false
                         ]);?>
                     </td>
-                </tr>
+                </tr> -->
 
                 <tr>
                     <th class="w-25"><?=__('Mô tả')?></th>
                     <td>
                         <?=$this->Form->control('description', [
                             'class' => 'form-control',
-                            'value' => 'product description',
                             'label' => false
                         ]);?>
                     </td>

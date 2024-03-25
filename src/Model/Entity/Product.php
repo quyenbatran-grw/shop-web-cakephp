@@ -12,7 +12,11 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $category_id
  * @property string $name
+ * @property int $imported_quantity
  * @property int $quantity
+ * @property int $unit_price
+ * @property int $sell_price
+ * @property int $sell_price_2
  * @property string $unit_price
  * @property string $description
  * @property \Cake\I18n\FrozenTime $created
@@ -35,15 +39,24 @@ class Product extends Entity
     protected $_accessible = [
         'category_id' => true,
         'name' => true,
-        'made_in' => true,
-        'sponsor_name' => true,
-        'sponsor_address' => true,
-        'sponsor_tel' => true,
+        'import_date' => true,
+        'expired_date' => true,
+        'barcode' => true,
+        'original_id' => true,
+        'sponsor_id' => true,
+        'imported_quantity' => true,
+        'quantity' => true,
+        'unit_price' => true,
+        'sell_price' => true,
+        'sell_price_2' => true,
+        'wet' => true,
+        'unit' => true,
         'description' => true,
-        'deleted' => true,
         'created' => true,
         'modified' => true,
         'category' => true,
+        'originals_masters' => true,
+        'sponsors_masters' => true,
         'image_products' => true,
     ];
 
@@ -51,6 +64,32 @@ class Product extends Entity
 
     protected function _getMadeName() {
         return $this->made_in != '' ? ProductsTable::$sponsors[$this->made_in] : '';
+    }
+
+    /**
+     * 購入単価 
+     * 
+     * @return string
+     */
+    public function _getUnitPriceF() {
+        $price = '0';
+        if(preg_match('/\d/', $this->unit_price)) {
+            $price = number_format((double)$this->unit_price);
+        }
+        return $price;
+    }
+
+    /**
+     * 販売単価 
+     * 
+     * @return string
+     */
+    protected function _getSellPriceF() {
+        $sell_price = '0';
+        if(preg_match('/\d/', $this->sell_price)) {
+            $sell_price = number_format((double)$this->sell_price);
+        }
+        return $sell_price;
     }
 
 

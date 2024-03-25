@@ -11,9 +11,9 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $type
  * @property string $name
- * @property int $rank
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property int $ranking
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  */
 class Master extends Entity
 {
@@ -29,7 +29,7 @@ class Master extends Entity
     protected $_accessible = [
         'type' => true,
         'name' => true,
-        'rank' => true,
+        'ranking' => true,
         'created' => true,
         'modified' => true,
     ];

@@ -13,8 +13,12 @@
         // if(btnAction) btnAction.addEventListener('click', saveProduct);
 
         // バリデーション要求のフォームを送信する時
-        btnAction = document.getElementById('js-validate-form');
-        if(btnAction) btnAction.addEventListener('submit', submitValidateForm);
+        // btnAction = document.getElementById('js-validate-form');
+        document.querySelectorAll('form.js-validate-form').forEach((elm) => {
+            console.log('A0');
+            elm.addEventListener('submit', submitValidateForm);
+        });
+        // if(btnAction) btnAction.addEventListener('submit', submitValidateForm);
 
         //
         document.querySelectorAll('button.delete-image-button').forEach((elm) => {
@@ -38,6 +42,17 @@
         //========================管理者画面======================
         // 管理者画面でサイドメニューの切替
         changeSideMenu();
+        // マスター画面で各マスターの開き・閉じボタンを押下
+        openCollapseMaster();
+
+        // ファイルインポート
+        btnAction = document.querySelector('.import-product');
+        if(btnAction) btnAction.addEventListener('click', () => {
+            document.querySelector('input[name="import-product"]').click();
+            document.querySelector('input[name="import-product"]').addEventListener('change', () => {
+                document.querySelector('.import-form').submit();
+            });
+        })
         // document.querySelectorAll('.side-left .side-left-menu li').forEach((elm) => {
         //     elm.addEventListener('click', changeSideMenu);
         // });
@@ -98,7 +113,9 @@
      * @param HtmlElement e
      */
     async function submitValidateForm(e) {
+        console.log('A1')
         e.preventDefault();
+        console.log('A2')
         let formData = new FormData(e.target);
         let files = e.target.querySelectorAll('.show-image .image img');
         let save_images = {};
@@ -136,10 +153,14 @@
                     for(const error of Object.entries(errors)) {
                         let errorContent = Object.entries(error[1]);
                         let textContent = errorContent[0] && errorContent[0][1] ? errorContent[0][1] : '';
+                        console.log(document.querySelector('[name="'+error[0]+'"]').parentElement)
+                        if(document.querySelector('[name="'+error[0]+'"]').parentElement.querySelector('.error')) {
+                            document.querySelector('[name="'+error[0]+'"]').parentElement.querySelector('.error').remove()
+                        }
                         if(textContent != '') {
                             console.log('error', errorContent[0][1]);
                             let errorElm = document.createElement('div');
-                            errorElm.classList = 'fs-6 text-danger';
+                            errorElm.classList = 'fs-6 text-danger error';
                             errorElm.textContent = textContent;
                             document.querySelector('[name="'+error[0]+'"]').parentElement.append(errorElm);
                         }
@@ -445,8 +466,10 @@
             activeItem = 'inventory';
         } else if(pathname.indexOf('orders') >= 0) {
             activeItem = 'orders';
-        } else if(pathname.indexOf('list') >= 0 || pathname.indexOf('profiles')) {
+        } else if(pathname.indexOf('list') >= 0 || pathname.indexOf('profiles') >= 0) {
             activeItem = 'profiles';
+        } else if(pathname.indexOf('masters') >= 0) {
+            activeItem = 'masters';
         }
         if(pathname == '/admin') activeItem = '';
         if(activeItem != '') {
@@ -483,6 +506,30 @@
             console.log(activeElement.type)
         }
         // console.log(e)
+    }
+
+    function openCollapseMaster() {
+        document.querySelectorAll('.masters a[data-bs-toggle="collapse"]').forEach((elm, index) => {
+            elm.addEventListener('click', (e) => {
+                document.querySelectorAll('.masters a[data-bs-toggle="collapse"] i').forEach((subElm, subIndex) => {
+                    if(index != subIndex) {
+                        console.log('open collapse', subElm.classList)
+                        if(subElm.classList.contains('bi-caret-up')) {
+                            subElm.click();
+                        }
+                    }
+                });
+                if(e.target.classList.contains('bi-caret-down')) {
+                    e.target.classList.remove('bi-caret-down');
+                    e.target.classList.add('bi-caret-up');
+                } else {
+                    e.target.classList.add('bi-caret-down');
+                    e.target.classList.remove('bi-caret-up');
+                }
+                console.log('open collapse', e.target.classList)
+            });
+        });
+        
     }
 
     /* コードの終了 */

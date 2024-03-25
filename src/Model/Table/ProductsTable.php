@@ -58,6 +58,14 @@ class ProductsTable extends Table
             'foreignKey' => 'category_id',
             'joinType' => 'INNER',
         ]);
+        $this->belongsTo('Masters', [
+            'class' => 'OriginalsMasters',
+            'foreignKey' => 'original_id',
+        ]);
+        $this->belongsTo('Masters', [
+            'class' => 'SponsorsMasters',
+            'foreignKey' => 'sponsor_id',
+        ]);
         $this->hasMany('ImageProducts', [
             'foreignKey' => 'product_id',
         ]);
@@ -91,21 +99,44 @@ class ProductsTable extends Table
             ->notEmptyString('name', REQUIRED_INPUT);
 
         $validator
-            ->notEmptyString('made_in', 'Please input value')
-            ->add('made_in', 'validValue', ['rule' => ['range', 0, 3], 'message' => '[0~3]まで登録してください']);
+            ->dateTime('import_date')
+            ->notEmptyString('import_date', REQUIRED_INPUT);
 
         $validator
-            ->maxLength('sponsor_name', 5, __(OVER_MAX_LENGTH, 255))
-            ->isEmptyAllowed('sponsor_name', true);
-
+            ->integer('original_id')
+            ->notEmpty('original_id', REQUIRED_INPUT);
+            // ->add('made_in', 'validValue', ['rule' => ['range', 0, 3], 'message' => '[0~3]まで登録してください']);
+            // ->add('made_in', 'validValue', ['rule' => ['range', 0, 3], 'message' => '[0~3]まで登録してください']);
         $validator
-            ->maxLength('sponsor_tel', 255, 'Please input under 255 charactors')
-            ->isEmptyAllowed('sponsor_name', true);
+            ->integer('sponsor_id')
+            ->notEmpty('sponsor_id', REQUIRED_INPUT);
+        $validator
+            ->integer('quantity')
+            ->notEmpty('quantity', REQUIRED_INPUT);
+        $validator
+            ->numeric('unit_price')
+            ->notEmpty('unit_price', REQUIRED_INPUT);
+        $validator
+            ->numeric('sell_price')
+            ->notEmpty('sell_price', REQUIRED_INPUT);
+        $validator
+            ->numeric('sell_price_2')
+            ->notEmpty('sell_price_2', REQUIRED_INPUT);
+        // $validator
+        //     ->numeric('wet')
+        //     ->notEmpty('wet', REQUIRED_INPUT);
+        // $validator
+        //     ->maxLength('sponsor_name', 5, __(OVER_MAX_LENGTH, 255))
+        //     ->isEmptyAllowed('sponsor_name', true);
+
+        // $validator
+        //     ->maxLength('sponsor_tel', 255, 'Please input under 255 charactors')
+        //     ->isEmptyAllowed('sponsor_name', true);
 
         $validator
             ->scalar('description')
             ->requirePresence('description', 'create')
-            ->notEmptyString('description');
+            ->notEmptyString('description', REQUIRED_INPUT);
 
         return $validator;
     }
@@ -120,6 +151,8 @@ class ProductsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn('category_id', 'Categories'), ['errorField' => 'category_id']);
+        $rules->add($rules->existsIn('original_id', 'Masters'), ['errorField' => 'original_id']);
+        $rules->add($rules->existsIn('sponsor_id', 'Masters'), ['errorField' => 'sponsor_id']);
 
         return $rules;
     }
@@ -152,10 +185,10 @@ class ProductsTable extends Table
                     }
                 }
             ])
-            ->callback('sponsor_name', [
+            ->callback('sponsor_id', [
                 'callback' => function($query, $args, $filter) {
                     if($filter->value()) {
-                        $query = $query->where(['sponsor_name LIKE' => '%' . $filter->value() . '%']);
+                        $query = $query->where(['sponsor_id' => $filter->value()]);
                     }
                 }
             ]);
@@ -178,5 +211,20 @@ class ProductsTable extends Table
 
     public function findValid(Query $query) {
         return $query->where(['deleted IS NULL']);
+    }
+
+    /**
+     * 入港品数を取得
+     *
+     * @param \Cake\ORM\Query $query The rules object to be modified.
+     * @return \Cake\ORM\Query
+     */
+    public function findStockin(Query $query) {
+        return $query
+            ->select([
+                'ProductInventories.product_id',
+                'sum' => $query->func()->sum('quantity')
+            ])
+            ->group('ProductInventories.product_id');
     }
 }

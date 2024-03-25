@@ -22,10 +22,10 @@
                 $amount = 0;
                 $price = 0;
                 $product_inventory = $product->product_inventory;
-                if(!empty($product_inventory)) {
-                    $amount = $product_inventory->unit_price * $product->quantity;
-                    $price = $product_inventory->price;
-                }
+                // if(!empty($product_inventory)) {
+                    $price = $product->sell_price_f;
+                    $amount = $product->sell_price * $product->quantity;
+                // }
 
                 $total_amount += $amount;
         ?>
@@ -47,7 +47,7 @@
                 <hr>
                 <div class="row">
                     <div class="col fw-bold"></div>
-                    <div class="col text-end"><?=number_format($amount)?></div>
+                    <div class="col text-end"><?=number_format($amount)?>đ</div>
                 </div>
 
             </div>
@@ -170,7 +170,7 @@
             <div class="pe-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
-                    <div class="col text-end amount"><?=number_format($total_amount)?></div>
+                    <div class="col text-end amount"><?=number_format($total_amount)?>đ</div>
                 </div>
             </div>
         </div>
@@ -207,7 +207,7 @@
             <div class="pe-2 bd-highlight w-100">
                 <div class="row">
                     <div class="col"></div>
-                    <div class="col text-end total_amount"><?=number_format($total_amount)?></div>
+                    <div class="col text-end total_amount"><?=number_format($total_amount)?>đ</div>
                 </div>
             </div>
         </div>

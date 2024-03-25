@@ -75,37 +75,37 @@ class InitAllMigration extends AbstractMigration
             ->addIndex(['username'], ['unique' => true])
             ->create();
 
-        //マスター
-        $this->table('masters', ['comment' => 'マスター'])
-            ->addColumn('type', 'integer', [
-                'default' => null,
-                'null' => false,
-                'limit' => 11,
-                'comment' => '種別'
-            ])
-            ->addColumn('name', 'string', [
-                'default' => null,
-                'null' => false,
-                'limit' => 255,
-                'comment' => '名称'
-            ])
-            ->addColumn('rank', 'integer', [
-                'default' => 1,
-                'null' => false,
-                'limit' => 11,
-                'comment' => '種別ごとに並び順'
-            ])
-            ->addColumn('created', 'datetime', [
-                'default' => null,
-                'null' => true,
-                'comment' => '作成日'
-            ])
-            ->addColumn('modified', 'datetime', [
-                'default' => null,
-                'null' => true,
-                'comment' => '更新日1'
-            ])
-            ->create();
+        // //マスター
+        // $this->table('masters', ['comment' => 'マスター'])
+        //     ->addColumn('type', 'integer', [
+        //         'default' => null,
+        //         'null' => false,
+        //         'limit' => 11,
+        //         'comment' => '種別'
+        //     ])
+        //     ->addColumn('name', 'string', [
+        //         'default' => null,
+        //         'null' => false,
+        //         'limit' => 255,
+        //         'comment' => '名称'
+        //     ])
+        //     ->addColumn('rank', 'integer', [
+        //         'default' => 1,
+        //         'null' => false,
+        //         'limit' => 11,
+        //         'comment' => '種別ごとに並び順'
+        //     ])
+        //     ->addColumn('created', 'datetime', [
+        //         'default' => null,
+        //         'null' => false,
+        //         'comment' => '作成日'
+        //     ])
+        //     ->addColumn('modified', 'datetime', [
+        //         'default' => null,
+        //         'null' => false,
+        //         'comment' => '更新日1'
+        //     ])
+        //     ->create();
 
         //カテゴリー
         $this->table('categories', ['comment' => 'カテゴリー'])
@@ -145,42 +145,77 @@ class InitAllMigration extends AbstractMigration
                 'null' => false,
                 'comment' => 'name of product'
             ])
-            ->addColumn('made_in', 'integer', [
+            ->addColumn('import_date', 'datetime', [
+                'default' => 'CURRENT_TIMESTAMP',
+                'null' => false,
+                'comment' => 'stocking date'
+            ])
+            ->addColumn('expired_date', 'date', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'expired date'
+            ])
+            ->addColumn('barcode', 'string', [
+                'default' => null,
+                'null' => true,
+                'comment' => 'barcode of product'
+            ])
+            ->addColumn('original_id', 'integer', [
                 'default' => 0,
                 'null' => false,
-                'comment' => 'where product is made'
+                'comment' => 'where product is made in'
             ])
-            ->addColumn('sponsor_name', 'string', [
+            ->addColumn('sponsor_id', 'biginteger', [
                 'default' => null,
                 'null' => true,
-                'limit' => 255,
-                'comment' => 'name of sponsor'
+                'comment' => 'sponsor'
             ])
-            ->addColumn('sponsor_address', 'string', [
-                'default' => null,
-                'null' => true,
-                'limit' => 255,
-                'comment' => 'address of sponsor'
+            ->addColumn('imported_quantity', 'biginteger', [
+                'default' => 0,
+                'null' => false,
+                'limit' => 20,
+                'comment' => 'quantity of product'
             ])
-            ->addColumn('sponsor_tel', 'string', [
+            ->addColumn('quantity', 'biginteger', [
+                'default' => 0,
+                'null' => false,
+                'limit' => 20,
+                'comment' => 'quantity of product'
+            ])
+            ->addColumn('unit_price', 'decimal', [
                 'default' => null,
                 'null' => false,
-                'limit' => 15,
-                'comment' => 'name of sponsor'
+                'precision' => 11,
+                'scale' => 0,
+                'comment' => 'price of each product'
             ])
-            // ->addColumn('quantity', 'biginteger', [
-            //     'default' => 0,
-            //     'null' => false,
-            //     'limit' => 20,
-            //     'comment' => 'quantity of product'
-            // ])
-            // ->addColumn('unit_price', 'decimal', [
-            //     'default' => null,
-            //     'null' => false,
-            //     'precision' => 11,
-            //     'scale' => 0,
-            //     'comment' => 'price of each product'
-            // ])
+            ->addColumn('sell_price', 'decimal', [
+                'default' => null,
+                'null' => false,
+                'precision' => 11,
+                'scale' => 0,
+                'comment' => 'sell price of each product'
+            ])
+            ->addColumn('sell_price_2', 'decimal', [
+                'default' => null,
+                'null' => false,
+                'precision' => 11,
+                'scale' => 0,
+                'comment' => 'sell price of multible product'
+            ])
+            ->addColumn('wet', 'decimal', [
+                'default' => null,
+                'null' => true,
+                'precision' => 11,
+                'scale' => 0,
+                'comment' => 'wet of each product'
+            ])
+            ->addColumn('unit', 'integer', [
+                'default' => null,
+                'null' => true,
+                'limit' => 11,
+                'comment' => 'price of each product'
+            ])
             ->addColumn('description', 'text', [
                 'default' => null,
                 'null' => false,
@@ -201,7 +236,7 @@ class InitAllMigration extends AbstractMigration
                 'null' => true,
                 'comment' => '更新日'
             ])
-            ->addIndex(['category_id'])
+            ->addIndex(['category_id', 'original_id', 'sponsor_id'])
             ->create();
 
         // Product Stocks
@@ -379,14 +414,14 @@ class InitAllMigration extends AbstractMigration
             ])
             ->addColumn('paid_amount', 'decimal', [
                 'default' => null,
-                'null' => false,
+                'null' => true,
                 'precision' => 11,
                 'scale' => 0,
                 'comment' => 'total price are paid'
             ])
             ->addColumn('payment_point', 'biginteger', [
                 'default' => null,
-                'null' => false,
+                'null' => true,
                 'limit' => 20,
                 'comment' => 'point are used for payment'
             ])
@@ -523,6 +558,74 @@ class InitAllMigration extends AbstractMigration
             // ->addForeignKey('user_id', 'users', 'id')
             // ->addForeignKey('category_id', 'categories', 'id')
             // ->addForeignKey('product_id', 'products', 'id')
+            ->create();
+
+        // 提供者 
+        $this->table("sponsors", ['comment' => '提供者'])
+            ->addColumn('name', 'string', [
+                'default' => null,
+                'null' => false,
+                'limit' => 255,
+                'comment' => 'sponsor name'
+            ])
+            ->addColumn('address', 'string', [
+                'default' => null,
+                'null' => false,
+                'limit' => 255,
+                'comment' => 'sponsor address'
+            ])
+            ->addColumn('email', 'string', [
+                'default' => null,
+                'null' => true,
+                'limit' => 255,
+                'comment' => 'sponsor email'
+            ])
+            ->addColumn('tel', 'string', [
+                'default' => null,
+                'null' => false,
+                'limit' => 15,
+                'comment' => 'sponsor tel'
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '作成日'
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '更新日'
+            ])
+            ->create();
+
+            // マスター
+            $this->table('masters', ['comment' => 'マスター'])
+            ->addColumn('type', 'integer', [
+                'default' => 1,
+                'null' => false,
+                'comment' => 'type'
+            ])
+            ->addColumn('name', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+                'comment' => '名称'
+            ])
+            ->addColumn('ranking', 'integer', [
+                'default' => 1,
+                'null' => false,
+                'comment' => 'rank'
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '作成日'
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'null' => false,
+                'comment' => '更新日'
+            ])
             ->create();
     }
 }

@@ -63,7 +63,7 @@
 
         </div>
 
-        <div class="fw-bold">Price: <?=$product->product_inventories[0]->price;?></div>
+        <div class="fw-bold">Price: <?=$product->sell_price_f;?></div>
         <div class="fw-bold fs-5">Description</div>
 
         <div class="fs-6">

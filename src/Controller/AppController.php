@@ -150,4 +150,15 @@ class AppController extends Controller
         return $date->i18nFormat($format);
     }
 
+    public function convertStringToNumber($str = "") {
+        if ($str == "") {
+            return 0;
+        }
+        $str = str_replace(",","", $str);
+        if (preg_match("/\d/", $str)) {
+            return (double)$str;
+        }
+        return 0;
+    }
+
 }

@@ -81,9 +81,9 @@ class ShopsController extends AppController
             ->contain([
                 'Products' => function(Query $query) {
                     return $query
-                            ->innerJoinWith('ProductInventories', function(Query $query) {
-                                return $query;
-                            })
+                            // ->innerJoinWith('ProductInventories', function(Query $query) {
+                            //     return $query;
+                            // })
                             ->contain(['ImageProducts']);
                 }
             ])
@@ -122,9 +122,10 @@ class ShopsController extends AppController
                 }
             ])
             ->where(['Products.category_id' => $id])
-            ->order(['Products.name'])
-            ->all()
-            ->toArray();
+            ->order(['Products.name']);
+        $products = $this->paginate($products);
+            // ->all()
+            // ->toArray();
         $product_arr = [];
         $product_sold_out_arr = [];
         foreach ($products as $product) {
@@ -182,7 +183,12 @@ class ShopsController extends AppController
             ->firstOrFail();
         // 在庫の数
         $quantity_stocks = $this->_getStockQuantity($id, $product_id);
-        $stock_quantity = range(0, $quantity_stocks[$product->id]);
+        $stock_quantity = range(0, $product->quantity);
+        if($product->quantity > 20) {
+            $stock_quantity = range(0, 20);
+        }
+        
+        // $stock_quantity = range(0, $quantity_stocks[$product->id]);
         unset($stock_quantity[0]);
 
 
@@ -199,7 +205,7 @@ class ShopsController extends AppController
 
         if($this->request->is(['post', 'put'])) {
             $quantity = $this->request->getData('quantity', null);
-            if(!is_null($quantity) && $quantity_stocks[$product->id] >= $quantity) {
+            if(!is_null($quantity) && $product->quantity >= $quantity) {
                 if(isset($shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id])) $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] += $quantity;
                 else $shopping_cart[self::PRODUCT_COOKIE_NM][$id][$product_id] = $quantity;
                 // $cookie = (new Cookie(self::COOKIE_NM))
@@ -261,7 +267,12 @@ class ShopsController extends AppController
                             ->map(function(Product $product) use($cart_products, $quantity_stocks) {
                                 $product['product_inventory'] = null;
                                 if(isset($cart_products[$product->id])) $product->quantity = $cart_products[$product->id];
-                                if(isset($quantity_stocks[$product->id])) $product->quantity_stocks = range(0, $quantity_stocks[$product->id]);
+                                if($product->quantity > 20) {
+                                    $product->quantity_stocks = range(0, 20);
+                                } else {
+                                    $product->quantity_stocks = range(0, $product->quantity);
+                                }
+                                
                                 if(isset($product['product_inventories'])) {
                                     if(isset($product['product_inventories'][0])) {
                                         $product['product_inventory'] = $product['product_inventories'][0];
@@ -453,19 +464,27 @@ class ShopsController extends AppController
                     $user = $this->Users->get($this->Authentication->user->id);
                 }
                 foreach ($cart_products as $product_id => $quantity) {
-                    $product = $this->Categories->Products->ProductInventories
+                    // $product = $this->Categories->Products->ProductInventories
+                    //     ->find()
+                    //     ->where(['ProductInventories.product_id' => $product_id])
+                    //     ->order(['ProductInventories.date' => 'DESC'])
+                    //     ->firstOrFail();
+                    $product = $this->Categories->Products
                         ->find()
-                        ->where(['ProductInventories.product_id' => $product_id])
-                        ->order(['ProductInventories.date' => 'DESC'])
+                        ->where(['Products.id' => $product_id])
                         ->firstOrFail();
                     $unit_price = 0;
-                    if(!empty($product)) $unit_price = intval($product->unit_price);
+                    if(!empty($product)) $unit_price = intval($product->sell_price);
                     $amount = $quantity * $unit_price;
                     $order_details[] = [
                         'product_id' => $product_id,
                         'quantity' => $quantity,
                         'unit_price' => $unit_price,
                         'amount' => $amount,
+                        'product' => [
+                            'id' => $product_id,
+                            'quantity' => 10
+                        ]
                     ];
                     $order['order_amount'] += $amount;
                 }
@@ -473,18 +492,36 @@ class ShopsController extends AppController
                 $order['order_details'] = $order_details;
                 $orderEntity = $this->Orders->newEmptyEntity();
                 $orderEntity = $this->Orders->patchEntity($orderEntity, $order, ['associated' => ['OrderDetails']]);
-                if($this->Orders->save($orderEntity)) {
+                if($this->Orders->saveOrder($orderEntity)){
                     if(!empty($user)) {
                         $point = $user->point - $order['payment_point'];
                         $point = $point < 0 ? 0 : $point;
                         $user = $this->Users->patchEntity($user, ['point' => $point]);
                         $this->Users->save($user);
                     }
+                    // foreach ($order_details as $order_detail) {
+                    //     $product = $this->Products->get($order_detail['product_id']);
+                    // }
                     $this->sendNotify('NEW ORDER', __(MSG_0009, 'for immediation'));
                     // 注文データを保存できたらクッキーのデータを削除
                     $this->_deleteShoppingCookie();
                     $cart_quantity = 0;
                 }
+                // if($this->Orders->save($orderEntity)) {
+                //     if(!empty($user)) {
+                //         $point = $user->point - $order['payment_point'];
+                //         $point = $point < 0 ? 0 : $point;
+                //         $user = $this->Users->patchEntity($user, ['point' => $point]);
+                //         $this->Users->save($user);
+                //     }
+                //     // foreach ($order_details as $order_detail) {
+                //     //     $product = $this->Products->get($order_detail['product_id']);
+                //     // }
+                //     $this->sendNotify('NEW ORDER', __(MSG_0009, 'for immediation'));
+                //     // 注文データを保存できたらクッキーのデータを削除
+                //     $this->_deleteShoppingCookie();
+                //     $cart_quantity = 0;
+                // }
             }
             $this->_deleteShoppingCookie();
         }

@@ -6,7 +6,34 @@ use App\Model\Entity\ProductInventory;
  */
 ?>
 <div class="products index content">
-    <?= $this->Html->link(__('Thêm mới'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <div class="row">
+        <div class="col col-md-2">
+        <?= $this->Html->link(__('Thêm mới'), ['action' => 'add'], ['class' => 'btn btn-primary float-right']) ?>
+        </div>
+        <!-- <div class="col col-md-2">
+        <?= $this->Html->link(__('Nhập hàng'), ['action' => 'inventory'], ['class' => 'btn btn-primary float-right']) ?>
+        </div> -->
+        <div class="col col-md-2">
+        <?=$this->Form->create(null, ['url' => ['controller'=> 'Products', 'action'=> 'import-product'], 'class'=> 'js-validate-form import-form', 'type' => 'file']) ?>
+        <!-- <?= $this->Html->link(__('Nhập file'), ['action' => 'add'], ['class' => 'button float-right']) ?> -->
+        <?=$this->Form->button('Nhập file', [
+            'class'=> 'btn btn-primary import-product',
+            'type'=> 'button',
+        ]) ?>
+        <div class="d-none">
+        <?=$this->Form->control('import-product', [
+            'type' => 'file', 
+            'label' => false,
+            'class' => 'form-control'
+        ])?>
+        </div>
+        <?=$this->Form->end()?>
+        </div>
+    </div>
+    
+    
+    
+
     <?=$this->Form->create()?>
     <div class="row mt-4 pb-2">
         <div class="col col-md-1">Danh mục</div>
@@ -19,6 +46,17 @@ use App\Model\Entity\ProductInventory;
             ])?>
         </div>
 
+        <div class="col col-md-1">Nhà PP</div>
+        <div class="col col-md-3">
+            <?=$this->Form->control('sponsor_id', [
+                'class' => 'form-select',
+                'options' => $sponsors,
+                'label' => false,
+                'placeholder' => 'Sponser Name',
+                'value' => isset($searchParam['sponsor_name']) ? $searchParam['sponsor_name'] : ''
+            ])?>
+        </div>
+
         <div class="col col-md-1">Tên SP</div>
         <div class="col col-md-3">
             <?=$this->Form->control('product_name', [
@@ -26,16 +64,6 @@ use App\Model\Entity\ProductInventory;
                 'label' => false,
                 'placeholder' => 'Cosmetic',
                 'value' => isset($searchParam['product_name']) ? $searchParam['product_name'] : ''
-            ])?>
-        </div>
-
-        <div class="col col-md-1">Nhà PP</div>
-        <div class="col col-md-3">
-            <?=$this->Form->control('sponsor_name', [
-                'class' => 'form-control',
-                'label' => false,
-                'placeholder' => 'Sponser Name',
-                'value' => isset($searchParam['sponsor_name']) ? $searchParam['sponsor_name'] : ''
             ])?>
         </div>
     </div>
@@ -65,26 +93,29 @@ use App\Model\Entity\ProductInventory;
                     <th><?= $this->Paginator->sort('name', 'Tên SP') ?></th>
                     <th><?= __('Nhập kho') ?></th>
                     <th><?= __('Tồn kho') ?></th>
-                    <th><?= $this->Paginator->sort('Nhà phân phối') ?></th>
-                    <th><?= $this->Paginator->sort('SĐT') ?></th>
-                    <th><?= __('Đơn vị') ?></th>
+                    <th><?= __('Giá nhập') ?></th>
+                    <th><?= __('Giá bán') ?></th>
+                    <!-- <th><?= $this->Paginator->sort('SĐT') ?></th> -->
+                    <!-- <th><?= __('Đơn vị') ?></th> -->
                     <th class="actions"><?= __('') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($products as $product):
-                $stockin = isset($inventories[$product->id]) && $inventories[$product->id]->sum ? number_format($inventories[$product->id]->sum) : 0;
-                $stockout = isset($inventories[$product->id]) && $inventories[$product->id]->sold ? number_format($inventories[$product->id]->sold) : 0;
+                //$stockin = isset($inventories[$product->id]) && $inventories[$product->id]->sum ? number_format($inventories[$product->id]->sum) : 0;
+                //$stockout = isset($inventories[$product->id]) && $inventories[$product->id]->sold ? number_format($inventories[$product->id]->sold) : 0;
+                $stockout = isset($inventories[$product->id]) ? number_format($inventories[$product->id]) : 0;
                 ?>
                 <tr>
                     <td><?= $this->Number->format($product->id) ?></td>
                     <td><?= $product->has('category') ? $this->Html->link($product->category->name, ['controller' => 'Categories', 'action' => 'view', $product->category->id]) : '' ?></td>
                     <td><?= h($product->name) ?></td>
-                    <td class="text-end <?=$stockin == $stockout && $stockout > 0 ? 'bg-danger text-light' : ''?>"><?= $stockin ?></td>
-                    <td class="text-end"><?= $stockout ?></td>
-                    <td><?= h($product->sponsor_name) ?></td>
-                    <td><?= h($product->sponsor_tel) ?></td>
-                    <td><?= isset($product->product_inventories[0]) && isset(ProductInventory::$units[$product->product_inventories[0]->unit]) ? ProductInventory::$units[$product->product_inventories[0]->unit] : '' ?></td>
+                    <!-- <td class="text-end <?=$stockin == $stockout && $stockout > 0 ? 'bg-danger text-light' : ''?>"><?= $stockin ?></td> -->
+                    <td class="text-end"><?= number_format($product->imported_quantity) ?></td>
+                    <td class="text-end"><?= number_format($product->quantity) ?></td>
+                    <td class="text-end"><?= h($product->unit_price_f) ?></td>
+                    <td class="text-end"><?= h($product->sell_price_f) ?></td>
+                    <!-- <td><?= isset($product->product_inventories[0]) && isset(ProductInventory::$units[$product->product_inventories[0]->unit]) ? ProductInventory::$units[$product->product_inventories[0]->unit] : '' ?></td> -->
                     <td class="actions text-center">
                         <?= $this->Html->link(__('<i class="bi bi-sticky"></i>'), ['action' => 'view', $product->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>
                         <?= $this->Html->link(__('<i class="bi bi-pen-fill"></i>'), ['action' => 'edit', $product->id], ['escapeTitle' => false, 'class' => 'border border-primary rounded text-primary']) ?>

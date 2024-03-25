@@ -23,8 +23,8 @@ class MastersFixture extends TestFixture
                 'type' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
                 'rank' => 1,
-                'created' => '2023-05-22 01:59:47',
-                'modified' => '2023-05-22 01:59:47',
+                'created' => '2024-02-24 00:24:20',
+                'modified' => '2024-02-24 00:24:20',
             ],
         ];
         parent::init();

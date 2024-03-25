@@ -122,6 +122,7 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/products', ['controller' => 'Products', 'action' => 'index']);
         $builder->connect('/orders', ['controller' => 'Orders', 'action' => 'index']);
         $builder->connect('/profiles', ['controller' => 'Profiles', 'action' => 'view']);
+        $builder->connect('/masters/edit/{type}/{id}', ['controller' => 'Masters', 'action' => 'edit']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Masters', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Categories', 'action' => '*']);
         $builder->connect('/{controller}/{action}/*', ['controller' => 'Products', 'action' => '*']);

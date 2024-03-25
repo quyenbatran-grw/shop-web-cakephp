@@ -61,6 +61,7 @@ $cakeDescription = 'NgaHung';
                 <li class="list-group-item inventory"><a href="/admin/inventory" class="link-primary text-decoration-none">Kho</a></li>
                 <li class="list-group-item orders"><a href="/admin/orders" class="link-primary text-decoration-none">Đơn hàng</a></li>
                 <li class="list-group-item profiles"><a href="/admin/list" class="link-primary text-decoration-none">Tài khoản</a></li>
+                <li class="list-group-item masters"><a href="/admin/masters" class="link-primary text-decoration-none">Khác</a></li>
             </ul>
         </div>
         <div class="container admin">

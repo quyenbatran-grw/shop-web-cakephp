@@ -23,21 +23,21 @@ class CategoriesSeed extends AbstractSeed
         $data = [
             [
                 'id' => 1,
-                'name' => 'Cosmetic',
+                'name' => 'Mỹ phẩm',
                 'description' => 'cosmetic production',
                 'created' => '2023-05-22 04:02:23',
                 'modified' => '2023-05-22 04:02:23',
             ],
             [
                 'id' => 2,
-                'name' => 'Life',
+                'name' => 'Đồ sinh hoạt',
                 'description' => 'Life production',
                 'created' => '2023-05-22 04:11:27',
                 'modified' => '2023-05-22 04:11:27',
             ],
             [
                 'id' => 3,
-                'name' => 'candy',
+                'name' => 'Bánh kẹo',
                 'description' => 'candy production',
                 'created' => '2023-05-22 04:11:45',
                 'modified' => '2023-05-22 04:11:45',
